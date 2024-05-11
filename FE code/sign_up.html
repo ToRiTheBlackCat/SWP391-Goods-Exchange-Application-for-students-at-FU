@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="sign_up_style.css">
 </head>
 <body>
-    <div class sign_up_controller>
-        <h2>Hello, friend</h2>
+    <div class="sign_up_controller">
+        <h2>Đăng kí tài khoản</h2>
 
         <form action="sign_up_form" method="post">
             <div class="input-group">
-                <label for="username">Username</label>
+                <label for="username">Tên người dùng</label>
                 <input type="text" id="username" name="username" required>
             </div>
             <div class="input-group">
@@ -20,8 +20,24 @@
                 <input type="email" id="email" name="email" required>
             </div>
             <div class="input-group">
-                <label for="password">Password</label>
+                <label for="password">Mật khẩu</label>
                 <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">Xác nhận mật khẩu</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <div class="input-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+            </div>
+            <div class="checkbox">
+                <label for="gender">Giới tính</label>
+                <input type="radio" name="gender" value="male" required>Nam 
+                <input type="radio" name="gender" value="male" required>Nữ
+            </div>
+            <div class="register">
+                <button type="button" class="register-btn">Đăng kí</button>
             </div>
         </form>
     </div>
