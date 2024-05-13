@@ -21,12 +21,14 @@ body {
     color: black;
 }
 
+.search-bar input[type="search"]{
+    width: 350px;
+}
+
 .products{
     display: flex;
     justify-content: space-between;
     flex-wrap: nowrap;
-    
-    
 }
 
 .product {
@@ -48,6 +50,14 @@ body {
     margin-top: 10px;
     text-align: center;
 }
+
+/* .product-details p:not(:empty){
+    margin-bottom: 20px;
+}
+
+.product-details p:empty{
+    display: none;
+} */
 
 .price {
     color: red;
