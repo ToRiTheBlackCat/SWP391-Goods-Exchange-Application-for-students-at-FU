@@ -1,0 +1,58 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 10px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.products{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    
+    
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width: 450px;
+    flex: 0 0 auto;
+    margin-right: 10px;
+    scroll-snap-align: start;
+}
+
+.product img {
+    max-width: 50%;
+    display: block;
+}
+
+.product-details {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.price {
+    color: red;
+}
+
+.rating {
+    color: gold;
+}
