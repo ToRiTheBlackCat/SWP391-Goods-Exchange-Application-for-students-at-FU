@@ -44,6 +44,7 @@ body {
 .product img {
     max-width: 50%;
     display: block;
+    margin-left: 108px;
 }
 
 .product-details {

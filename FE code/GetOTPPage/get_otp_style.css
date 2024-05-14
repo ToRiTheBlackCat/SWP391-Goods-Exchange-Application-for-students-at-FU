@@ -43,3 +43,10 @@
     background-color: #d9534f;
     color: white;
 }
+.btn-new-password:hover {
+    background-color: chartreuse;
+}
+.btn-return-login:hover {
+    background-color: tomato;
+}
+
