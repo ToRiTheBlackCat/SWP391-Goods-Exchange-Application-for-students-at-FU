@@ -1,0 +1,23 @@
+.laptop {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .exchange-arrow {
+    text-align: center;
+  }
+  
+  .compensation {
+    margin-top: 10px;
+  }
+  
+  .buttons {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin: 0 10px;
+  }
+  

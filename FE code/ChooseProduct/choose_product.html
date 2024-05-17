@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="choose_product_style.css">
+  <title>Trang Sản Phẩm</title>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 sidebar bg-light">
+      <h3>Your products</h3>
+      <ul class="list-group" id="product-list">
+        <li class="list-group-item" data-name="Laptop MSI" data-price="13.500.000 vnd" data-description="Used for 2 months" data-image="ảnh/unnamed.webp">Laptop MSI</li>
+        <li class="list-group-item" data-name="Laptop Dell" data-price="15.000.000 vnd" data-description="Used for 1 year" data-image="ảnh/dell.jpg">Laptop Dell</li>
+        <li class="list-group-item" data-name="Chuột Logitech" data-price="500.000 vnd" data-description="Used for 3 months" data-image="ảnh/logitech.jpg">Chuột Logitech</li>
+        <li class="list-group-item" data-name="USB Tenda" data-price="200.000 vnd" data-description="Brand new" data-image="ảnh/tenda.jpg">USB Tenda</li>
+        <li class="list-group-item" data-name="Tai nghe Sony" data-price="1.200.000 vnd" data-description="Used for 6 months" data-image="ảnh/sony.jpg">Tai nghe Sony</li>
+      </ul>
+    </div>
+
+    <div class="col-md-9 product-details d-flex flex-column align-items-center justify-content-center">
+      <img src="" alt="Product Image" class="img-fluid product-image mb-3" id="product-image">
+      <div class="info w-50">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label font-weight-bold">Name</label>
+          <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" id="product-name">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label font-weight-bold">Price</label>
+          <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" id="product-price">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label font-weight-bold">Description</label>
+          <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" id="product-description">
+          </div>
+        </div>
+      </div>
+      <div class="mt-4">
+        <button class="btn btn-success btn-lg mr-2">Select</button>
+        <button class="btn btn-danger btn-lg">Decline</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Trang Trao Đổi Laptop</title>
+</head>
+<body>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-4 laptop" id="laptop1">
+      <img src="ảnh/LaptopMSI.jpg" alt="Laptop MSI Modern 14" class="img-fluid">
+      <p>Giá: 12.999.000</p>
+      <p>Chủ sở hữu: Chu Quốc Thành</p>
+      <p>Mô tả: Mua 6 tháng trước nhưng ít sử dụng</p>
+      <p>Số điện thoại: 012321316</p>
+    </div>
+
+    <div class="col-md-4 text-center exchange-arrow">
+      <img src="ảnh/exchange.png" alt="Exchange Arrows" class="img-fluid my-3">
+      <div class="compensation">
+        <p>Bồi thường: 500.000 vnd</p>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="compensation" value="buyer" id="buyer">
+          <label class="form-check-label" for="buyer">Người mua</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="compensation" value="seller" id="seller">
+          <label class="form-check-label" for="seller">Người bán</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 laptop" id="laptop2">
+      <img src="ảnh/unnamed.webp" alt="Laptop Acer Aspire 3" class="img-fluid">
+      <p>Giá: 13.500.000</p>
+      <p>Chủ sở hữu: Tạ Đức Thắng</p>
+      <p>Mô tả: Sử dụng 2 tháng</p>
+      <p>Số điện thoại: 0859627651</p>
+    </div>
+  </div>
+
+  <div class="text-center mt-4 buttons">
+    <button id="confirmExchange" class="btn btn-success">Xác nhận trao đổi</button>
+    <button id="declineExchange" class="btn btn-danger">Từ chối trao đổi</button>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
