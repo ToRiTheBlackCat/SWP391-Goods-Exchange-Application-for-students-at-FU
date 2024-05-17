@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GoodsExchangeFU")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f114b74628ad9bea7d4f2dcd99690f391391499")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64704b3123e3db74dfb0df390ac5ea5272840f6c")]
 [assembly: System.Reflection.AssemblyProductAttribute("GoodsExchangeFU")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GoodsExchangeFU")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

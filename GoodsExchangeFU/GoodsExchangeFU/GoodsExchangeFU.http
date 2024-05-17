@@ -1,6 +1,6 @@
-@GoodsExchangeFU_HostAddress = http://localhost:5152
+@GoodsExchangeFU_HostAddress = http://localhost:7224
 
-GET {{GoodsExchangeFU_HostAddress}}/weatherforecast/
+GET {{GoodsExchangeFU_HostAddress}}/GoodsExchangeFU_HostAddress/
 Accept: application/json
 
 ###
