@@ -4,55 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="web.css">
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#" class="active">Category</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Support</a></li>
-            </ul>
-            <div class="search-bar">
-                <input type="text" placeholder="Search">
-                <button>🔍</button>
-            </div>
-            <div class="auth-links">
-                <a href="#">Login</a>
-                <a href="#">Sign up</a>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Category</a></li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">🔍</button>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Sign up</a></li>
+                </ul>
             </div>
         </nav>
     </header>
-    <main>
+    <main class="container mt-4">
         <h2>Popular categories</h2>
-        <div class="categories">
-            <div class="category-card">
-                <img src="img/electronics.jpg" alt="Electronics">
-                <p>Electronics</p>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/electronics.jpg" class="card-img-top" alt="Electronics">
+                        <p class="card-text">Electronics</p>
+                    </div>
+                </div>
             </div>
-            <div class="category-card">
-                <img src="img/accessories.jpg" alt="Accessories">
-                <p>Accessories</p>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/accessories.jpg" class="card-img-top" alt="Accessories">
+                        <p class="card-text">Accessories</p>
+                    </div>
+                </div>
             </div>
-            <div class="category-card">
-                <img src="img/houseware.jpg" alt="Houseware">
-                <p>Houseware</p>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/houseware.jpg" class="card-img-top" alt="Houseware">
+                        <p class="card-text">Houseware</p>
+                    </div>
+                </div>
             </div>
-            <div class="category-card">
-                <img src="img/books.jpg" alt="Book">
-                <p>Book</p>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/books.jpg" class="card-img-top" alt="Book">
+                        <p class="card-text">Book</p>
+                    </div>
+                </div>
             </div>
-            <div class="category-card">
-                <img src="img/school_supplies.jpg" alt="School supplies">
-                <p>School supplies</p>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/school_supplies.jpg" class="card-img-top" alt="School supplies">
+                        <p class="card-text">School supplies</p>
+                    </div>
+                </div>
             </div>
-            <div class="category-card">
-                <img src="img/clothes.jpg" alt="Clothes">
-                <p>Clothes</p>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/clothes.jpg" class="card-img-top" alt="Clothes">
+                        <p class="card-text">Clothes</p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

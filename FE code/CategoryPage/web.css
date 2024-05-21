@@ -5,67 +5,6 @@ body {
     box-sizing: border-box;
 }
 
-header {
-    background-color: #00aaff;
-    padding: 10px 0;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    margin-right: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 4px;
-}
-
-nav ul li a.active, nav ul li a:hover {
-    background-color: #ff6600;
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
-}
-
-.search-bar input[type="text"] {
-    padding: 5px;
-    border: none;
-    border-radius: 4px;
-}
-
-.search-bar button {
-    background-color: #fff;
-    border: none;
-    padding: 6px;
-    margin-left: 5px;
-    cursor: pointer;
-}
-
-.auth-links a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: white;
-}
-
 main {
     max-width: 1200px;
     margin: 20px auto;
@@ -78,38 +17,56 @@ h2 {
     display: inline-block;
 }
 
-.categories {
+.row {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    justify-content: space-between;
 }
 
-.category-card {
+.col-md-4 {
+    flex: 1 1 calc(33.333% - 20px);
+    margin-bottom: 20px;
     display: flex;
-    align-items: center;
+}
+
+.card {
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
-    width: calc(33.333% - 20px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
-    padding: 10px;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-.category-card:hover {
+.card:hover {
     transform: scale(1.05);
 }
 
-.category-card img {
-    width: 100px; /* Chiều rộng hình ảnh cố định */
+.card-img-top {
+    width: 100%;
     height: auto;
-    margin-right: 10px; /* Khoảng cách giữa hình ảnh và văn bản */
 }
 
-.category-card p {
+.card-body {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.card-body img {
+    flex: 0 0 50%;
+    max-width: 50%;
+    height: auto;
+}
+
+.card-text {
     margin: 0;
     font-size: 1.1em;
-    flex: 1; /* Chiếm toàn bộ không gian còn lại */
     text-align: left;
+    flex: 1;
+    padding-left: 10px;
 }
