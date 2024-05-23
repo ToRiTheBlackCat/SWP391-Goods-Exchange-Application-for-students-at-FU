@@ -1,0 +1,32 @@
+/* src/PostProductForm.css */
+.nav-link.btn-warning {
+  color: white !important;
+}
+
+.nav-link.btn-warning:hover {
+  color: white !important;
+}
+
+#picture-placeholder {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  font-size: 1.5rem;
+  background-color: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+.btn-warning {
+  background-color: #ff6600;
+  border-color: #ff6600;
+}
+
+.btn-warning:hover {
+  background-color: #cc5200;
+  border-color: #cc5200;
+}
