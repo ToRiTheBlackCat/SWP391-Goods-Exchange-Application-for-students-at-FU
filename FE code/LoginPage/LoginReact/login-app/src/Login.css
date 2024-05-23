@@ -3,37 +3,37 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: Arial, sans-serif;
-}
-
-.login-container {
+  }
+  
+  .login-container {
     width: 320px;
     margin: 100px auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.input-group {
+  }
+  
+  .input-group {
     margin-bottom: 15px;
     position: relative;
-}
-
-.input-group img {
+  }
+  
+  .input-group img {
     position: absolute;
     top: 10px;
     left: 10px;
     height: 20px;
-}
-
-.input-group input {
+  }
+  
+  .input-group input {
     width: 80%;
     padding: 10px 10px 10px 40px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-button {
+  }
+  
+  button {
     width: 100%;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -43,8 +43,9 @@ button {
     background-color: #5cb85c;
     color: white;
     cursor: pointer;
-}
-.google {
+  }
+  
+  .google {
     width: 100%;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -53,20 +54,22 @@ button {
     background-color: aqua;
     color: black;
     cursor: pointer;
-}
-
-button:hover {
+  }
+  
+  button:hover {
     background-color: #4cae4c;
-}
-
-a {
+  }
+  
+  a {
     text-decoration: none;
     color: #5cb85c;
-}
-
-a:hover {
+  }
+  
+  a:hover {
     text-decoration: underline;
-}
-h2 {
+  }
+  
+  h2 {
     text-align: center;
-}
+  }
+  
