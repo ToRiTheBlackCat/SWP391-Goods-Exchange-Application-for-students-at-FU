@@ -260,3 +260,7 @@ C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject
 C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.pdb
 C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.genruntimeconfig.cache
 C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\ref\GoodsExchangeFUProject.dll
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\Repositories.dll
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\Services.dll
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\Services.pdb
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\Repositories.pdb

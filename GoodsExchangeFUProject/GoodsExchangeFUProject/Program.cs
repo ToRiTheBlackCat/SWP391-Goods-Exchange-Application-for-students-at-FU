@@ -1,12 +1,15 @@
-using GoodsExchangeFUProject.Entities;
-using GoodsExchangeFUProject.Helpers;
-using GoodsExchangeFUProject.IRepositories;
-using GoodsExchangeFUProject.Repositories;
+using Repositories.Entities;
+using Services.Helpers;
+using Services.IRepositories;
+using Services.Repositories;
+
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+ 
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
@@ -30,7 +33,7 @@ namespace GoodsExchangeFUProject
 
             // Register AuthHelper and other dependencies
             builder.Services.AddScoped<AuthHelper>();
-            builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
             
 
             // Configure AutoMapper

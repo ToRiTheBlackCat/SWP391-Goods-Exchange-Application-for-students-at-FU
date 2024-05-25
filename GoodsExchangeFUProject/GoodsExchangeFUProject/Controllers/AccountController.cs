@@ -1,18 +1,17 @@
 ﻿using System.Threading.Tasks;
-using GoodsExchangeFUProject.IRepositories;
-using GoodsExchangeFUProject.ModelsView;
+using Repositories.ModelsView;
 using Microsoft.AspNetCore.Mvc;
-using static GoodsExchangeFUProject.ModelsView.UserModel;
-
+using static Repositories.ModelsView.UserModel;
+using Services.IRepositories;
 namespace GoodsExchangeFUProject.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class AccountController : ControllerBase
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly IAccountService _accountRepository;
 
-        public AccountController(IAccountRepository accountRepository)
+        public AccountController(IAccountService accountRepository)
         {
             _accountRepository = accountRepository;
         }

@@ -1,4 +1,4 @@
-using GoodsExchangeFUProject.Entities;
+using Repositories.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
