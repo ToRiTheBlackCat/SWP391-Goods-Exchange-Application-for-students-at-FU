@@ -1,6 +1,14 @@
-﻿namespace GoodsExchangeFUProject.IRepositories
+﻿using GoodsExchangeFUProject.Entities;
+using GoodsExchangeFUProject.ModelsView;
+using static GoodsExchangeFUProject.ModelsView.UserModel;
+
+namespace GoodsExchangeFUProject.IRepositories
 {
-    public class IAccountRepository
+    public interface IAccountRepository
     {
+        /*tTask<(bool, string)> AddAccoun(RegisterUserModel register);*/
+
+        Task<(bool, string)> LoginByEmailAndPassword(LoginUserModel login);
+        
     }
 }
