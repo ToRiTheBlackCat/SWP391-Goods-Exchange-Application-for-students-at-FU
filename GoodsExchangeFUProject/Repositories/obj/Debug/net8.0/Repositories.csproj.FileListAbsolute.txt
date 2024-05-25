@@ -1,0 +1,14 @@
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\bin\Debug\net8.0\Repositories.deps.json
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\bin\Debug\net8.0\Repositories.runtimeconfig.json
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\bin\Debug\net8.0\Repositories.dll
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\bin\Debug\net8.0\Repositories.pdb
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\obj\Debug\net8.0\Repositories.csproj.AssemblyReference.cache
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\obj\Debug\net8.0\Repositories.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\obj\Debug\net8.0\Repositories.AssemblyInfoInputs.cache
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\obj\Debug\net8.0\Repositories.AssemblyInfo.cs
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\obj\Debug\net8.0\Repositories.csproj.CoreCompileInputs.cache
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\obj\Debug\net8.0\Repositories.dll
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\obj\Debug\net8.0\refint\Repositories.dll
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\obj\Debug\net8.0\Repositories.pdb
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\obj\Debug\net8.0\Repositories.genruntimeconfig.cache
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\Repositories\obj\Debug\net8.0\ref\Repositories.dll

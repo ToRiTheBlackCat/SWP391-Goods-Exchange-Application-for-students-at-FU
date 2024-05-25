@@ -1,9 +1,10 @@
 
-using GoodsExchangeFUProject.Entities;
+using GoodsExchangeFUProject.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Repositories;
 using System.Text;
 
 
@@ -64,11 +65,15 @@ namespace GoodsExchangeFUProject
                 //    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
                 //};
             });
-            builder.Services.AddSingleton<AuthHelpers>();
+            builder.Services.AddSingleton<AuthHelper>();
 
             //===============================================
 
-
+            builder.Services.AddAuthorizationBuilder()
+                .AddPolicy("admin", p =>
+                {
+                    p.RequireClaim("role", "admin");
+                });
 
             var app = builder.Build();
 
