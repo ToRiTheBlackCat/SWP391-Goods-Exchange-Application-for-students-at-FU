@@ -2,9 +2,9 @@
 using Repositories.ModelsView;
 using static Repositories.ModelsView.UserModel;
 
-namespace Services.IRepositories
+namespace Services.Interface
 {
-    public interface IAccountService
+    public interface IUserService
     {
         
         Task<(bool, string)> LoginByEmailAndPassword(LoginUserModel login);

@@ -13,7 +13,12 @@ namespace Services.Helpers
     {
         public ApplicationMapper()
         {
-            CreateMap<Product, ProductModel>().ReverseMap();
+            //CreateMap<Product, ProductModel>().ReverseMap();
+            CreateMap<Product, ProductModel>()
+                .ForMember(dest => dest.ProductType, opt => opt.MapFrom(src => src.Type))
+                .ForMember(dest => dest.ProductOwner, opt => opt.MapFrom(src => src.User));
+            CreateMap<ProductType, ProductTypeModel>();
+            CreateMap<User, ProductOwner>();
             CreateMap<User, LoginUserModel>().ReverseMap();
 
 

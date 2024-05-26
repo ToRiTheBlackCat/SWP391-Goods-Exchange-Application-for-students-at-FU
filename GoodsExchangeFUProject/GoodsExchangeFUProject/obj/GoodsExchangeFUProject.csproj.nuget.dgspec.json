@@ -152,6 +152,10 @@
               "target": "Package",
               "version": "[8.0.5, )"
             },
+            "Microsoft.Build.Utilities.Core": {
+              "target": "Package",
+              "version": "[17.10.4, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.5, )"

@@ -1,35 +1,32 @@
 ﻿using AutoMapper;
 using Repositories.ModelsView;
+using Repositories.Repositories;
+using Services.Interface;
 
-namespace Services.Repositories
+namespace Services.Service
 {
-    //public class ProductRepository : IProductRepository
-    //{
-    //    private readonly IProductRepository _productRepository;
-    //    private readonly IMapper _mapper;
-    //    public ProductRepository(IProductRepository productRepository, IMapper mapper)
-    //    {
-    //        _productRepository = productRepository;
-    //        _mapper = mapper;
-    //    }
-    //    public ProductModel addProduct(ProductModel productModel)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+    public class ProductServices : IProductService
+    {
+        private readonly ProductRepository _repo;
+        private readonly IMapper _mapper;
+        public ProductServices(ProductRepository productRepository, IMapper mapper)
+        {
+            _repo = productRepository;
+            _mapper = mapper;
+        }
 
-    //    public List<ProductModel> GetAllProducts()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        public async Task<(bool, object)> GetProductDetail(int productId)
+        {
+            var product = await _repo.FindProductByIdAsync(productId);
+            if (product != null)
+            {
+                var productModel = _mapper.Map<ProductModel>(product);
+                return (true, productModel);
+            }
+            return (false, null);
+        }
 
-    //    public List<ProductModel> GetProductsByName(string name)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public ProductModel UpdateProduct(int id, ProductModel productModel)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+        
+    }
 }
+

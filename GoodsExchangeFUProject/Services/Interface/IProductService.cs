@@ -1,9 +1,10 @@
 ﻿using Repositories.ModelsView;
 
-namespace Services.Repositories
+namespace Services.Interface
 {
-    //public interface IProductRepository
-    //{
-    
-    //}
+    public interface IProductService
+    {
+        Task<(bool, object)> GetProductDetail(int productId);
+
+    }
 }
