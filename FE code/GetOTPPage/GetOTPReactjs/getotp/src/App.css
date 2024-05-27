@@ -1,0 +1,17 @@
+.forgot-password-container {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.forgot-password-container h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.forgot-password-container p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: left;
+}
