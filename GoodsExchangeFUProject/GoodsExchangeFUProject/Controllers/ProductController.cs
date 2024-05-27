@@ -17,6 +17,8 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //[Authorize(Roles = "admin")]
+        //[Authorize(Roles = "mod")]
+
         [HttpGet("{id}")]
         public async Task<IActionResult> PostProduct(int id)    
         {
