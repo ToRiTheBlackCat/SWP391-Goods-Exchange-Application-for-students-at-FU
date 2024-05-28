@@ -13,6 +13,8 @@ namespace GoodsExchangeFUProject.ModelsView
             public required string Password { get; set; }
             [StringLength(50, MinimumLength = 5)]
             public required string UserName { get; set; }
+            [Phone]
+            [StringLength(12, MinimumLength = 9)]
             public string? PhoneNumber { get; set; } = null!;
         }
 

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tiT6tXAQDXKJs5cfmuiNnVAgTSr7/c2QuQwZOOSM/v0H8NchSmLBKNynHoI3IUe6B5GWe9LRcEe1OQUMTBkyfQ==",
+  "dgSpecHash": "T26i33JJ7WDZaUFdUxVjB0yHjgeMLQVf0J+4MMDfIIYmV2uPJHxv3q6xG0HpRV6VHH95IFEgjLtfPOxRVYeUjQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
+  "projectFilePath": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Senti\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Senti\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
