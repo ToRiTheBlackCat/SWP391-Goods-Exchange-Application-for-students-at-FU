@@ -18,6 +18,7 @@ namespace Repositories.ModelsView
 
         public class LoginUserModel
         {
+            [EmailAddress]
             public string Email { get; set; } = null!;
 
             public string Password { get; set; } = null!;
