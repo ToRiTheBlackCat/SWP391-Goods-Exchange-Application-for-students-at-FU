@@ -16,7 +16,7 @@
         public string ProductImage { get; set; } = null!;
         public string? ProductDescription { get; set; }
         public int ProductPrice { get; set; }
-        public ProductTypeModel ProductType { get; set; } = null!;
+        public int TypeId { get; set; }
         public ProductOwnerV2 ProductOwnerV2 { get; set; } = null!;
     }
 

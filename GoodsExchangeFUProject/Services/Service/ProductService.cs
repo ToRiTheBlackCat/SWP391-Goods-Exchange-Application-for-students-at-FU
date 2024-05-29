@@ -12,9 +12,6 @@ namespace Services.Service
         private readonly ProductRepository _repo;
         private readonly IMapper _mapper;
 
-        //// In-memory waiting list
-        //private static ConcurrentDictionary<int, ProductModel> _waitingList = new ConcurrentDictionary<int, ProductModel>();
-
         public ProductServices(ProductRepository productRepository, IMapper mapper)
         {
             _repo = productRepository;
@@ -50,9 +47,9 @@ namespace Services.Service
 
         public async Task<(bool, string)> ModAcceptProduct(int productId)
         {
-
+            
             var success = await _repo.UpdateProductStatusAsync(productId, 1);
-            if (success != null)
+            if (success)
             {
                 return (true, "Product accepted");
             }
@@ -61,8 +58,9 @@ namespace Services.Service
 
         public async Task<(bool, string)> ModRejectProduct(int productId)
         {
+            
             var success = await _repo.UpdateProductStatusAsync(productId, 0);
-            if (success != null)
+            if (success)
             {
                 return (true, "Product rejected");
             }
@@ -74,12 +72,6 @@ namespace Services.Service
             var newProduct = _mapper.Map<Product>(addNewProductModel);
             newProduct.Status = 3;  //set to 3 for waiting list  
             await _repo.AddProductAsync(newProduct);
-
-            //Status=3 nen lay truc tiep product ko can qua model
-            // Map to ProductModel and add to in-memory waiting list
-            //var productModel = _mapper.Map<ProductModel>(newProduct);
-            //_waitingList[productModel.ProductId] = productModel;
-
             return (true, "Product added to the waiting list.");
         }
 

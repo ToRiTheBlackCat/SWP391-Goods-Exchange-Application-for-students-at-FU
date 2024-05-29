@@ -17,9 +17,12 @@ namespace Services.Helpers
             CreateMap<Product, ProductModel>()
                 .ForMember(dest => dest.ProductType, opt => opt.MapFrom(src => src.Type))
                 .ForMember(dest => dest.ProductOwner, opt => opt.MapFrom(src => src.User));
+            // Mapping for AddNewProductModel to Product
             CreateMap<AddNewProductModel, Product>()
-               .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.ProductType))
-               .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.ProductType));
+          .ForMember(dest => dest.TypeId, opt => opt.MapFrom(src => src.TypeId)) // Map TypeId directly
+          .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.ProductOwnerV2.UserId)); // Add this mapping if required
+
+            // Mapping for ProductTypeModel to ProductType
             CreateMap<ProductType, ProductTypeModel>();
             CreateMap<User, ProductOwner>();
             CreateMap<User, LoginUserModel>().ReverseMap();
