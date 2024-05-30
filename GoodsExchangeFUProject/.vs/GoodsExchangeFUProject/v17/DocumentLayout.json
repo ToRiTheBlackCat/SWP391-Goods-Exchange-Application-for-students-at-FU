@@ -142,7 +142,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -186,18 +186,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\Service\\UserService.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
-              "RelativeToolTip": "Services\\Service\\UserService.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T08:15:53.099Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
               "Title": "ProductRepository.cs",
               "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Repositories\\ProductRepository.cs",
@@ -222,18 +210,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductService.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Service\\ProductService.cs",
-              "RelativeDocumentMoniker": "Services\\Service\\ProductService.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Service\\ProductService.cs",
-              "RelativeToolTip": "Services\\Service\\ProductService.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAA8wCIAAABWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-26T07:11:24.352Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "PaginatedList.cs",
               "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Helpers\\PaginatedList.cs",
@@ -244,6 +220,30 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-27T14:21:33.552Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
+              "RelativeDocumentMoniker": "Services\\Service\\UserService.cs",
+              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
+              "RelativeToolTip": "Services\\Service\\UserService.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T08:15:53.099Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Service\\ProductService.cs",
+              "RelativeDocumentMoniker": "Services\\Service\\ProductService.cs",
+              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Service\\ProductService.cs",
+              "RelativeToolTip": "Services\\Service\\ProductService.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAA8wCIAAABWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-26T07:11:24.352Z"
             },
             {
               "$type": "Document",
