@@ -26,11 +26,20 @@ namespace Repositories.Repositories
                 .Include(p => p.User)
                 .FirstOrDefaultAsync(p => p.ProductId == productId && p.Status == statusNum);
         }
+
         public IQueryable<Product> ViewProductsByStatus(int statusNum)
         {
              return _context.Products
                 .Include(p => p.User)
                 .Where(p => p.Status == statusNum);
+        }
+
+        public IQueryable<Product> ViewProductsOfUser(int userId)
+        {
+            return _context.Products
+                .Include(p => p.User)
+                .Include(p => p.Type) 
+                .Where(p => p.User.UserId == userId && p.Status == 1);
         }
 
         public async Task AddProductAsync(Product product)

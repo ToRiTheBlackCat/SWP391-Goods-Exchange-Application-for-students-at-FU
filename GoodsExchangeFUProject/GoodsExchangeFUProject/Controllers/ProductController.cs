@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Repositories.Entities;
 using Repositories.ModelsView;
 using Services.Interface;
 using Services.Service;
@@ -20,7 +21,7 @@ namespace GoodsExchangeFUProject.Controllers
         //[Authorize(Roles = "admin")]
         //[Authorize(Roles = "mod")]
 
-        [HttpGet("Student/ViewProductDetailWithId/{id}")]
+        [HttpGet("Student/ViewProductDetailWithId/{id}")]   //all product
         public async Task<IActionResult> StudentViewProductDetailWithID(int id)    
         {
             var (success, productModel) = await _productService.GetProductDetail(id);
@@ -44,6 +45,25 @@ namespace GoodsExchangeFUProject.Controllers
         public async Task<IActionResult> StudentAddNewProduct(AddNewProductModel addNewProductModel)
         {
             var (success, message) = await _productService.StudentAddNewProduct(addNewProductModel);
+            if (success)
+            {
+                return Ok(message);
+            }
+            return BadRequest(message);
+        }
+
+        [HttpGet("Student/ViewOwnProductList/{userId}")]
+        public async Task<IActionResult> StudentViewOwnProductList(int userId)
+        {
+            var list = await _productService.StudentViewOwnProductList(userId);
+            return Ok(list);
+        }
+
+        //[Authorize(Roles = "Student")]
+        [HttpPost("Student/DeleteProduct/{productId}")]
+        public async Task<IActionResult> StudentDeleteProduct(int productId)
+        {
+            var (success, message) = await _productService.StudentDeleteProduct(productId);
             if (success)
             {
                 return Ok(message);

@@ -13,19 +13,32 @@ namespace Services.Helpers
     {
         public ApplicationMapper()
         {
-            //CreateMap<Product, ProductModel>().ReverseMap();
+            // Mapping for Product to ProductModel
             CreateMap<Product, ProductModel>()
                 .ForMember(dest => dest.ProductType, opt => opt.MapFrom(src => src.Type))
                 .ForMember(dest => dest.ProductOwner, opt => opt.MapFrom(src => src.User));
-            // Mapping for AddNewProductModel to Product
-            CreateMap<AddNewProductModel, Product>()
-          .ForMember(dest => dest.TypeId, opt => opt.MapFrom(src => src.TypeId)) // Map TypeId directly
-          .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.ProductOwnerV2.UserId)); // Add this mapping if required
 
-            // Mapping for ProductTypeModel to ProductType
+            // Mapping for Product to AddNewProductModel (this was missing)
+            CreateMap<Product, AddNewProductModel>()
+                .ForMember(dest => dest.TypeId, opt => opt.MapFrom(src => src.TypeId))
+                .ForMember(dest => dest.ProductOwnerV2, opt => opt.MapFrom(src => new ProductOwnerV2 { UserId = src.UserId }));
+
+            
+
+            // Mapping for Product to OwnProductModel
+            CreateMap<Product, OwnProductModel>()
+                .ForMember(dest => dest.ProductType, opt => opt.MapFrom(src => src.Type))
+                .ForMember(dest => dest.ProductOwnerV2, opt => opt.MapFrom(src => src.User));
+
+            // Mapping for ProductType to ProductTypeModel
             CreateMap<ProductType, ProductTypeModel>();
+
+            // Mapping for User to ProductOwner
             CreateMap<User, ProductOwner>();
+
+            // Mapping for User to LoginUserModel
             CreateMap<User, LoginUserModel>().ReverseMap();
+           
 
 
         }

@@ -4,6 +4,7 @@ using Repositories.Entities;
 using Repositories.Repositories;
 using Services.Interface;
 using System.Collections.Concurrent;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Services.Service
 {
@@ -39,6 +40,16 @@ namespace Services.Service
 
             return listOut;
         }
+        public List<AddNewProductModel> ConvertProductToModel2(List<Product> listIn)
+        {
+            var listOut = new List<AddNewProductModel>();
+            foreach (var product in listIn)
+            {
+                listOut.Add(_mapper.Map<AddNewProductModel>(product));
+            }
+
+            return listOut;
+        }
         public async Task<List<ProductModel>> ModGetProductWaitingList()
         {
 
@@ -66,6 +77,16 @@ namespace Services.Service
             }
             return (false, "Product not found in the waiting list.");
         }
+        public async Task<(bool, string)> StudentDeleteProduct(int productId)
+        {
+
+            var success = await _repo.UpdateProductStatusAsync(productId, 0);
+            if (success)
+            {
+                return (true, "Product Deleted");
+            }
+            return (false, "Product not exist");
+        }
 
         public async Task<(bool, string)> StudentAddNewProduct(AddNewProductModel addNewProductModel)
         {
@@ -75,6 +96,17 @@ namespace Services.Service
             return (true, "Product added to the waiting list.");
         }
 
+        public async  Task<List<AddNewProductModel>> StudentViewOwnProductList(int userId)
+        {
+            var list = ConvertProductToModel2(_repo.ViewProductsOfUser(userId).ToList());
+            if (list is not null)
+            {
+                return (list);
+            }
+            return (null);
+        }
+
+        
     }
 }
 
