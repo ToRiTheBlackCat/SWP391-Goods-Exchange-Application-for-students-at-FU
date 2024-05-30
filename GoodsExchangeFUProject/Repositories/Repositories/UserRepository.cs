@@ -18,7 +18,7 @@ namespace Repositories.Repositories
         {
             _context = context;
         }
-        public async Task<(bool, User)> AuthenticateUser(LoginUserModel login)
+        public async Task<(bool, User,int)> AuthenticateUser(LoginUserModel login)
         {
             string salt = "BallsInYoJaws2069";
             string loginPassword = (login.Password.Trim() + salt).ToSHA256String();
@@ -26,8 +26,8 @@ namespace Repositories.Repositories
                 .Include(u => u.Role)
                 .FirstOrDefaultAsync(u => u.Email.Trim() == login.Email.Trim() && u.Password.Trim() == loginPassword);
             if (user != null)
-                return (true, user);
-            return (false, null);
+                return (true, user,user.UserId);
+            return (false, null,0);
         }
     }
 }

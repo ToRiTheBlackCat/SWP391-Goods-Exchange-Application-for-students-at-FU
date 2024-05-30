@@ -21,14 +21,14 @@ namespace GoodsExchangeFUProject.Controllers
         public async Task<IActionResult> PostUser([FromBody] LoginUserModel loginModel)
         {
             
-            var (success, response) = await _userRepository.LoginByEmailAndPassword(loginModel);
+            var (success, response, id) = await _userRepository.LoginByEmailAndPassword(loginModel);
 
             if (!success)
             {
                 return Unauthorized(response);
             }
 
-            return Ok(new { Token = response });
+            return Ok(new { Token = response, userId = id } );
         }
     }
 }

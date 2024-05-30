@@ -7,7 +7,7 @@ namespace Services.Interface
     public interface IUserService
     {
         
-        Task<(bool, string)> LoginByEmailAndPassword(LoginUserModel login);
+        Task<(bool, string, int)> LoginByEmailAndPassword(LoginUserModel login);
         
     }
 }
