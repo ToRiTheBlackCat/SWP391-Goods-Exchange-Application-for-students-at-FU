@@ -2,12 +2,17 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Navbar, Nav, Form, FormControl, Button, Container, Row, Col, Card } from 'react-bootstrap';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import electronic from './img/electronics.jpg';
 import accessories from './img/accessories.jpg';
 import houseware from './img/houseware.jpg';
 import books from './img/books.jpg';
 import school_supplies from './img/school_supplies.jpg';
 import clothes from './img/clothes.jpg';
+import Signup from './component/signup';
+import Login from './component/Login'; // Import component Login
+import Homepg from './Homepage';
+import cate from '../../../../';
 
 const categories = [
   { img: electronic, text: 'Electronics' },
@@ -16,10 +21,12 @@ const categories = [
   { img: books, text: 'Book' },
   { img: school_supplies, text: 'School supplies' },
   { img: clothes, text: 'Clothes' },
+  
 ];
 
 function App() {
   return (
+    
     <div className="App">
       <header>
         <Navbar bg="dark" variant="dark" expand="lg">
@@ -58,6 +65,7 @@ function App() {
         </Container>
       </main>
     </div>
+    
   );
 }
 
