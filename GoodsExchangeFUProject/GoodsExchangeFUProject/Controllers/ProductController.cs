@@ -70,6 +70,21 @@ namespace GoodsExchangeFUProject.Controllers
             }
             return BadRequest(message);
         }
+        //[Authorize(Roles = "Student")]
+        [HttpPut("Student/UpdateProduct")]
+        public async Task<IActionResult> StudentUpdateProduct([FromBody] OwnProductModel product)
+        {
+            //string status = await _productService.StudentUpdateProduct(ownProductModel);
+            //return Ok(status);
+           
+            var (success, message) = await _productService.StudentUpdateProduct(product);
+            if (success)
+            {
+                return Ok(message);
+            }
+            return BadRequest(message);
+        }
+
 
         //[Authorize(Roles = "mod")]
         [HttpPost("Mod/AcceptProductInWaitingList/{id}")]

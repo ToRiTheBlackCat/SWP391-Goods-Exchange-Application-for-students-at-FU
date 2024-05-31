@@ -29,16 +29,16 @@ namespace Repositories.Repositories
 
         public IQueryable<Product> ViewProductsByStatus(int statusNum)
         {
-             return _context.Products
-                .Include(p => p.User)
-                .Where(p => p.Status == statusNum);
+            return _context.Products
+               .Include(p => p.User)
+               .Where(p => p.Status == statusNum);
         }
 
         public IQueryable<Product> ViewProductsOfUser(int userId)
         {
             return _context.Products
                 .Include(p => p.User)
-                .Include(p => p.Type) 
+                .Include(p => p.Type)
                 .Where(p => p.User.UserId == userId && p.Status == 1);
         }
 
@@ -56,6 +56,22 @@ namespace Repositories.Repositories
                 return false;
             }
             product.Status = status;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        public async Task<bool> UpdateProductByIdAsync(int productId, OwnProductModel update)
+        {
+            var product = await FindProductByIdAsync(productId, 1);
+            if (product == null)
+                return false;
+
+            product.ProductName = update.ProductName;
+            product.ProductImage = update.ProductImage;
+            product.ProductDescription = update.ProductDescription;
+            product.ProductPrice = update.ProductPrice;
+            product.TypeId = update.TypeId;
+
+
             await _context.SaveChangesAsync();
             return true;
         }

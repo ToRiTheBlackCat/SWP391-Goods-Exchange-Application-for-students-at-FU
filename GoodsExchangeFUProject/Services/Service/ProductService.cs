@@ -88,6 +88,17 @@ namespace Services.Service
             return (false, "Product not exist");
         }
 
+        public async Task<(bool, string)> StudentUpdateProduct(OwnProductModel product)
+        {
+            var productId = product.ProductId;
+            var success = await _repo.UpdateProductByIdAsync(productId, product);
+            if (success)
+            {
+                return (true, "Product updated");
+            }
+            return (false, "Product not exist");
+        }
+
         public async Task<(bool, string)> StudentAddNewProduct(AddNewProductModel addNewProductModel)
         {
             var newProduct = _mapper.Map<Product>(addNewProductModel);

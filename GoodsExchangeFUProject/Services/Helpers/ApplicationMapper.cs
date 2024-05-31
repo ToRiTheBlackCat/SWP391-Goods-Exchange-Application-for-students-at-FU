@@ -15,23 +15,23 @@ namespace Services.Helpers
         {
             // Mapping for Product to ProductModel
             CreateMap<Product, ProductModel>()
-                .ForMember(dest => dest.ProductType, opt => opt.MapFrom(src => src.Type))
+                .ForMember(dest => dest.TypeId, opt => opt.MapFrom(src => src.TypeId))
                 .ForMember(dest => dest.ProductOwner, opt => opt.MapFrom(src => src.User));
 
             // Mapping for Product to AddNewProductModel (this was missing)
-            CreateMap<Product, AddNewProductModel>()
+            CreateMap<AddNewProductModel, Product>()
                 .ForMember(dest => dest.TypeId, opt => opt.MapFrom(src => src.TypeId))
-                .ForMember(dest => dest.ProductOwnerV2, opt => opt.MapFrom(src => new ProductOwnerV2 { UserId = src.UserId }));
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
 
-            
+
 
             // Mapping for Product to OwnProductModel
             CreateMap<Product, OwnProductModel>()
-                .ForMember(dest => dest.ProductType, opt => opt.MapFrom(src => src.Type))
-                .ForMember(dest => dest.ProductOwnerV2, opt => opt.MapFrom(src => src.User));
+                .ForMember(dest => dest.TypeId, opt => opt.MapFrom(src => src.Type.TypeId))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.User.UserId));
 
             // Mapping for ProductType to ProductTypeModel
-            CreateMap<ProductType, ProductTypeModel>();
+            //CreateMap<ProductType, ProductTypeModel>();
 
             // Mapping for User to ProductOwner
             CreateMap<User, ProductOwner>();
