@@ -35,9 +35,20 @@ namespace GoodsExchangeFUProject
             builder.Services.AddScoped<UserRepository>(); // Register UserRepository
             builder.Services.AddScoped<IProductService, ProductServices>();
             builder.Services.AddScoped<ProductRepository>();
+            builder.Services.AddScoped<IReportService, ReportService>();
+            builder.Services.AddScoped<ReportRepository>();
 
             // Configure AutoMapper
             builder.Services.AddAutoMapper(typeof(ApplicationMapper));
+
+            // Configure CORS 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
 
             // Configure Authentication
             builder.Services.AddAuthentication(options =>

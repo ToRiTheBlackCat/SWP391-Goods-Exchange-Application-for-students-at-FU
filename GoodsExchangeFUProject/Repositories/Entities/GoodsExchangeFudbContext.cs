@@ -156,10 +156,11 @@ namespace Repositories.Entities
 
             modelBuilder.Entity<Report>(entity =>
             {
-                entity
-                    .HasNoKey()
-                    .ToTable("Report");
+                entity.ToTable("Report");
 
+                entity.Property(e => e.ReportId).HasColumnName("reportID");
+
+                entity.Property(e => e.Status).HasColumnName("status");
                 entity.Property(e => e.Detail)
                     .HasMaxLength(255)
                     .HasColumnName("detail");

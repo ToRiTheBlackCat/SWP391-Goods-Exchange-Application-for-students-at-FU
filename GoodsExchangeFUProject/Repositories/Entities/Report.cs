@@ -16,6 +16,7 @@ namespace Repositories.Entities
         public string Detail { get; set; } = null!;
 
         public DateTime ReportDate { get; set; }
+        public int Status { get; set; }
 
         public virtual Product Product { get; set; } = null!;
 

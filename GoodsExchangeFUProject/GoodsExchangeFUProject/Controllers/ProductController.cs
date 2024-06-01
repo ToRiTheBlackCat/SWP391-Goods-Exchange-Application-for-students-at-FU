@@ -18,9 +18,8 @@ namespace GoodsExchangeFUProject.Controllers
             _productService = productService;
         }
 
-        //[Authorize(Roles = "admin")]
-        //[Authorize(Roles = "mod")]
-
+        
+        //[Authorize(Roles = "student")]
         [HttpGet("Student/ViewProductDetailWithId/{id}")]   //all product
         public async Task<IActionResult> StudentViewProductDetailWithID(int id)    
         {
@@ -40,18 +39,9 @@ namespace GoodsExchangeFUProject.Controllers
             return Ok(products);
         }
 
-        //[Authorize(Roles = "Student")]
-        [HttpPost("Student/AddNewProduct")]
-        public async Task<IActionResult> StudentAddNewProduct(AddNewProductModel addNewProductModel)
-        {
-            var (success, message) = await _productService.StudentAddNewProduct(addNewProductModel);
-            if (success)
-            {
-                return Ok(message);
-            }
-            return BadRequest(message);
-        }
+        
 
+        //[Authorize(Roles = "Student")]
         [HttpGet("Student/ViewOwnProductList/{userId}")]
         public async Task<IActionResult> StudentViewOwnProductList(int userId)
         {
@@ -70,21 +60,18 @@ namespace GoodsExchangeFUProject.Controllers
             }
             return BadRequest(message);
         }
+
         //[Authorize(Roles = "Student")]
-        [HttpPut("Student/UpdateProduct")]
-        public async Task<IActionResult> StudentUpdateProduct([FromBody] OwnProductModel product)
+        [HttpPost("Student/AddNewProduct")]
+        public async Task<IActionResult> StudentAddNewProduct(AddNewProductModel addNewProductModel)
         {
-            //string status = await _productService.StudentUpdateProduct(ownProductModel);
-            //return Ok(status);
-           
-            var (success, message) = await _productService.StudentUpdateProduct(product);
+            var (success, message) = await _productService.StudentAddNewProduct(addNewProductModel);
             if (success)
             {
                 return Ok(message);
             }
             return BadRequest(message);
         }
-
 
         //[Authorize(Roles = "mod")]
         [HttpPost("Mod/AcceptProductInWaitingList/{id}")]
@@ -103,6 +90,21 @@ namespace GoodsExchangeFUProject.Controllers
         public async Task<IActionResult> ModRejectProductInWaitingList(int id)
         {
             var (success, message) = await _productService.ModRejectProduct(id);
+            if (success)
+            {
+                return Ok(message);
+            }
+            return BadRequest(message);
+        }
+
+        //[Authorize(Roles = "Student")]
+        [HttpPut("Student/UpdateProduct")]
+        public async Task<IActionResult> StudentUpdateProduct([FromBody] OwnProductModel product)
+        {
+            //string status = await _productService.StudentUpdateProduct(ownProductModel);
+            //return Ok(status);
+
+            var (success, message) = await _productService.StudentUpdateProduct(product);
             if (success)
             {
                 return Ok(message);
