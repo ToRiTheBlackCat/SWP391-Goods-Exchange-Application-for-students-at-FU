@@ -1,16 +1,42 @@
 import { useState } from 'react';
+// import {useNavigate} from 'react-router-dom';
 import './Login.css';
 import user from './img/th.jpg';
 import passwordPic from './img/th (1).jpg';
+import axios from 'axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [message, setMassage] = useState('');
+  // const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Username:', email);
-    console.log('Password:', password);
+    setError('');
+    setMassage('');
+
+    try{
+      const response = await axios.post('http://localhost:5299/user/login',{
+          email: email,
+          password: password
+    },{
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    });
+    if(response.status===200){
+      setMassage('Logged in successfully');
+      console.log('Login success: ',response.data);
+      // navigate('/home');
+    }
+      }catch(error){
+        console.log('Login error: ', error);
+        setError('Login failed. Please check your email and password');
+      }
   };
 
   return (
@@ -44,6 +70,8 @@ const Login = () => {
         <button type="submit">Login</button>
         <button className="google" type="button">Login with email</button>
       </form>
+      {error && <p className='error'>{error}</p>}
+      {message && <p className='message'>{message}</p>}
 
       <a href="/forgot-password">Forgot password?</a> | <a href="/signup">Register a new account</a>
     </div>
