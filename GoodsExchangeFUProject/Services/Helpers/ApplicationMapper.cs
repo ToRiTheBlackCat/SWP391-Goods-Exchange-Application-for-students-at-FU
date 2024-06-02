@@ -39,8 +39,15 @@ namespace Services.Helpers
             // Mapping for User to LoginUserModel
             CreateMap<User, LoginUserModel>().ReverseMap();
 
-            // Mapping for Report to ReportModel
-            CreateMap<ReportModel, Report>().ReverseMap();
+            // Mapping for User to LoginUserModel
+            CreateMap<User, UserModel2>().ReverseMap();
+
+            // Mapping for Report to CreateReportModel
+            CreateMap<CreateReportModel, Report>().ReverseMap();
+
+            // Mapping for Report to ViewReportModel
+            CreateMap<ViewReportModel, Report>().ReverseMap();
+
 
         }
     }

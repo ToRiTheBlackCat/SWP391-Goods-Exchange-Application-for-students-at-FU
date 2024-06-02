@@ -8,6 +8,10 @@ namespace Services.Interface
     {
         
         Task<(bool, string, int)> LoginByEmailAndPassword(LoginUserModel login);
-        
+        Task<(bool, string)> ModBanAccount(int userId);
+        Task<(bool, string)> ModUnBanAccount(int userId);
+
+        Task<List<UserModel2>> ModGetBanAccountList();
+
     }
 }

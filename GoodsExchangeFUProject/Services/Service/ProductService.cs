@@ -19,7 +19,7 @@ namespace Services.Service
             _mapper = mapper;
         }
 
-        public async Task<(bool, object)> GetProductDetail(int productId)
+        public async Task<(bool, object?)> GetProductDetail(int productId)
         {
             var product = await _repo.FindProductByIdAsync(productId, 1);
             if (product != null)
@@ -107,7 +107,7 @@ namespace Services.Service
             return (true, "Product added to the waiting list.");
         }
 
-        public async  Task<List<AddNewProductModel>> StudentViewOwnProductList(int userId)
+        public async  Task<List<AddNewProductModel>?> StudentViewOwnProductList(int userId)
         {
             var list = ConvertProductToModel2(_repo.ViewProductsOfUser(userId).ToList());
             if (list is not null)

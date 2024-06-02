@@ -18,7 +18,7 @@ namespace Repositories.Repositories
         {
             _context = context;
         }
-        public async Task<(bool, User,int)> AuthenticateUser(LoginUserModel login)
+        public async Task<(bool, User?,int)> AuthenticateUser(LoginUserModel login)
         {
             string salt = "BallsInYoJaws2069";
             string loginPassword = (login.Password.Trim() + salt).ToSHA256String();
@@ -28,6 +28,25 @@ namespace Repositories.Repositories
             if (user != null)
                 return (true, user,user.UserId);
             return (false, null,0);
+        }
+
+        public async Task<bool> UpdateUserStatusAsync(int userId, int status)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+            {
+                return false;
+            }
+            user.IsBanned = status == 1 ?true :false;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public IQueryable<User> ViewUserByStatus(int status)
+        {
+            var ban = status == 1 ? true : false;
+            return _context.Users
+               .Where(p => p.IsBanned == ban);
         }
     }
 }

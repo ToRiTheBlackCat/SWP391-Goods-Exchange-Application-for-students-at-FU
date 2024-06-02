@@ -18,7 +18,7 @@ namespace Repositories.Repositories
             _context = context;
         }
 
-        public async Task<Product> FindProductByIdAsync(int productId, int statusNum)
+        public async Task<Product?> FindProductByIdAsync(int productId, int statusNum)
         {
             // Include related entities (ProductType and User) using Include method
             return await _context.Products

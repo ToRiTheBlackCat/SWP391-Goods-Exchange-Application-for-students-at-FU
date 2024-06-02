@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.ModelsView
 {
-    public class ReportModel
+    public class CreateReportModel
     {
         public int UserId { get; set; }
 
@@ -15,7 +15,17 @@ namespace Repositories.ModelsView
         public string Detail { get; set; } = null!;
 
         public DateTime ReportDate { get; set; }
-        
+    }
+    public class ViewReportModel
+    {
+        public int ReportId { get; set; }
 
+        public int UserId { get; set; }
+
+        public int ProductId { get; set; }
+
+        public string Detail { get; set; } = null!;
+
+        public DateTime ReportDate { get; set; }
     }
 }

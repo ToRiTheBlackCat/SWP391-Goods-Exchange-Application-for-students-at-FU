@@ -10,31 +10,33 @@ namespace GoodsExchangeFUProject.Controllers
     [ApiController]
     public class ReportController : ControllerBase
     {
-        private readonly IReportService _reportRepository;
+        private readonly IReportService _reportService;
 
-        public ReportController(IReportService _reportService)
+        public ReportController(IReportService reportService)
         {
-            _reportRepository = _reportService;
+            _reportService = reportService;
         }
 
         //[Authorize(Roles = "mod")]
         [HttpGet("Mod/ViewReportList")]
         public async Task<IActionResult> ModGetReportList()
         {
-            var reports = await _reportRepository.ModGetReportWaitingList();
+            var reports = await _reportService.ModGetReportWaitingList();
             return Ok(reports);
         }
 
         //[Authorize(Roles = "student")]
         [HttpPost("Student/CreateReport")]   
-        public async Task<IActionResult> StudentCreateReport(ReportModel reportModel)
+        public async Task<IActionResult> StudentCreateReport(CreateReportModel createReportModel)
         {
-            var (success, message) = await _reportRepository.StudentAddNewReport(reportModel);
+            var (success, message) = await _reportService.StudentAddNewReport(createReportModel);
             if (success)
             {
                 return Ok(message);
             }
             return BadRequest("Fail to create report");
         }
+
+        
     }
 }

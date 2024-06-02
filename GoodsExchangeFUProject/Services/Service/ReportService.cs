@@ -8,12 +8,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Repositories.Repositories;
-using AutoMapper;
-using Repositories.ModelsView;
-using Repositories.Entities;
-using Repositories.Repositories;
-using Services.Interface;
+//using Repositories.Repositories;
+//using AutoMapper;
+//using Repositories.ModelsView;
+//using Repositories.Entities;
+//using Repositories.Repositories;
+//using Services.Interface;
 using System.Collections.Concurrent;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,25 +30,36 @@ namespace Services.Service
             _mapper = mapper;
         }
 
-        public List<ReportModel> ConvertReportToModel(List<Report> listIn)
+        public List<CreateReportModel> ConvertReportToModel(List<Report> listIn)
         {
-            var listOut = new List<ReportModel>();
+            var listOut = new List<CreateReportModel>();
             foreach (var report in listIn)
             {
-                listOut.Add(_mapper.Map<ReportModel>(report));
+                listOut.Add(_mapper.Map<CreateReportModel>(report));
             }
 
             return listOut;
         }
-        public async Task<List<ReportModel>> ModGetReportWaitingList()
+        public List<ViewReportModel> ConvertReportToModel2(List<Report> listIn)
         {
-            return ConvertReportToModel(_repo.ViewReportByStatus(1).ToList());
+            var listOut = new List<ViewReportModel>();
+            foreach (var report in listIn)
+            {
+                listOut.Add(_mapper.Map<ViewReportModel>(report));
+            }
+
+            return listOut;
+        }
+
+        public async Task<List<ViewReportModel>> ModGetReportWaitingList()
+        {
+            return ConvertReportToModel2(_repo.ViewReportByStatus(1).ToList());
 
         }
 
-        public async Task<(bool, string)> StudentAddNewReport(ReportModel reportModel)
+        public async Task<(bool, string)> StudentAddNewReport(CreateReportModel createReportModel)
         {
-            var newReport = _mapper.Map<Report>(reportModel);
+            var newReport = _mapper.Map<Report>(createReportModel);
             newReport.Status = 1;  //set to 1 for waiting list  
             await _repo.AddReportAsync(newReport);
             return (true, "Report created successfully.");

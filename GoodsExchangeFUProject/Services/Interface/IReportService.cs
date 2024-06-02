@@ -1,4 +1,5 @@
-﻿using Repositories.ModelsView;
+﻿using Repositories.Entities;
+using Repositories.ModelsView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Services.Interface
 {
     public interface IReportService
     {
-        Task<(bool, string)> StudentAddNewReport(ReportModel reportModel);
-        Task<List<ReportModel>> ModGetReportWaitingList();
+        Task<(bool, string)> StudentAddNewReport(CreateReportModel createReportModel);
+        Task<List<ViewReportModel>> ModGetReportWaitingList();
     }
 }
