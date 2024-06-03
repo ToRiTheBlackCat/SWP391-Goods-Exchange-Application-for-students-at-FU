@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Repositories;
 using Repositories.Entities;
 using Services.Service;
@@ -19,12 +20,14 @@ namespace GoodsExchangeFUProject.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly GoodsExchangeFudbContext _context;
+        private readonly IWebHostEnvironment _env;
 
         private ProductService _service = new();
 
-        public ProductsController(GoodsExchangeFudbContext context)
+        public ProductsController(GoodsExchangeFudbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         public string NameSort { get; set; }
@@ -34,7 +37,7 @@ namespace GoodsExchangeFUProject.Controllers
 
         // GET: api/Products
         [HttpGet("GetSorted")]
-        public async Task<ActionResult<List<Product>>> GetProducts(int pageIndex, string? sortString, int? cateId, string sortOder = null!)
+        public async Task<ActionResult<List<ProductViewModel>>> GetProducts(int pageIndex, string? sortString, int? cateId, string sortOder = null!)
         {
             ProductSortView sortView = new ProductSortView()
             {
@@ -42,7 +45,7 @@ namespace GoodsExchangeFUProject.Controllers
                 CategoryId = cateId,
             };
             if (!(pageIndex > 0)) pageIndex = 1; 
-            (bool, List<Product>) sortedList = await _service.GetSortedProductsUI(sortView, sortOder, pageIndex);
+            (bool, List<ProductViewModel>) sortedList = await _service.GetSortedProductsUI(sortView, sortOder, pageIndex);
 
 
             return Ok(sortedList.Item2);
@@ -60,6 +63,30 @@ namespace GoodsExchangeFUProject.Controllers
             }
 
             return product;
+        }
+
+        // GET: api/Products/Create
+        [HttpGet("Create")]
+        public IActionResult GetProductCreate()
+        {
+            //// Construct the path to the HTML file within the content root directory
+            //var htmlPath = Path.Combine(_env.ContentRootPath, "Pages", "ProductsController.cs.html");
+
+            //// Check if the HTML file exists
+            //if (!System.IO.File.Exists(htmlPath))
+            //{
+            //    return NotFound(); // Return 404 if HTML file doesn't exist
+            //}
+
+            //// Read the content of the HTML file
+            //var htmlContent = System.IO.File.ReadAllText(htmlPath);
+
+            //// Return the HTML content with the appropriate content type
+            //return Content(htmlContent, "text/html");
+
+            return Ok();
+
+
         }
 
         // PUT: api/Products/5
@@ -93,15 +120,32 @@ namespace GoodsExchangeFUProject.Controllers
             return NoContent();
         }
 
-        // POST: api/Products
+        // POST: api/Products/Create
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
+        [HttpPost("Create")]
+        public async Task<IActionResult> CreateItem(ProductCreateView product, IFormFile productImage)
         {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
+            if (productImage == null || productImage.Length == 0)
+            {
+                return BadRequest("No image uploaded.");
+            }
 
-            return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
+            var uploadPath = Path.Combine(_env.ContentRootPath, "uploads");
+            Directory.CreateDirectory(uploadPath); // Ensure the directory exists
+
+            var filePath = Path.Combine(uploadPath, Path.GetFileName(productImage.FileName));
+
+            // Save the image to the server
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await productImage.CopyToAsync(stream);
+            }
+
+            (bool,string) success = await _service.CreateProductUI(product, productImage);
+            if (success.Item1) 
+                return Ok(product);
+
+            return StatusCode(500, $"Falied to add product: {success.Item2}");
         }
 
         // DELETE: api/Products/5

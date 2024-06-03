@@ -1,138 +1,70 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\",
+  "WorkspaceRootPath": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|c:\\users\\senti\\downloads\\portablegit-2.45.0-64-bit.7z\\exchangeproject\\swp391-goods-exchange-application-for-students-at-fu\\goodsexchangefuproject\\services\\helpers\\paginatedlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|solutionrelative:services\\helpers\\paginatedlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\services\\service\\exchangeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|solutionrelative:services\\service\\exchangeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\services\\service\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|solutionrelative:services\\service\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|c:\\users\\senti\\onedrive\\desktop\\goodsexchangefuproject\\repositories\\repositories\\exchangerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositories\\exchangerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\services\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|solutionrelative:services\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\goodsexchangefuproject\\controllers\\exchangescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\controllers\\exchangescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\goodsexchangefuproject\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\modelsview\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|c:\\users\\senti\\onedrive\\desktop\\goodsexchangefuproject\\repositories\\modelsview\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\modelsview\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\modelsview\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\modelsview\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|c:\\users\\senti\\onedrive\\desktop\\goodsexchangefuproject\\services\\service\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|solutionrelative:services\\service\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\goodsexchangefuproject\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\goodsexchangefuproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\services\\helpers\\encodingclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|solutionrelative:services\\helpers\\encodingclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\goodsexchangefuproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\services\\helpers\\authhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|solutionrelative:services\\helpers\\authhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\services\\helpers\\applicationmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|solutionrelative:services\\helpers\\applicationmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\irepositories\\iaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\irepositories\\iaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\entities\\producttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\entities\\producttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\entities\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\entities\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\goodsexchangefuproject\\views\\users\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\views\\users\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\goodsexchangefuproject\\views\\users\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\views\\users\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\goodsexchangefuproject\\views\\users\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\views\\users\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\goodsexchangefuproject\\views\\users\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\views\\users\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\goodsexchangefuproject\\views\\users\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\views\\users\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\goodsexchangefuproject\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\goodsexchangefuproject\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\entities\\exchange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\entities\\exchange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\entities\\exchangedetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\entities\\exchangedetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\entities\\rating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\entities\\rating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\repositories\\goodsexchangefudbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|c:\\users\\senti\\onedrive\\desktop\\goodsexchangefuproject\\repositories\\goodsexchangefudbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\goodsexchangefudbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\goodsexchangefuproject\\goodsexchangefuproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\goodsexchangefuproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|c:\\users\\senti\\onedrive\\desktop\\goodsexchangefuproject\\goodsexchangefuproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\goodsexchangefuproject\\goodsexchangefuproject.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\goodsexchangefuproject.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+      "AbsoluteMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|c:\\users\\senti\\onedrive\\desktop\\goodsexchangefuproject\\services\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6294D887-D131-4306-B38C-72AA5F40E11F}|Services\\Services.csproj|solutionrelative:services\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\goodsexchangefuproject\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\goodsexchangefuproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\repositories\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\repositories\\modelsview\\exchangeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\modelsview\\exchangeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\repositories\\entities\\exchangedetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\entities\\exchangedetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\repositories\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\repositories\\entities\\exchange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5159535E-B3D7-4966-A2CC-854897DF4CC5}|Repositories\\Repositories.csproj|solutionrelative:repositories\\entities\\exchange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|c:\\users\\senti\\onedrive\\desktop\\goodsexchangefuproject\\goodsexchangefuproject\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -142,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -186,400 +118,211 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ProductRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Repositories\\ProductRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\Repositories\\ProductRepository.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Repositories\\ProductRepository.cs",
-              "RelativeToolTip": "Repositories\\Repositories\\ProductRepository.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAqwBoAAABRAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:22:18.514Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "UserViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\ModelsView\\UserViewModel.cs",
-              "RelativeDocumentMoniker": "Repositories\\ModelsView\\UserViewModel.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\ModelsView\\UserViewModel.cs",
-              "RelativeToolTip": "Repositories\\ModelsView\\UserViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAYAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:16:27.153Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PaginatedList.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Helpers\\PaginatedList.cs",
-              "RelativeDocumentMoniker": "Services\\Helpers\\PaginatedList.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Helpers\\PaginatedList.cs",
-              "RelativeToolTip": "Services\\Helpers\\PaginatedList.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAqwBkAAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T14:21:33.552Z",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\appsettings.json",
+              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\appsettings.json",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\appsettings.json",
+              "RelativeToolTip": "GoodsExchangeFUProject\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-02T12:55:29.815Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\Service\\UserService.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
-              "RelativeToolTip": "Services\\Service\\UserService.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Title": "ExchangesController.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ExchangesController.cs",
+              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\ExchangesController.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ExchangesController.cs",
+              "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\ExchangesController.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAvwCsAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T08:15:53.099Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductService.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Service\\ProductService.cs",
-              "RelativeDocumentMoniker": "Services\\Service\\ProductService.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Service\\ProductService.cs",
-              "RelativeToolTip": "Services\\Service\\ProductService.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAA8wCIAAABWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-26T07:11:24.352Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProductsController.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ProductsController.cs",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\ProductsController.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ProductsController.cs",
-              "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\ProductsController.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAwwCwAAABRAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-26T06:13:20.621Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ProductModel.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\ModelsView\\ProductModel.cs",
-              "RelativeDocumentMoniker": "Repositories\\ModelsView\\ProductModel.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\ModelsView\\ProductModel.cs",
-              "RelativeToolTip": "Repositories\\ModelsView\\ProductModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAkAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:16:26.182Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "AuthHelper.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Helpers\\AuthHelper.cs",
-              "RelativeDocumentMoniker": "Services\\Helpers\\AuthHelper.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Helpers\\AuthHelper.cs",
-              "RelativeToolTip": "Services\\Helpers\\AuthHelper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T10:05:49.335Z"
+              "WhenOpened": "2024-05-29T07:41:14.926Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "Product.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\Product.cs",
-              "RelativeDocumentMoniker": "Repositories\\Entities\\Product.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\Product.cs",
-              "RelativeToolTip": "Repositories\\Entities\\Product.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAxwAUAAAAcAAAA",
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
+              "RelativeDocumentMoniker": "Services\\Service\\UserService.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
+              "RelativeToolTip": "Services\\Service\\UserService.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-26T09:54:53.695Z"
+              "WhenOpened": "2024-06-02T06:46:50.319Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\Repositories\\UserRepository.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "Repositories\\Repositories\\UserRepository.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAwwBcAAAAkAAAA",
+              "DocumentIndex": 4,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Services\\Service\\ProductService.cs",
+              "RelativeDocumentMoniker": "Services\\Service\\ProductService.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Services\\Service\\ProductService.cs",
+              "RelativeToolTip": "Services\\Service\\ProductService.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:16:01.555Z"
+              "WhenOpened": "2024-06-01T21:50:42.669Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\User.cs",
-              "RelativeDocumentMoniker": "Repositories\\Entities\\User.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\User.cs",
-              "RelativeToolTip": "Repositories\\Entities\\User.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAA5wCgAAAAnAAAA",
+              "DocumentIndex": 3,
+              "Title": "ProductModel.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\ModelsView\\ProductModel.cs",
+              "RelativeDocumentMoniker": "Repositories\\ModelsView\\ProductModel.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\ModelsView\\ProductModel.cs",
+              "RelativeToolTip": "Repositories\\ModelsView\\ProductModel.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAIwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:16:23.202Z"
+              "WhenOpened": "2024-06-01T21:52:42.803Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Program.cs",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Program.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Program.cs",
-              "RelativeToolTip": "GoodsExchangeFUProject\\Program.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAAmwEoAAAA0AAAA",
+              "DocumentIndex": 0,
+              "Title": "ExchangeService.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Services\\Service\\ExchangeService.cs",
+              "RelativeDocumentMoniker": "Services\\Service\\ExchangeService.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Services\\Service\\ExchangeService.cs",
+              "RelativeToolTip": "Services\\Service\\ExchangeService.cs",
+              "ViewState": "AQIAAFgAAAAAAAAAAAAqwI4AAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:20:19.027Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\appsettings.json",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\appsettings.json",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\appsettings.json",
-              "RelativeToolTip": "GoodsExchangeFUProject\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-25T08:19:56.531Z"
+              "WhenOpened": "2024-05-29T07:40:27.868Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\ProductsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC8AAABaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:16:35.746Z"
+              "WhenOpened": "2024-05-26T06:13:20.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ExchangeRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Repositories\\ExchangeRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Repositories\\ExchangeRepository.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Repositories\\ExchangeRepository.cs",
+              "RelativeToolTip": "Repositories\\Repositories\\ExchangeRepository.cs",
+              "ViewState": "AQIAAEYAAAAAAAAAAAArwDIAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T07:40:06.503Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GoodsExchangeFudbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\GoodsExchangeFudbContext.cs",
+              "RelativeDocumentMoniker": "Repositories\\GoodsExchangeFudbContext.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\GoodsExchangeFudbContext.cs",
+              "RelativeToolTip": "Repositories\\GoodsExchangeFudbContext.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAUwAMAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T13:05:01.769Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Program.cs",
+              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Program.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Program.cs",
+              "RelativeToolTip": "GoodsExchangeFUProject\\Program.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAADgv0YAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-01T12:54:54.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ExchangeDetail.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Entities\\ExchangeDetail.cs",
+              "RelativeDocumentMoniker": "Repositories\\Entities\\ExchangeDetail.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Entities\\ExchangeDetail.cs",
+              "RelativeToolTip": "Repositories\\Entities\\ExchangeDetail.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBEAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T15:20:41.41Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Repositories\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Repositories\\ProductRepository.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Repositories\\ProductRepository.cs",
+              "RelativeToolTip": "Repositories\\Repositories\\ProductRepository.cs",
+              "ViewState": "AQIAACsAAAAAAAAAAAA6wEsAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T15:44:15.914Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "EncodingClass.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Helpers\\EncodingClass.cs",
-              "RelativeDocumentMoniker": "Services\\Helpers\\EncodingClass.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Helpers\\EncodingClass.cs",
-              "RelativeToolTip": "Services\\Helpers\\EncodingClass.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAsAAAAuAAAA",
+              "Title": "ExchangeViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\ModelsView\\ExchangeViewModel.cs",
+              "RelativeDocumentMoniker": "Repositories\\ModelsView\\ExchangeViewModel.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\ModelsView\\ExchangeViewModel.cs",
+              "RelativeToolTip": "Repositories\\ModelsView\\ExchangeViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T09:30:02.639Z"
+              "WhenOpened": "2024-05-29T07:45:27.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Exchange.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Entities\\Exchange.cs",
+              "RelativeDocumentMoniker": "Repositories\\Entities\\Exchange.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Entities\\Exchange.cs",
+              "RelativeToolTip": "Repositories\\Entities\\Exchange.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-25T08:22:59.063Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Entities\\Product.cs",
+              "RelativeDocumentMoniker": "Repositories\\Entities\\Product.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Entities\\Product.cs",
+              "RelativeToolTip": "Repositories\\Entities\\Product.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBwAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T17:16:09.778Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "ApplicationMapper.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Helpers\\ApplicationMapper.cs",
-              "RelativeDocumentMoniker": "Services\\Helpers\\ApplicationMapper.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Services\\Helpers\\ApplicationMapper.cs",
-              "RelativeToolTip": "Services\\Helpers\\ApplicationMapper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAFAAAA",
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\UserController.cs",
+              "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\UserController.cs",
+              "ViewState": "AQIAADUAAAAAAAAAAAAIwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T09:38:18.274Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Role.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\Role.cs",
-              "RelativeDocumentMoniker": "Repositories\\Entities\\Role.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\Role.cs",
-              "RelativeToolTip": "Repositories\\Entities\\Role.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:22:42.39Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "IAccountRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\IRepositories\\IAccountRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\IRepositories\\IAccountRepository.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\IRepositories\\IAccountRepository.cs",
-              "RelativeToolTip": "Repositories\\IRepositories\\IAccountRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:22:31.49Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "ProductType.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\ProductType.cs",
-              "RelativeDocumentMoniker": "Repositories\\Entities\\ProductType.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\ProductType.cs",
-              "RelativeToolTip": "Repositories\\Entities\\ProductType.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:22:54.735Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Report.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\Report.cs",
-              "RelativeDocumentMoniker": "Repositories\\Entities\\Report.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\Report.cs",
-              "RelativeToolTip": "Repositories\\Entities\\Report.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:22:44.148Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Views\\Users\\Create.cshtml",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Views\\Users\\Create.cshtml",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Views\\Users\\Create.cshtml",
-              "RelativeToolTip": "GoodsExchangeFUProject\\Views\\Users\\Create.cshtml",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAAAAAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-25T08:19:48.976Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Properties\\launchSettings.json",
-              "RelativeToolTip": "GoodsExchangeFUProject\\Properties\\launchSettings.json",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-25T08:23:42.614Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Views\\Users\\Index.cshtml",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Views\\Users\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Views\\Users\\Index.cshtml",
-              "RelativeToolTip": "GoodsExchangeFUProject\\Views\\Users\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-25T08:24:35.392Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Views\\Users\\Edit.cshtml",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Views\\Users\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Views\\Users\\Edit.cshtml",
-              "RelativeToolTip": "GoodsExchangeFUProject\\Views\\Users\\Edit.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-25T08:25:30.014Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Views\\Users\\Details.cshtml",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Views\\Users\\Details.cshtml",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Views\\Users\\Details.cshtml",
-              "RelativeToolTip": "GoodsExchangeFUProject\\Views\\Users\\Details.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-25T08:26:08.533Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Views\\Users\\Delete.cshtml",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Views\\Users\\Delete.cshtml",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Views\\Users\\Delete.cshtml",
-              "RelativeToolTip": "GoodsExchangeFUProject\\Views\\Users\\Delete.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-25T08:26:21.093Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "WeatherForecast.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\WeatherForecast.cs",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\WeatherForecast.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\WeatherForecast.cs",
-              "RelativeToolTip": "GoodsExchangeFUProject\\WeatherForecast.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:23:03.805Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "Exchange.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\Exchange.cs",
-              "RelativeDocumentMoniker": "Repositories\\Entities\\Exchange.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\Exchange.cs",
-              "RelativeToolTip": "Repositories\\Entities\\Exchange.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:22:59.063Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "ExchangeDetail.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\ExchangeDetail.cs",
-              "RelativeDocumentMoniker": "Repositories\\Entities\\ExchangeDetail.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\ExchangeDetail.cs",
-              "RelativeToolTip": "Repositories\\Entities\\ExchangeDetail.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:22:57.434Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "Rating.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\Rating.cs",
-              "RelativeDocumentMoniker": "Repositories\\Entities\\Rating.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Entities\\Rating.cs",
-              "RelativeToolTip": "Repositories\\Entities\\Rating.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:22:47.272Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "GoodsExchangeFUProject",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj",
-              "RelativeToolTip": "GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-25T08:20:02.097Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "GoodsExchangeFUProject.http",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\GoodsExchangeFUProject.http",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\GoodsExchangeFUProject.http",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\GoodsExchangeFUProject.http",
-              "RelativeToolTip": "GoodsExchangeFUProject\\GoodsExchangeFUProject.http",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2024-05-25T08:19:59.396Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "GoodsExchangeFudbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\GoodsExchangeFudbContext.cs",
-              "RelativeDocumentMoniker": "Repositories\\GoodsExchangeFudbContext.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\GoodsExchangeFudbContext.cs",
-              "RelativeToolTip": "Repositories\\GoodsExchangeFudbContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T08:11:13.589Z"
+              "WhenOpened": "2024-06-01T17:10:50.85Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj": {}
+    "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj": {
+    "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
+        "projectPath": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
         "packagesPath": "C:\\Users\\Senti\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\SWP391-Goods-Exchange-Application-for-students-at-FU\\GoodsExchangeFUProject\\Repositories\\obj\\",
+        "outputPath": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Programs(x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -69,6 +69,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.5, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             }
           },
           "imports": [

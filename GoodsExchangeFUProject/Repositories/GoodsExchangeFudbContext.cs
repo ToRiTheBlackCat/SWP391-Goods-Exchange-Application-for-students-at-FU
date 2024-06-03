@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Win32;
 using Repositories.Entities;
 
 namespace Repositories;
@@ -31,6 +33,13 @@ public partial class GoodsExchangeFudbContext : DbContext
     public virtual DbSet<Role> Roles { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+
+    private string GetConnectionString()
+    {
+        IConfiguration config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", true, true).Build();
+        var connection = config["SecurityStr:Key"];
+        return connection;
+    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Server=(local);Database= GoodsExchangeFUDB;UID=sa;PWD=12345;TrustServerCertificate=True");

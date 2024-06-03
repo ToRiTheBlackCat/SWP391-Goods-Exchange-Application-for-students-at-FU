@@ -17,35 +17,35 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GoodsExchangeFUProject
 build_property.RootNamespace = GoodsExchangeFUProject
-build_property.ProjectDir = C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\SWP391-Goods-Exchange-Application-for-students-at-FU\GoodsExchangeFUProject\GoodsExchangeFUProject\
+build_property.ProjectDir = C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\SWP391-Goods-Exchange-Application-for-students-at-FU\GoodsExchangeFUProject\GoodsExchangeFUProject
+build_property.MSBuildProjectDirectory = C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Senti/Downloads/PortableGit-2.45.0-64-bit.7z/ExchangeProject/SWP391-Goods-Exchange-Application-for-students-at-FU/GoodsExchangeFUProject/GoodsExchangeFUProject/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Senti/OneDrive/Desktop/GoodsExchangeFUProject/GoodsExchangeFUProject/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Senti/Downloads/PortableGit-2.45.0-64-bit.7z/ExchangeProject/SWP391-Goods-Exchange-Application-for-students-at-FU/GoodsExchangeFUProject/GoodsExchangeFUProject/Views/Users/Create.cshtml]
+[C:/Users/Senti/OneDrive/Desktop/GoodsExchangeFUProject/GoodsExchangeFUProject/Views/Users/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Senti/Downloads/PortableGit-2.45.0-64-bit.7z/ExchangeProject/SWP391-Goods-Exchange-Application-for-students-at-FU/GoodsExchangeFUProject/GoodsExchangeFUProject/Views/Users/Delete.cshtml]
+[C:/Users/Senti/OneDrive/Desktop/GoodsExchangeFUProject/GoodsExchangeFUProject/Views/Users/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Senti/Downloads/PortableGit-2.45.0-64-bit.7z/ExchangeProject/SWP391-Goods-Exchange-Application-for-students-at-FU/GoodsExchangeFUProject/GoodsExchangeFUProject/Views/Users/Details.cshtml]
+[C:/Users/Senti/OneDrive/Desktop/GoodsExchangeFUProject/GoodsExchangeFUProject/Views/Users/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Senti/Downloads/PortableGit-2.45.0-64-bit.7z/ExchangeProject/SWP391-Goods-Exchange-Application-for-students-at-FU/GoodsExchangeFUProject/GoodsExchangeFUProject/Views/Users/Edit.cshtml]
+[C:/Users/Senti/OneDrive/Desktop/GoodsExchangeFUProject/GoodsExchangeFUProject/Views/Users/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Senti/Downloads/PortableGit-2.45.0-64-bit.7z/ExchangeProject/SWP391-Goods-Exchange-Application-for-students-at-FU/GoodsExchangeFUProject/GoodsExchangeFUProject/Views/Users/Index.cshtml]
+[C:/Users/Senti/OneDrive/Desktop/GoodsExchangeFUProject/GoodsExchangeFUProject/Views/Users/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

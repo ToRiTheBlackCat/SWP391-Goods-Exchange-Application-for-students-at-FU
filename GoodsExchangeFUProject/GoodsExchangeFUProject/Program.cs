@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Repositories;
 using System.Text;
+using System.Text.Json.Serialization;
 
 
 namespace GoodsExchangeFUProject
@@ -67,6 +68,15 @@ namespace GoodsExchangeFUProject
             });
             builder.Services.AddSingleton<AuthHelper>();
 
+            
+
+            //System.Text.Json.JsonException: A possible object cycle was detected
+            //. This can either be due to a cycle or if the object depth is larger than
+            //the maximum allowed depth of 32. Consider using ReferenceHandler
+            //. Preserve on JsonSerializerOptions to support cycles.
+            builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
             //===============================================
 
             builder.Services.AddAuthorizationBuilder()
@@ -74,6 +84,17 @@ namespace GoodsExchangeFUProject
                 {
                     p.RequireClaim("role", "admin");
                 });
+
+
+            // Configure CORS =============================
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+            //===============================================
 
             var app = builder.Build();
 
@@ -83,6 +104,8 @@ namespace GoodsExchangeFUProject
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseStaticFiles();               // Enable serving static files from the wwwroot folder
 
             app.UseHttpsRedirection();
 

@@ -405,18 +405,6 @@ D:\Documents\UNI\chuyen nganh 5\SWP\SWP391-Goods-Exchange-Application-for-studen
 D:\Documents\UNI\chuyen nganh 5\SWP\SWP391-Goods-Exchange-Application-for-students-at-FU-Tuan\SWP391-Goods-Exchange-Application-for-students-at-FU-Tuan\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\ref\GoodsExchangeFUProject.dll
 D:\Documents\UNI\chuyen nganh 5\SWP\SWP391-Goods-Exchange-Application-for-students-at-FU-Tuan\SWP391-Goods-Exchange-Application-for-students-at-FU-Tuan\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.RazorAssemblyInfo.cache
 D:\Documents\UNI\chuyen nganh 5\SWP\SWP391-Goods-Exchange-Application-for-students-at-FU-Tuan\SWP391-Goods-Exchange-Application-for-students-at-FU-Tuan\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.RazorAssemblyInfo.cs
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.csproj.AssemblyReference.cache
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.AssemblyInfoInputs.cache
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.AssemblyInfo.cs
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.csproj.CoreCompileInputs.cache
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.RazorAssemblyInfo.cache
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.RazorAssemblyInfo.cs
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.dll
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\refint\GoodsExchangeFUProject.dll
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.pdb
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\appsettings.json
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\GoodsExchangeFUProject.exe
@@ -657,8 +645,19 @@ C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\bi
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\Repositories.dll
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\Services.dll
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\Services.pdb
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\Repositories.pdb
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.csproj.AssemblyReference.cache
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.AssemblyInfoInputs.cache
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.AssemblyInfo.cs
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.csproj.CoreCompileInputs.cache
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.RazorAssemblyInfo.cache
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.RazorAssemblyInfo.cs
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\staticwebassets\msbuild.GoodsExchangeFUProject.Microsoft.AspNetCore.StaticWebAssets.props
@@ -668,7 +667,8 @@ C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\ob
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\scopedcss\bundle\GoodsExchangeFUProject.styles.css
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExc.77ACF710.Up2Date
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.dll
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\refint\GoodsExchangeFUProject.dll
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.pdb
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\GoodsExchangeFUProject.genruntimeconfig.cache
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\obj\Debug\net8.0\ref\GoodsExchangeFUProject.dll
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\Repositories.dll
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject\GoodsExchangeFUProject\bin\Debug\net8.0\Repositories.pdb

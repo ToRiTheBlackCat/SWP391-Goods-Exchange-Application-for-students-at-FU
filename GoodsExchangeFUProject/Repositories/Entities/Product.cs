@@ -20,12 +20,13 @@ public partial class Product
     public int UserId { get; set; }
 
     public int Status { get; set; }
+    // 0 - disabled, 1 - available, 2 - trading
 
-    public virtual ICollection<ExchangeDetail> ExchangeDetails { get; set; } = new List<ExchangeDetail>();
+    public  ICollection<ExchangeDetail> ExchangeDetails { get; set; } = new List<ExchangeDetail>();
 
-    public virtual ICollection<Exchange> Exchanges { get; set; } = new List<Exchange>();
+    public  ICollection<Exchange> Exchanges { get; set; } = new List<Exchange>();
 
-    public virtual ICollection<Report> Reports { get; set; } = new List<Report>();
+    public  ICollection<Report> Reports { get; set; } = new List<Report>();
 
     public virtual ProductType Type { get; set; } = null!;
 
