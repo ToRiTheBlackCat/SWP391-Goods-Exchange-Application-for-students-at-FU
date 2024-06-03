@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|c:\\users\\admin\\desktop\\swp391\\swp_project\\fe\\fe code\\swp391-goods-exchange-application-for-students-at-fu-tri\\goodsexchangefuproject\\goodsexchangefuproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\goodsexchangefuproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|c:\\users\\admin\\desktop\\swp391\\swp_project\\fe\\fe code\\swp391-goods-exchange-application-for-students-at-fu-tri\\goodsexchangefuproject\\goodsexchangefuproject\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\goodsexchangefuproject\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -91,19 +95,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\appsettings.json",
+              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\appsettings.json",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\appsettings.json",
+              "RelativeToolTip": "GoodsExchangeFUProject\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-02T12:56:25.614Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Program.cs",
               "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Program.cs",
               "ToolTip": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Program.cs",
               "RelativeToolTip": "GoodsExchangeFUProject\\Program.cs",
-              "ViewState": "AQIAAEkAAAAAAAAAAAAQwFYAAAAWAAAA",
+              "ViewState": "AQIAAEYAAAAAAAAAAAAQwFYAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T07:43:06.9Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-31T07:43:06.9Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "GoodsExchangeFudbContext.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\Repositories\\Entities\\GoodsExchangeFudbContext.cs",
               "RelativeDocumentMoniker": "Repositories\\Entities\\GoodsExchangeFudbContext.cs",
@@ -115,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\UserController.cs",
@@ -123,12 +139,11 @@
               "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\UserController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T07:12:18.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-31T07:12:18.469Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "AuthHelper.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\Services\\Helpers\\AuthHelper.cs",
               "RelativeDocumentMoniker": "Services\\Helpers\\AuthHelper.cs",
@@ -140,7 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "UserService.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
               "RelativeDocumentMoniker": "Services\\Service\\UserService.cs",
@@ -152,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ProductService.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\Services\\Service\\ProductService.cs",
               "RelativeDocumentMoniker": "Services\\Service\\ProductService.cs",
@@ -164,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\Repositories\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\Repositories\\UserRepository.cs",
@@ -176,7 +191,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ProductRepository.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\Repositories\\Repositories\\ProductRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\Repositories\\ProductRepository.cs",
@@ -188,7 +203,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ProductController.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\ProductController.cs",

@@ -32,6 +32,9 @@ const Login = () => {
       setMassage('Logged in successfully');
       console.log('Login success: ',response.data);
       // navigate('/home');
+      localStorage.setItem('token',response.data.token);
+      localStorage.setItem('userId',response.data.userId);
+
     }
       }catch(error){
         console.log('Login error: ', error);
