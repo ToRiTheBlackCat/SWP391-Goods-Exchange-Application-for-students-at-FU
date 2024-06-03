@@ -1,62 +1,53 @@
+
+import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const Navbar = () => {
-    const handleLinkClick = (e, path) => {
-      e.preventDefault();
-      // Thực hiện logic xử lý khi click vào liên kết
-      console.log(`Đã click vào liên kết "${path}"`);
-    };
-  
-    return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container">
-          <a className="navbar-brand" href="#" onClick={(e) => handleLinkClick(e, 'home')}>
-            Home
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav me-auto">
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="#"
-                  onClick={(e) => handleLinkClick(e, 'category')}
-                >
-                  Category
-                </a>
-              </li>
-            </ul>
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a
-                  className="nav-link"                  href="#"
-                  onClick={(e) => handleLinkClick(e, 'login')}
-                >
-                  Login
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="#"
-                  onClick={(e) => handleLinkClick(e, 'signup')}
-                >
-                  Sign up
-                </a>
-              </li>
-            </ul>
-          </div>
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
+          Home
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link" to="/category">
+                Category
+              </Link>
+            </li>
+          </ul>
+          <form className="d-flex me-2">
+            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <button className="btn btn-primary" type="submit">Search</button>
+          </form>
+          <ul className="navbar-nav mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/signup">
+                Sign up
+              </Link>
+            </li>
+          </ul>
         </div>
-      </nav>
-    );
-  };
-  
-  export default Navbar;
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

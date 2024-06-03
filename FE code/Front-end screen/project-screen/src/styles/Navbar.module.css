@@ -1,0 +1,13 @@
+/* Navbar.module.css */
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.form-control {
+  width: 200px;
+}

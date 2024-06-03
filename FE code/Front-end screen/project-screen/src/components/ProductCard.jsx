@@ -1,16 +1,18 @@
+
 import PropTypes from 'prop-types';
+import styles from '../styles/ProductCard.module.css';
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="card mb-4">
-      <img className="card-img-top" src={product.imgSrc} alt={product.alt} />
-      <div className="card-body">
-        <h5 className="card-title"><a href={product.link}>{product.title}</a></h5>
-        <p className="card-text condition">{product.condition}</p>
-        <p className="card-text color">{product.color}</p>
-        {product.size && <p className="card-text size">{product.size}</p>}
-        <p className="card-text price text-danger">{product.price}</p>
-        <p className="card-text seller">{product.seller} - Rating: <span className="rating text-warning">{product.rating}/5</span></p>
+    <div className={`card ${styles.card}`}>
+      <img className={`card-img-top ${styles.cardImgTop}`} src={product.imgSrc} alt={product.alt} />
+      <div className={`card-body ${styles.cardBody}`}>
+        <h5 className={`card-title ${styles.cardTitle}`}><a href={product.link}>{product.title}</a></h5>
+        <p className={`card-text ${styles.cardText}`}>{product.condition}</p>
+        <p className={`card-text ${styles.cardText}`}>{product.color}</p>
+        {product.size && <p className={`card-text ${styles.cardText}`}>{product.size}</p>}
+        <p className={`card-text ${styles.cardText} ${styles.textDanger}`}>{product.price}</p>
+        <p className={`card-text ${styles.cardText}`}>{product.seller} - Rating: <span className={styles.textWarning}>{product.rating}/5</span></p>
       </div>
     </div>
   );

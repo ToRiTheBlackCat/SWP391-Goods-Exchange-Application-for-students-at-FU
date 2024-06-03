@@ -1,5 +1,9 @@
-body {
+.App {
   font-family: Arial, sans-serif;
+}
+
+.container {
+  margin-top: 4rem;
 }
 
 .search-bar input[type="search"] {
