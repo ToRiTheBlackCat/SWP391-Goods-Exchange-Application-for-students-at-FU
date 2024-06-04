@@ -12,5 +12,6 @@ namespace Services.Interface
     {
         Task<(bool, string)> StudentAddNewReport(CreateReportModel createReportModel);
         Task<List<ViewReportModel>> ModGetReportWaitingList();
+        Task<(bool, string)> ModMarkDoneReport(int reportId);
     }
 }

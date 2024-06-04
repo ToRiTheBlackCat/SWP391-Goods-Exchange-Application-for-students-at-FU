@@ -40,12 +40,12 @@ namespace Services.Service
 
             return listOut;
         }
-        public List<AddNewProductModel> ConvertProductToModel2(List<Product> listIn)
+        public List<OwnProductModel> ConvertProductToModel2(List<Product> listIn)
         {
-            var listOut = new List<AddNewProductModel>();
+            var listOut = new List<OwnProductModel>();
             foreach (var product in listIn)
             {
-                listOut.Add(_mapper.Map<AddNewProductModel>(product));
+                listOut.Add(_mapper.Map<OwnProductModel>(product));
             }
 
             return listOut;
@@ -107,7 +107,7 @@ namespace Services.Service
             return (true, "Product added to the waiting list.");
         }
 
-        public async  Task<List<AddNewProductModel>?> StudentViewOwnProductList(int userId)
+        public async  Task<List<OwnProductModel>?> StudentViewOwnProductList(int userId)
         {
             var list = ConvertProductToModel2(_repo.ViewProductsOfUser(userId).ToList());
             if (list is not null)

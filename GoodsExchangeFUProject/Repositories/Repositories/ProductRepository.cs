@@ -24,7 +24,7 @@ namespace Repositories.Repositories
             return await _context.Products
                 .Include(p => p.Type)
                 .Include(p => p.User)
-                .FirstOrDefaultAsync(p => p.ProductId == productId && p.Status == statusNum);
+                .FirstOrDefaultAsync(p => p.ProductId == productId && p.Status == statusNum && p.User.IsBanned == false);
         }
 
         public IQueryable<Product> ViewProductsByStatus(int statusNum)

@@ -21,5 +21,16 @@ namespace Repositories.Repositories
             return _context.Reports
                .Where(p => p.Status == statusNum);
         }
+        public async Task<bool> UpdateReportStatusAsync(int reportId, int status)
+        {
+            var report = await _context.Reports.FindAsync(reportId);
+            if (report == null)
+            {
+                return false;
+            }
+            report.Status = status;
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

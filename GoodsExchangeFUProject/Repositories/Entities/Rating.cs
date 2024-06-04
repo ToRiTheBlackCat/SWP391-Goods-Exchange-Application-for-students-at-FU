@@ -8,6 +8,7 @@ namespace Repositories.Entities
 
     public partial class Rating
     {
+        public int RatingId { get; set; }
         public int ExchangeId { get; set; }
 
         public int UserId { get; set; }

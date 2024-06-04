@@ -64,5 +64,15 @@ namespace Services.Service
             await _repo.AddReportAsync(newReport);
             return (true, "Report created successfully.");
         }
+
+        public async Task<(bool, string)> ModMarkDoneReport(int reportId)
+        {
+            var success = await _repo.UpdateReportStatusAsync(reportId, 0);
+            if (success)
+            {
+                return (true, "Report resolved");
+            }
+            return (false, "Report not found in the list.");
+        }
     }
 }

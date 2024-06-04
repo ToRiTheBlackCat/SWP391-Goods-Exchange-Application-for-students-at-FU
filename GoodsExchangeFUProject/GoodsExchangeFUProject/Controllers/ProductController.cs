@@ -20,7 +20,7 @@ namespace GoodsExchangeFUProject.Controllers
 
         
         //[Authorize(Roles = "student")]
-        [HttpGet("Student/ViewProductDetailWithId/{id}")]   //all product
+        [HttpGet("Student/ViewProductDetailWithId/{id}")]   //View detail from all and from self
         public async Task<IActionResult> StudentViewProductDetailWithID(int id)    
         {
             var (success, productModel) = await _productService.GetProductDetail(id);

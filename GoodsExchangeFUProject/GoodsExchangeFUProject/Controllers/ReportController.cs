@@ -25,6 +25,18 @@ namespace GoodsExchangeFUProject.Controllers
             return Ok(reports);
         }
 
+        //[Authorize(Roles = "mod")]
+        [HttpPost("Mod/MarkDoneReport/{reportId}")]
+        public async Task<IActionResult> ModMarkDoneReport(int reportId)
+        {
+            var (success, message) = await _reportService.ModMarkDoneReport(reportId);
+            if (success)
+            {
+                return Ok(message);
+            }
+            return BadRequest(message);
+        }
+
         //[Authorize(Roles = "student")]
         [HttpPost("Student/CreateReport")]   
         public async Task<IActionResult> StudentCreateReport(CreateReportModel createReportModel)

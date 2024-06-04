@@ -127,9 +127,8 @@ namespace Repositories.Entities
 
             modelBuilder.Entity<Rating>(entity =>
             {
-                entity
-                    .HasNoKey()
-                    .ToTable("Rating");
+                entity.HasKey(e => e.RatingId);
+                entity.ToTable("Rating");
 
                 entity.Property(e => e.Comment)
                     .HasMaxLength(255)

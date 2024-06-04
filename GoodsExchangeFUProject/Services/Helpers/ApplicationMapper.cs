@@ -48,6 +48,9 @@ namespace Services.Helpers
             // Mapping for Report to ViewReportModel
             CreateMap<ViewReportModel, Report>().ReverseMap();
 
+            // Mapping for Rating to RatingModel
+            CreateMap<RatingModel, Rating>().ReverseMap();
+
 
         }
     }

@@ -37,6 +37,8 @@ namespace GoodsExchangeFUProject
             builder.Services.AddScoped<ProductRepository>();
             builder.Services.AddScoped<IReportService, ReportService>();
             builder.Services.AddScoped<ReportRepository>();
+            builder.Services.AddScoped<IExchangeService, ExchangeService>();
+            builder.Services.AddScoped<ExchangeRepository>();
 
             // Configure AutoMapper
             builder.Services.AddAutoMapper(typeof(ApplicationMapper));
