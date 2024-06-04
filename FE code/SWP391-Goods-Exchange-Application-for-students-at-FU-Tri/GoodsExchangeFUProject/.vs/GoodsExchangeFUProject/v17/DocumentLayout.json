@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|c:\\users\\admin\\desktop\\swp391\\swp_project\\fe\\fe code\\swp391-goods-exchange-application-for-students-at-fu-tri\\goodsexchangefuproject\\goodsexchangefuproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\goodsexchangefuproject\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\repositories\\entities\\goodsexchangefudbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|solutionrelative:repositories\\entities\\goodsexchangefudbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|c:\\users\\admin\\desktop\\swp391\\swp_project\\fe\\fe code\\swp391-goods-exchange-application-for-students-at-fu-tri\\goodsexchangefuproject\\goodsexchangefuproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\goodsexchangefuproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -94,13 +94,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\appsettings.json",
               "RelativeDocumentMoniker": "GoodsExchangeFUProject\\appsettings.json",
               "ToolTip": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\appsettings.json",
               "RelativeToolTip": "GoodsExchangeFUProject\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAARAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-06-02T12:56:25.614Z",
               "EditorCaption": ""
@@ -119,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GoodsExchangeFudbContext.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\Repositories\\Entities\\GoodsExchangeFudbContext.cs",
               "RelativeDocumentMoniker": "Repositories\\Entities\\GoodsExchangeFudbContext.cs",
@@ -127,12 +127,11 @@
               "RelativeToolTip": "Repositories\\Entities\\GoodsExchangeFudbContext.cs",
               "ViewState": "AQIAAB0AAAAAAAAAAAAswCYAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T07:13:45.52Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-31T07:13:45.52Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\SWP391\\SWP_Project\\FE\\FE code\\SWP391-Goods-Exchange-Application-for-students-at-FU-Tri\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\UserController.cs",
@@ -140,8 +139,7 @@
               "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\UserController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T07:12:18.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-31T07:12:18.469Z"
             },
             {
               "$type": "Document",

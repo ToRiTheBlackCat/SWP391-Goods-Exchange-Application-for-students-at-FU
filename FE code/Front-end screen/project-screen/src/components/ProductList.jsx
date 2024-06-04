@@ -10,16 +10,16 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5152/api/Products');
+        const response = await axios.get('http://localhost:5299/api/Products/GetSorted');
         console.log('API response:', response.data);
         const mappedProducts = response.data.map(product => ({
           imgSrc: product.productImage,
           alt: product.productName,
           title: product.productName,
-          link: `/product/${product.id}`,
+          link: `/product/${product.productId}`,
           condition: product.productDescription,
-          color: 'Not specified',
-          size: 'Not specified',
+          // color: 'Not specified',
+          // size: 'Not specified',
           price: `${product.productPrice} VND`,
           seller: 'Unknown',
           rating: 0

@@ -11,3 +11,9 @@
 .form-control {
   width: 200px;
 }
+.nav-link.active {
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #007bff;
+  border-radius: 4px;
+}
