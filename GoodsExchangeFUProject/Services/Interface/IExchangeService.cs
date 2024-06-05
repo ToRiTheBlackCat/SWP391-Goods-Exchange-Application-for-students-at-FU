@@ -1,4 +1,5 @@
-﻿using Repositories.ModelsView;
+﻿using Repositories.Entities;
+using Repositories.ModelsView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,8 @@ namespace Services.Interface
     public interface IExchangeService
     {
         Task<(bool, string)> StudentRatingAndCommentUser(RatingModel rating);
+        List<ExchangeModelView> GetExchangeOfUserUI(int userId);
+        Task<(List<ExchangeSellerView>?, Product?)> GetProductExchangesUI(int productId);
+        Task<String> CreateExchangeUI(ExchangeCreateView createView);
     }
 }

@@ -15,11 +15,12 @@ namespace GoodsExchangeFUProject.Controllers
     {
         private readonly IUserService _userService;
 
-        public UserController(IUserService userRepository)
+        public UserController(IUserService userService)
         {
-            _userService = userRepository;
+            _userService = userService;
         }
-        //[Authorize(Roles = "mod")]
+        //TRI
+        [Authorize(Roles = "mod")]
         [HttpGet("Mod/ViewBanAccountList")]
         public async Task<IActionResult> ModViewBanAccountList()
         {
@@ -27,10 +28,11 @@ namespace GoodsExchangeFUProject.Controllers
             return Ok(accounts);
         }
 
+        //TRI
         [HttpPost("/user/login")]
         public async Task<IActionResult> LoginWithEmailAndPassword([FromBody] LoginUserModel loginModel)
         {
-            
+
             var (success, response, id) = await _userService.LoginByEmailAndPassword(loginModel);
 
             if (!success)
@@ -38,12 +40,11 @@ namespace GoodsExchangeFUProject.Controllers
                 return Unauthorized(response);
             }
 
-            return Ok(new { Token = response, userId = id } );
+            return Ok(new { Token = response, userId = id });
         }
 
-        
-        
-        //[Authorize(Roles = "mod")]
+        //TRI
+        [Authorize(Roles = "mod")]
         [HttpPost("Mod/BanAccount/{userId}")]
         public async Task<IActionResult> ModBanAccount(int userId)
         {
@@ -55,7 +56,8 @@ namespace GoodsExchangeFUProject.Controllers
             return BadRequest(message);
         }
 
-        //[Authorize(Roles = "mod")]
+        //TRI
+        [Authorize(Roles = "mod")]
         [HttpPost("Mod/UnBanAccount/{userId}")]
         public async Task<IActionResult> ModUnBanAccount(int userId)
         {
@@ -67,6 +69,7 @@ namespace GoodsExchangeFUProject.Controllers
             return BadRequest(message);
         }
 
+        //TRI
         //[Authorize]
         //[HttpPost("user/logout")]
         //public async Task<IActionResult> LogOutAccount()
@@ -82,5 +85,65 @@ namespace GoodsExchangeFUProject.Controllers
         //    }
         //}
 
+
+        //TUAN
+        [HttpPost("UserForgotPassword")]
+        public async Task<IActionResult> ForgotPassword(string emailAddress)
+        {
+            var result = await _userService.UserForgotPasswordUI(emailAddress);
+            //if (id != user.UserId)
+            //{
+            //    return BadRequest();
+            //}
+
+            //_context.Entry(user).State = EntityState.Modified;
+
+            //try
+            //{
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!UserExists(id))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+
+            return NoContent();
+        }
+
+        //TUAN
+        [Authorize(Roles = "student")]
+        [HttpPost("Create-Customer-Account")]
+        public async Task<ActionResult<string>> PostUser(UserRegisterModel registerModel)
+        {
+           
+            (bool, string) result = await _userService.RegisterUserUI(registerModel, 3);
+            if (result.Item1)
+                return Ok(result.Item2);
+            //return CreatedAtAction("GetUser", new { id = 20 }, registerView);
+            return Ok(result.Item2);
+        }
+
+        //TUAN
+        //[Authorize(Roles = "admin")]
+        [HttpPost("Create-Modderator-Account")]
+        public async Task<ActionResult<string>> PostModderator(UserRegisterModel registerView)
+        {
+           
+            (bool, string) result = await _userService.RegisterUserUI(registerView, 2);
+            if (result.Item1)
+                return Ok(result.Item2);
+            //return CreatedAtAction("GetUser", new { id = 20 }, registerView);
+            return Ok(result.Item2);
+        }
+    
+        
+    
     }
 }

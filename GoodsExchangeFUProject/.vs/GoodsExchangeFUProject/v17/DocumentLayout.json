@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{89878E60-262B-4636-889E-282F6922E7C4}|Services\\Services.csproj|C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\services\\service\\exchangeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{89878E60-262B-4636-889E-282F6922E7C4}|Services\\Services.csproj|c:\\users\\pc\\desktop\\ktpm-dh fpt\\semester_5\\swp391\\project\\goodsexchangefuproject\\services\\service\\exchangeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89878E60-262B-4636-889E-282F6922E7C4}|Services\\Services.csproj|solutionrelative:services\\service\\exchangeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\goodsexchangefuproject\\controllers\\exchangecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|c:\\users\\pc\\desktop\\ktpm-dh fpt\\semester_5\\swp391\\project\\goodsexchangefuproject\\goodsexchangefuproject\\controllers\\exchangecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\controllers\\exchangecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|c:\\users\\pc\\desktop\\ktpm-dh fpt\\semester_5\\swp391\\project\\goodsexchangefuproject\\repositories\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|c:\\users\\pc\\desktop\\ktpm-dh fpt\\semester_5\\swp391\\project\\goodsexchangefuproject\\repositories\\modelsview\\exchangemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|solutionrelative:repositories\\modelsview\\exchangemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|c:\\users\\pc\\desktop\\ktpm-dh fpt\\semester_5\\swp391\\project\\goodsexchangefuproject\\repositories\\repositories\\exchangerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -32,9 +40,9 @@
               "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\ExchangeController.cs",
               "ToolTip": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ExchangeController.cs",
               "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\ExchangeController.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAuwBcAAAANAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAADwvx0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T15:02:28.599Z",
+              "WhenOpened": "2024-06-05T02:38:22.585Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -46,25 +54,15 @@
               "RelativeDocumentMoniker": "Services\\Service\\ExchangeService.cs",
               "ToolTip": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Services\\Service\\ExchangeService.cs",
               "RelativeToolTip": "Services\\Service\\ExchangeService.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAYwCMAAABCAAAA",
+              "ViewState": "AQIAADQAAAAAAAAAAAAiwEQAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T15:38:34.91Z",
+              "WhenOpened": "2024-06-05T02:39:22.041Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ExchangeRepository.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Repositories\\Repositories\\ExchangeRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\Repositories\\ExchangeRepository.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Repositories\\Repositories\\ExchangeRepository.cs",
-              "RelativeToolTip": "Repositories\\Repositories\\ExchangeRepository.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAgwCYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T15:43:49.306Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
             },
             {
               "$type": "Bookmark",
@@ -105,6 +103,45 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Repositories\\Repositories\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Repositories\\ProductRepository.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Repositories\\Repositories\\ProductRepository.cs",
+              "RelativeToolTip": "Repositories\\Repositories\\ProductRepository.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAAIwDUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T04:25:23.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ExchangeModel.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Repositories\\ModelsView\\ExchangeModel.cs",
+              "RelativeDocumentMoniker": "Repositories\\ModelsView\\ExchangeModel.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Repositories\\ModelsView\\ExchangeModel.cs",
+              "RelativeToolTip": "Repositories\\ModelsView\\ExchangeModel.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwBYAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T04:06:57.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ExchangeRepository.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Repositories\\Repositories\\ExchangeRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Repositories\\ExchangeRepository.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Repositories\\Repositories\\ExchangeRepository.cs",
+              "RelativeToolTip": "Repositories\\Repositories\\ExchangeRepository.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAAqwGAAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T02:45:49.278Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -29,7 +29,7 @@ namespace Services.Service
             _repo = reportRepository;
             _mapper = mapper;
         }
-
+        //TRI
         public List<CreateReportModel> ConvertReportToModel(List<Report> listIn)
         {
             var listOut = new List<CreateReportModel>();
@@ -40,6 +40,7 @@ namespace Services.Service
 
             return listOut;
         }
+        //TRI
         public List<ViewReportModel> ConvertReportToModel2(List<Report> listIn)
         {
             var listOut = new List<ViewReportModel>();
@@ -50,13 +51,13 @@ namespace Services.Service
 
             return listOut;
         }
-
+        //TRI
         public async Task<List<ViewReportModel>> ModGetReportWaitingList()
         {
             return ConvertReportToModel2(_repo.ViewReportByStatus(1).ToList());
 
         }
-
+        //TRI
         public async Task<(bool, string)> StudentAddNewReport(CreateReportModel createReportModel)
         {
             var newReport = _mapper.Map<Report>(createReportModel);
@@ -64,7 +65,7 @@ namespace Services.Service
             await _repo.AddReportAsync(newReport);
             return (true, "Report created successfully.");
         }
-
+        //TRI
         public async Task<(bool, string)> ModMarkDoneReport(int reportId)
         {
             var success = await _repo.UpdateReportStatusAsync(reportId, 0);

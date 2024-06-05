@@ -1,4 +1,6 @@
-﻿namespace Repositories.ModelsView
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Repositories.ModelsView
 {
     public class ProductModel
     {
@@ -20,6 +22,16 @@
         public int TypeId { get; set; }
         public int UserId { get; set; }
     }
+    public class ViewAllProductModel
+    {
+        public int ProductId { get; set; }
+        public string ProductName { get; set; } = null!;
+        public string ProductImage { get; set; } = null!;
+        public string? ProductDescription { get; set; }
+        public int ProductPrice { get; set; }
+        public int TypeId { get; set; }
+        public ProductOwner ProductOwner { get; set; } = null!;
+    }
     public class AddNewProductModel
     {
         
@@ -40,7 +52,12 @@
         public int TypeId { get; set; }
     }
 
-
+    public class ProductSortView
+    {
+        [StringLength(50)]
+        public string? SearchString { get; set; }
+        public int? CategoryId { get; set; }
+    }
 
 
     public class ProductOwner

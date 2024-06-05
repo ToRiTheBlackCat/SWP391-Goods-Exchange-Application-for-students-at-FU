@@ -3,8 +3,12 @@ using System.Collections.Generic;
 
 namespace Repositories.Entities
 {
-
-
+    public enum RoleEnum : int
+    {
+        Admin = 1,
+        Modderator = 2,
+        Student = 3,
+    }
 
     public partial class User
     {
@@ -35,5 +39,9 @@ namespace Repositories.Entities
         public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 
         public virtual Role Role { get; set; } = null!;
+        public virtual ResetToken? ResetToken { get; set; }
+
+
     }
+    
 }

@@ -22,7 +22,10 @@ namespace Services.Helpers
             CreateMap<AddNewProductModel, Product>()
                 .ForMember(dest => dest.TypeId, opt => opt.MapFrom(src => src.TypeId))
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
-
+            // Mapping for Product to ViewALlProductModel
+            CreateMap<Product, ViewAllProductModel>()
+                .ForMember(dest => dest.TypeId, opt => opt.MapFrom(src => src.Type.TypeId))
+                .ForMember(dest => dest.ProductOwner, opt => opt.MapFrom(src => src.User));
 
 
             // Mapping for Product to OwnProductModel

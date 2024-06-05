@@ -33,6 +33,7 @@ namespace Repositories.Entities
         public virtual DbSet<Role> Roles { get; set; }
 
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<ResetToken> ResetTokens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -109,7 +110,7 @@ namespace Repositories.Entities
                 entity.HasOne(d => d.User).WithMany(p => p.Products)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Product_User_UserProduct");
+        .HasConstraintName("FK_Product_User_UserProduct");
             });
 
             modelBuilder.Entity<ProductType>(entity =>
@@ -127,7 +128,7 @@ namespace Repositories.Entities
 
             modelBuilder.Entity<Rating>(entity =>
             {
-                entity.HasKey(e => e.RatingId);
+                entity.HasKey("RatingId");
                 entity.ToTable("Rating");
 
                 entity.Property(e => e.Comment)
@@ -158,8 +159,6 @@ namespace Repositories.Entities
                 entity.ToTable("Report");
 
                 entity.Property(e => e.ReportId).HasColumnName("reportID");
-
-                entity.Property(e => e.Status).HasColumnName("status");
                 entity.Property(e => e.Detail)
                     .HasMaxLength(255)
                     .HasColumnName("detail");
@@ -167,9 +166,6 @@ namespace Repositories.Entities
                 entity.Property(e => e.ReportDate)
                     .HasColumnType("datetime")
                     .HasColumnName("reportDate");
-                entity.Property(e => e.ReportId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("reportID");
                 entity.Property(e => e.UserId).HasColumnName("userID");
 
                 entity.HasOne(d => d.Product).WithMany()
@@ -181,6 +177,26 @@ namespace Repositories.Entities
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Report_User_StudentID");
+            });
+
+            modelBuilder.Entity<ResetToken>(entity =>
+            {
+                entity.HasKey(e => e.UserId);
+
+                entity.ToTable("ResetToken");
+
+                entity.Property(e => e.UserId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("userID");
+                entity.Property(e => e.CreatedDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("createdDate");
+                entity.Property(e => e.ResetToken1).HasColumnName("ResetTOKEN");
+
+                entity.HasOne(d => d.User).WithOne(p => p.ResetToken)
+                    .HasForeignKey<ResetToken>(d => d.UserId)
+        .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ResetToken_User");
             });
 
             modelBuilder.Entity<Role>(entity =>

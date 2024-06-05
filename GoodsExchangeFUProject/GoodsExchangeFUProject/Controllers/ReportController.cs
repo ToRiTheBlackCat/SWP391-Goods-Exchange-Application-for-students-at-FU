@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Repositories.ModelsView;
 using Services.Interface;
 using Services.Service;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace GoodsExchangeFUProject.Controllers
 {
@@ -17,7 +19,8 @@ namespace GoodsExchangeFUProject.Controllers
             _reportService = reportService;
         }
 
-        //[Authorize(Roles = "mod")]
+        //TRI
+        [Authorize(Roles = "mod")]
         [HttpGet("Mod/ViewReportList")]
         public async Task<IActionResult> ModGetReportList()
         {
@@ -25,7 +28,8 @@ namespace GoodsExchangeFUProject.Controllers
             return Ok(reports);
         }
 
-        //[Authorize(Roles = "mod")]
+        //TRI
+        [Authorize(Roles = "mod")]
         [HttpPost("Mod/MarkDoneReport/{reportId}")]
         public async Task<IActionResult> ModMarkDoneReport(int reportId)
         {
@@ -37,7 +41,8 @@ namespace GoodsExchangeFUProject.Controllers
             return BadRequest(message);
         }
 
-        //[Authorize(Roles = "student")]
+        //TRI
+        [Authorize(Roles = "student")]
         [HttpPost("Student/CreateReport")]   
         public async Task<IActionResult> StudentCreateReport(CreateReportModel createReportModel)
         {
@@ -48,7 +53,5 @@ namespace GoodsExchangeFUProject.Controllers
             }
             return BadRequest("Fail to create report");
         }
-
-        
     }
 }

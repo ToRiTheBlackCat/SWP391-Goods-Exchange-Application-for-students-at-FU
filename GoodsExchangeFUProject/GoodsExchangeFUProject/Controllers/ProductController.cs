@@ -18,8 +18,8 @@ namespace GoodsExchangeFUProject.Controllers
             _productService = productService;
         }
 
-        
-        //[Authorize(Roles = "student")]
+        //TRI
+        [Authorize(Roles = "student")]
         [HttpGet("Student/ViewProductDetailWithId/{id}")]   //View detail from all and from self
         public async Task<IActionResult> StudentViewProductDetailWithID(int id)    
         {
@@ -31,7 +31,8 @@ namespace GoodsExchangeFUProject.Controllers
             return NotFound("Product does not exist");
         }
 
-        //[Authorize(Roles = "mod")]
+        //TRI
+        [Authorize(Roles = "mod")]
         [HttpGet("Mod/ViewProductWaitingList")]
         public async Task<IActionResult> ModGetProductWaitingList()
         {
@@ -39,9 +40,8 @@ namespace GoodsExchangeFUProject.Controllers
             return Ok(products);
         }
 
-        
-
-        //[Authorize(Roles = "Student")]
+        //TRI
+        [Authorize(Roles = "Student")]
         [HttpGet("Student/ViewOwnProductList/{userId}")]
         public async Task<IActionResult> StudentViewOwnProductList(int userId)
         {
@@ -49,7 +49,8 @@ namespace GoodsExchangeFUProject.Controllers
             return Ok(list);
         }
 
-        //[Authorize(Roles = "Student")]
+        //TRI
+        [Authorize(Roles = "Student")]
         [HttpPost("Student/DeleteProduct/{productId}")]
         public async Task<IActionResult> StudentDeleteProduct(int productId)
         {
@@ -61,7 +62,8 @@ namespace GoodsExchangeFUProject.Controllers
             return BadRequest(message);
         }
 
-        //[Authorize(Roles = "Student")]
+        //TRI
+        [Authorize(Roles = "Student")]
         [HttpPost("Student/AddNewProduct")]
         public async Task<IActionResult> StudentAddNewProduct(AddNewProductModel addNewProductModel)
         {
@@ -73,7 +75,8 @@ namespace GoodsExchangeFUProject.Controllers
             return BadRequest(message);
         }
 
-        //[Authorize(Roles = "mod")]
+        //TRI
+        [Authorize(Roles = "mod")]
         [HttpPost("Mod/AcceptProductInWaitingList/{id}")]
         public async Task<IActionResult> ModAcceptProductInWaitingList(int id)
         {
@@ -85,7 +88,8 @@ namespace GoodsExchangeFUProject.Controllers
             return BadRequest(message);
         }
 
-        //[Authorize(Roles = "mod")]
+        //TRI
+        [Authorize(Roles = "mod")]
         [HttpPost("Mod/RejectProduct/{id}")]
         public async Task<IActionResult> ModRejectProductInWaitingList(int id)
         {
@@ -97,13 +101,11 @@ namespace GoodsExchangeFUProject.Controllers
             return BadRequest(message);
         }
 
-        //[Authorize(Roles = "Student")]
+        //TRI
+        [Authorize(Roles = "Student")]
         [HttpPut("Student/UpdateProduct")]
         public async Task<IActionResult> StudentUpdateProduct([FromBody] OwnProductModel product)
         {
-            //string status = await _productService.StudentUpdateProduct(ownProductModel);
-            //return Ok(status);
-
             var (success, message) = await _productService.StudentUpdateProduct(product);
             if (success)
             {
@@ -112,5 +114,22 @@ namespace GoodsExchangeFUProject.Controllers
             return BadRequest(message);
         }
 
+        //=====================
+        //TUAN
+        // GET: api/Products
+        [HttpGet("GetSorted")]
+        public async Task<ActionResult<List<ViewAllProductModel>>> GetProductsSorted(int pageIndex, string? sortString, int? cateId, string sortOder = null!)
+        {
+            ProductSortView sortView = new ProductSortView()
+            {
+                SearchString = sortString,
+                CategoryId = cateId,
+            };
+            if (!(pageIndex > 0)) pageIndex = 1;
+            (bool, List<ViewAllProductModel>) sortedList = await _productService.GetSortedProductsUI(sortView, sortOder, pageIndex);
+
+
+            return Ok(sortedList.Item2);
+        }
     }
 }
