@@ -1,11 +1,16 @@
-
-using GoodsExchangeFUProject.Entities;
+using Repositories.Entities;
+using Services.Helpers;
+using Services.Interface;
+using Repositories.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Text;
-
+using Services.Service;
 
 namespace GoodsExchangeFUProject
 {
@@ -16,30 +21,38 @@ namespace GoodsExchangeFUProject
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            //================================================
-            //Khai báo dependencies cho DBContext
-            builder.Services.AddDbContext<GoodsExchangeFudbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("GoodsExchangeFU")));
-            builder.Services.AddAuthorization();
-            //===============================================
-            //??ng kí cho MAPPER 
-            object value = builder.Services.AddAutoMapper(typeof(Program));
-            //===============================================
-            //Life Cycle DI
-            //builder.Services.AddScoped<IProductRepository, ProductRepository>();
-            //builder.Services.AddScoped<UserManager<User>>();
-            //builder.Services.AddScoped<SignInManager<User>>();
-            //===============================================
-            //??ng kí cho Identity  - Dùng cho phân quy?n 
-            //builder.Services.AddIdentity<User, IdentityRole>()
-            //                .AddEntityFrameworkStores<GoodsExchangeFudbContext>().AddDefaultTokenProviders();
-            //===============================================
-            //Khai báo cho Authentication
+            // Register DbContext
+            builder.Services.AddDbContext<GoodsExchangeFudbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("GoodsExchangeFU")));
+
+            // Register AuthHelper and other dependencies
+            builder.Services.AddScoped<AuthHelper>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<UserRepository>(); // Register UserRepository
+            builder.Services.AddScoped<IProductService, ProductServices>();
+            builder.Services.AddScoped<ProductRepository>();
+            builder.Services.AddScoped<IReportService, ReportService>();
+            builder.Services.AddScoped<ReportRepository>();
+            builder.Services.AddScoped<IExchangeService, ExchangeService>();
+            builder.Services.AddScoped<ExchangeRepository>();
+
+            // Configure AutoMapper
+            builder.Services.AddAutoMapper(typeof(ApplicationMapper));
+
+            // Configure CORS 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+
+            // Configure Authentication
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -49,26 +62,17 @@ namespace GoodsExchangeFUProject
             {
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"])),
-
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidAudience = builder.Configuration["JWT:ValidAudience"],
                     ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
                     ClockSkew = TimeSpan.Zero
                 };
-
-                //    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
-                //};
             });
-            builder.Services.AddSingleton<AuthHelpers>();
-
-            //===============================================
-
-
 
             var app = builder.Build();
 
@@ -80,14 +84,9 @@ namespace GoodsExchangeFUProject
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthentication();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }
