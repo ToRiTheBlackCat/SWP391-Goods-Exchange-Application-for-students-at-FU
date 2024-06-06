@@ -17,7 +17,7 @@ function Product() {
         <div className="location">
           <p>Vinhome Grand Park</p>
           <p>Posted 1 hour ago</p>
-          <p>Information has been censored.<a href="#">Find out more</a></p>
+          <p>Information has been censored.</p>
         </div>
         <div className="gallery text-center">
           <img src={Laptop} className="img-fluid" alt="Laptop" />
@@ -32,21 +32,6 @@ function Product() {
         <div className="details mt-4">
           <h2 className="h4">Detailed description</h2>
           <p>Bought 6 months ago but rarely used</p>
-        </div>
-        <div className="specs mt-4">
-          <h2 className="h4">Configuration</h2>
-          <ul className="list-unstyled">
-            <li className="bg-light p-2 mb-2">CPU: i31115G43GHz</li>
-            <li className="bg-light p-2 mb-2">RAM: 8 GBDDR4 2 slots (1 8 GB slot + 1 removable slot) 3200 MHz</li>
-            <li className="bg-light p-2 mb-2">Hard Drive: 256 GB NVMe PCIe SSD (Can be removed and installed with another stick up to 2 TB)</li>
-            <li className="bg-light p-2 mb-2">Screen: 14 Full HD (1920 x 1080)</li>
-            <li className="bg-light p-2 mb-2">Graphic card: Intel UHD integrated card</li>
-            <li className="bg-light p-2 mb-2">Connector: USB Type-C3.5mm headphone jack HDMI2 x USB 3.2</li>
-            <li className="bg-light p-2 mb-2">Operating system: Windows 11 Home SL</li>
-            <li className="bg-light p-2 mb-2">Design: Metal case</li>
-            <li className="bg-light p-2 mb-2">Size, mass: Length 319 mm - Width 219 mm - Thickness 18.1 mm - Weight 1.3 kg</li>
-            <li className="bg-light p-2 mb-2">Time of use: 1 year</li>
-          </ul>
         </div>
       </div>
       <div className="chat-box position-fixed">

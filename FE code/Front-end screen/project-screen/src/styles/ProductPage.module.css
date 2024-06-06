@@ -1,0 +1,180 @@
+/* Navbar.module.css */
+
+.navbar-brand {
+    font-weight: bold;
+  }
+  
+  .nav-link {
+    color: white !important;
+  }
+  
+  .form-control {
+    width: 200px;
+  }
+  
+  .nav-link.active {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff;
+    border-radius: 4px;
+  }
+  
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .navbar-toggler-icon {
+    color: white;
+  }
+  
+  .navbar-collapse {
+    justify-content: space-between;
+  }
+  
+  .dropdown-menu {
+    background-color: #343a40;
+    border: none;
+  }
+  
+  .dropdown-item {
+    color: white !important;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #495057;
+  }
+  
+  .dropdown-item:active {
+    background-color: #495057;
+  }
+  
+  .dropdown-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  /* ProductPage.module.css */
+  
+  .module_container {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 60px; /* Điều chỉnh để tránh bị che bởi navbar */
+  }
+  
+  .module_product h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .module_price {
+    font-size: 20px;
+    color: #b12704;
+    margin-bottom: 20px;
+  }
+  
+  .module_location p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .module_gallery img {
+    max-width: 400px;
+    margin-bottom: 10px;
+  }
+  
+  .module_thumbnails img {
+    width: 80px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .module_details, .module_specs {
+    margin-top: 20px;
+  }
+  
+  .module_details h2, .module_specs h2 {
+    font-size: 18px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .module_button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .module_button:hover {
+    background-color: #45a049;
+  }
+  
+  .module_userAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .module_userName {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .module_userRating, .module_userStatus {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .module_callButton, .module_chatButton {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .module_callButton {
+    background-color: #4CAF50;
+  }
+  
+  .module_chatButton {
+    background-color: #007BFF;
+  }
+  
+  .module_callButton:hover {
+    background-color: #45a049;
+  }
+  
+  .module_chatButton:hover {
+    background-color: #0069d9;
+  }
+  
+  .module_exchangeBtn {
+    background-color: #007BFF;
+    cursor: pointer;
+  }
+  
+  .module_exchangeBtn:hover {
+    background-color: #0056b3;
+  }
+  

@@ -1,5 +1,17 @@
+.loginContainer {
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  padding: 20px; 
+  background-color: #fff; 
+
 .input-group-text {
   background-color: #f8f9fa;
+}
+
+.btn-small {
+  font-size: 0.25rem; 
+  padding: 0.375rem 0.75rem; 
 }
 
 .btn-primary {
@@ -24,10 +36,11 @@
   color: white;
 }
 
-.text-decoration-none {
+.textDecorationNone {
   color: #5cb85c;
 }
 
-.text-decoration-none:hover {
+.textDecorationNone:hover {
   text-decoration: underline;
+}
 }

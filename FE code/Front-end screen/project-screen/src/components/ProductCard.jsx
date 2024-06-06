@@ -1,5 +1,6 @@
 
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styles from '../styles/ProductCard.module.css';
 
 const ProductCard = ({ product }) => {
@@ -7,7 +8,9 @@ const ProductCard = ({ product }) => {
     <div className={`card ${styles.card}`}>
       <img className={`card-img-top ${styles.cardImgTop}`} src={product.imgSrc} alt={product.alt} />
       <div className={`card-body ${styles.cardBody}`}>
-        <h5 className={`card-title ${styles.cardTitle}`}><a href={product.link}>{product.title}</a></h5>
+        <h5 className={`card-title ${styles.cardTitle}`}>
+        <Link to={product.link}>{product.title}</Link>
+        </h5>
         <p className={`card-text ${styles.cardText}`}>{product.condition}</p>
         {/* <p className={`card-text ${styles.cardText}`}>{product.color}</p> */}
         {product.size && <p className={`card-text ${styles.cardText}`}>{product.size}</p>}
