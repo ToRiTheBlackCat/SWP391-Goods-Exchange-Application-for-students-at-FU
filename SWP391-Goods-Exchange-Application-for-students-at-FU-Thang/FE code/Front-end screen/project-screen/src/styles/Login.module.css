@@ -1,0 +1,33 @@
+.input-group-text {
+  background-color: #f8f9fa;
+}
+
+.btn-primary {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+}
+
+.btn-primary:hover {
+  background-color: #4cae4c;
+  border-color: #4cae4c;
+}
+
+.btn-info {
+  background-color: aqua;
+  border-color: aqua;
+  color: black;
+}
+
+.btn-info:hover {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  color: white;
+}
+
+.text-decoration-none {
+  color: #5cb85c;
+}
+
+.text-decoration-none:hover {
+  text-decoration: underline;
+}

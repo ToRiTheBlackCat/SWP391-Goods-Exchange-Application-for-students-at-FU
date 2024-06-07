@@ -1,0 +1,19 @@
+.App {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  margin-top: 4rem;
+}
+
+.search-bar input[type="search"] {
+  width: 350px;
+}
+
+.price {
+  color: red;
+}
+
+.rating {
+  color: gold;
+}
