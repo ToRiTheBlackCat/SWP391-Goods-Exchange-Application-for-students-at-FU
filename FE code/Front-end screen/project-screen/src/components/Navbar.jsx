@@ -39,7 +39,7 @@ const Navbar = () => {
   const handleLogout = () => {
     // Xóa thông tin đăng nhập từ localStorage
     localStorage.removeItem('token');
-    localStorage.removeItem('username');
+    localStorage.removeItem('userName');
     localStorage.removeItem('userId');
     setIsLoggedIn(false);
     setUsername('');

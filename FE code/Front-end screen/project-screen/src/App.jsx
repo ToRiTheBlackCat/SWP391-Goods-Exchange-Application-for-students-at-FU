@@ -7,6 +7,7 @@ import GetOTP from './pages/GetOTP.jsx';
 import CreateProduct from './pages/CreateProduct.jsx';
 import ProductPage from './pages/ProductPage.jsx'
 import ChooseProduct from './pages/ChooseProduct.jsx';
+import UserInformation from './pages/UserInformation.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
         <Route path='/create-product' element={<CreateProduct/>}/>
         <Route path="/product/:id" element={<ProductPage/>}/>
         <Route path='/choose-product' element={<ChooseProduct/>}/>
+        <Route path='/profile' element={<UserInformation/>}/>
       </Routes>
     </Router>
   );

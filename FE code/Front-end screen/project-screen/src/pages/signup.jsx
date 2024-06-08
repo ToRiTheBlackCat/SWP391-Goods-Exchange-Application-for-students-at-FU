@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from '../styles/SignUpForm.module.css';
+import axios from 'axios';
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -22,8 +23,32 @@ const SignUpForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
+    
+    // Kiểm tra mật khẩu và xác nhận mật khẩu
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    // Chuẩn bị dữ liệu cho API
+    const data = {
+      userName: formData.username,
+      email: formData.email,
+      passWORD: formData.password,
+      phoneNumber: formData.phone,
+      address: formData.address
+    };
+
+    // Gọi API với Axios
+    axios.post('http://localhost:5299/api/User/Create-Customer-Account', data)
+      .then(response => {
+        console.log('Success:', response.data);
+        // Điều hướng sau khi đăng ký thành công (nếu cần)
+        // navigate('/success-page');
+      })
+      .catch(error => {
+        console.error('There was an error!', error);
+      });
   };
 
   return (
