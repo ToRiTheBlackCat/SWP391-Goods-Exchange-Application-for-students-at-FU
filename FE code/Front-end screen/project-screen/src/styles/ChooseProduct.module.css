@@ -1,0 +1,28 @@
+/* ChooseProduct.module.css */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  padding: 20px;
+  background-color: #f8f9fa; /* Điều chỉnh màu nền cho sidebar */
+}
+
+.product-details {
+  padding: 20px;
+  text-align: center;
+}
+
+.product-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.info .name, .info .price, .info .description {
+  margin-bottom: 10px;
+}
+
+.button {
+  margin-right: 10px;
+}

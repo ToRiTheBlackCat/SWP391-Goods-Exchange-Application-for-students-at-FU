@@ -1,0 +1,46 @@
+.loginContainer {
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  padding: 20px; 
+  background-color: #fff; 
+
+.input-group-text {
+  background-color: #f8f9fa;
+}
+
+.btn-small {
+  font-size: 0.25rem; 
+  padding: 0.375rem 0.75rem; 
+}
+
+.btn-primary {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+}
+
+.btn-primary:hover {
+  background-color: #4cae4c;
+  border-color: #4cae4c;
+}
+
+.btn-info {
+  background-color: aqua;
+  border-color: aqua;
+  color: black;
+}
+
+.btn-info:hover {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  color: white;
+}
+
+.textDecorationNone {
+  color: #5cb85c;
+}
+
+.textDecorationNone:hover {
+  text-decoration: underline;
+}
+}
