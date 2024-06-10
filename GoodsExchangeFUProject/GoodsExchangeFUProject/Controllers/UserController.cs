@@ -7,6 +7,8 @@ using Repositories.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Repositories.Entities;
 using Services.Service;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Google;
 namespace GoodsExchangeFUProject.Controllers
 {
     [ApiController]
@@ -14,11 +16,16 @@ namespace GoodsExchangeFUProject.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _userService = userService;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
+
         //TRI
         [Authorize(Roles = "mod")]
         [HttpGet("Mod/ViewBanAccountList")]
@@ -36,6 +43,20 @@ namespace GoodsExchangeFUProject.Controllers
             var (success, response, id) = await _userService.LoginByEmailAndPassword(loginModel);
 
             if (!success)
+            {
+                return Unauthorized(response);
+            }
+
+            return Ok(new { Token = response, userId = id });
+        }
+
+        //TUAN
+        [HttpPost("/api/user/google-login")]
+        public async Task<ActionResult> GoogleLogin([FromHeader] string token)
+        {
+            var (success, response, id) = await _userService.GoogleAuthorizeUser(token);
+
+            if(!success)
             {
                 return Unauthorized(response);
             }
@@ -118,7 +139,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TUAN
-        [Authorize(Roles = "student")]
+        //[Authorize(Roles = "student")]
         [HttpPost("Create-Customer-Account")]
         public async Task<ActionResult<string>> PostUser(UserRegisterModel registerModel)
         {
@@ -142,8 +163,8 @@ namespace GoodsExchangeFUProject.Controllers
             //return CreatedAtAction("GetUser", new { id = 20 }, registerView);
             return Ok(result.Item2);
         }
-    
-        
-    
+
+
+
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
 using Services.Service;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace GoodsExchangeFUProject
 {
@@ -19,6 +20,7 @@ namespace GoodsExchangeFUProject
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var config = builder.Configuration;
 
             // Add services to the container.
             builder.Services.AddControllers();
@@ -72,6 +74,10 @@ namespace GoodsExchangeFUProject
                     ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
                     ClockSkew = TimeSpan.Zero
                 };
+            }).AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = config["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = config["Authentication:Google:ClientSecret"];
             });
 
             var app = builder.Build();

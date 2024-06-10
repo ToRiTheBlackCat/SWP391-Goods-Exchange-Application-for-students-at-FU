@@ -13,15 +13,17 @@ namespace GoodsExchangeFUProject.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly IWebHostEnvironment _env;
+        public ProductController(IProductService productService, IWebHostEnvironment env)
         {
             _productService = productService;
+            _env = env;
         }
 
         //TRI
         [Authorize(Roles = "student")]
         [HttpGet("Student/ViewProductDetailWithId/{id}")]   //View detail from all and from self
-        public async Task<IActionResult> StudentViewProductDetailWithID(int id)    
+        public async Task<IActionResult> StudentViewProductDetailWithID(int id)
         {
             var (success, productModel) = await _productService.GetProductDetail(id);
             if (success)
@@ -41,7 +43,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TRI
-        [Authorize(Roles = "Student")]
+        [Authorize(Roles = "student")]
         [HttpGet("Student/ViewOwnProductList/{userId}")]
         public async Task<IActionResult> StudentViewOwnProductList(int userId)
         {
@@ -50,7 +52,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TRI
-        [Authorize(Roles = "Student")]
+        [Authorize(Roles = "student")]
         [HttpPost("Student/DeleteProduct/{productId}")]
         public async Task<IActionResult> StudentDeleteProduct(int productId)
         {
@@ -63,16 +65,92 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TRI
-        [Authorize(Roles = "Student")]
+        //[Authorize(Roles = "student")]
         [HttpPost("Student/AddNewProduct")]
-        public async Task<IActionResult> StudentAddNewProduct(AddNewProductModel addNewProductModel)
+        public async Task<IActionResult> StudentAddNewProduct(AddNewProductModel addNewProductModel,
+            [FromForm] IFormFile? productImage)
         {
+            //if (productImage == null || productImage.Length == 0)
+            //{
+            //    return BadRequest("No image uploaded.");
+            //}
+
+            var uploadPath = Path.Combine(_env.ContentRootPath, "uploads");
+            Directory.CreateDirectory(uploadPath); // Ensure the directory exists
+
+            //path to the location to save image (with the file name included) .ie : <solution>/uploads/<filename>.<ext>
+            var filePath = Path.Combine(uploadPath, Path.GetFileName(productImage.FileName));
+
+            // Save the image to the server
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await productImage.CopyToAsync(stream);
+            }
+
+            //Generate image path and create Product
+            //string imagePath = Path.Combine("uploads", Path.GetFileName(productImage.FileName));
+            addNewProductModel.ProductImage = productImage.FileName;
             var (success, message) = await _productService.StudentAddNewProduct(addNewProductModel);
             if (success)
             {
                 return Ok(message);
             }
             return BadRequest(message);
+        }
+
+        //Maybe used for display for image?
+        private string GetContentType(string path)
+        {
+            var ext = Path.GetExtension(path).ToLowerInvariant();
+            return ext switch
+            {
+                ".jpg" => "image/jpeg",
+                ".jpeg" => "image/jpeg",
+                ".png" => "image/png",
+                ".gif" => "image/gif",
+                _ => "application/octet-stream",
+            };
+        }
+
+        //[HttpGet("{fileName}")]
+        //public async Task<IActionResult> GetImage(string fileName)
+        //{
+        //    var imagePath = Path.Combine(_environment.WebRootPath, "images", fileName);
+
+        //    if (!System.IO.File.Exists(imagePath))
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var image = await System.IO.File.ReadAllBytesAsync(imagePath);
+        //    var contentType = GetContentType(imagePath);
+        //    return File(image, contentType);
+        //}
+
+
+        [HttpGet("GetUserImage")]
+        public IActionResult GetUserImage(string imageName)
+        {
+            //get path to the image requested
+            var imagePath = Path.Combine(_env.ContentRootPath, "uploads", imageName);
+
+            if (!System.IO.File.Exists(imagePath))
+            {
+                return NotFound();
+            }
+
+            byte[] fileBytes;
+            using (var ms = new MemoryStream())
+            {
+                using (var defaultUserImg = new FileStream(imagePath, FileMode.Open))
+                {
+                    defaultUserImg.CopyTo(ms);
+                }
+                fileBytes = ms.ToArray();
+            }
+
+            string base64String = Convert.ToBase64String(fileBytes);
+            return Ok(base64String);
         }
 
         //TRI
@@ -102,7 +180,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TRI
-        [Authorize(Roles = "Student")]
+        [Authorize(Roles = "student")]
         [HttpPut("Student/UpdateProduct")]
         public async Task<IActionResult> StudentUpdateProduct([FromBody] OwnProductModel product)
         {
@@ -118,6 +196,7 @@ namespace GoodsExchangeFUProject.Controllers
         //TUAN
         // GET: api/Products
         [HttpGet("GetSorted")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<ViewAllProductModel>>> GetProductsSorted(int pageIndex, string? sortString, int? cateId, string sortOder = null!)
         {
             ProductSortView sortView = new ProductSortView()

@@ -16,5 +16,7 @@ namespace Services.Interface
         //==============
         Task<string> UserForgotPasswordUI(string emailAddress);
         Task<(bool, string)> RegisterUserUI(UserRegisterModel registerModel, int n);
+
+        Task<(bool, string?, int)> GoogleAuthorizeUser(string id_token);
     }
 }

@@ -12,6 +12,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using static Services.Helpers.EncodingClass;
+using Google.Apis.Auth;
 
 namespace Services.Service
 {
@@ -57,6 +58,38 @@ namespace Services.Service
                     return (true, token, user.UserId);
                 }
             }
+        }
+
+        //TUAN
+        public async Task<(bool, string?, int)> GoogleAuthorizeUser(string id_token)
+        {
+            //string accountId;
+            //RoleEnum role;
+            var payload = await GoogleJsonWebSignature.ValidateAsync(id_token);
+
+            //Get account with the same email address as the payload sent by Google
+            var getUser = await _repo.GetUserByMailAsync(payload.Email.Trim());
+
+
+            if (getUser == null)    // If there is no account then register
+            {
+                UserRegisterModel register = new UserRegisterModel()
+                {
+                    Email = payload.Email,
+                    Password = ComputeSha256Hash(payload.Email + config["SecurityStr:Key"]),
+                    UserName = payload.Name,
+                };
+                var result = await RegisterUserUI(register, (int)RoleEnum.Student);
+                getUser = await _repo.GetUserByMailAsync(payload.Email.Trim());
+            }
+            else    // If there is then login
+            {
+                if (getUser.IsBanned)
+                    return (false, "Get banned Bozo!!!", 0);
+            }
+
+            var token = _authHelper.GenerateJwtToken(getUser);
+            return (true, token, getUser.UserId);
         }
 
         //TRI
@@ -115,26 +148,42 @@ namespace Services.Service
 
             //Sending Reset TOKEN to email address
             //*Note: set mail address to varible
-            SendEmail.Send("triminh0502@gmail.com", "You seem lonely", "I can fix that...");
+            try
+            {
+                var resetToken = _repo.GetResetTokenAsync(user.UserId);
+                if (resetToken == null)
+                    await _repo.CreateResetTokenAsync(user.UserId, AuthHelper.GenerateRandomString(), DateTime.Now);
+                SendEmail.Send(emailAddress, "You seem lonely", "I can fix that...");
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.StackTrace);
+            }
 
             return "Not found";
         }
 
         //TUAN
-        public async Task<(bool, string)> RegisterUserUI(UserRegisterModel registerModel, int n)
+        public async Task<(bool, string)> RegisterUserUI(UserRegisterModel registerModel, int roleId)
         {
-            if (!await _repo.DuplicatedCredentials(registerModel.UserName, registerModel.Email, registerModel.PhoneNumber))
+            try
             {
-                //IConfiguration config = new ConfigurationBuilder()
-                //    .SetBasePath(Directory.GetCurrentDirectory())
-                //        .AddJsonFile("appsettings.json", true, true)
-                //        .Build();
-                registerModel.Password = ComputeSha256Hash(registerModel.Password + config["SecurityStr:Key"]);
-                
-                await _repo.CreateUser(registerModel, n);
-                return (true, "Registration successful!");
-            }
+                if (!await _repo.DuplicatedCredentials(registerModel.UserName, registerModel.Email, registerModel.PhoneNumber))
+                {
+                    //IConfiguration config = new ConfigurationBuilder()
+                    //    .SetBasePath(Directory.GetCurrentDirectory())
+                    //        .AddJsonFile("appsettings.json", true, true)
+                    //        .Build();
+                    registerModel.Password = ComputeSha256Hash(registerModel.Password + config["SecurityStr:Key"]);
 
+                    await _repo.CreateUser(registerModel, roleId);
+                    return (true, "Registration successful!");
+                }
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.StackTrace);
+            }
             return (false, "Register failed");
         }
     }

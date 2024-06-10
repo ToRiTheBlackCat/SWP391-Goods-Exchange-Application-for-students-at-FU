@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using static Repositories.ModelsView.UserModel;
 using System.Text;
 using Repositories.Entities;
+using System;
 
 
 namespace Services.Helpers
@@ -45,6 +46,21 @@ namespace Services.Helpers
             return accessToken;
         }
 
-       
+        private static readonly Random random = new Random();
+        private const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        public static string GenerateRandomString(int length = 4)
+        {
+            var stringBuilder = new StringBuilder(length);
+
+            for (int i = 0; i < length; i++)
+            {
+                char randomChar = chars[random.Next(chars.Length)];
+                stringBuilder.Append(randomChar);
+            }
+
+            return stringBuilder.ToString();
+        }
+
     }
 }

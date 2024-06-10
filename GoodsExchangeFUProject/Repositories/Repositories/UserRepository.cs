@@ -96,7 +96,27 @@ namespace Repositories.Repositories
                 Phone = registerModel.PhoneNumber,
                 Address = registerModel.Address,
                 RoleId = RoleId,
+                Gender = registerModel.Gender,
+                Dob = registerModel.Dob,
             }); 
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<ResetToken?> GetResetTokenAsync(int userId)
+        {
+            _context = new GoodsExchangeFudbContext();
+            return await _context.ResetTokens.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
+        }
+
+        public async Task CreateResetTokenAsync(int userId, string token, DateTime createdDate)
+        {
+            _context = new GoodsExchangeFudbContext();
+            await _context.ResetTokens.AddAsync(new ResetToken()
+            {
+                UserId = userId,
+                CreatedDate = createdDate,
+                ResetToken1 = token,
+            });
             await _context.SaveChangesAsync();
         }
     }
