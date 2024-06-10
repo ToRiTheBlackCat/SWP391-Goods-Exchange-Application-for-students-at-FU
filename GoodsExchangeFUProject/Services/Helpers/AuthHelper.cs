@@ -30,7 +30,9 @@ namespace Services.Helpers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                new Claim(ClaimTypes.Role, user.Role.RoleName.ToString().Trim())
+                new Claim(ClaimTypes.Role, user.Role.RoleName.ToString().Trim()),
+                new Claim(ClaimTypes.Name, user.UserName.ToString().Trim())
+
             };
 
             var token = new JwtSecurityToken(
@@ -45,6 +47,21 @@ namespace Services.Helpers
             return accessToken;
         }
 
-       
+        private static readonly Random random = new Random();
+        private const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        public static string GenerateRandomString(int length = 4)
+        {
+            var stringBuilder = new StringBuilder(length);
+
+            for (int i = 0; i < length; i++)
+            {
+                char randomChar = chars[random.Next(chars.Length)];
+                stringBuilder.Append(randomChar);
+            }
+
+            return stringBuilder.ToString();
+        }
+
     }
 }

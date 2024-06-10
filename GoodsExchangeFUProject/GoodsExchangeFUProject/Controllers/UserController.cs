@@ -7,6 +7,7 @@ using Repositories.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Repositories.Entities;
 using Services.Service;
+using Microsoft.AspNetCore.Identity;
 namespace GoodsExchangeFUProject.Controllers
 {
     [ApiController]
@@ -14,10 +15,14 @@ namespace GoodsExchangeFUProject.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _userService = userService;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
         //TRI
         [Authorize(Roles = "mod")]
@@ -32,15 +37,14 @@ namespace GoodsExchangeFUProject.Controllers
         [HttpPost("/user/login")]
         public async Task<IActionResult> LoginWithEmailAndPassword([FromBody] LoginUserModel loginModel)
         {
-
-            var (success, response, id) = await _userService.LoginByEmailAndPassword(loginModel);
+            var (success, response, id, name) = await _userService.LoginByEmailAndPassword(loginModel);
 
             if (!success)
             {
                 return Unauthorized(response);
             }
 
-            return Ok(new { Token = response, userId = id });
+            return Ok(new { Token = response, userId = id, userName = name });
         }
 
         //TRI
@@ -84,6 +88,19 @@ namespace GoodsExchangeFUProject.Controllers
         //        return BadRequest(ex.Message);
         //    }
         //}
+        //TUAN
+        [HttpPost("/api/user/google-login")]
+        public async Task<ActionResult> GoogleLogin([FromHeader] string token)
+        {
+            var (success, response, id) = await _userService.GoogleAuthorizeUser(token);
+
+            if (!success)
+            {
+                return Unauthorized(response);
+            }
+
+            return Ok(new { Token = response, userId = id });
+        }
 
 
         //TUAN
