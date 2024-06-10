@@ -21,16 +21,14 @@ namespace Repositories.Repositories
             _context = context;
         }
         //TRI
-        public async Task<(bool, User?, int)> AuthenticateUser(LoginUserModel login)
+        public async Task<(bool, User?, int?, string?)> AuthenticateUser(LoginUserModel login)
         {
-            //string salt = "BallsInYoJaws2069";
-            //string loginPassword = (login.Password.Trim() + salt).ToSHA256String();
             var user = await _context.Users
                 .Include(u => u.Role)
                 .FirstOrDefaultAsync(u => u.Email.Trim() == login.Email.Trim() && u.Password.Trim() == login.Password);
             if (user != null)
-                return (true, user, user.UserId);
-            return (false, null, 0);
+                return (true, user, user.UserId, user.UserName);
+            return (false, null, 0, null);
         }
 
         //TRI
@@ -55,6 +53,7 @@ namespace Repositories.Repositories
         }
 
         //======================================
+        //TUAN
         public async Task<User> GetUserByMailAsync(string emailAddress)
         {
             if (emailAddress.IsNullOrEmpty())
@@ -70,7 +69,7 @@ namespace Repositories.Repositories
         //TUAN
         public async Task<bool> DuplicatedCredentials(string userName, string email, string? phone)
         {
-           
+
             var existUser = await _context.Users.FirstOrDefaultAsync(u
                 => u.Email == email || u.UserName == userName || u.Phone == phone);
             if (existUser != null)
@@ -79,10 +78,10 @@ namespace Repositories.Repositories
             }
             return false;
         }
-
+        //TUAN
         public async Task CreateUser(UserRegisterModel registerModel, int RoleId)
         {
-            
+
             var list = await _context.Users.Where(u => true).FirstOrDefaultAsync();
             if (list == null)
                 return;
@@ -96,7 +95,27 @@ namespace Repositories.Repositories
                 Phone = registerModel.PhoneNumber,
                 Address = registerModel.Address,
                 RoleId = RoleId,
-            }); 
+            });
+            await _context.SaveChangesAsync();
+        }
+
+        //TUAN
+        public async Task<ResetToken?> GetResetTokenAsync(int userId)
+        {
+            _context = new GoodsExchangeFudbContext();
+            return await _context.ResetTokens.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
+        }
+
+        //TUAN
+        public async Task CreateResetTokenAsync(int userId, string token, DateTime createdDate)
+        {
+            _context = new GoodsExchangeFudbContext();
+            await _context.ResetTokens.AddAsync(new ResetToken()
+            {
+                UserId = userId,
+                CreatedDate = createdDate,
+                ResetToken1 = token,
+            });
             await _context.SaveChangesAsync();
         }
     }

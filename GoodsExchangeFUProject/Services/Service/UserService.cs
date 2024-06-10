@@ -12,6 +12,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using static Services.Helpers.EncodingClass;
+using Google.Apis.Auth;
 
 namespace Services.Service
 {
@@ -33,28 +34,25 @@ namespace Services.Service
         }
 
         //TRI
-        public async Task<(bool, string?, int)> LoginByEmailAndPassword(LoginUserModel login)
+        public async Task<(bool, string?, int?, string?)> LoginByEmailAndPassword(LoginUserModel login)
         {
             if (login == null || string.IsNullOrEmpty(login.Email) || string.IsNullOrEmpty(login.Password))
             {
-                return (false, "Invalid email or password", 0);
+                return (false, "Invalid email or password", 0, null);
             }
             else
             {
-                //IConfiguration config = new ConfigurationBuilder()
-                //    .SetBasePath(Directory.GetCurrentDirectory())
-                //        .AddJsonFile("appsettings.json", true, true)
-                //        .Build();
+                
                 login.Password = ComputeSha256Hash(login.Password + config["SecurityStr:Key"]);
-                var (isAuthenticated, user, id) = await _repo.AuthenticateUser(login);
+                var (isAuthenticated, user, id, name ) = await _repo.AuthenticateUser(login);
                 if (!isAuthenticated)
                 {
-                    return (false, null, 0);
+                    return (false, null, 0, null);
                 }
                 else
                 {
                     var token = _authHelper.GenerateJwtToken(user);
-                    return (true, token, user.UserId);
+                    return (true, token, user.UserId, user.UserName);
                 }
             }
         }
@@ -101,7 +99,37 @@ namespace Services.Service
         }
 
         //=====================================
+        //TUAN
+        public async Task<(bool, string?, int)> GoogleAuthorizeUser(string id_token)
+        {
+            //string accountId;
+            //RoleEnum role;
+            var payload = await GoogleJsonWebSignature.ValidateAsync(id_token);
 
+            //Get account with the same email address as the payload sent by Google
+            var getUser = await _repo.GetUserByMailAsync(payload.Email.Trim());
+
+
+            if (getUser == null)    // If there is no account then register
+            {
+                UserRegisterModel register = new UserRegisterModel()
+                {
+                    Email = payload.Email,
+                    Password = ComputeSha256Hash(payload.Email + config["SecurityStr:Key"]),
+                    UserName = payload.Name,
+                };
+                var result = await RegisterUserUI(register, (int)RoleEnum.Student);
+                getUser = await _repo.GetUserByMailAsync(payload.Email.Trim());
+            }
+            else    // If there is then login
+            {
+                if (getUser.IsBanned)
+                    return (false, "Get banned Bozo!!!", 0);
+            }
+
+            var token = _authHelper.GenerateJwtToken(getUser);
+            return (true, token, getUser.UserId);
+        }
         //TUAN
         public async Task<string> UserForgotPasswordUI(string emailAddress)
         {
@@ -134,7 +162,6 @@ namespace Services.Service
                 await _repo.CreateUser(registerModel, n);
                 return (true, "Registration successful!");
             }
-
             return (false, "Register failed");
         }
     }
