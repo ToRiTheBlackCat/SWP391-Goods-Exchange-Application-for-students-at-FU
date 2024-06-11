@@ -10,7 +10,8 @@ const SignUpForm = () => {
     confirmPassword: '',
     phone: '',
     address: '',
-    gender: ''
+    gender: '',
+    dateOfBirth: ''
   });
 
   const handleChange = (e) => {
@@ -23,7 +24,7 @@ const SignUpForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Kiểm tra mật khẩu và xác nhận mật khẩu
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
@@ -36,7 +37,8 @@ const SignUpForm = () => {
       email: formData.email,
       passWORD: formData.password,
       phoneNumber: formData.phone,
-      address: formData.address
+      address: formData.address,
+      dateOfBirth: formData.dateOfBirth
     };
 
     // Gọi API với Axios
@@ -119,6 +121,17 @@ const SignUpForm = () => {
             name="address"
             value={formData.address}
             onChange={handleChange}
+          />
+        </div>
+        <div className={styles.inputGroup}>
+          <label htmlFor="dateOfBirth">Date of Birth</label>
+          <input
+            type="date"
+            id="dateOfBirth"
+            name="dateOfBirth"
+            value={formData.dateOfBirth}
+            onChange={handleChange}
+            required
           />
         </div>
         <div className={styles.checkbox}>

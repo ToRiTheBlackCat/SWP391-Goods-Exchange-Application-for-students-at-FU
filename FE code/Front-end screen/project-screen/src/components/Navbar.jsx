@@ -67,17 +67,26 @@ const Navbar = () => {
         <div className={`collapse navbar-collapse ${styles.navbarCollapse}`} id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink className={`nav-link ${styles.navLink}`} to="/" activeClassName={styles.active}>
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
+                to="/"
+              >
                 Home
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={`nav-link ${styles.navLink}`} to="/category" activeClassName={styles.active}>
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
+                to="/category"
+              >
                 Category
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={`nav-link ${styles.navLink}`} to="/create-product" activeClassName={styles.active}>
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
+                to="/create-product"
+              >
                 Create product
               </NavLink>
             </li>
