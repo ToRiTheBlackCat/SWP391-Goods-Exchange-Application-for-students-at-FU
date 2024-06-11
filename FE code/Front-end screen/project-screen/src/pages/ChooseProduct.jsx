@@ -1,34 +1,48 @@
 import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Sidebar from '../components/Sidebar';
-import ProductDetails from '../components/ProductDetails';
+import ListProduct from '../components/ListProduct';
+import ProductInfo from '../components/ProductInfo';
+import Navbar from '../components/Navbar';
 import styles from '../styles/ChooseProduct.module.css';
-// import picture from './ảnh/unnamed.webp';
-
-const initialProducts = [
-  { name: 'Laptop MSI', price: '13.500.000 vnd', description: 'Used for 2 months', image: 'picture' },
-  { name: 'Laptop Dell', price: '15.000.000 vnd', description: 'Used for 1 year', image: 'ảnh/dell.jpg' },
-  { name: 'Chuột Logitech', price: '500.000 vnd', description: 'Used for 3 months', image: 'ảnh/logitech.jpg' },
-  { name: 'USB Tenda', price: '200.000 vnd', description: 'Brand new', image: 'ảnh/tenda.jpg' },
-  { name: 'Tai nghe Sony', price: '1.200.000 vnd', description: 'Used for 6 months', image: 'ảnh/sony.jpg' }
-];
+import axiosInstance from '../authorized/axiosInstance';
 
 function ChooseProduct() {
-  const [selectedProduct, setSelectedProduct] = useState(initialProducts[0]);
+  const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
-    setSelectedProduct(initialProducts[0]);
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      axiosInstance.get(`/api/Product/Student/ViewOwnProductList/${userId}`)
+        .then(response => {
+          const fetchedProducts = response.data.map(product => ({
+            id: product.productId,
+            name: product.productName,
+            image: product.productImage,
+            description: product.productDescription,
+            price: `${product.productPrice} vnd`,
+          }));
+          setProducts(fetchedProducts);
+          if (fetchedProducts.length > 0) {
+            setSelectedProduct(fetchedProducts[0]);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching products:', error);
+        });
+    }
   }, []);
 
   return (
     <div className="container-fluid">
+    <Navbar/>
       <div className="row">
         <div className={`col-md-3 ${styles.sidebar}`}>
           <h3>Your products</h3>
-          <Sidebar products={initialProducts} setSelectedProduct={setSelectedProduct} />
+          <ListProduct products={products} setSelectedProduct={setSelectedProduct} />
         </div>
         <div className={`col-md-9 ${styles['product-details']} d-flex flex-column align-items-center justify-content-center`}>
-          <ProductDetails product={selectedProduct} />
+          {selectedProduct && <ProductInfo product={selectedProduct} />}
         </div>
       </div>
     </div>
