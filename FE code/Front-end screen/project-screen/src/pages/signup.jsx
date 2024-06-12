@@ -11,9 +11,10 @@ const SignUpForm = () => {
     confirmPassword: '',
     phone: '',
     address: '',
-    //gender: '',
-    //dateOfBirth: ''
+    gender: '',
+    dateOfBirth: ''
   });
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -26,7 +27,7 @@ const SignUpForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
       return;
@@ -38,8 +39,8 @@ const SignUpForm = () => {
       password: formData.password,
       phoneNumber: formData.phone,
       address: formData.address,
-      // gender: formData.gender,
-      // dateOfBirth: formData.dateOfBirth
+      gender: formData.gender,
+      dateOfBirth: formData.dateOfBirth
     };
 
     axios.post('http://localhost:5299/api/User/Create-Customer-Account', data, {
@@ -49,7 +50,7 @@ const SignUpForm = () => {
     })
       .then(response => {
         console.log(response);
-        // Điều hướng sau khi đăng ký thành công (nếu cần)
+        // Điều hướng sau khi đăng ký thành công
         navigate('/login');
       })
       .catch(error => {
@@ -127,38 +128,6 @@ const SignUpForm = () => {
             onChange={handleChange}
           />
         </div>
-        {/* <div className={styles.checkbox}>
-          <label>Gender</label>
-          <input
-            type="radio"
-            name="gender"
-            value="male"
-            checked={formData.gender === 'male'}
-            onChange={handleChange}
-            required
-          />
-          Male
-          <input
-            type="radio"
-            name="gender"
-            value="female"
-            checked={formData.gender === 'female'}
-            onChange={handleChange}
-            required
-          />
-          Female
-        </div>
-        <div className={styles.inputGroup}>
-          <label htmlFor="dateOfBirth">Day of Birth</label>
-          <input
-            type="date"
-            id="dateOfBirth"
-            name="dateOfBirth"
-            value={formData.dateOfBirth}
-            onChange={handleChange}
-            required
-          />
-        </div> */}
         <button className={styles.registerBtn} type="submit">Sign up</button>
       </form>
     </div>

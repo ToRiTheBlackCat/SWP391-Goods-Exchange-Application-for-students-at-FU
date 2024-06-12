@@ -9,12 +9,14 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setMessage('');
+    setLoading(true);
 
     try {
       const response = await axios.post(
@@ -32,16 +34,20 @@ const Login = () => {
       );
       if (response.status === 200) {
         setMessage('Login successfully');
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('userId', response.data.userId);
-        localStorage.setItem('userName', response.data.userName);
-        navigate('/');
-      }
-      if(response.status === 401) {
+        const userInfo = {
+          token: response.data.token,
+          userId: response.data.userId,
+          userName: response.data.userName,
+        };
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));
+        navigate('/'); // Chuyển hướng tới trang chủ
+      } else if (response.status === 401) {
         setError('Wrong password or email');
       }
     } catch (error) {
       setError('Login failed. Please check your email or password');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -80,8 +86,20 @@ const Login = () => {
                   required
                 />
               </div>
-              <button type="submit" className={`btn btn-primary w-100 ${styles.btnSmall}`}>Login</button>
-              <button type="button" className={`btn btn-info w-100 mt-2 ${styles.btnSmall}`}>Login with Google</button>
+              <button 
+                type="submit" 
+                className={`btn btn-primary w-100 ${styles.btnSmall}`}
+                disabled={loading}
+              >
+                {loading ? 'Logging in...' : 'Login'}
+              </button>
+              <button 
+                type="button" 
+                className={`btn btn-info w-100 mt-2 ${styles.btnSmall}`}
+                disabled={loading}
+              >
+                Login with Google
+              </button>
             </form>
             {error && <p className="text-danger mt-3">{error}</p>}
             {message && <p className="text-success mt-3">{message}</p>}

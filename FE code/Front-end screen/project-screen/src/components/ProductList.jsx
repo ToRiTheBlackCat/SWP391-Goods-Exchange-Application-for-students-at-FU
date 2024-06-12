@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
 import styles from '../styles/ProductList.module.css';
 
-const ProductList = () => {
+const ProductList = ({ currentPage }) => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5299/api/Product/GetSorted');
+        const response = await axios.get(`http://localhost:5299/api/Product/GetSorted?pageIndex=${currentPage}`);
         console.log('API response:', response.data);
         const mappedProducts = response.data.map(product => ({
           imgSrc: product.productImage,
@@ -18,21 +20,25 @@ const ProductList = () => {
           title: product.productName,
           link: `/product/${product.productId}`,
           condition: product.productDescription,
-          // color: 'Not specified',
-          // size: 'Not specified',
           price: `${product.productPrice} VND`,
           seller: 'Unknown',
           rating: 0
         }));
         setProducts(mappedProducts);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching products:', error);
         setError('Error fetching products.');
+        setLoading(false);
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [currentPage]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (error) {
     return <div>{error}</div>;
@@ -47,6 +53,10 @@ const ProductList = () => {
       ))}
     </div>
   );
-}
+};
+
+ProductList.propTypes = {
+  currentPage: PropTypes.number.isRequired,
+};
 
 export default ProductList;

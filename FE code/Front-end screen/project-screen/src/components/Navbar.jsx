@@ -1,169 +1,153 @@
-import { useState } from 'react';
-import styles from '../styles/SignUpForm.module.css';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from '../styles/Navbar.module.css';
 
-const SignUpForm = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    phone: '',
-    address: '',
-    gender: '',
-    dateOfBirth: ''
-  });
-
+const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
+  const dropdownRef = useRef(null); // Thêm ref cho dropdown
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+  useEffect(() => {
+    // Kiểm tra trạng thái đăng nhập từ localStorage
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('userName');
+    if (token && user) {
+      setIsLoggedIn(true);
+      setUsername(user);
+    }
+  }, [username]);
+
+  useEffect(() => {
+    // Đăng ký sự kiện click bên ngoài dropdown
+    document.addEventListener('mousedown', handleClickOutsideDropdown);
+    return () => {
+      // Hủy đăng ký sự kiện khi component bị unmount
+      document.removeEventListener('mousedown', handleClickOutsideDropdown);
+    };
+  }, []);
+
+  const handleClickOutsideDropdown = (event) => {
+    // Kiểm tra xem phần tử bấm vào có phải là dropdown hay không
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpen(false); // Nếu không phải, ẩn dropdown
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
+  const handleLogout = () => {
+    // Xóa thông tin đăng nhập từ localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userId');
+    setIsLoggedIn(false);
+    setUsername('');
+    navigate('/login');
+  };
 
-    const data = {
-      userName: formData.username,
-      email: formData.email,
-      password: formData.password,
-      phoneNumber: formData.phone,
-      address: formData.address,
-      gender: formData.gender,
-      dateOfBirth: formData.dateOfBirth
-    };
-
-    axios.post('http://localhost:5299/api/User/Create-Customer-Account', data, {
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
-      .then(response => {
-        console.log(response);
-        // Điều hướng sau khi đăng ký thành công
-        navigate('/login');
-      })
-      .catch(error => {
-        console.error('There was an error!', error);
-      });
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   return (
-    <div className={styles.signUpController}>
-      <h2>Register account</h2>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.inputGroup}>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
+    <nav className={`navbar navbar-expand-lg navbar-dark bg-dark ${styles.navbar}`}>
+      <div className="container-fluid">
+        <button
+          className={`navbar-toggler ${styles.navbarToggler}`}
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className={`navbar-toggler-icon ${styles.navbarTogglerIcon}`}></span>
+        </button>
+        <div className={`collapse navbar-collapse ${styles.navbarCollapse}`} id="navbarNav">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
+                to="/"
+              >
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
+                to="/category"
+              >
+                Category
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
+                to="/create-product"
+              >
+                Create product
+              </NavLink>
+            </li>
+          </ul>
+          <form className="d-flex me-2">
+            <input className={`form-control me-2 ${styles.formControl}`} type="search" placeholder="Search" aria-label="Search" />
+            <button className={`btn btn-primary ${styles.btnPrimary}`} type="submit">Search</button>
+          </form>
+          <div className="navbar-nav">
+            <div ref={dropdownRef}> {/* Thêm ref vào dropdown */}
+              <button
+                className={`btn btn-dark dropdown-toggle ${styles.navLink}`}
+                onClick={handleDropdownToggle}
+              >
+                {isLoggedIn ? username : 'thangduc'}
+              </button>
+              <ul className={`dropdown-menu ${styles.dropdownMenu}`} style={{ display: isDropdownOpen ? 'block' : 'none' }}>
+                {isLoggedIn ? (
+                  <>
+                    <li>
+                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/profile">
+                        Profile
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/products">
+                        View products
+                      </NavLink>
+                    </li>
+                    <li><hr className={`dropdown-divider ${styles.dropdownDivider}`} />
+                    </li>
+                    <li>
+                      <button
+                        className={`dropdown-item ${styles.dropdownItem}`}
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/login">
+                        View profile
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/login">
+                        Log out
+                      </NavLink>
+                    </li>
+                  </>
+                )}
+              </ul>
+            </div>
+          </div>
         </div>
-        <div className={styles.inputGroup}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className={styles.inputGroup}>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className={styles.inputGroup}>
-          <label htmlFor="confirmPassword">Confirm password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className={styles.inputGroup}>
-          <label htmlFor="phone">Phone number</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className={styles.inputGroup}>
-          <label htmlFor="address">Address</label>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-          />
-        </div>
-        {/* <div className={styles.checkbox}>
-          <label>Gender</label>
-          <input
-            type="radio"
-            name="gender"
-            value="male"
-            checked={formData.gender === 'male'}
-            onChange={handleChange}
-            required
-          />
-          Male
-          <input
-            type="radio"
-            name="gender"
-            value="female"
-            checked={formData.gender === 'female'}
-            onChange={handleChange}
-            required
-          />
-          Female
-        </div>
-        <div className={styles.inputGroup}>
-          <label htmlFor="dateOfBirth">Day of Birth</label>
-          <input
-            type="date"
-            id="dateOfBirth"
-            name="dateOfBirth"
-            value={formData.dateOfBirth}
-            onChange={handleChange}
-            required
-          />
-        </div> */}
-        <button className={styles.registerBtn} type="submit">Sign up</button>
-      </form>
-    </div>
+      </div>
+    </nav>
   );
 };
 
-export default SignUpForm;
+export default Navbar;
