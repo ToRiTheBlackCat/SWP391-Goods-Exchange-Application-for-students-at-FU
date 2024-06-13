@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using static Services.Helpers.EncodingClass;
 using Google.Apis.Auth;
+using System.Net.Mail;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Services.Service
 {
@@ -34,27 +37,62 @@ namespace Services.Service
         }
 
         //TRI
-        public async Task<(bool, string?, int?, string?)> LoginByEmailAndPassword(LoginUserModel login)
+        public async Task<(bool, string?, int)> LoginByEmailAndPassword(LoginUserModel login)
         {
             if (login == null || string.IsNullOrEmpty(login.Email) || string.IsNullOrEmpty(login.Password))
             {
-                return (false, "Invalid email or password", 0, null);
+                return (false, "Invalid email or password", 0);
             }
             else
             {
-                
+                //IConfiguration config = new ConfigurationBuilder()
+                //    .SetBasePath(Directory.GetCurrentDirectory())
+                //        .AddJsonFile("appsettings.json", true, true)
+                //        .Build();
                 login.Password = ComputeSha256Hash(login.Password + config["SecurityStr:Key"]);
-                var (isAuthenticated, user, id, name ) = await _repo.AuthenticateUser(login);
+                var (isAuthenticated, user, id) = await _repo.AuthenticateUser(login);
                 if (!isAuthenticated)
                 {
-                    return (false, null, 0, null);
+                    return (false, null, 0);
                 }
                 else
                 {
                     var token = _authHelper.GenerateJwtToken(user);
-                    return (true, token, user.UserId, user.UserName);
+                    return (true, token, user.UserId);
                 }
             }
+        }
+
+        //TUAN
+        public async Task<(bool, string?, int)> GoogleAuthorizeUser(string id_token)
+        {
+            //string accountId;
+            //RoleEnum role;
+            var payload = await GoogleJsonWebSignature.ValidateAsync(id_token);
+
+            //Get account with the same email address as the payload sent by Google
+            var getUser = await _repo.GetUserByMailAsync(payload.Email.Trim());
+
+
+            if (getUser == null)    // If there is no account then register
+            {
+                UserRegisterModel register = new UserRegisterModel()
+                {
+                    Email = payload.Email,
+                    Password = ComputeSha256Hash(payload.Email + config["SecurityStr:Key"]),
+                    UserName = payload.Name,
+                };
+                var result = await RegisterUserUI(register, (int)RoleEnum.Student);
+                getUser = await _repo.GetUserByMailAsync(payload.Email.Trim());
+            }
+            else    // If there is then login
+            {
+                if (getUser.IsBanned)
+                    return (false, "Get banned Bozo!!!", 0);
+            }
+
+            var token = _authHelper.GenerateJwtToken(getUser);
+            return (true, token, getUser.UserId);
         }
 
         //TRI
@@ -99,68 +137,87 @@ namespace Services.Service
         }
 
         //=====================================
-        //TUAN
-        public async Task<(bool, string?, int)> GoogleAuthorizeUser(string id_token)
-        {
-            //string accountId;
-            //RoleEnum role;
-            var payload = await GoogleJsonWebSignature.ValidateAsync(id_token);
 
-            //Get account with the same email address as the payload sent by Google
-            var getUser = await _repo.GetUserByMailAsync(payload.Email.Trim());
-
-
-            if (getUser == null)    // If there is no account then register
-            {
-                UserRegisterModel register = new UserRegisterModel()
-                {
-                    Email = payload.Email,
-                    Password = ComputeSha256Hash(payload.Email + config["SecurityStr:Key"]),
-                    UserName = payload.Name,
-                };
-                var result = await RegisterUserUI(register, (int)RoleEnum.Student);
-                getUser = await _repo.GetUserByMailAsync(payload.Email.Trim());
-            }
-            else    // If there is then login
-            {
-                if (getUser.IsBanned)
-                    return (false, "Get banned Bozo!!!", 0);
-            }
-
-            var token = _authHelper.GenerateJwtToken(getUser);
-            return (true, token, getUser.UserId);
-        }
         //TUAN
         public async Task<string> UserForgotPasswordUI(string emailAddress)
         {
+            try
+            {
+                //Find user with email address
+                User user = await _repo.GetUserByMailAsync(emailAddress);
+                if (user == null)
+                    return "Account not found";
+                var resetToken = user.ResetToken;
+                string resetCode = AuthHelper.GenerateRandomString();
+                if (resetToken == null)
+                    await _repo.CreateResetTokenAsync(user.UserId, resetCode, DateTime.Now);
+                else    //Refresh resetPW Token
+                {
+                    resetToken.ResetToken1 = resetCode;
+                    resetToken.CreatedDate = DateTime.Now;
+                    await _repo.UpdateResetTokenAsync(resetToken);
+                }
 
-            //Find user with email address
-            User user = await _repo.GetUserByMailAsync(emailAddress);
-            if (user == null)
-                return "Not found";
+                //Sending Reset TOKEN to email address
+                SendEmail.Send(emailAddress, "FU Exchange - Password Reset", $"Your reset code is: {resetCode}");
+                return $"Password reset requested. (Sent to {emailAddress})";
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.StackTrace);
+            }
 
-            //Refresh resetPW Token
+            return "Encountered an Error!";
+        }
 
-            //Sending Reset TOKEN to email address
-            //*Note: set mail address to varible
-            SendEmail.Send("triminh0502@gmail.com", "You seem lonely", "I can fix that...");
-
-            return "Not found";
+        public async Task<(bool, string)> UserResetPasswordUI(UserPassResetModel resetModel)
+        {
+            if (resetModel.resetCode.IsNullOrEmpty())
+                return (false, "Code not iputed!");
+            try
+            {
+                //Find user with email address
+                User user = await _repo.GetUserByMailAsync(resetModel.Email);
+                if (user == null)
+                    return (false, "Account not found!");
+                var resetToken = user.ResetToken;
+                if (resetToken != null && resetToken.ResetToken1.Equals(resetModel.resetCode))
+                {
+                    if ((DateTime.Now - resetToken.CreatedDate).TotalSeconds > 60 * 3)
+                        return (false, "Reset code is invalid!");
+                    user.Password = resetModel.Password;
+                    await _repo.UpdateUserAsync(user);
+                    return (true, "Password updated.");
+                }
+                return (false, "Wrong reset code!");
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.StackTrace);
+                return (true, ex.Message);
+            }
         }
 
         //TUAN
-        public async Task<(bool, string)> RegisterUserUI(UserRegisterModel registerModel, int n)
+        public async Task<(bool, string)> RegisterUserUI(UserRegisterModel registerModel, int roleId)
         {
-            if (!await _repo.DuplicatedCredentials(registerModel.UserName, registerModel.Email, registerModel.PhoneNumber))
+            try
             {
-                //IConfiguration config = new ConfigurationBuilder()
-                //    .SetBasePath(Directory.GetCurrentDirectory())
-                //        .AddJsonFile("appsettings.json", true, true)
-                //        .Build();
-                registerModel.Password = ComputeSha256Hash(registerModel.Password + config["SecurityStr:Key"]);
-                
-                await _repo.CreateUser(registerModel, n);
-                return (true, "Registration successful!");
+                if (!await _repo.DuplicatedCredentials(registerModel.UserName, registerModel.Email, registerModel.PhoneNumber))
+                {
+                    //IConfiguration config = new ConfigurationBuilder()
+                    //    .SetBasePath(Directory.GetCurrentDirectory())
+                    //        .AddJsonFile("appsettings.json", true, true)
+                    //        .Build();
+                    registerModel.Password = ComputeSha256Hash(registerModel.Password + config["SecurityStr:Key"]);
+
+                    await _repo.CreateUser(registerModel, roleId);
+                    return (true, "Registration successful!");
+                }
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.StackTrace);
             }
             return (false, "Register failed");
         }

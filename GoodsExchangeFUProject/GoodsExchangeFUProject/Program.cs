@@ -21,6 +21,7 @@ namespace GoodsExchangeFUProject
         {
             var builder = WebApplication.CreateBuilder(args);
             var config = builder.Configuration;
+
             // Add services to the container.
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -44,14 +45,14 @@ namespace GoodsExchangeFUProject
             // Configure AutoMapper
             builder.Services.AddAutoMapper(typeof(ApplicationMapper));
 
-            // Configure CORS 
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll", builder =>
-                {
-                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-                });
-            });
+            //// Configure CORS 
+            //builder.Services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowAll", builder =>
+            //    {
+            //        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            //    });
+            //});
 
             // Configure Authentication
             builder.Services.AddAuthentication(options =>
@@ -73,11 +74,11 @@ namespace GoodsExchangeFUProject
                     ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
                     ClockSkew = TimeSpan.Zero
                 };
-            }).AddGoogle(googleOptions =>
-            {
-                googleOptions.ClientId = config["Authentication:Google:ClientId"];
-                googleOptions.ClientSecret = config["Authentication:Google:ClientSecret"];
-            }); 
+            });// AddGoogle(googleOptions =>
+            //{
+            //    googleOptions.ClientId = config["Authentication:Google:ClientId"];
+            //    googleOptions.ClientSecret = config["Authentication:Google:ClientSecret"];
+            //});
 
             var app = builder.Build();
 
@@ -88,10 +89,14 @@ namespace GoodsExchangeFUProject
                 app.UseSwaggerUI();
             }
 
+            app.UseCors(c => c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            
             app.MapControllers();
+
             app.Run();
         }
     }

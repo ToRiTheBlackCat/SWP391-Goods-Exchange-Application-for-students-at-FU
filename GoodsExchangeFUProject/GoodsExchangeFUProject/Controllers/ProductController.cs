@@ -21,7 +21,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TRI
-        [Authorize(Roles = "student")]
+        //[Authorize(Roles = "student")]
         [HttpGet("Student/ViewProductDetailWithId/{id}")]   //View detail from all and from self
         public async Task<IActionResult> StudentViewProductDetailWithID(int id)
         {
@@ -65,24 +65,28 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TRI
-        [Authorize(Roles = "student")]
+        //[Authorize(Roles = "student")]
         [HttpPost("Student/AddNewProduct")]
         public async Task<IActionResult> StudentAddNewProduct(AddNewProductModel addNewProductModel,
             [FromForm] IFormFile? productImage)
         {
-            //if (productImage == null || productImage.Length == 0)
-            //{
-            //    return BadRequest("No image uploaded.");
-            //}
+            if (productImage == null || productImage.Length == 0)
+            {
+                return BadRequest("No image uploaded.");
+            }
+
             var uploadPath = Path.Combine(_env.ContentRootPath, "uploads");
             Directory.CreateDirectory(uploadPath); // Ensure the directory exists
+
             //path to the location to save image (with the file name included) .ie : <solution>/uploads/<filename>.<ext>
             var filePath = Path.Combine(uploadPath, Path.GetFileName(productImage.FileName));
+
             // Save the image to the server
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await productImage.CopyToAsync(stream);
             }
+
             //Generate image path and create Product
             //string imagePath = Path.Combine("uploads", Path.GetFileName(productImage.FileName));
             addNewProductModel.ProductImage = productImage.FileName;
@@ -107,6 +111,23 @@ namespace GoodsExchangeFUProject.Controllers
                 _ => "application/octet-stream",
             };
         }
+
+        //[HttpGet("{fileName}")]
+        //public async Task<IActionResult> GetImage(string fileName)
+        //{
+        //    var imagePath = Path.Combine(_environment.WebRootPath, "images", fileName);
+
+        //    if (!System.IO.File.Exists(imagePath))
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var image = await System.IO.File.ReadAllBytesAsync(imagePath);
+        //    var contentType = GetContentType(imagePath);
+        //    return File(image, contentType);
+        //}
+
+
         [HttpGet("GetUserImage")]
         public IActionResult GetUserImage(string imageName)
         {
@@ -115,7 +136,7 @@ namespace GoodsExchangeFUProject.Controllers
 
             if (!System.IO.File.Exists(imagePath))
             {
-                return NotFound();
+                return NoContent();
             }
 
             byte[] fileBytes;
@@ -131,6 +152,7 @@ namespace GoodsExchangeFUProject.Controllers
             string base64String = Convert.ToBase64String(fileBytes);
             return Ok(base64String);
         }
+
         //TRI
         [Authorize(Roles = "mod")]
         [HttpPost("Mod/AcceptProductInWaitingList/{id}")]

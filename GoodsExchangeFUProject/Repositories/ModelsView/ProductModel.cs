@@ -32,6 +32,7 @@ namespace Repositories.ModelsView
         public int TypeId { get; set; }
         public ProductOwner ProductOwner { get; set; } = null!;
     }
+
     public class AddNewProductModel
     {
         
