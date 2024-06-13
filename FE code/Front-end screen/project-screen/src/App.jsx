@@ -2,7 +2,6 @@
 import Login from './pages/Login.jsx';
 import HomePage from './pages/HomePage.jsx';
 import SignUp from './pages/signup.jsx';
-import Category from './pages/Category.jsx';
 import GetOTP from './pages/GetOTP.jsx';
 import CreateProduct from './pages/CreateProduct.jsx';
 import ProductPage from './pages/ProductPage.jsx'
@@ -17,7 +16,6 @@ const App = () => {
         <Route exact path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp/>} /> 
-        <Route path='/category' element={<Category/>}/>
         <Route path='/forgot-password' element={<GetOTP/>}/>
         <Route path='/create-product' element={<CreateProduct/>}/>
         <Route path="/product/:id" element={<ProductPage/>}/>

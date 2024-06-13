@@ -77,14 +77,6 @@ const Navbar = () => {
             <li className="nav-item">
               <NavLink 
                 className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
-                to="/category"
-              >
-                Category
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink 
-                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
                 to="/create-product"
               >
                 Create product
