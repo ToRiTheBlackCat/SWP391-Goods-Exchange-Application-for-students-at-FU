@@ -25,7 +25,7 @@ namespace Repositories.Repositories
         {
             var user = await _context.Users
                 .Include(u => u.Role)
-                .FirstOrDefaultAsync(u => u.Email.Trim() == login.Email.Trim() && u.Password.Trim() == login.Password);
+                .FirstOrDefaultAsync(u => u.Email.Trim() == login.Email.Trim() && u.Password.Trim() == login.Password && u.IsBanned == false);
             if (user != null)
                 return (true, user, user.UserId, user.UserName);
             return (false, null, 0, null);

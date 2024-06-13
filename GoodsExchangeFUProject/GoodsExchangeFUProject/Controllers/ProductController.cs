@@ -115,7 +115,7 @@ namespace GoodsExchangeFUProject.Controllers
 
             if (!System.IO.File.Exists(imagePath))
             {
-                return NotFound();
+                return NoContent();
             }
 
             byte[] fileBytes;
