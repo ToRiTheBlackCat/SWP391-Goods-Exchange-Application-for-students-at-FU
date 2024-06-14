@@ -55,7 +55,7 @@ namespace Repositories.ModelsView
 
             public bool Gender { get; set; }
 
-            public DateOnly? Dob { get; set; }
+            public DateOnly Dob { get; set; }
         }
 
         public class UserPassResetModel 

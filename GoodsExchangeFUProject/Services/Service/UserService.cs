@@ -37,28 +37,26 @@ namespace Services.Service
         }
 
         //TRI
-        public async Task<(bool, string?, int)> LoginByEmailAndPassword(LoginUserModel login)
+
+        public async Task<(bool, string?, int?, string?)> LoginByEmailAndPassword(LoginUserModel login)
         {
             if (login == null || string.IsNullOrEmpty(login.Email) || string.IsNullOrEmpty(login.Password))
             {
-                return (false, "Invalid email or password", 0);
+                return (false, "Invalid email or password", 0, null);
             }
             else
             {
-                //IConfiguration config = new ConfigurationBuilder()
-                //    .SetBasePath(Directory.GetCurrentDirectory())
-                //        .AddJsonFile("appsettings.json", true, true)
-                //        .Build();
+
                 login.Password = ComputeSha256Hash(login.Password + config["SecurityStr:Key"]);
-                var (isAuthenticated, user, id) = await _repo.AuthenticateUser(login);
+                var (isAuthenticated, user, id, name) = await _repo.AuthenticateUser(login);
                 if (!isAuthenticated)
                 {
-                    return (false, null, 0);
+                    return (false, null, 0, null);
                 }
                 else
                 {
                     var token = _authHelper.GenerateJwtToken(user);
-                    return (true, token, user.UserId);
+                    return (true, token, user.UserId, user.UserName);
                 }
             }
         }

@@ -136,7 +136,7 @@ namespace Services.Service
 
         //=========================
         //TUAN
-        public async Task<(bool, List<ViewAllProductModel>)> GetSortedProductsUI(ProductSortView sortView, string sortOrder, int pageIndex)
+        public async Task<(bool, List<ViewAllProductModel>, int)> GetSortedProductsUI(ProductSortView sortView, string sortOrder, int pageIndex)
         {
             //get products that sastify the fields
             var foundProducts = _repo
@@ -148,9 +148,10 @@ namespace Services.Service
 
                 //paging the products
                 int pageSize = 6;
+                var totalPage = (int)Math.Ceiling(foundProducts.Count() / (double)pageSize);
                 PaginatedList<Product> list = await PaginatedList<Product>.CreateAsync(foundProducts, pageIndex, pageSize);
 
-                return(true, ConvertProductToModel3(list));
+                return(true, ConvertProductToModel3(list), totalPage);
                 //return
                 //    (true,
                 //        list.Select(p => new OwnProductModel()
@@ -166,7 +167,7 @@ namespace Services.Service
                 //    );
             }
             //no product found
-            return (false, null!);
+            return (false, null!, 0);
         }
         public string? NameSort { get; set; }
         public string? PriceSort { get; set; }

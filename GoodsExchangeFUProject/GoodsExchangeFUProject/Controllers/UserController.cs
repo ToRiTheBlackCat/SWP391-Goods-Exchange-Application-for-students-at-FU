@@ -36,15 +36,14 @@ namespace GoodsExchangeFUProject.Controllers
         [HttpPost("/user/login")]
         public async Task<IActionResult> LoginWithEmailAndPassword([FromBody] LoginUserModel loginModel)
         {
-
-            var (success, response, id) = await _userService.LoginByEmailAndPassword(loginModel);
+            var (success, response, id, name) = await _userService.LoginByEmailAndPassword(loginModel);
 
             if (!success)
             {
                 return Unauthorized(response);
             }
 
-            return Ok(new { Token = response, userId = id });
+            return Ok(new { Token = response, userId = id, userName = name });
         }
 
         //TUAN

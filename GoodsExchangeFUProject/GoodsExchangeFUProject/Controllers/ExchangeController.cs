@@ -4,6 +4,7 @@ using Repositories.ModelsView;
 using Services.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Repositories.Entities;
+using Repositories.Repositories;
 
 
 namespace GoodsExchangeFUProject.Controllers
@@ -49,6 +50,20 @@ namespace GoodsExchangeFUProject.Controllers
 
             return Ok(result);
         }
+
+        //TUAN
+        // PUT: api/ProductExchanges
+        [HttpPut("AcceptExchange")]
+        public async Task<IActionResult> AcceptExchange(int exchangeId)
+        {
+            var (result, message) = await _exchangeService.AcceptExchangeUI(exchangeId);
+
+            if (!result)
+                return BadRequest(message);
+
+            return Ok(message);
+        }
+
         //===============
         //TRI
         [Authorize(Roles = "student")]

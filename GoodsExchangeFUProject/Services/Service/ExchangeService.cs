@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Repositories.Entities;
 using Repositories.ModelsView;
 using Repositories.Repositories;
@@ -124,6 +125,55 @@ namespace Services.Service
 
 
             return "Exchange created successfully!";
+        }
+
+        //TUAN
+        public async Task<(bool, string)> AcceptExchangeUI(int exchangeId)
+        {
+
+            try
+            {
+
+                var exchange1 = await _repo.FindExchangeByIdAsync(exchangeId, 3);
+                if (exchange1 == null)
+                    return (true, "Exchange doesn't exist or Status is invalid!");
+
+
+                var product1 = await _pro_repo.FindProductByIdAsync(exchange1.ProductId, 1);
+                if (product1 == null)
+                    return (true, "Your product currently is currently not available for exchanging! (Check if it has been banned or removed)");
+
+                Product? exchangeProduct = null;
+                if (exchange1.ExchangeDetails.Single().ProductId != null)
+                {
+                    exchangeProduct = await _pro_repo.FindProductByIdAsync((int)exchange1.ExchangeDetails.Single().ProductId!, 2);
+                    if (exchangeProduct == null)
+                        return (true, "Your product currently is currently not available for exchanging! (Check if it has been banned or removed)");
+                }
+
+                //var buyerId = exchange1.UserId;
+                //var sellerId = product1.UserId;
+
+                //Transfer the owner ship of products (If there is a product offer)
+                if (exchangeProduct != null)
+                {
+                    exchangeProduct.Status = 0;     //set to disabled
+                    //exchangeProduct1.UserId = sellerId;   //set ownership to seller
+                    await _pro_repo.UpdateProductStatusAsync(exchangeProduct.ProductId, 0);
+                }
+
+                product1.Status = 0;     //set to disabled
+                //product1.UserId = buyerId;    //set ownership to buyer
+                await _pro_repo.UpdateProductStatusAsync(product1.ProductId, 0);
+
+                //Accept Exchange
+                await _repo.ExchangeAcceptedAsync(exchange1);
+                return (true, "Exchange accepted");
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
         }
     }
 }

@@ -21,16 +21,14 @@ namespace Repositories.Repositories
             _context = context;
         }
         //TRI
-        public async Task<(bool, User?, int)> AuthenticateUser(LoginUserModel login)
+        public async Task<(bool, User?, int?, string?)> AuthenticateUser(LoginUserModel login)
         {
-            //string salt = "BallsInYoJaws2069";
-            //string loginPassword = (login.Password.Trim() + salt).ToSHA256String();
             var user = await _context.Users
                 .Include(u => u.Role)
-                .FirstOrDefaultAsync(u => u.Email.Trim() == login.Email.Trim() && u.Password.Trim() == login.Password);
+                .FirstOrDefaultAsync(u => u.Email.Trim() == login.Email.Trim() && u.Password.Trim() == login.Password && u.IsBanned == false);
             if (user != null)
-                return (true, user, user.UserId);
-            return (false, null, 0);
+                return (true, user, user.UserId, user.UserName);
+            return (false, null, 0, null);
         }
 
         //TRI

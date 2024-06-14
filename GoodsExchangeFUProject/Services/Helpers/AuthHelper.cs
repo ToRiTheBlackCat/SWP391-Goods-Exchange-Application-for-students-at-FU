@@ -30,9 +30,11 @@ namespace Services.Helpers
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                new Claim(ClaimTypes.Role, user.Role.RoleName.ToString().Trim())
-            };
+         new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+         new Claim(ClaimTypes.Role, user.Role.RoleName.ToString().Trim()),
+         new Claim(ClaimTypes.Name, user.UserName.ToString().Trim())
+
+     };
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
