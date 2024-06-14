@@ -133,7 +133,27 @@ namespace Services.Service
         {
             return ConvertUserToModel(_repo.ViewUserByStatus(1).ToList());
         }
+        //TRI
+        public async Task<(bool, double?)> GetAverageScore(int userId)
+        {
+            var (userFound, listScores) = await _repo.GetAllScoresOfUserByIdAsync(userId);
 
+            if (!userFound || listScores == null || !listScores.Any())
+            {
+                return (false, 0);
+            }
+            //var sum = 0;
+            //var count = 0;
+            //for (int i = 0; i < listScores.Count; i++)
+            //{
+            //    sum += (int)listScores[i];
+            //    count++;
+            //}
+
+
+            double averageScore = (double)listScores.Average();
+            return (true, averageScore);
+        }
         //=====================================
 
         //TUAN
@@ -219,5 +239,7 @@ namespace Services.Service
             }
             return (false, "Register failed");
         }
+
+        
     }
 }

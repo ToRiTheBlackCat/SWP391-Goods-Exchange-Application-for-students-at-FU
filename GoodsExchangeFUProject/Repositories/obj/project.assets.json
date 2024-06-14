@@ -8160,24 +8160,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Senti\\.nuget\\packages\\": {},
-    "D:\\Programs(x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\PC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
       "projectName": "Repositories",
-      "projectPath": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
-      "packagesPath": "C:\\Users\\Senti\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\Repositories\\obj\\",
+      "projectPath": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
+      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Repositories\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\Programs(x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Senti\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8185,7 +8180,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

@@ -24,6 +24,18 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TRI
+        [HttpGet("user/GetAverageScore/{userId}")]
+        public async Task<IActionResult> UserGetAverageScore(int userId)
+        {
+            var (userFound, aveScore) = await _userService.GetAverageScore(userId);
+            if (userFound)
+            {
+                return Ok(aveScore);
+            }
+            return BadRequest("User not found or has no score");
+        }
+
+        //TRI
         [Authorize(Roles = "mod")]
         [HttpGet("Mod/ViewBanAccountList")]
         public async Task<IActionResult> ModViewBanAccountList()

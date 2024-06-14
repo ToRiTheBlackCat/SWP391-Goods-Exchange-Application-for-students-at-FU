@@ -12,6 +12,7 @@ namespace Services.Interface
         Task<(bool, string)> ModBanAccount(int userId);
         Task<(bool, string)> ModUnBanAccount(int userId);
         Task<List<UserModel2>> ModGetBanAccountList();
+        Task<(bool,double?)> GetAverageScore( int userId);
 
         //==============
         Task<string> UserForgotPasswordUI(string emailAddress);
