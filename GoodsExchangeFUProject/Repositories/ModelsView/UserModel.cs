@@ -52,6 +52,20 @@ namespace Repositories.ModelsView
             public string? PhoneNumber { get; set; } = null!;
 
             public string? Address { get; set; }
+
+            public bool Gender { get; set; }
+
+            public DateOnly Dob { get; set; }
+        }
+
+        public class UserPassResetModel 
+        {
+            [EmailAddress]
+            public required string Email { get; set; }
+
+            public string resetCode { get; set; } = null!;
+
+            public string Password { get; set; } = null!;
         }
     }
 }

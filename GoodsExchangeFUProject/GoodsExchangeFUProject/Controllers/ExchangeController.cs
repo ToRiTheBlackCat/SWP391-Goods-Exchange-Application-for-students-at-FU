@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Repositories.ModelsView;
 using Services.Interface;
 using Microsoft.AspNetCore.Authorization;
+using Repositories.Entities;
+using Repositories.Repositories;
 
 
 namespace GoodsExchangeFUProject.Controllers
@@ -17,15 +19,15 @@ namespace GoodsExchangeFUProject.Controllers
         {
             _exchangeService = exchangeService;
         }
-        
-        
+
+
         //TUAN
         // GET: api/Exchanges/EchangeRequests
         [HttpGet("EchangeRequests")]
         public IActionResult GetExchangeRequests(int userID)
         {
             var list = _exchangeService.GetExchangeOfUserUI(userID);
-            return Ok(list);
+            return Ok(null);
         }
 
         //TUAN
@@ -38,6 +40,7 @@ namespace GoodsExchangeFUProject.Controllers
                 return NotFound("The product you are finding doesn't exist!");
             return Ok(list.Item1);
         }
+
         // POST: api/CreateExchange
         [HttpPost("CreateExchange")]
         public async Task<IActionResult> CreateExchange(ExchangeCreateView exchangeCreate)
@@ -47,6 +50,20 @@ namespace GoodsExchangeFUProject.Controllers
 
             return Ok(result);
         }
+
+        //TUAN
+        // PUT: api/ProductExchanges
+        [HttpPut("AcceptExchange")]
+        public async Task<IActionResult> AcceptExchange(int exchangeId)
+        {
+            var (result, message) = await _exchangeService.AcceptExchangeUI(exchangeId);
+
+            if (!result)
+                return BadRequest(message);
+
+            return Ok(message);
+        }
+
         //===============
         //TRI
         [Authorize(Roles = "student")]

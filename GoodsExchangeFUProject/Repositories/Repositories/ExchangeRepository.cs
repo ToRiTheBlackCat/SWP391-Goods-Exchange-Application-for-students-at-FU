@@ -101,5 +101,28 @@ namespace Repositories.Repositories
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task ExchangeAcceptedAsync(Exchange exchange)
+        {
+            //Cancel every unaccepted exchange requests to this product
+            _context = new();
+            await _context.Exchanges.Include(e => e.ExchangeDetails)
+                .ThenInclude(ed => ed.Product)
+                .Where(e => e.ProductId == exchange.ProductId && e.ExchangeId != exchange.ExchangeId)
+                .ForEachAsync(e =>
+                {
+                    //Set the status of related ExchangeDetail
+                    e.Status = 0;
+                    if (e.ExchangeDetails.First().Product != null) //If there is a product
+                    {
+                        //Put Product back on view page (Status = 1)
+                        var product = e.ExchangeDetails.First().Product!;
+                        product.Status = product.Status == 2 ? 1 : product.Status;
+                    }
+                });
+            exchange.Status = 1;
+            var updateExchange = _context.Exchanges.Update(exchange);
+            await _context.SaveChangesAsync();
+        }
     }
 }

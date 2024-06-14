@@ -12,7 +12,6 @@ using System;
 using System.Text;
 using Services.Service;
 using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Identity;
 
 namespace GoodsExchangeFUProject
 {
@@ -27,15 +26,6 @@ namespace GoodsExchangeFUProject
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-            // Configure CORS 
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll", builder =>
-                {
-                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-                });
-            });
 
             // Register DbContext
             builder.Services.AddDbContext<GoodsExchangeFudbContext>(options =>
@@ -52,13 +42,17 @@ namespace GoodsExchangeFUProject
             builder.Services.AddScoped<IExchangeService, ExchangeService>();
             builder.Services.AddScoped<ExchangeRepository>();
 
-            // Register Identity services
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-                    .AddEntityFrameworkStores<GoodsExchangeFudbContext>()
-                    .AddDefaultTokenProviders();
-
             // Configure AutoMapper
             builder.Services.AddAutoMapper(typeof(ApplicationMapper));
+
+            //// Configure CORS 
+            //builder.Services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowAll", builder =>
+            //    {
+            //        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            //    });
+            //});
 
             // Configure Authentication
             builder.Services.AddAuthentication(options =>
@@ -80,17 +74,13 @@ namespace GoodsExchangeFUProject
                     ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
                     ClockSkew = TimeSpan.Zero
                 };
-            }); // Keep your comments here
-
-            // Add Google authentication
-            /*builder.Services.AddAuthentication().AddGoogle(googleOptions =>
-            {
-                googleOptions.ClientId = config["Authentication:Google:ClientId"];
-                googleOptions.ClientSecret = config["Authentication:Google:ClientSecret"];
-            });*/
+            });// AddGoogle(googleOptions =>
+            //{
+            //    googleOptions.ClientId = config["Authentication:Google:ClientId"];
+            //    googleOptions.ClientSecret = config["Authentication:Google:ClientSecret"];
+            //});
 
             var app = builder.Build();
-
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -99,15 +89,15 @@ namespace GoodsExchangeFUProject
                 app.UseSwaggerUI();
             }
 
+            app.UseCors(c => c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
             app.UseHttpsRedirection();
-            app.UseCors("AllowAll");
             app.UseAuthentication();
             app.UseAuthorization();
+
+            
             app.MapControllers();
+
             app.Run();
         }
-
-
-       
     }
 }

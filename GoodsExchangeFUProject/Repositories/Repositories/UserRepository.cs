@@ -53,23 +53,22 @@ namespace Repositories.Repositories
         }
 
         //======================================
-        //TUAN
-        public async Task<User> GetUserByMailAsync(string emailAddress)
+        public async Task<User?> GetUserByMailAsync(string emailAddress)
         {
             if (emailAddress.IsNullOrEmpty())
                 throw new Exception("Email field is null");
             _context = new();
-            var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Email.Equals(emailAddress) && u.RoleId == (int)RoleEnum.Admin);
-            _context.Entry(user).Reference(u => u.ResetToken).Load();
+            var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Email.Equals(emailAddress) && u.RoleId == (int)RoleEnum.Student);
             if (user == null)
-                throw new Exception("No user with this email!");
+                return null;
+            _context.Entry(user).Reference(u => u.ResetToken).Load();
             return user;
         }
 
         //TUAN
         public async Task<bool> DuplicatedCredentials(string userName, string email, string? phone)
         {
-
+            _context = new();
             var existUser = await _context.Users.FirstOrDefaultAsync(u
                 => u.Email == email || u.UserName == userName || u.Phone == phone);
             if (existUser != null)
@@ -78,10 +77,10 @@ namespace Repositories.Repositories
             }
             return false;
         }
-        //TUAN
+
         public async Task CreateUser(UserRegisterModel registerModel, int RoleId)
         {
-
+            _context = new();
             var list = await _context.Users.Where(u => true).FirstOrDefaultAsync();
             if (list == null)
                 return;
@@ -95,18 +94,25 @@ namespace Repositories.Repositories
                 Phone = registerModel.PhoneNumber,
                 Address = registerModel.Address,
                 RoleId = RoleId,
-            });
+                Gender = registerModel.Gender,
+                Dob = registerModel.Dob,
+            }); 
             await _context.SaveChangesAsync();
         }
 
-        //TUAN
+        public async Task UpdateUserAsync(User user)
+        {
+            _context = new();
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<ResetToken?> GetResetTokenAsync(int userId)
         {
             _context = new GoodsExchangeFudbContext();
             return await _context.ResetTokens.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
         }
 
-        //TUAN
         public async Task CreateResetTokenAsync(int userId, string token, DateTime createdDate)
         {
             _context = new GoodsExchangeFudbContext();
@@ -116,6 +122,13 @@ namespace Repositories.Repositories
                 CreatedDate = createdDate,
                 ResetToken1 = token,
             });
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateResetTokenAsync(ResetToken resetToken)
+        {
+            _context = new GoodsExchangeFudbContext();
+            _context.ResetTokens.Update(resetToken);
             await _context.SaveChangesAsync();
         }
     }

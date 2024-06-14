@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|c:\\users\\pc\\desktop\\ktpm-dh fpt\\semester_5\\swp391\\project\\goodsexchangefuproject\\repositories\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|c:\\users\\pc\\desktop\\ktpm-dh fpt\\semester_5\\swp391\\project\\goodsexchangefuproject\\goodsexchangefuproject\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{89878E60-262B-4636-889E-282F6922E7C4}|Services\\Services.csproj|C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\services\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89878E60-262B-4636-889E-282F6922E7C4}|Services\\Services.csproj|solutionrelative:services\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\goodsexchangefuproject\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|c:\\users\\pc\\desktop\\ktpm-dh fpt\\semester_5\\swp391\\project\\goodsexchangefuproject\\goodsexchangefuproject\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\goodsexchangefuproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Bookmark",
@@ -73,55 +65,54 @@
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:4:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:6:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:9:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:11:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Repositories\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\Repositories\\UserRepository.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Repositories\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "Repositories\\Repositories\\UserRepository.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAD4vw0AAAAjAAAA",
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\ProductController.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\ProductController.cs",
+              "ViewState": "AQIAADoAAAAAAAAAAAASwEAAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T02:30:37.301Z",
+              "WhenOpened": "2024-06-14T09:10:57.178Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\Service\\UserService.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
-              "RelativeToolTip": "Services\\Service\\UserService.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAQwC4AAABVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T10:04:04.627Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\UserController.cs",
               "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAxwCcAAABLAAAA",
+              "ViewState": "AQIAAIUAAAAAAAAAAAAYwI8AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T10:03:27.881Z",
+              "WhenOpened": "2024-06-14T11:52:49.949Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Program.cs",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Program.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\KTPM-DH FPT\\SEMESTER_5\\SWP391\\PROJECT\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Program.cs",
-              "RelativeToolTip": "GoodsExchangeFUProject\\Program.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAAADsAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T09:37:02.668Z"
             }
           ]
         }

@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authorization;
 using Repositories.Entities;
 using Services.Service;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 namespace GoodsExchangeFUProject.Controllers
 {
     [ApiController]
@@ -15,15 +17,12 @@ namespace GoodsExchangeFUProject.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public UserController(IUserService userService, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _userManager = userManager;
-            _signInManager = signInManager;
         }
+
         //TRI
         [Authorize(Roles = "mod")]
         [HttpGet("Mod/ViewBanAccountList")]
@@ -45,6 +44,20 @@ namespace GoodsExchangeFUProject.Controllers
             }
 
             return Ok(new { Token = response, userId = id, userName = name });
+        }
+
+        //TUAN
+        [HttpPost("/api/user/google-login")]
+        public async Task<ActionResult> GoogleLogin([FromHeader] string token)
+        {
+            var (success, response, id) = await _userService.GoogleAuthorizeUser(token);
+
+            if(!success)
+            {
+                return Unauthorized(response);
+            }
+
+            return Ok(new { Token = response, userId = id });
         }
 
         //TRI
@@ -88,19 +101,6 @@ namespace GoodsExchangeFUProject.Controllers
         //        return BadRequest(ex.Message);
         //    }
         //}
-        //TUAN
-        [HttpPost("/api/user/google-login")]
-        public async Task<ActionResult> GoogleLogin([FromHeader] string token)
-        {
-            var (success, response, id) = await _userService.GoogleAuthorizeUser(token);
-
-            if (!success)
-            {
-                return Unauthorized(response);
-            }
-
-            return Ok(new { Token = response, userId = id });
-        }
 
 
         //TUAN
@@ -108,34 +108,24 @@ namespace GoodsExchangeFUProject.Controllers
         public async Task<IActionResult> ForgotPassword(string emailAddress)
         {
             var result = await _userService.UserForgotPasswordUI(emailAddress);
-            //if (id != user.UserId)
-            //{
-            //    return BadRequest();
-            //}
 
-            //_context.Entry(user).State = EntityState.Modified;
-
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!UserExists(id))
-            //    {
-            //        return NotFound();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
-
-            return NoContent();
+            return Ok(result);
         }
 
         //TUAN
-        [Authorize(Roles = "student")]
+        [HttpPost("UserResetPassword")]
+        public async Task<IActionResult> ResetPassword(UserPassResetModel resetModel)
+        {
+            var (result, message) = await _userService.UserResetPasswordUI(resetModel);
+            
+            if (result)
+                return Ok(message);
+
+            return BadRequest(message);
+        }
+
+        //TUAN
+        //[Authorize(Roles = "student")]
         [HttpPost("Create-Customer-Account")]
         public async Task<ActionResult<string>> PostUser(UserRegisterModel registerModel)
         {
@@ -148,7 +138,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TUAN
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         [HttpPost("Create-Modderator-Account")]
         public async Task<ActionResult<string>> PostModderator(UserRegisterModel registerView)
         {
@@ -159,8 +149,8 @@ namespace GoodsExchangeFUProject.Controllers
             //return CreatedAtAction("GetUser", new { id = 20 }, registerView);
             return Ok(result.Item2);
         }
-    
-        
-    
+
+
+
     }
 }

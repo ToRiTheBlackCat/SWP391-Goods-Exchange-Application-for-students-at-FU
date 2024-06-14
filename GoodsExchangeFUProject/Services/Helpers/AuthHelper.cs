@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using static Repositories.ModelsView.UserModel;
 using System.Text;
 using Repositories.Entities;
+using System;
 
 
 namespace Services.Helpers
@@ -29,11 +30,11 @@ namespace Services.Helpers
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                new Claim(ClaimTypes.Role, user.Role.RoleName.ToString().Trim()),
-                new Claim(ClaimTypes.Name, user.UserName.ToString().Trim())
+         new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+         new Claim(ClaimTypes.Role, user.Role.RoleName.ToString().Trim()),
+         new Claim(ClaimTypes.Name, user.UserName.ToString().Trim())
 
-            };
+     };
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
