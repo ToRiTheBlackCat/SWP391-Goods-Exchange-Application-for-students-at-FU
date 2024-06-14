@@ -1,31 +1,24 @@
+/* Category.module.css */
 .App {
-  font-family: Arial, sans-serif;
+  text-align: center;
 }
 
 .main {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 20px;
+  margin-top: 20px;
 }
 
 .heading {
-  margin-bottom: 10px;
-  border-bottom: 1px solid #000;
-  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.col {
+  display: flex;
+  justify-content: center;
 }
 
 .card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 400px; /* Set a maximum width for the cards */
-  height: 200px; /* Set a consistent height for the cards */
-  margin: 0 auto; /* Center the card horizontally */
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
@@ -33,58 +26,26 @@
 }
 
 .cardContent {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+  position: relative;
 }
 
 .cardImg {
-  width: 40%;
-  height: 100%;
-  object-fit: cover; /* Ensures image covers the designated space */
+  height: 200px;
+  object-fit: cover;
 }
 
 .cardBody {
-  text-align: left;
   display: flex;
   align-items: center;
-  padding: 10px;
-  width: 60%;
-  height: 100%;
+  justify-content: center;
+  height: 100px;
 }
 
 .cardText {
-  margin: 0;
-  font-size: 1.1em;
-  text-align: left; 
-  padding-left: 10px; 
+  font-size: 1.2rem;
 }
 
-.navbar-nav {
-  align-items: center;
-}
-
-.searchForm {
-  margin-left: auto;
-}
-
-.formInline {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-}
-
-.formInline .formControl {
-  width: auto;
-}
-
-.searchForm {
-  display: flex;
-  align-items: center;
-}
-
-.col {
-  display: flex;
-  justify-content: center; /* Center the column contents horizontally */
+.selected {
+  border: 2px solid #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
 }
