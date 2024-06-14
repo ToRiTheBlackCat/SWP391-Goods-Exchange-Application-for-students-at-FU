@@ -1,0 +1,18 @@
+* CONTROLLERS
+- Chứa các controller 
+
+* ENTITIES
+- Các entities ánh xạ từ database
+
+* MODELSVIEW
+-  Là các entities nhưng đã được chọn lọc các fields muốn show ra cho user thấy - giấu bớt data
+(Map bằng thư viện AutoMapper.Extensions.Microsoft.DependencyInjection)
+
+*REPOSITORIES
+-Dùng để viết các INTERFACE
+
+* REPOSITORIES
+- Dùng để viết các Class để kế thừa các hàm từ interface
+
+*HELPERS
+- Dùng để chứa các tools/ thư viện xài trong quá trình code 
