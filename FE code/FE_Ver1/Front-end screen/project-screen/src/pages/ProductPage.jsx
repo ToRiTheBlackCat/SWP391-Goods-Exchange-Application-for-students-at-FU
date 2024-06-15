@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import axiosInstance from '../authorized/axiosInstance'; // Import axiosInstance
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,6 +7,7 @@ import Navbar from '../components/Navbar';
 import anhliem from '../assets/anhliem.jpg';
 import axios from 'axios';
 import styles from '../styles/ProductPage.module.css'; // Import CSS module
+import { setProductToExchange } from '../store/store';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -15,6 +17,7 @@ const ProductPage = () => {
   const [error, setError] = useState('');
   const [imageSrc, setImageSrc] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -50,6 +53,7 @@ const ProductPage = () => {
 
         const imgSrc = `data:${mimeType};base64,${imageResponse.data}`;
         setImageSrc(imgSrc);
+        productData.imageSrc = imgSrc;
 
       } catch (error) {
         console.error('Error fetching product:', error);
@@ -77,6 +81,7 @@ const ProductPage = () => {
   }
 
   const handleExchangeClick = () => {
+    dispatch(setProductToExchange(product));
     navigate('/choose-product');
   };
 

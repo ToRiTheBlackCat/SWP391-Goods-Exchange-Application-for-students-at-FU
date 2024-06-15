@@ -3,13 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../styles/PostForm.module.css';
 import axiosInstance from '../authorized/axiosInstance'; // Import axiosInstance
 import { useNavigate } from 'react-router-dom';
-// import axios from 'axios';
 
 function PostProductForm() {
     const [selectedImage, setSelectedImage] = useState(null);
+    const [imageFile, setImageFile] = useState(null); // Lưu file ảnh thực tế
     const [formData, setFormData] = useState({
         productName: '',
-        productImage: '',
         productDescription: '',
         productPrice: '',
         typeId: '',
@@ -25,7 +24,6 @@ function PostProductForm() {
                 userId: parseInt(userId)
             }));
         } else {
-            // Xử lý trường hợp không tìm thấy userId trong localStorage
             console.error('User ID không được tìm thấy trong localStorage');
         }
     }, []);
@@ -33,13 +31,10 @@ function PostProductForm() {
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         if (file && file.type.startsWith('image/')) {
+            setImageFile(file); // Lưu file ảnh thực tế để upload sau
             const reader = new FileReader();
             reader.onloadend = () => {
                 setSelectedImage(reader.result);
-                setFormData(prevState => ({
-                    ...prevState,
-                    productImage: file.name // Lưu tên file để upload sau
-                }));
             };
             reader.readAsDataURL(file);
         } else {
@@ -57,35 +52,25 @@ function PostProductForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-    
+
         try {
-            // Kiểm tra xem formData.productImage có tồn tại không
-            // if (formData.productImage) {
-            //     const encodedImageName = encodeURIComponent(formData.productImage); // Mã hóa tên tệp
-            //     // Gửi yêu cầu API với tên tệp đã mã hóa
-            //     const uploadResponse = await axios.get(`http://localhost:5299/api/Product/GetUserImage?imageName=${encodedImageName}`, {
-            //         headers: {
-            //             'Content-Type': 'multipart/form-data'
-            //         }
-            //     });
-    
-            //     if (uploadResponse.data.fileName) {
-            //         // Cập nhật tên tệp trong formData
-            //         setFormData(prevState => ({
-            //             ...prevState,
-            //             productImage: uploadResponse.data.fileName
-            //         }));
-            //     }
-            // }
-    
-            console.log('Dữ liệu đang gửi:', formData);
-            const response = await axiosInstance.post('/api/Product/Student/AddNewProduct', formData, {
+            const data = new FormData();
+            data.append('productName', formData.productName);
+            data.append('productDescription', formData.productDescription);
+            data.append('productPrice', formData.productPrice);
+            data.append('typeId', formData.typeId);
+            data.append('userId', formData.userId);
+
+            if (imageFile) {
+                data.append('productImage', imageFile); // Đính kèm file ảnh thực tế
+            }
+
+            const response = await axiosInstance.post('/api/Product/Student/AddNewProduct', data, {
                 headers: {
-                    'Content-Type': 'application/json',
-                    // Header Authorization tự động được thêm bởi axiosInstance
+                    'Content-Type': 'multipart/form-data',
                 }
             });
-    
+
             if (response.status === 200 || response.status === 201) {
                 alert('Tạo sản phẩm thành công');
                 navigate('/'); // Điều hướng đến trang khác sau khi tạo thành công
@@ -99,7 +84,6 @@ function PostProductForm() {
             }
         }
     };
-    
 
     return (
         <div>
@@ -143,19 +127,15 @@ function PostProductForm() {
                                     <input type="number" className="form-control" id="productPrice" placeholder="Nhập giá sản phẩm" value={formData.productPrice} onChange={handleInputChange} required />
                                 </div>
                             </div>
-
-                            <div className="form-group">
+<div className="form-group">
                                 <label htmlFor="productDescription">Mô tả chi tiết</label>
                                 <textarea className="form-control" id="productDescription" rows="4" placeholder="Nhập mô tả chi tiết" value={formData.productDescription} onChange={handleInputChange} required></textarea>
                             </div>
-                            {/* <div>
-                                <label>Ảnh sản phẩm</label>
-                                <img src={`http://localhost:5299/api/Product/GetUserImage?imageName=${formData.productImage}`} alt="Product" className="img-fluid" />
-                            </div> */}
+
                             <div className="form-group">
-        <label>Ảnh sản phẩm</label>
-        <img src={selectedImage} alt="Product" className="img-fluid" />
-    </div>
+                                <label>Ảnh sản phẩm</label>
+                                <img src={selectedImage} alt="Product" className="img-fluid" />
+                            </div>
 
                             <button type="submit" className={`btn ${styles.btnWarning} text-white`}>Tạo</button>
                         </form>

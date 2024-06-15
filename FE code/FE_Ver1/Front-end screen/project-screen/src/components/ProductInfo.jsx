@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/ChooseProduct.module.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function ProductInfo({ product }) {
+function ProductInfo({ product, onSelect }) {
   const [imageBase64, setImageBase64] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (product.image) {
-      axios.get(`http://localhost:5299/api/Product/GetUserImage?imageName=${product.image}`)
+      axios.get(`https://localhost:7027/api/Product/GetUserImage?imageName=${product.image}`)
         .then(response => {
           setImageBase64(response.data);
         })
@@ -45,23 +47,22 @@ function ProductInfo({ product }) {
       <div className={styles['info']}>
         <div className={styles['info-item']}>
           <strong>Name</strong>
-          <span>{product.name}
-            </span>
+          <span>{product.name}</span>
+        </div>
+        <div className={styles['info-item']}>
+          <strong>Price</strong>
+          <span>{product.price.toLocaleString()} VND</span>
+        </div>
+        <div className={styles['info-item']}>
+          <strong>Description</strong>
+          <span>{product.description}</span>
+        </div>
       </div>
-      <div className={styles['info-item']}>
-        <strong>Price</strong>
-        <span>{product.price}</span>
-      </div>
-      <div className={styles['info-item']}>
-        <strong>Description</strong>
-        <span>{product.description}</span>
+      <div className={styles['button-group']}>
+        <button onClick={() => onSelect(product)} className={`${styles['button']} btn btn-success`}>Select</button>
+        <button onClick={() => navigate(-1)} className={`${styles['button']} btn btn-danger`}>Decline</button>
       </div>
     </div>
-    <div className={styles['button-group']}>
-      <button className={`${styles['button']} btn btn-success`}>Select</button>
-      <button className={`${styles['button']} btn btn-danger`}>Decline</button>
-    </div>
-  </div>
   );
 }
 
@@ -71,8 +72,9 @@ ProductInfo.propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
   }).isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
 export default ProductInfo;
