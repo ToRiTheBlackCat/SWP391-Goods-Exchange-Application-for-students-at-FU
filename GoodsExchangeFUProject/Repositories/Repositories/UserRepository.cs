@@ -69,7 +69,14 @@ namespace Repositories.Repositories
 
             return (true, listScore);
         }
-
+        //TRI
+        public async Task<User?> GetUserInfo(int userId, int statusNum)
+        {
+            var banned = false;
+            if (statusNum == 0)
+                banned = true;
+            return _context.Users.Where(u => u.UserId == userId && u.IsBanned == banned ).FirstOrDefault();
+        }
         //======================================
         public async Task<User?> GetUserByMailAsync(string emailAddress)
         {
