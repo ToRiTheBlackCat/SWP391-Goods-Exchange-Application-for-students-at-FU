@@ -32,7 +32,7 @@ namespace GoodsExchangeFUProject.Controllers
             {
                 return Ok(aveScore);
             }
-            return BadRequest("User not found or has no score");
+            return BadRequest("User not found ");
         }
 
         //TRI

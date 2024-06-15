@@ -138,10 +138,12 @@ namespace Services.Service
         {
             var (userFound, listScores) = await _repo.GetAllScoresOfUserByIdAsync(userId);
 
-            if (!userFound || listScores == null || !listScores.Any())
-            {
+            if (!userFound && listScores.Any())
                 return (false, 0);
-            }
+            
+            if(userFound && !listScores.Any())
+             return (true, 0); 
+
             //var sum = 0;
             //var count = 0;
             //for (int i = 0; i < listScores.Count; i++)
