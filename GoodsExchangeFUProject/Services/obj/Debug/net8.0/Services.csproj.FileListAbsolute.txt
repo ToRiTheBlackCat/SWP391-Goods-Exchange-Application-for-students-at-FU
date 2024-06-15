@@ -1,19 +1,3 @@
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.deps.json
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.dll
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.pdb
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Repositories.dll
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Repositories.pdb
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.sourcelink.json
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.Up2Date
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.dll
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\refint\Services.dll
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.pdb
-C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\ref\Services.dll
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.deps.json
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.dll
 C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.pdb
@@ -45,3 +29,19 @@ C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExcha
 C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\refint\Services.dll
 C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.pdb
 C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\ref\Services.dll
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.deps.json
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.dll
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.pdb
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Repositories.dll
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Repositories.pdb
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.sourcelink.json
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.Up2Date
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.dll
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\refint\Services.dll
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.pdb
+C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\ref\Services.dll

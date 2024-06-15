@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="IRepositories\" />
+    <Compile Remove="IRepositories\**" />
+    <EmbeddedResource Remove="IRepositories\**" />
+    <None Remove="IRepositories\**" />
   </ItemGroup>
 
   <ItemGroup>
