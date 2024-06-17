@@ -1,0 +1,24 @@
+.card {
+    margin-bottom: 1rem;
+  }
+  .cardImgTop {
+    width: 100%;
+    height: auto;
+  }
+  .cardBody {
+    padding: 1rem;
+  }
+  .cardTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  .cardText {
+    margin-bottom: 0.5rem;
+  }
+  .textDanger {
+    color: red;
+  }
+  .textWarning {
+    color: orange;
+  }
+  

@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  .sign_up_controller {
+    width: 400px;
+    height: auto;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
+  .input-group {
+    margin-bottom: 15px;
+    position: relative;
+  }
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  button {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 26px;
+    padding: 10px;
+    background-color: #289fa7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  button:hover {
+    background-color: #1f8a8e;
+  }
+  h2 {
+    text-align: center;
+  }
+  .checkbox {
+    margin-top: 10px;
+  }
+  .checkbox input {
+    margin-right: 5px;
+  }
+  

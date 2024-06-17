@@ -1,0 +1,16 @@
+/* Custom styles for the ProductPage */
+
+.container {
+  margin-top: 60px; /* Adjust to avoid overlap with Navbar */
+}
+
+img.rounded-circle {
+  width: 50px;
+  height: 50px;
+}
+
+.position-fixed {
+  top: 20px; /* Adjust position to be at the top */
+  right: 20px;
+  width: 300px; /* Adjust width as needed */
+}
