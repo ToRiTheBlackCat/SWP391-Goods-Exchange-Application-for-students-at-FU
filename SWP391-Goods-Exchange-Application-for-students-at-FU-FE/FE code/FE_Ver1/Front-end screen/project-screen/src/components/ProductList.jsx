@@ -4,13 +4,14 @@ import ProductCard from './ProductCard';
 import styles from '../styles/ProductList.module.css';
 import { useLocation } from 'react-router-dom';
 
-const ProductList = ({ currentPage, sortOrder, searchTerm }) => {
+const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const term = searchTerm || searchParams.get('search') || '';
+  const category = categoryId || searchParams.get('categoryId') || '';
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -36,7 +37,7 @@ const ProductList = ({ currentPage, sortOrder, searchTerm }) => {
       }
 
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted?sortOder=${sortOrderParam}&pageIndex=${currentPage}&sortString=${term}`);
+        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted?sortOder=${sortOrderParam}&pageIndex=${currentPage}&sortString=${term}&cateId=${category}`);
         const productData = response.data.foundList;
 
         const productPromises = productData.map(async (product) => {
@@ -76,7 +77,7 @@ const ProductList = ({ currentPage, sortOrder, searchTerm }) => {
     };
 
     fetchProducts();
-  }, [currentPage, sortOrder, term]);
+  }, [currentPage, sortOrder, term, category]);
 
   const getMimeType = (fileExtension) => {
     switch (fileExtension) {

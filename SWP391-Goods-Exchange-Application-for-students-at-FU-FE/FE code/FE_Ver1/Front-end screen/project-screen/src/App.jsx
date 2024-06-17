@@ -9,6 +9,7 @@ import ChooseProduct from './pages/ChooseProduct.jsx';
 import UserInformation from './pages/UserInformation.jsx';
 import Exchange from './pages/Exchange.jsx';
 import store from './store/store.jsx';
+import Category from './pages/Category.jsx';
 import Search from './pages/Search.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {Provider} from 'react-redux';
@@ -29,6 +30,8 @@ const App = () => {
         <Route path='/profile' element={<UserInformation/>}/>
         <Route path='/exchange' element={<Exchange/>}/>
         <Route path="/login" element={<Login />} />
+        <Route path="/category" element={<Category />} />
+
       </Routes>
     </Router>
     </Provider>

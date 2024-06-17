@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles/Filter.module.css';
 
 const Filter = ({ onSortChange }) => {
@@ -8,8 +9,8 @@ const Filter = ({ onSortChange }) => {
 
   return (
     <div className={styles.filterContainer}>
-      <label htmlFor="sort">Sort by:</label>
-      <select id="sort" onChange={handleSortChange}>
+      <label htmlFor="sort" className={styles.label}>Sort by:</label>
+      <select id="sort" className={styles.select} onChange={handleSortChange} aria-label="Sort by">
         <option value="name_asc">Name A-Z</option>
         <option value="name_desc">Name Z-A</option>
         <option value="price_asc">Price Ascending</option>
@@ -17,6 +18,10 @@ const Filter = ({ onSortChange }) => {
       </select>
     </div>
   );
+};
+
+Filter.propTypes = {
+  onSortChange: PropTypes.func.isRequired,
 };
 
 export default Filter;

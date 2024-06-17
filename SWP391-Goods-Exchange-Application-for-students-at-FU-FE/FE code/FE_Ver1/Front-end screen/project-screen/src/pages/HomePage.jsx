@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ProductList from '../components/ProductList';
@@ -6,7 +7,6 @@ import Category from '../components/Category';
 import styles from '../styles/HomePage.module.css';
 import Filter from '../components/Filter';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
 
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,8 +14,10 @@ const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState('name_asc'); // Default sort order
   const location = useLocation();
+  const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const searchTerm = searchParams.get('search') || '';
+  const categoryId = searchParams.get('categoryId') || '';
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -38,7 +40,7 @@ const HomePage = () => {
       }
 
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted?sortOder=${sortOrderParam}&pageIndex=${currentPage}&sortString=${searchTerm}`);
+        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted?sortOder=${sortOrderParam}&pageIndex=${currentPage}&sortString=${searchTerm}&cateId=${categoryId}`);
         const productData = response.data.foundList;
         setProducts(productData);
       } catch (error) {
@@ -47,7 +49,7 @@ const HomePage = () => {
     };
 
     fetchProducts();
-  }, [currentPage, sortOrder, searchTerm]);
+  }, [currentPage, sortOrder, searchTerm, categoryId]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -61,15 +63,22 @@ const HomePage = () => {
     setSortOrder(newSortOrder);
   };
 
+  const handleCategorySelect = (categoryId) => {
+    navigate(`/?categoryId=${categoryId}`);
+  };
+
   return (
     <div>
       <Navbar />
-      <Category />
+      <Category 
+        onCategorySelect={handleCategorySelect} 
+        selectedCategoryId={parseInt(categoryId, 10)} 
+      />
       <Filter onSortChange={handleSortChange} />
 
       <div className="container mt-4">
         <h2 className={styles.heading}>Product</h2>
-        <ProductList currentPage={currentPage} products={products} sortOrder={sortOrder} />
+        <ProductList currentPage={currentPage} sortOrder={sortOrder} searchTerm={searchTerm} categoryId={categoryId} />
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
     </div>
