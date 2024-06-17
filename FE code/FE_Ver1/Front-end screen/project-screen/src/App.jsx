@@ -8,6 +8,8 @@ import ProductPage from './pages/ProductPage.jsx'
 import ChooseProduct from './pages/ChooseProduct.jsx';
 import UserInformation from './pages/UserInformation.jsx';
 import Exchange from './pages/Exchange.jsx';
+import ExchangeList from './pages/ExchangeList.jsx';
+import UserProductsPage from './pages/UserProductPage.jsx';
 import store from './store/store.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {Provider} from 'react-redux';
@@ -26,6 +28,8 @@ const App = () => {
         <Route path='/choose-product' element={<ChooseProduct/>}/>
         <Route path='/profile' element={<UserInformation/>}/>
         <Route path='/exchange' element={<Exchange/>}/>
+        <Route path='/exchange-list' element={<ExchangeList/>}/>
+        <Route path='/product'element={<UserProductsPage/>}/>
       </Routes>
     </Router>
     </Provider>

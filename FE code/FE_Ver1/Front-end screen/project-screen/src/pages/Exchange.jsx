@@ -107,18 +107,23 @@ const ExchangePage = () => {
     const balance = productToExchange.productPrice - selectedProduct.price;
 
     const exchangeRequest = {
-      userId: parseInt(userId, 10),
-      productId: selectedProduct.id,
+      userId: userId,
+      productId: productToExchange.productId,
       balance: balance,
-      exProductId: productToExchange.id,
-      status: 3 // Or any other appropriate status code
+      exProductId: selectedProduct.id,
+      status: 2
     };
+    console.log('Exchange Request:', exchangeRequest);
 
     try {
       const response = await axiosInstance.post('/api/Exchange/CreateExchange', exchangeRequest);
+      console.log('Response Status:', response.status); // Log response status
+      console.log('Response Data:', response.data); // Log response data
       if (response.status === 200 || response.status === 201) {
-        setSuccessMessage('Exchange request created successfully!');
-        navigate('/success'); // Navigate to a success page or any other page
+        setSuccessMessage('Exchange request created successfully! Back to home page now');
+        setTimeout(() => {
+          navigate('/');
+        }, 2000); // Delay navigation by 2 seconds
       } else {
         setError('Failed to create exchange request. Please try again.');
       }
@@ -146,7 +151,7 @@ const ExchangePage = () => {
       <div className={`container ${styles.container}`}>
         <div className={styles.row}>
           <div className={styles.colMd6}>
-            <h2>Your selected product</h2>
+            <h2>Your product</h2>
             {selectedProductImageSrc && <img src={selectedProductImageSrc} alt={selectedProduct.name} className={styles.productImage} />}
             <div className={styles.productDetails}>
               <p><strong>Name:</strong> {selectedProduct.name}</p>
@@ -155,7 +160,7 @@ const ExchangePage = () => {
             </div>
           </div>
           <div className={styles.colMd6}>
-            <h2>Product to Exchange</h2>
+            <h2>Product of {productToExchange.productOwner.userName}</h2>
             {exchangeImageSrc && <img src={exchangeImageSrc} alt={productToExchange.productName} className={styles.productImage} />}
             <div className={styles.productDetails}>
               <p><strong>Name:</strong> {productToExchange.productName}</p>

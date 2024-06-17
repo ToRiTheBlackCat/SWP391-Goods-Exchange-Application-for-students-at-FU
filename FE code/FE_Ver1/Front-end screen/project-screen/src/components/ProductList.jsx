@@ -13,8 +13,6 @@ const ProductList = ({ currentPage }) => {
         const response = await axios.get(`https://localhost:7027/api/Product/GetSorted?pageIndex=${currentPage}`);
         console.log('Products Data:', response.data); // Log products data
         const productData = response.data.foundList;
-        //const pageSize = response.data.pageSize;
-        //chưa hứng pageSize
 
         const promises = productData.map(async (product) => {
           try {
@@ -50,7 +48,7 @@ const ProductList = ({ currentPage }) => {
               title: product.productName,
               link: `/product/${product.productId}`,
               condition: product.productDescription,
-              price: `${product.productPrice} VND`,
+              price: `${product.productPrice.toLocaleString()} VND`,
               seller: product.productOwner.userName,
               rating: product.productOwner.averageScore || 0,
             };
@@ -62,7 +60,7 @@ const ProductList = ({ currentPage }) => {
               title: product.productName,
               link: `/product/${product.productId}`,
               condition: product.productDescription,
-              price: `${product.productPrice} VND`,
+              price: `${product.productPrice.toLocaleString()} VND`,
               seller: 'Unknown',
               rating: 0,
             };
