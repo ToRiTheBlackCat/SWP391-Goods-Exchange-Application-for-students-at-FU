@@ -16,6 +16,6 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Services
-build_property.ProjectDir = C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\
+build_property.ProjectDir = C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

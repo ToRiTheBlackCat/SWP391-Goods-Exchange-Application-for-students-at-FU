@@ -17,7 +17,7 @@ namespace Repositories.ModelsView
         public int? ExProductId { get; set; } = null!;
 
         public int Status { get; set; }
-        //Status: 0 - rejected, 1 - acepted, 3 - waiting
+        //Status: 0 - rejected, 1 - acepted, 2 - waiting
 
 
     }
@@ -44,7 +44,7 @@ namespace Repositories.ModelsView
         public DateOnly CreateDate { get; set; }
 
         public int Status { get; set; }
-        //Status: 1 - accepted, 2 - rejected, 3 - waiting
+        //Status: 0 - rejected, 1 - acepted, 2 - waiting
     }
 
     public class ExchangeSellerView
@@ -56,7 +56,7 @@ namespace Repositories.ModelsView
         public string BuyerName { get; set; }
         public DateOnly CreateDate { get; set; }
         public int Status { get; set; }
-        //Status: 1 - accepted, 2 - rejected, 3 - waiting
+        //Status: 0 - rejected, 1 - acepted, 2 - waiting
     }
 
 }

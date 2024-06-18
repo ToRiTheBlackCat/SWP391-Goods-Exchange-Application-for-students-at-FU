@@ -69,7 +69,7 @@ namespace Services.Service
             //. Do not need to see other cases
             var exchangeProList = _repo.GetExchangesByProduct(productId).ToList();
             //Get the product to display (Just bonus)
-            var product = await _pro_repo.FindProductByIdAsync(productId,2);
+            var product = await _pro_repo.FindProductByIdAsync(productId,1);
             return (exchangeProList, product);
         }
 
@@ -134,7 +134,7 @@ namespace Services.Service
             try
             {
 
-                var exchange1 = await _repo.FindExchangeByIdAsync(exchangeId, 3);
+                var exchange1 = await _repo.FindExchangeByIdAsync(exchangeId, 2);
                 if (exchange1 == null)
                     return (true, "Exchange doesn't exist or Status is invalid!");
 
@@ -175,5 +175,27 @@ namespace Services.Service
                 return (false, ex.Message);
             }
         }
+
+        ////TUAN
+        //public async Task<String> cancelExchangeUI(int exchangeId)
+        //{
+        //    //find the exchange that is still WAITING (2)
+
+        //    if ( exchange == null)
+        //    {
+        //        //return 
+                
+        //    }
+
+        //    try
+        //    {
+        //        //try Removing the exchange
+        //        await _repo.RemoveExchangeAsync(exchangeId);
+        //    }
+        //    catch (Exception ex)
+        //    {
+                
+        //    }
+        //}
     }
 }
