@@ -8878,11 +8878,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj",
+      "projectUniqueName": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj",
       "projectName": "GoodsExchangeFUProject",
-      "projectPath": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj",
+      "projectPath": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj",
       "packagesPath": "C:\\Users\\Senti\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\obj\\",
+      "outputPath": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Programs(x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -8904,8 +8904,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Services\\Services.csproj"
+            "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\Services\\Services.csproj"
             }
           }
         }

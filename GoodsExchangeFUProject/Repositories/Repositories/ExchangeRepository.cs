@@ -35,7 +35,7 @@ namespace Repositories.Repositories
         public IEnumerable<ExchangeSellerView> GetExchangesByProduct(int productId)
         {
             _context = new();
-           return _context.Exchanges.Where(e => e.ProductId == productId && e.Status == 3).Select(e => new ExchangeSellerView()
+           return _context.Exchanges.Where(e => e.ProductId == productId && e.Status == 2).Select(e => new ExchangeSellerView()
             {
                 ExProductId = !e.ExchangeDetails.IsNullOrEmpty() ? e.ExchangeDetails.First().ProductId : null,
                 ExProductName = !e.ExchangeDetails.IsNullOrEmpty() ? e.ExchangeDetails.First().Product!.ProductName : null,

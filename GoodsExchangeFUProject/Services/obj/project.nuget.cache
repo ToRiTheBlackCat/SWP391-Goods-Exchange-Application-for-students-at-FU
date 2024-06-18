@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SCcp8yDD9Hjjo+CFNZ4PLWAd7C/JIYBInI6rxLPAoSbHcItLJ/+ohu1cqPJn7ZCBPN5/QB1cKz/YZMXMvkYuuA==",
+  "dgSpecHash": "e8/HmrP6zgSmglx/BQPXIrfJLBbw+HH6zCDvF1p5DEPJMrafT8PDHHlxcToVs0cG+ZOgrdmYa7aKy8y7V+I0HA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject\\Services\\Services.csproj",
+  "projectFilePath": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\Services\\Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Senti\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Senti\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
