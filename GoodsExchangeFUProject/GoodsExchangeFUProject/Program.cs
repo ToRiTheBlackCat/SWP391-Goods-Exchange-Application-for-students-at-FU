@@ -29,7 +29,7 @@ namespace GoodsExchangeFUProject
 
             // Register DbContext
             builder.Services.AddDbContext<GoodsExchangeFudbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("GoodsExchangeFU")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionStringDB")));
 
             // Register AuthHelper and other dependencies
             builder.Services.AddScoped<AuthHelper>();

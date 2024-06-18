@@ -51,7 +51,32 @@ namespace Repositories.Repositories
             return _context.Users
                .Where(p => p.IsBanned == ban);
         }
+        //TRI
+        public async Task<(bool, List<decimal>?)> GetAllScoresOfUserByIdAsync(int userId)
+        {
+            var user = await _context.Users
+                               .FirstOrDefaultAsync(u => u.UserId == userId);
 
+            if (user == null)
+            {
+                return (false, null);
+            }
+
+            var listScore = await _context.Ratings
+                                   .Where(r => r.UserId == userId)
+                                   .Select(r => r.Score)
+                                   .ToListAsync();
+
+            return (true, listScore);
+        }
+        //TRI
+        public async Task<User?> GetUserInfo(int userId, int statusNum)
+        {
+            var banned = false;
+            if (statusNum == 0)
+                banned = true;
+            return _context.Users.Where(u => u.UserId == userId && u.IsBanned == banned ).FirstOrDefault();
+        }
         //======================================
         public async Task<User?> GetUserByMailAsync(string emailAddress)
         {

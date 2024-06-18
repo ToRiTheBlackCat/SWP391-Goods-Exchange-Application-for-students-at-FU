@@ -13,12 +13,15 @@ namespace Services.Service
     public class ProductServices : IProductService
     {
         private readonly ProductRepository _repo;
+        private readonly UserRepository _user_repo;
+
         private readonly IMapper _mapper;
 
-        public ProductServices(ProductRepository productRepository, IMapper mapper)
+        public ProductServices(ProductRepository productRepository, IMapper mapper, UserRepository userRepository)
         {
             _repo = productRepository;
             _mapper = mapper;
+            _user_repo = userRepository;
         }
         //TRI
         public async Task<(bool, object?)> GetProductDetail(int productId)
@@ -55,16 +58,34 @@ namespace Services.Service
 
             return listOut;
         }
-        public List<ViewAllProductModel> ConvertProductToModel3(List<Product> listIn)
+        
+        public async Task<List<ViewAllProductModel>> ConvertProductToModel3(List<Product> listIn)
         {
             var listOut = new List<ViewAllProductModel>();
             foreach (var product in listIn)
             {
-                listOut.Add(_mapper.Map<ViewAllProductModel>(product));
+                var productModel = _mapper.Map<ViewAllProductModel>(product);
+
+                // Get the average score of the user
+                //var (userFound, averageScore) = await _userService.GetAverageScore(product.UserId);
+                var (userFound, listScores) = await _user_repo.GetAllScoresOfUserByIdAsync(product.UserId);
+                // Set the average score in the product owner if user is found
+                if (listScores == null || !listScores.Any())
+                {
+                    productModel.ProductOwner.AverageScore = 0;
+                }
+                else
+                {
+                    productModel.ProductOwner.AverageScore = (double)listScores.Average();
+                }
+
+                listOut.Add(productModel);
             }
 
             return listOut;
         }
+
+        //=======================
         //TRI
         public async Task<List<ProductModel>> ModGetProductWaitingList()
         {
@@ -74,7 +95,7 @@ namespace Services.Service
 
         public async Task<(bool, string)> ModAcceptProduct(int productId)
         {
-            
+
             var success = await _repo.UpdateProductStatusAsync(productId, 1);
             if (success)
             {
@@ -85,7 +106,7 @@ namespace Services.Service
         //TRI
         public async Task<(bool, string)> ModRejectProduct(int productId)
         {
-            
+
             var success = await _repo.UpdateProductStatusAsync(productId, 0);
             if (success)
             {
@@ -124,7 +145,7 @@ namespace Services.Service
             return (true, "Product added to the waiting list.");
         }
         //TRI
-        public async  Task<List<OwnProductModel>?> StudentViewOwnProductList(int userId)
+        public async Task<List<OwnProductModel>?> StudentViewOwnProductList(int userId)
         {
             var list = ConvertProductToModel2(_repo.ViewProductsOfUser(userId).ToList());
             if (list is not null)
@@ -151,20 +172,9 @@ namespace Services.Service
                 var totalPage = (int)Math.Ceiling(foundProducts.Count() / (double)pageSize);
                 PaginatedList<Product> list = await PaginatedList<Product>.CreateAsync(foundProducts, pageIndex, pageSize);
 
-                return(true, ConvertProductToModel3(list), totalPage);
-                //return
-                //    (true,
-                //        list.Select(p => new OwnProductModel()
-                //        {
-                //            ProductId = p.ProductId,
-                //            ProductName = p.ProductName,
-                //            ProductDescription = p.ProductDescription,
-                //            ProductImage = p.ProductImage,
-                //            ProductPrice = p.ProductPrice,
-                //            TypeId = p.TypeId,
-                //            UserId = p.UserId,
-                //        }).ToList()
-                //    );
+                var models = await ConvertProductToModel3(list);
+                return (true, models, totalPage);
+
             }
             //no product found
             return (false, null!, 0);

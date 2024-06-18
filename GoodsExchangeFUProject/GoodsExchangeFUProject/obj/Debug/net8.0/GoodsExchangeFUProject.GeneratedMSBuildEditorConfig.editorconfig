@@ -17,11 +17,19 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GoodsExchangeFUProject
 build_property.RootNamespace = GoodsExchangeFUProject
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\GoodsExchangeFUProject\
+=======
+build_property.ProjectDir = C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\GoodsExchangeFUProject\
+>>>>>>> 16969dd6c9a37eb54ec3eb4f1765c867270f222d
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+<<<<<<< HEAD
 build_property.MSBuildProjectDirectory = C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\GoodsExchangeFUProject
+=======
+build_property.MSBuildProjectDirectory = C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\GoodsExchangeFUProject
+>>>>>>> 16969dd6c9a37eb54ec3eb4f1765c867270f222d
 build_property._RazorSourceGeneratorDebug = 

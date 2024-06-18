@@ -16,6 +16,10 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Services
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\
+=======
+build_property.ProjectDir = C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\
+>>>>>>> 16969dd6c9a37eb54ec3eb4f1765c867270f222d
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

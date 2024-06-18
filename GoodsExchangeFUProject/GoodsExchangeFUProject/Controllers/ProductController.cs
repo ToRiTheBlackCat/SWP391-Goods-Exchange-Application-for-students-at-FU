@@ -205,7 +205,6 @@ namespace GoodsExchangeFUProject.Controllers
                 CategoryId = cateId,
             };
             if (!(pageIndex > 0)) pageIndex = 1;
-            (bool, List<ViewAllProductModel>, int) sortedList = await _productService.GetSortedProductsUI(sortView, sortOder, pageIndex);
             var (result, list, pageSize) = await _productService.GetSortedProductsUI(sortView, sortOder, pageIndex);
             if (result){
                 return Ok(new

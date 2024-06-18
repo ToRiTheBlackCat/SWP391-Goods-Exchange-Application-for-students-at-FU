@@ -1,3 +1,36 @@
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.deps.json
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.dll
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.pdb
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Repositories.dll
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Repositories.pdb
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.Up2Date
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.dll
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\refint\Services.dll
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.pdb
+C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\ref\Services.dll
+<<<<<<< HEAD
+=======
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.deps.json
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.dll
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.pdb
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Repositories.dll
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Repositories.pdb
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.sourcelink.json
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.Up2Date
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.dll
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\refint\Services.dll
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.pdb
+C:\Users\Senti\Downloads\PortableGit-2.45.0-64-bit.7z\ExchangeProject\GoodsExchangeFUProject\Services\obj\Debug\net8.0\ref\Services.dll
 C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.deps.json
 C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.dll
 C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.pdb
@@ -14,18 +47,4 @@ C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject
 C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\refint\Services.dll
 C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.pdb
 C:\Users\PC\Desktop\KTPM-DH FPT\SEMESTER_5\SWP391\PROJECT\GoodsExchangeFUProject\Services\obj\Debug\net8.0\ref\Services.dll
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.deps.json
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.dll
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Services.pdb
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Repositories.dll
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\bin\Debug\net8.0\Repositories.pdb
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.csproj.Up2Date
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.dll
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\refint\Services.dll
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\Services.pdb
-C:\Users\Senti\OneDrive\Desktop\GoodsExchangeFUProject_Main\GoodsExchangeFUProject\Services\obj\Debug\net8.0\ref\Services.dll
+>>>>>>> 16969dd6c9a37eb54ec3eb4f1765c867270f222d

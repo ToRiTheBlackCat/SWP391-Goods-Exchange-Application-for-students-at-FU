@@ -16,6 +16,7 @@ using Google.Apis.Auth;
 using System.Net.Mail;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Google.Apis.Util;
 
 namespace Services.Service
 {
@@ -133,8 +134,32 @@ namespace Services.Service
         {
             return ConvertUserToModel(_repo.ViewUserByStatus(1).ToList());
         }
+        //TRI
+        public async Task<(bool, double?)> GetAverageScore(int userId)
+        {
+            var (userFound, listScores) = await _repo.GetAllScoresOfUserByIdAsync(userId);
 
+            if (!userFound)
+                return (false, null);
+
+            if (listScores == null || !listScores.Any())
+                return (true, 0);
+
+            double averageScore = (double)listScores.Average();
+            return (true, averageScore);
+        }
         //=====================================
+        //TRI
+        public async Task<UserModel2?> GetUserInfo( int userId)
+        {
+            var user = await _repo.GetUserInfo(userId,1);
+            if (user != null)
+                return (_mapper.Map<UserModel2>(user));
+            return(null);
+
+            
+        }
+        //=================
 
         //TUAN
         public async Task<string> UserForgotPasswordUI(string emailAddress)
@@ -219,5 +244,7 @@ namespace Services.Service
             }
             return (false, "Register failed");
         }
+
+        
     }
 }

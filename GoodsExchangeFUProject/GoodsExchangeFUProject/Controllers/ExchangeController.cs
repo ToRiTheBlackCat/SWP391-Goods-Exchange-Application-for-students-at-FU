@@ -27,7 +27,7 @@ namespace GoodsExchangeFUProject.Controllers
         public IActionResult GetExchangeRequests(int userID)
         {
             var list = _exchangeService.GetExchangeOfUserUI(userID);
-            return Ok(null);
+            return Ok(list);
         }
 
         //TUAN
