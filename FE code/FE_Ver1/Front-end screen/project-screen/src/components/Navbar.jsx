@@ -7,11 +7,11 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
-  const dropdownRef = useRef(null); // Thêm ref cho dropdown
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
-    // Kiểm tra trạng thái đăng nhập từ localStorage
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('userName');
     if (token && user) {
@@ -21,23 +21,19 @@ const Navbar = () => {
   }, [username]);
 
   useEffect(() => {
-    // Đăng ký sự kiện click bên ngoài dropdown
     document.addEventListener('mousedown', handleClickOutsideDropdown);
     return () => {
-      // Hủy đăng ký sự kiện khi component bị unmount
       document.removeEventListener('mousedown', handleClickOutsideDropdown);
     };
   }, []);
 
   const handleClickOutsideDropdown = (event) => {
-    // Kiểm tra xem phần tử bấm vào có phải là dropdown hay không
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsDropdownOpen(false); // Nếu không phải, ẩn dropdown
+      setIsDropdownOpen(false);
     }
   };
 
   const handleLogout = () => {
-    // Xóa thông tin đăng nhập từ localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('userName');
     localStorage.removeItem('userId');
@@ -48,6 +44,15 @@ const Navbar = () => {
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    navigate(`/?search=${searchTerm}`);
   };
 
   return (
@@ -83,12 +88,19 @@ const Navbar = () => {
               </NavLink>
             </li>
           </ul>
-          <form className="d-flex me-2">
-            <input className={`form-control me-2 ${styles.formControl}`} type="search" placeholder="Search" aria-label="Search" />
+          <form className="d-flex me-2" onSubmit={handleSearchSubmit}>
+            <input 
+              className={`form-control me-2 ${styles.formControl}`} 
+              type="search" 
+              placeholder="Search" 
+              aria-label="Search" 
+              value={searchTerm}
+              onChange={handleSearchChange} 
+            />
             <button className={`btn btn-primary ${styles.btnPrimary}`} type="submit">Search</button>
           </form>
           <div className="navbar-nav">
-            <div ref={dropdownRef}> {/* Thêm ref vào dropdown */}
+            <div ref={dropdownRef}>
               <button
                 className={`btn btn-dark dropdown-toggle ${styles.navLink}`}
                 onClick={handleDropdownToggle}
@@ -105,12 +117,12 @@ const Navbar = () => {
                     </li>
                     <li>
                       <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/product">
-                        View product list/exchange request
+                        View product list
                       </NavLink>
                     </li>
                     <li>
                       <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/exchange-list">
-                        View exchange history
+                        View exchange list
                       </NavLink>
                     </li>
                     <li><hr className={`dropdown-divider ${styles.dropdownDivider}`} />

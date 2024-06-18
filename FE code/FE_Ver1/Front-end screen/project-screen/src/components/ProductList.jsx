@@ -2,15 +2,41 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard';
 import styles from '../styles/ProductList.module.css';
+import { useLocation } from 'react-router-dom';
 
-const ProductList = ({ currentPage }) => {
+const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const term = searchTerm || searchParams.get('search') || '';
+  const category = categoryId || searchParams.get('categoryId') || '';
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true);
+      setError('');
+
+      let sortOrderParam;
+      switch (sortOrder) {
+        case 'name_asc':
+          sortOrderParam = 'Name';
+          break;
+        case 'name_desc':
+          sortOrderParam = 'name_desc';
+          break;
+        case 'price_asc':
+          sortOrderParam = 'Price';
+          break;
+        case 'price_desc':
+          sortOrderParam = 'price_desc';
+          break;
+        default:
+          sortOrderParam = 'Name';
+      }
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted?pageIndex=${currentPage}`);
+        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted?sortOder=${sortOrderParam}&pageIndex=${currentPage}&sortString=${term}&cateId=${category}`);
         console.log('Products Data:', response.data); // Log products data
         const productData = response.data.foundList;
 
@@ -80,7 +106,7 @@ const ProductList = ({ currentPage }) => {
     };
 
     fetchProducts();
-  }, [currentPage]);
+  }, [currentPage, sortOrder, term, category]);
 
   if (error) {
     return <div>{error}</div>;

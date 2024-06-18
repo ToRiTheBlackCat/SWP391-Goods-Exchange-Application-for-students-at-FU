@@ -45,6 +45,30 @@ const ExchangeList = () => {
     console.log(`Cancelling exchange with ID: ${exchangeId}`);
     // Implement the cancel functionality here
   };
+  const getStatusClass = (status) => {
+    switch (status) {
+      case 1:
+        return styles['status-accepted'];
+      case 2:
+        return styles['status-waiting'];
+      case 0:
+        return styles['status-rejected'];
+      default:
+        return '';
+    }
+  };
+  const getStatusText = (status) => {
+    switch (status) {
+      case 1:
+        return 'Accepted';
+      case 2:
+        return 'Waiting';
+      case 0:
+        return 'Rejected';
+      default:
+        return 'Unknown';
+    }
+  };
 
   return (
     <>
@@ -97,6 +121,12 @@ const ExchangeList = () => {
                   <div>
                     <span>Balance:</span>
                     <span>{selectedExchange.balance.toLocaleString()} VND</span>
+                  </div>
+                  <div>
+                    <span>Status:</span>
+                    <span className={`${styles.status} ${getStatusClass(selectedExchange.status)}`}>
+                      {getStatusText(selectedExchange.status)}
+                    </span>
                   </div>
                   {selectedExchange.status === 1 && (
                     <Button variant="primary" onClick={() => handleRateExchange(selectedExchange.exchangeId)}>
