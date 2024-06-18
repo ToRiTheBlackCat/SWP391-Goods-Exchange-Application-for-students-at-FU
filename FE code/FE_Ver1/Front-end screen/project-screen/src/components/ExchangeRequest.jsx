@@ -25,7 +25,7 @@ const ExchangeRequests = ({ productId, productName }) => {
         }
       } catch (error) {
         console.error('Error fetching exchange requests:', error);
-        setError('Error fetching exchange requests.');
+        setError('This product does not have any exchange requests.');
       }
     };
 

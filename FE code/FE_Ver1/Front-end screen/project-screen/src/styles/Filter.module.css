@@ -1,7 +1,7 @@
 .filterContainer {
-    position: fixed;
-    top: 60px; /* Adjust this value based on the height of your navbar */
-    left: 10px;
+    position: absolute;
+    top: 560px; /* Adjust this value based on the height of your navbar */
+    right: 114px;
     z-index: 1000;
     background-color: white;
     border: 1px solid #ddd;
