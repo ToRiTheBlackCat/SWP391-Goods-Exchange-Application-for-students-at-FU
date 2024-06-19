@@ -45,9 +45,17 @@ namespace GoodsExchangeFUProject.Controllers
         //TRI
         [Authorize(Roles = "student")]
         [HttpGet("Student/ViewOwnProductList/{userId}")]
-        public async Task<IActionResult> StudentViewOwnProductList(int userId)
+        public async Task<IActionResult> StudentViewOwnProductList(int userId)  //Xem tất cả sản phẩm trong productList tất cả status 
         {
             var list = await _productService.StudentViewOwnProductList(userId);
+            return Ok(list);
+        }
+        //TRI
+        [Authorize(Roles = "student")]
+        [HttpGet("Student/ViewOwnAvailableProductList/{userId}")]
+        public async Task<IActionResult> StudentViewOwnAvailableProductList(int userId)     //Xem chỉ được các product đang available với status = 1 
+        {
+            var list = await _productService.StudentViewOwnProductList(userId, 1);
             return Ok(list);
         }
 
@@ -67,7 +75,7 @@ namespace GoodsExchangeFUProject.Controllers
         //TRI
         //[Authorize(Roles = "student")]
         [HttpPost("Student/AddNewProduct")]
-        public async Task<IActionResult> StudentAddNewProduct(AddNewProductModel addNewProductModel,
+        public async Task<IActionResult> StudentAddNewProduct([FromForm] AddNewProductModel addNewProductModel,
             [FromForm] IFormFile? productImage)
         {
             if (productImage == null || productImage.Length == 0)

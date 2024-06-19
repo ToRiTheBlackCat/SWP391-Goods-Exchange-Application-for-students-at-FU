@@ -29,6 +29,7 @@ namespace Repositories.Repositories
         public async Task<Exchange?> FindExchangeByIdAsync(int exchangeId, int statusNum)
         {
             var exchange = await _context.Exchanges
+                .Include(ex => ex.ExchangeDetails)
                 .FirstOrDefaultAsync(p => p.ExchangeId == exchangeId && p.Status == statusNum);
             if (exchange != null)
                 return exchange;
@@ -63,13 +64,13 @@ namespace Repositories.Repositories
             }).OrderByDescending(e => e.CreateDate).ToList();
         }
 
-        
+
 
         //TUAN
         public IEnumerable<ExchangeSellerView> GetExchangesByProduct(int productId)
         {
             _context = new();
-            return _context.Exchanges.Where(e => e.ProductId == productId && e.Status == 3).Select(e => new ExchangeSellerView()
+            return _context.Exchanges.Where(e => e.ProductId == productId && e.Status == 2).Select(e => new ExchangeSellerView()
             {
                 ExProductId = !e.ExchangeDetails.IsNullOrEmpty() ? e.ExchangeDetails.First().ProductId : null,
                 ExProductName = !e.ExchangeDetails.IsNullOrEmpty() ? e.ExchangeDetails.First().Product!.ProductName : null,

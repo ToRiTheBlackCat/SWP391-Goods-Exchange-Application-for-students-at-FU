@@ -30,13 +30,13 @@ namespace GoodsExchangeFUProject.Controllers
             var userFound = await _userService.GetUserInfo(userId);
             if (userFound != null)
             {
-                var (result,aveScore) = await _userService.GetAverageScore(userFound.UserId);
+                var (result, aveScore) = await _userService.GetAverageScore(userFound.UserId);
                 userFound.AverageScore = aveScore;
                 return Ok(userFound);
             }
             return BadRequest("User not found ");
         }
-        
+
         //TRI
         [Authorize(Roles = "mod")]
         [HttpGet("Mod/ViewBanAccountList")]
@@ -50,14 +50,14 @@ namespace GoodsExchangeFUProject.Controllers
         [HttpPost("/user/login")]
         public async Task<IActionResult> LoginWithEmailAndPassword([FromBody] LoginUserModel loginModel)
         {
-            var (success, response, id, name) = await _userService.LoginByEmailAndPassword(loginModel);
+            var (success, response, id, name, role) = await _userService.LoginByEmailAndPassword(loginModel);
 
             if (!success)
             {
                 return Unauthorized(response);
             }
 
-            return Ok(new { Token = response, userId = id, userName = name });
+            return Ok(new { Token = response, userId = id, userName = name, Role = role.Trim() });
         }
 
         //TUAN
@@ -66,7 +66,7 @@ namespace GoodsExchangeFUProject.Controllers
         {
             var (success, response, id) = await _userService.GoogleAuthorizeUser(token);
 
-            if(!success)
+            if (!success)
             {
                 return Unauthorized(response);
             }
@@ -131,7 +131,7 @@ namespace GoodsExchangeFUProject.Controllers
         public async Task<IActionResult> ResetPassword(UserPassResetModel resetModel)
         {
             var (result, message) = await _userService.UserResetPasswordUI(resetModel);
-            
+
             if (result)
                 return Ok(message);
 
@@ -143,7 +143,7 @@ namespace GoodsExchangeFUProject.Controllers
         [HttpPost("Create-Customer-Account")]
         public async Task<ActionResult<string>> PostUser(UserRegisterModel registerModel)
         {
-           
+
             (bool, string) result = await _userService.RegisterUserUI(registerModel, 3);
             if (result.Item1)
                 return Ok(result.Item2);
@@ -156,7 +156,7 @@ namespace GoodsExchangeFUProject.Controllers
         [HttpPost("Create-Modderator-Account")]
         public async Task<ActionResult<string>> PostModderator(UserRegisterModel registerView)
         {
-           
+
             (bool, string) result = await _userService.RegisterUserUI(registerView, 2);
             if (result.Item1)
                 return Ok(result.Item2);

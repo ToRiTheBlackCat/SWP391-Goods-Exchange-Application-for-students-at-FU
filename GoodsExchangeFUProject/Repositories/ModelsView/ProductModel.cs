@@ -37,7 +37,7 @@ namespace Repositories.ModelsView
     {
         
         public string ProductName { get; set; } = null!;
-        public string ProductImage { get; set; } = null!;
+        public string ProductImage { get; set; } = "";
         public string? ProductDescription { get; set; }
         public int ProductPrice { get; set; }
         public int TypeId { get; set; }

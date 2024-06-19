@@ -154,6 +154,15 @@ namespace Services.Service
             }
             return (null);
         }
+        public async Task<List<OwnProductModel>?> StudentViewOwnProductList(int userId, int statusNum)
+        {
+            var list = ConvertProductToModel2(_repo.ViewProductsOfUser(userId, statusNum).ToList());
+            if (list is not null)
+            {
+                return (list);
+            }
+            return (null);
+        }
 
         //=========================
         //TUAN

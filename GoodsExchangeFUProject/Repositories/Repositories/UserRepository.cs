@@ -21,16 +21,16 @@ namespace Repositories.Repositories
             _context = context;
         }
         //TRI
-        public async Task<(bool, User?, int?, string?)> AuthenticateUser(LoginUserModel login)
+        public async Task<(bool, User?, int?, string?, string?)> AuthenticateUser(LoginUserModel login)
         {
             var user = await _context.Users
                 .Include(u => u.Role)
                 .FirstOrDefaultAsync(u => u.Email.Trim() == login.Email.Trim() && u.Password.Trim() == login.Password && u.IsBanned == false);
             if (user != null)
-                return (true, user, user.UserId, user.UserName);
-            return (false, null, 0, null);
+                return (true, user, user.UserId, user.UserName, user.Role.RoleName);
+            return (false, null, 0, null, null);
         }
-
+        
         //TRI
         public async Task<bool> UpdateUserStatusAsync(int userId, int status)
         {

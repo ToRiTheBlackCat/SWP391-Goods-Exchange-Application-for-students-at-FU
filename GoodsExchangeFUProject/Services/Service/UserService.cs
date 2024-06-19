@@ -38,26 +38,25 @@ namespace Services.Service
         }
 
         //TRI
-
-        public async Task<(bool, string?, int?, string?)> LoginByEmailAndPassword(LoginUserModel login)
+        public async Task<(bool, string?, int?, string?,string?)> LoginByEmailAndPassword(LoginUserModel login)
         {
             if (login == null || string.IsNullOrEmpty(login.Email) || string.IsNullOrEmpty(login.Password))
             {
-                return (false, "Invalid email or password", 0, null);
+                return (false, "Invalid email or password", 0, null, null);
             }
             else
             {
 
                 login.Password = ComputeSha256Hash(login.Password + config["SecurityStr:Key"]);
-                var (isAuthenticated, user, id, name) = await _repo.AuthenticateUser(login);
+                var (isAuthenticated, user, id, name,role) = await _repo.AuthenticateUser(login);
                 if (!isAuthenticated)
                 {
-                    return (false, null, 0, null);
+                    return (false, null, 0, null,null);
                 }
                 else
                 {
                     var token = _authHelper.GenerateJwtToken(user);
-                    return (true, token, user.UserId, user.UserName);
+                    return (true, token, id, name, role);
                 }
             }
         }

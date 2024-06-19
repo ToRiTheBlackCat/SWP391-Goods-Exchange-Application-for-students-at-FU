@@ -8,7 +8,7 @@ namespace Services.Interface
     public interface IUserService
     {
         
-        Task<(bool, string?, int?, string?)> LoginByEmailAndPassword(LoginUserModel login);
+        Task<(bool, string?, int?, string?, string?)> LoginByEmailAndPassword(LoginUserModel login);
         Task<(bool, string)> ModBanAccount(int userId);
         Task<(bool, string)> ModUnBanAccount(int userId);
         Task<List<UserModel2>> ModGetBanAccountList();

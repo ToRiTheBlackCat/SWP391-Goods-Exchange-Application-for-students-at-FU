@@ -43,7 +43,15 @@ namespace Repositories.Repositories
             return _context.Products
                 .Include(p => p.User)
                 .Include(p => p.Type)
-                .Where(p => p.User.UserId == userId && p.Status == 1);
+                .Where(p => p.User.UserId == userId);
+        }
+        //TRI
+        public IQueryable<Product> ViewProductsOfUser(int userId, int statusNum)
+        {
+            return _context.Products
+                .Include(p => p.User)
+                .Include(p => p.Type)
+                .Where(p => p.User.UserId == userId && p.Status == statusNum);
         }
 
         //TRI
