@@ -88,6 +88,7 @@ const ProductPage = () => {
   const handleChatClick = () => {
     // Handle chat button click
   };
+  const currentUser = localStorage.getItem('userName');
 
   return (
     <>
@@ -106,8 +107,8 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-      <div className="position-fixed top-0 end-0 p-3 bg-light border rounded mt-5 me-3">
-        {sellerInfo && (
+      {sellerInfo && currentUser !== sellerInfo.userName && (
+        <div className="position-fixed top-0 end-0 p-3 bg-light border rounded mt-5 me-3">
           <div className="d-flex align-items-center mb-3">
             <img src={anhliem} alt="Seller Avatar" className="rounded-circle me-3" style={{ width: '50px', height: '50px' }} />
             <div>
@@ -117,13 +118,13 @@ const ProductPage = () => {
               </div>
             </div>
           </div>
-        )}
-        <div className="d-flex justify-content-between mb-3">
-          <button onClick={handlePhoneClick} className={`btn btn-success w-100 me-1 ${styles.phoneNumberButton}`}>{phoneNumber}</button> {/* Apply phoneNumberButton style */}
-          <button onClick={handleChatClick} className="btn btn-primary w-50 ms-1">Chat</button>
+          <div className="d-flex justify-content-between mb-3">
+            <button onClick={handlePhoneClick} className={`btn btn-success w-100 me-1 ${styles.phoneNumberButton}`}>{phoneNumber}</button> {/* Apply phoneNumberButton style */}
+            <button onClick={handleChatClick} className="btn btn-primary w-50 ms-1">Chat</button>
+          </div>
+          <button onClick={handleExchangeClick} className="btn btn-info w-100">Exchange</button>
         </div>
-        <button onClick={handleExchangeClick} className="btn btn-info w-100">Exchange</button>
-      </div>
+      )}
     </>
   );
 };

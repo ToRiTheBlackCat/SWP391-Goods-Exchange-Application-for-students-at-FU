@@ -65,15 +65,25 @@ function PostProductForm() {
                 data.append('productImage', imageFile); // Đính kèm file ảnh thực tế
             }
 
+            // Hiển thị dữ liệu gửi đi trên console
+            console.log('Dữ liệu gửi đi:');
+            for (let pair of data.entries()) {
+                if (pair[1] instanceof File) {
+                    console.log(`${pair[0]}: [File]`);
+                } else {
+                    console.log(`${pair[0]}: ${pair[1]}`);
+                }
+            }
+
             const response = await axiosInstance.post('/api/Product/Student/AddNewProduct', data, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                  'Content-Type': 'multipart/form-data'
                 }
-            });
-
+              });
+            console.log(response.data);
             if (response.status === 200 || response.status === 201) {
                 alert('Tạo sản phẩm thành công');
-                navigate('/'); // Điều hướng đến trang khác sau khi tạo thành công
+                navigate('/');
             }
         } catch (error) {
             console.error('Lỗi khi tạo sản phẩm:', error);
@@ -127,7 +137,8 @@ function PostProductForm() {
                                     <input type="number" className="form-control" id="productPrice" placeholder="Nhập giá sản phẩm" value={formData.productPrice} onChange={handleInputChange} required />
                                 </div>
                             </div>
-<div className="form-group">
+
+                            <div className="form-group">
                                 <label htmlFor="productDescription">Mô tả chi tiết</label>
                                 <textarea className="form-control" id="productDescription" rows="4" placeholder="Nhập mô tả chi tiết" value={formData.productDescription} onChange={handleInputChange} required></textarea>
                             </div>
