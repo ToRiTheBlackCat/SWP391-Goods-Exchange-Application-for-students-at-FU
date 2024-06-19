@@ -175,5 +175,27 @@ namespace Services.Service
                 return (false, ex.Message);
             }
         }
+
+        ////TUAN
+        //public async Task<String> cancelExchangeUI(int exchangeId)
+        //{
+        //    //find the exchange that is still WAITING (2)
+
+        //    if ( exchange == null)
+        //    {
+        //        //return 
+                
+        //    }
+
+        //    try
+        //    {
+        //        //try Removing the exchange
+        //        await _repo.RemoveExchangeAsync(exchangeId);
+        //    }
+        //    catch (Exception ex)
+        //    {
+                
+        //    }
+        //}
     }
 }

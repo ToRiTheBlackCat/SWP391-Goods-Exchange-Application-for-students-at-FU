@@ -25,16 +25,17 @@ namespace Repositories.Repositories
             _context.Ratings.Add(rating);
             await _context.SaveChangesAsync();
         }
+        
         //TRI
         public async Task<Exchange?> FindExchangeByIdAsync(int exchangeId, int statusNum)
         {
-            var exchange = await _context.Exchanges
-                .Include(ex => ex.ExchangeDetails)
+            var exchange = await _context.Exchanges.Include(ex => ex.ExchangeDetails)
                 .FirstOrDefaultAsync(p => p.ExchangeId == exchangeId && p.Status == statusNum);
             if (exchange != null)
                 return exchange;
             return null;
         }
+
         //TRI
         public async Task<bool> FindRatingByExchangeIdAsync(int exchangeId)
         {
@@ -81,6 +82,7 @@ namespace Repositories.Repositories
                 ExchangeId = e.ExchangeId,
             }).OrderByDescending(e => e.CreateDate).AsNoTracking();
         }
+
         //TUAN
         public async Task AddExchangeAsync(Exchange exchange, int balance, int? exProductId)
         {
@@ -100,6 +102,19 @@ namespace Repositories.Repositories
                 ExchangeId = exchageId,
             });
 
+            await _context.SaveChangesAsync();
+        }
+
+        //TUAN
+        public async Task RemoveExchangeAsync(int exchangeId)
+        {
+            _context = new();
+            var exchange = await _context.Exchanges.FirstAsync(ex => ex.ExchangeId == exchangeId && ex.Status == 2);
+            if (exchange == null)
+                throw new Exception("Invalid exchangeId or exchangeStatus");
+            var exchangeDetails = await _context.Exchanges.FirstAsync(ex => ex.ExchangeId == exchangeId);
+            _context.Exchanges.Remove(exchange);
+            _context.Exchanges.Remove(exchangeDetails);
             await _context.SaveChangesAsync();
         }
 
