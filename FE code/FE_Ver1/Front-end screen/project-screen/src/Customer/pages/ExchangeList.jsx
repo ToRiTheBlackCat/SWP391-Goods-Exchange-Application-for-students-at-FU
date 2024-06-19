@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Table, Container, Row, Col, Button } from 'react-bootstrap';
 import styles from '../styles/ExchangeList.module.css'; // Import CSS module
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axiosInstance from '../authorized/axiosInstance';
+import axiosInstance from '../../authorized/axiosInstance';
 import Navbar from '../components/Navbar';
 
 const ExchangeList = () => {

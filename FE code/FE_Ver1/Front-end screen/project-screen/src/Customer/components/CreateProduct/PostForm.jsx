@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from '../styles/PostForm.module.css';
-import axiosInstance from '../authorized/axiosInstance'; // Import axiosInstance
+import styles from '../../styles/PostForm.module.css';
+import axiosInstance from '../../../authorized/axiosInstance'; // Import axiosInstance
 import { useNavigate } from 'react-router-dom';
 
 function PostProductForm() {
@@ -142,12 +142,6 @@ function PostProductForm() {
                                 <label htmlFor="productDescription">Mô tả chi tiết</label>
                                 <textarea className="form-control" id="productDescription" rows="4" placeholder="Nhập mô tả chi tiết" value={formData.productDescription} onChange={handleInputChange} required></textarea>
                             </div>
-
-                            <div className="form-group">
-                                <label>Ảnh sản phẩm</label>
-                                <img src={selectedImage} alt="Product" className="img-fluid" />
-                            </div>
-
                             <button type="submit" className={`btn ${styles.btnWarning} text-white`}>Tạo</button>
                         </form>
                     </div>

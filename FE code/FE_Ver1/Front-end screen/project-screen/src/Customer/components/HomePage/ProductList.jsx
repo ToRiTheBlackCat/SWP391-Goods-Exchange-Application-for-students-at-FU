@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard';
-import styles from '../styles/ProductList.module.css';
+import styles from '../../styles/ProductList.module.css';
 import { useLocation } from 'react-router-dom';
 
 const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {

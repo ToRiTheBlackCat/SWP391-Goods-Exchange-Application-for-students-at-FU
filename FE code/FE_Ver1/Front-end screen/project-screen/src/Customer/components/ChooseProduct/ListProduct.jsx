@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from '../styles/ChooseProduct.module.css';
+import styles from '../../styles/ChooseProduct.module.css';
 
 function ListProduct({ products, setSelectedProduct }) {
   return (

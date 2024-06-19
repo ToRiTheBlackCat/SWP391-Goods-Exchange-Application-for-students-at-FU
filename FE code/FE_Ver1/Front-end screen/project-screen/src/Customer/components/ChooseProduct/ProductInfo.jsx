@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styles from '../styles/ChooseProduct.module.css';
+import styles from '../../styles/ChooseProduct.module.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 

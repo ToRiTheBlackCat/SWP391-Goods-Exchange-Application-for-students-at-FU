@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import ProductList from '../components/ProductList';
-import Category from '../components/Category';
-import Filter from '../components/Filter';
+import Footer from '../components/HomePage/Footer';
+import ProductList from '../components/HomePage/ProductList';
+import Category from '../components/HomePage/Category';
+import Filter from '../components/HomePage/Filter';
 import styles from '../styles/HomePage.module.css';
+import axios from 'axios';
 
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);

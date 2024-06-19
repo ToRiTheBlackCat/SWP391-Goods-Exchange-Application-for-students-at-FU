@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Table, Container, Row, Col, Button } from 'react-bootstrap';
-import axiosInstance from '../authorized/axiosInstance'; // Sử dụng axiosInstance
+import axiosInstance from '../../../authorized/axiosInstance'; // Sử dụng axiosInstance
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import styles from '../styles/ExchangeRequests.module.css'; // Import CSS module
+import styles from '../../styles/ExchangeRequests.module.css'; // Import CSS module
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ExchangeRequests = ({ productId, productName }) => {

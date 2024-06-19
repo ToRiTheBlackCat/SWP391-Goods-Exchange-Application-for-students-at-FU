@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from '../styles/Filter.module.css';
+import styles from '../../styles/Filter.module.css';
 
 const Filter = ({ onSortChange }) => {
   const handleSortChange = (event) => {
@@ -20,7 +20,7 @@ const Filter = ({ onSortChange }) => {
 };
 
 Filter.propTypes = {
-  onSortChange: PropTypes.func.isRequired,
+  onSortChange: PropTypes.func,
 };
 
 export default Filter;

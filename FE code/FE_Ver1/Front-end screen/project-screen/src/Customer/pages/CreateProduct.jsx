@@ -1,6 +1,6 @@
 
 import Navbar from '../components/Navbar.jsx';
-import PostForm from '../components/PostForm.jsx';
+import PostForm from '../components/CreateProduct/PostForm.jsx';
 
 function CreateProduct(){
     return(

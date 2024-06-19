@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import OwnedProductsList from '../components/OwnedProductList';
-import ExchangeRequests from '../components/ExchangeRequest';
+import OwnedProductsList from '../components/UserProductPage/OwnedProductList';
+import ExchangeRequests from '../components/UserProductPage/ExchangeRequest';
 import Navbar from '../components/Navbar';
 
 const UserProductsPage = () => {

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import axiosInstance from '../authorized/axiosInstance';
+import axiosInstance from '../../authorized/axiosInstance';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../styles/Exchange.module.css'; // Import CSS module

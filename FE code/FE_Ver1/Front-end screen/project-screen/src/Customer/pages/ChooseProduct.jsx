@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setSelectedProduct } from '../store/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ListProduct from '../components/ListProduct';
-import ProductInfo from '../components/ProductInfo';
+import ListProduct from '../components/ChooseProduct/ListProduct';
+import ProductInfo from '../components/ChooseProduct/ProductInfo';
 import Navbar from '../components/Navbar';
 import styles from '../styles/ChooseProduct.module.css';
-import axiosInstance from '../authorized/axiosInstance';
+import axiosInstance from '../../authorized/axiosInstance';
 
 function ChooseProduct() {
   const [products, setProducts] = useState([]);

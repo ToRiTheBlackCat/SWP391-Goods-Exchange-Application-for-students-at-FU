@@ -1,5 +1,5 @@
 
-import styles from '../styles/Footer.module.css'; // Import CSS module
+import styles from '../../styles/Footer.module.css'; // Import CSS module
 
 const Footer = ({ currentPage, totalPages, onPageChange }) => {
   const handlePageChange = (page) => {

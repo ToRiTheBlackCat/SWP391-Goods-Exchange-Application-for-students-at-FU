@@ -11,6 +11,7 @@ import Exchange from '../src/Customer/pages/Exchange.jsx';
 import ExchangeList from '../src/Customer/pages/ExchangeList.jsx';
 import UserProductsPage from '../src/Customer/pages/UserProductPage.jsx';
 import store from './Customer/store/store.jsx';
+import WaitingProduct from './Mod/pages/ViewWaitingProduct.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {Provider} from 'react-redux';
 
@@ -30,6 +31,7 @@ const App = () => {
         <Route path='/exchange' element={<Exchange/>}/>
         <Route path='/exchange-list' element={<ExchangeList/>}/>
         <Route path='/product'element={<UserProductsPage/>}/>
+        <Route path='/waiting-product' element={<WaitingProduct/>}/>
       </Routes>
     </Router>
     </Provider>
