@@ -8,7 +8,7 @@ import Filter from '../components/HomePage/Filter';
 import styles from '../styles/HomePage.module.css';
 import axios from 'axios';
 
-const HomePage = () => {
+const ModPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(5);
   const [products, setProducts] = useState([]);
@@ -42,6 +42,7 @@ const HomePage = () => {
         const response = await axios.get(`https://localhost:7027/api/Product/GetSorted?sortOder=${sortOrderParam}&pageIndex=${currentPage}&sortString=${searchTerm}&cateId=${categoryId}`);
         const productData = response.data.foundList;
         setProducts(productData);
+        setTotalPages(response.data.totalPages); // Assuming the total pages are returned by the API
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -53,6 +54,7 @@ const HomePage = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
   const handleFilterChange = (filteredProducts) => {
     setProducts(filteredProducts);
   };
@@ -74,7 +76,7 @@ const HomePage = () => {
       />
       <Filter onSortChange={handleSortChange} />
       <div className="container mt-4">
-      <h2 className={styles.heading}>Product</h2>
+      <h2 className={styles.heading}>Moderator Page</h2>
         <ProductList currentPage={currentPage} sortOrder={sortOrder} searchTerm={searchTerm} categoryId={categoryId} />
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
@@ -82,4 +84,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default ModPage;

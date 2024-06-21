@@ -6,8 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
 import anhliem from '../assets/anhliem.jpg';
 import axios from 'axios';
-import styles from '../styles/ProductPage.module.css'; // Import CSS module
-import { setProductToExchange, setSelectedProduct } from '../store/store'; // Updated to setSelectedProduct
+import styles from '../styles/ModProductPage.module.css'; // Import CSS module
+import { setProductToExchange } from '../store/store';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -80,19 +80,14 @@ const ProductPage = () => {
     return <div>Loading...</div>;
   }
 
-  const handleExchangeClick = () => {
+  const handleProfileClick = () => {
     dispatch(setProductToExchange(product));
-    navigate('/choose-product');
+    navigate('/mod/view-profile');
   };
-
-  const handleChatClick = () => {
-    // Handle chat button click
-  };
-
-  const handleReportClick = () => {
-    dispatch(setSelectedProduct(product));
-    navigate('/report');
+  const handleRemoveClick = () => {
+    
   }
+  
   const currentUser = localStorage.getItem('userName');
 
   return (
@@ -109,9 +104,7 @@ const ProductPage = () => {
           <div>
             <h2 className="h4">Detailed description</h2>
             <p>{product.productDescription}</p>
-            <div>
-            <button onClick={handleReportClick} className="btn btn-info w-100">Report</button>
-            </div>
+            <button onClick={handleRemoveClick} className="btn btn-info w-100">Remove</button>
           </div>
         </div>
       </div>
@@ -128,10 +121,11 @@ const ProductPage = () => {
           </div>
           <div className="d-flex justify-content-between mb-3">
             <button onClick={handlePhoneClick} className={`btn btn-success w-100 me-1 ${styles.phoneNumberButton}`}>{phoneNumber}</button> {/* Apply phoneNumberButton style */}
-            <button onClick={handleChatClick} className="btn btn-primary w-50 ms-1">Chat</button>
           </div>
-          <button onClick={handleExchangeClick} className="btn btn-info w-100">Exchange</button>
-        </div>
+            <button onClick={handleProfileClick} className="btn btn-info w-100">View user profile</button>
+            
+          </div>
+          
       )}
     </>
   );

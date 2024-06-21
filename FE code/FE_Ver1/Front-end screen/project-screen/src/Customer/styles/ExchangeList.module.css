@@ -40,3 +40,29 @@
     justify-content: space-between;
     margin-bottom: 10px;
 }
+
+.status-accepted {
+    color: green;
+}
+
+.status-waiting {
+    color: orange;
+}
+
+.status-rejected {
+    color: red;
+}
+
+.ratingForm {
+    margin-top: 20px;
+}
+
+.ratingForm .form-group {
+    margin-bottom: 15px;
+}
+
+.ratingForm .form-control {
+    width: 100px; /* Adjust the width as needed */
+    display: inline-block; /* Keeps the input inline */
+    margin-right: 10px; /* Adds space between the rating and comment */
+}

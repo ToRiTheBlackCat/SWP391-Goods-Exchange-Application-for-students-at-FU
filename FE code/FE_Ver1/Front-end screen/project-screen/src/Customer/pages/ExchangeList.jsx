@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Table, Container, Row, Col, Button } from 'react-bootstrap';
+import { Table, Container, Row, Col, Button, Form } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from '../styles/ExchangeList.module.css'; // Import CSS module
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axiosInstance from '../../authorized/axiosInstance';
@@ -9,6 +11,10 @@ const ExchangeList = () => {
   const [exchanges, setExchanges] = useState([]);
   const [selectedExchange, setSelectedExchange] = useState(null);
   const [error, setError] = useState('');
+  const [rating, setRating] = useState('');
+  const [comment, setComment] = useState('');
+  const [isRating, setIsRating] = useState(false); // New state to toggle rating form
+  const [hasRated, setHasRated] = useState(false); // State to track if the user has already rated
 
   useEffect(() => {
     const fetchExchanges = async () => {
@@ -32,12 +38,23 @@ const ExchangeList = () => {
 
   const handleSelectExchange = (exchange) => {
     setSelectedExchange(exchange);
+    setIsRating(false); // Reset rating form when selecting a new exchange
+
+    // Check if the user has already rated this exchange
+    const userId = localStorage.getItem('userId');
+    if (exchange.ratings && exchange.ratings.some(rating => rating.userId === parseInt(userId, 10))) {
+      setHasRated(true);
+    } else {
+      setHasRated(false);
+    }
   };
 
-  const handleRateExchange = (exchangeId) => {
-    // Handle the rating action
-    console.log(`Rating exchange with ID: ${exchangeId}`);
-    // Implement the rating functionality here
+  const handleRateExchange = () => {
+    if (!hasRated) {
+      setIsRating(true); // Show rating form
+    } else {
+      toast.error('You have already rated this exchange.');
+    }
   };
 
   const handleCancelExchange = (exchangeId) => {
@@ -45,6 +62,41 @@ const ExchangeList = () => {
     console.log(`Cancelling exchange with ID: ${exchangeId}`);
     // Implement the cancel functionality here
   };
+
+  const handleSubmitRating = async (e) => {
+    e.preventDefault();
+    // Handle rating submission
+    console.log(`Rating: ${rating}, Comment: ${comment}`);
+
+    const userId = localStorage.getItem('userId');
+    const ratingData = {
+      exchangeId: selectedExchange.exchangeId,
+      userId: parseInt(userId, 10),
+      score: parseInt(rating, 10),
+      comment: comment,
+      ratingDate: new Date().toISOString(),
+    };
+
+    // Implement the API call to submit the rating and comment
+    try {
+      const response = await axiosInstance.post('/api/Exchange/Student/Rating&Comment', ratingData);
+      if (response.status === 200) {
+        toast.success('Rating submitted successfully');
+        setIsRating(false);
+        setRating('');
+        setComment('');
+        setHasRated(true); // Update the state to indicate the user has rated
+      }
+    } catch (error) {
+      console.error('Error submitting rating:', error);
+      if (error.response && error.response.status === 400) { // Assuming 409 Conflict status code for already rated
+        toast.error('You rated this exchange already');
+      } else {
+        setError('Error submitting rating. Please try again.');
+      }
+    }
+  };
+
   const getStatusClass = (status) => {
     switch (status) {
       case 1:
@@ -57,6 +109,7 @@ const ExchangeList = () => {
         return '';
     }
   };
+
   const getStatusText = (status) => {
     switch (status) {
       case 1:
@@ -72,13 +125,13 @@ const ExchangeList = () => {
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <Container fluid className={styles.container}>
-        <Row>
+        <Row className={styles.row}>
           <Col md={3} className={styles.colMd3}>
             <h3>Your exchange request</h3>
             {error && <div className="alert alert-danger">{error}</div>}
-            <Table striped bordered hover className={styles.table}>
+            <Table striped bordered hover className={`${styles.table} ${styles['table-hover']}`}>
               <thead>
                 <tr>
                   <th>No</th>
@@ -88,7 +141,11 @@ const ExchangeList = () => {
               </thead>
               <tbody>
                 {exchanges.map((exchange, index) => (
-                  <tr key={exchange.exchangeId} onClick={() => handleSelectExchange(exchange)} className={selectedExchange === exchange ? styles.selected : ''}>
+                  <tr
+                    key={exchange.exchangeId}
+                    onClick={() => handleSelectExchange(exchange)}
+                    className={selectedExchange === exchange ? styles.selected : ''}
+                  >
                     <td>{index + 1}</td>
                     <td>{exchange.exProductName}</td>
                     <td>{exchange.productName}</td>
@@ -128,8 +185,8 @@ const ExchangeList = () => {
                       {getStatusText(selectedExchange.status)}
                     </span>
                   </div>
-                  {selectedExchange.status === 1 && (
-                    <Button variant="primary" onClick={() => handleRateExchange(selectedExchange.exchangeId)}>
+                  {selectedExchange.status === 1 && !isRating && !hasRated && (
+                    <Button variant="primary" onClick={handleRateExchange}>
                       Rate
                     </Button>
                   )}
@@ -137,6 +194,40 @@ const ExchangeList = () => {
                     <Button variant="danger" onClick={() => handleCancelExchange(selectedExchange.exchangeId)}>
                       Cancel
                     </Button>
+                  )}
+                  {isRating && (
+                    <Form onSubmit={handleSubmitRating} className={styles.ratingForm}>
+                      <Form.Group controlId="rating">
+                        <Form.Label>Rating</Form.Label>
+                        <Form.Control
+                          as="select"
+                          value={rating}
+                          onChange={(e) => setRating(e.target.value)}
+                          required
+                          className={styles.formControl} // Add class for custom styling
+                        >
+                          <option value="">Select a rating</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </Form.Control>
+                      </Form.Group>
+                      <Form.Group controlId="comment" className="mt-3">
+                        <Form.Label>Comment</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          rows={3}
+                          value={comment}
+                          onChange={(e) => setComment(e.target.value)}
+                          required
+                        />
+                      </Form.Group>
+                      <Button variant="success" type="submit" className="mt-3">
+                        Submit Rating
+                      </Button>
+                    </Form>
                   )}
                 </div>
               </>
@@ -146,6 +237,7 @@ const ExchangeList = () => {
           </Col>
         </Row>
       </Container>
+      <ToastContainer />
     </>
   );
 };

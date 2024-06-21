@@ -35,9 +35,15 @@ const Login = () => {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userId', response.data.userId);
         localStorage.setItem('userName', response.data.userName);
-        navigate('/');
-      }
-      if(response.status === 401) {
+        localStorage.setItem('role', response.data.role);
+
+        if (response.data.role === 'mod') {
+          navigate('/mod');
+        } else {
+          navigate('/');
+        }
+        setError('');
+      } else if (response.status === 401) {
         setError('Wrong password or email');
       }
     } catch (error) {

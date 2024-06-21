@@ -3,7 +3,7 @@ import axiosInstance from '../../authorized/axiosInstance';
 import WaitingProductList from '../components/WaitingProductList';
 import WaitingProductDetail from '../components/WaitingProductDetail';
 import styles from '../styles/WaitingProduct.module.css';
-import Navbar from '../../Customer/components/Navbar';
+import Navbar from '../components/Navbar';
 
 const ViewWaitingProduct = () => {
     const [products, setProducts] = useState([]);

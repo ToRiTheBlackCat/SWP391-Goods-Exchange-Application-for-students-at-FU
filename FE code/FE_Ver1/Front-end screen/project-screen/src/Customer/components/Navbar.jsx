@@ -124,6 +124,11 @@ const Navbar = () => {
                       </NavLink>
                     </li>
                     <li>
+                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/own-product">
+                        Your product
+                      </NavLink>
+                    </li>
+                    <li>
                       <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/product">
                         View product list
                       </NavLink>

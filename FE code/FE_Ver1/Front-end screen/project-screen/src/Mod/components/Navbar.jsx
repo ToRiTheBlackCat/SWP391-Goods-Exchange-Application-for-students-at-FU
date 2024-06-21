@@ -74,7 +74,7 @@ const Navbar = () => {
             <li className="nav-item">
               <NavLink 
                 className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
-                to="/"
+                to="/mod"
               >
                 Home
               </NavLink>
@@ -85,6 +85,14 @@ const Navbar = () => {
                 to="/waiting-product"
               >
                 View waiting product
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
+                to="/report-list"
+              >
+                View report list
               </NavLink>
             </li>
           </ul>
@@ -110,23 +118,6 @@ const Navbar = () => {
               <ul className={`dropdown-menu ${styles.dropdownMenu}`} style={{ display: isDropdownOpen ? 'block' : 'none' }}>
                 {isLoggedIn ? (
                   <>
-                    <li>
-                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/profile">
-                        Profile
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/product">
-                        View product list
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/exchange-list">
-                        View exchange list
-                      </NavLink>
-                    </li>
-                    <li><hr className={`dropdown-divider ${styles.dropdownDivider}`} />
-                    </li>
                     <li>
                       <button
                         className={`dropdown-item ${styles.dropdownItem}`}

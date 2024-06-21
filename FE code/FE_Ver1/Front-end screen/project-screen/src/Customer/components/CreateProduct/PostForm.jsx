@@ -134,7 +134,7 @@ function PostProductForm() {
                                 </div>
                                 <div className="form-group col-md-6">
                                     <label htmlFor="productPrice">Giá</label>
-                                    <input type="number" className="form-control" id="productPrice" placeholder="Nhập giá sản phẩm" value={formData.productPrice} onChange={handleInputChange} required />
+                                    <input type="numeric" className="form-control" id="productPrice" placeholder="Nhập giá sản phẩm" value={formData.productPrice} onChange={handleInputChange} required />
                                 </div>
                             </div>
 
