@@ -75,9 +75,9 @@ namespace Repositories.Repositories
         }
 
         //TRI
-        public async Task<bool> UpdateProductByIdAsync(int productId, OwnProductModel update)
+        public async Task<bool> UpdateProductByIdAsync(OwnProductModel update)
         {
-            var product = await FindProductByIdAsync(productId, 1);
+            var product =  _context.Products.FirstOrDefault(p => p.ProductId == update.ProductId);
             if (product == null)
                 return false;
 

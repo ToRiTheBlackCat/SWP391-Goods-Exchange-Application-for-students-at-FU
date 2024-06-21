@@ -126,10 +126,9 @@ namespace Services.Service
             return (false, "Product not exist");
         }
         //TRI
-        public async Task<(bool, string)> StudentUpdateProduct(OwnProductModel product)
+        public async Task<(bool, string)> StudentUpdateProduct(OwnProductModel update )
         {
-            var productId = product.ProductId;
-            var success = await _repo.UpdateProductByIdAsync(productId, product);
+            var success = await _repo.UpdateProductByIdAsync(update);
             if (success)
             {
                 return (true, "Product updated");
