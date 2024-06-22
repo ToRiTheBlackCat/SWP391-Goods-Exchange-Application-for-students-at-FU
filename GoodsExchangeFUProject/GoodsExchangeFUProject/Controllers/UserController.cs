@@ -1,127 +1,156 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
+using Repositories.ModelsView;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using static GoodsExchangeFUProject.ModelsView.UserViewModel;
-using Services;
+using static Repositories.ModelsView.UserModel;
+using Services.Interface;
+using Repositories.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Repositories.Entities;
 using Services.Service;
-using Repositories;
-using Microsoft.Win32;
-using Microsoft.AspNetCore.Authorization;
-
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 namespace GoodsExchangeFUProject.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly GoodsExchangeFudbContext _context;
+        private readonly IUserService _userService;
 
-        public UserController(GoodsExchangeFudbContext context)
+        public UserController(IUserService userService)
         {
-            _context = context;
+            _userService = userService;
         }
 
-        // GET: api/Users1
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        //TRI
+        [Authorize(Roles = "mod")]
+        [HttpGet("Mod/ViewBanAccountList")]
+        public async Task<IActionResult> ModViewBanAccountList()
         {
-            return await _context.Users.ToListAsync();
+            var accounts = await _userService.ModGetBanAccountList();
+            return Ok(accounts);
         }
 
-        // GET: api/Users1/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        //TRI
+        [HttpPost("/user/login")]
+        public async Task<IActionResult> LoginWithEmailAndPassword([FromBody] LoginUserModel loginModel)
         {
-            var user = await _context.Users.FindAsync(id);
+            var (success, response, id, name) = await _userService.LoginByEmailAndPassword(loginModel);
 
-            if (user == null)
+            if (!success)
             {
-                return NotFound();
+                return Unauthorized(response);
             }
 
-            return user;
+            return Ok(new { Token = response, userId = id, userName = name });
         }
 
-        // PUT: api/Users1/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        //TUAN
+        [HttpPost("/api/user/google-login")]
+        public async Task<ActionResult> GoogleLogin([FromHeader] string token)
         {
-            if (id != user.UserId)
+            var (success, response, id) = await _userService.GoogleAuthorizeUser(token);
+
+            if(!success)
             {
-                return BadRequest();
+                return Unauthorized(response);
             }
 
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return Ok(new { Token = response, userId = id });
         }
 
-        // POST: api/Users1
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //TRI
+        [Authorize(Roles = "mod")]
+        [HttpPost("Mod/BanAccount/{userId}")]
+        public async Task<IActionResult> ModBanAccount(int userId)
+        {
+            var (success, message) = await _userService.ModBanAccount(userId);
+            if (success)
+            {
+                return Ok(message);
+            }
+            return BadRequest(message);
+        }
+
+        //TRI
+        [Authorize(Roles = "mod")]
+        [HttpPost("Mod/UnBanAccount/{userId}")]
+        public async Task<IActionResult> ModUnBanAccount(int userId)
+        {
+            var (success, message) = await _userService.ModUnBanAccount(userId);
+            if (success)
+            {
+                return Ok(message);
+            }
+            return BadRequest(message);
+        }
+
+        //TRI
+        //[Authorize]
+        //[HttpPost("user/logout")]
+        //public async Task<IActionResult> LogOutAccount()
+        //{
+        //    try
+        //    {
+        //        await _userRepository.LogOutAccount(string token);
+        //        return Ok("Sign out successfully");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
+
+
+        //TUAN
+        [HttpPost("UserForgotPassword")]
+        public async Task<IActionResult> ForgotPassword(string emailAddress)
+        {
+            var result = await _userService.UserForgotPasswordUI(emailAddress);
+
+            return Ok(result);
+        }
+
+        //TUAN
+        [HttpPost("UserResetPassword")]
+        public async Task<IActionResult> ResetPassword(UserPassResetModel resetModel)
+        {
+            var (result, message) = await _userService.UserResetPasswordUI(resetModel);
+            
+            if (result)
+                return Ok(message);
+
+            return BadRequest(message);
+        }
+
+        //TUAN
+        //[Authorize(Roles = "student")]
         [HttpPost("Create-Customer-Account")]
-        public async Task<ActionResult<string>> PostUser(UserRegisterView registerView)
+        public async Task<ActionResult<string>> PostUser(UserRegisterModel registerModel)
         {
-            UserService service = new UserService();
-            (bool, string) result = await service.RegisterUserUI(registerView);
+           
+            (bool, string) result = await _userService.RegisterUserUI(registerModel, 3);
             if (result.Item1)
                 return Ok(result.Item2);
             //return CreatedAtAction("GetUser", new { id = 20 }, registerView);
             return Ok(result.Item2);
         }
 
+        //TUAN
+        //[Authorize(Roles = "admin")]
         [HttpPost("Create-Modderator-Account")]
-        public async Task<ActionResult<string>> PostModderator(UserRegisterView registerView)
+        public async Task<ActionResult<string>> PostModderator(UserRegisterModel registerView)
         {
-            UserService service = new UserService();
-            (bool, string) result = await service.RegisterUserUI(registerView);
+           
+            (bool, string) result = await _userService.RegisterUserUI(registerView, 2);
             if (result.Item1)
                 return Ok(result.Item2);
             //return CreatedAtAction("GetUser", new { id = 20 }, registerView);
             return Ok(result.Item2);
         }
 
-        // DELETE: api/Users1/5
-        [HttpDelete("{id}")]
-        [Authorize("admin")]
-        public async Task<IActionResult> DeleteUser(int id)
-        {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
 
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
-
-        private bool UserExists(int id)
-        {
-            return _context.Users.Any(e => e.UserId == id);
-        }
     }
 }

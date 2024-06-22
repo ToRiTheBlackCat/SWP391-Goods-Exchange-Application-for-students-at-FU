@@ -1,28 +1,90 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Repositories;
 using Repositories.Entities;
+using Repositories.ModelsView;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace GoodsExchangeFUProject.Repositories
+namespace Repositories.Repositories
 {
     public class ProductRepository
     {
         private GoodsExchangeFudbContext _context;
-
-        public IQueryable<Product> GetProducts()
+        public ProductRepository(GoodsExchangeFudbContext context)
         {
-            _context = new GoodsExchangeFudbContext();
-            return _context.Products.AsNoTracking();
+            _context = context;
         }
 
-        public async Task<Product?> GetProductByIdAsync(int productId) 
+        //TRI
+        public async Task<Product?> FindProductByIdAsync(int productId, int statusNum)
         {
-            _context = new();
-            return await _context.Products.AsNoTracking().FirstOrDefaultAsync(p => p.ProductId == productId);
+            // Include related entities (ProductType and User) using Include method
+            return await _context.Products
+                .Include(p => p.Type)
+                .Include(p => p.User)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.ProductId == productId && p.Status == statusNum && p.User.IsBanned == false);
         }
 
-        public IQueryable<Product> GetProductsByField(string? getName
-            , string? getDesc, int? getCategoryId)
+        //TRI
+        public IQueryable<Product> ViewProductsByStatus(int statusNum)
+        {
+            return _context.Products
+               .Include(p => p.User)
+               .Where(p => p.Status == statusNum);
+        }
+
+        //TRI
+        public IQueryable<Product> ViewProductsOfUser(int userId)
+        {
+            return _context.Products
+                .Include(p => p.User)
+                .Include(p => p.Type)
+                .Where(p => p.User.UserId == userId && p.Status == 1);
+        }
+
+        //TRI
+        public async Task AddProductAsync(Product product)
+        {
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+        }
+
+        //TRI
+        public async Task<bool> UpdateProductStatusAsync(int productId, int status)
+        {
+            var product = await _context.Products.FindAsync(productId);
+            if (product == null)
+            {
+                return false;
+            }
+            product.Status = status;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        //TRI
+        public async Task<bool> UpdateProductByIdAsync(int productId, OwnProductModel update)
+        {
+            var product = await FindProductByIdAsync(productId, 1);
+            if (product == null)
+                return false;
+
+            product.ProductName = update.ProductName;
+            product.ProductImage = update.ProductImage;
+            product.ProductDescription = update.ProductDescription;
+            product.ProductPrice = update.ProductPrice;
+            product.TypeId = update.TypeId;
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        //=======================
+        public IQueryable<Product> GetProductsByField(string? getName, string? getDesc, int? getCategoryId)
         {
             _context = new GoodsExchangeFudbContext();
             if (getName == null && getDesc == null)
@@ -30,8 +92,8 @@ namespace GoodsExchangeFUProject.Repositories
                 getName = string.Empty;
                 getDesc = string.Empty;
             }
-            var list = _context.Products.AsNoTracking().Include(p => p.Type).Where(p => p.Status == 1);
-            if(getCategoryId != null)
+            var list = _context.Products.AsNoTracking().Include(p => p.Type).Include(p => p.User).Where(p => p.Status == 1);
+            if (getCategoryId != null)
             {
                 list = list.Where(p => p.TypeId == getCategoryId);
             }
@@ -41,38 +103,5 @@ namespace GoodsExchangeFUProject.Repositories
             return list;
         }
 
-        public async Task UpdateProductAsync(Product product)
-        {
-            _context = new();
-            var updateProduct = _context.Products.Find(product.ProductId);
-            if (updateProduct != null)
-            {
-                updateProduct.ProductPrice = product.ProductPrice;
-                updateProduct.ProductName = product.ProductName;
-                updateProduct.ProductImage = product.ProductImage;
-                updateProduct.ProductDescription = product.ProductDescription;
-                updateProduct.TypeId = product.TypeId;
-                updateProduct.UserId = product.UserId;
-                updateProduct.Status = product.Status;
-                await _context.SaveChangesAsync();
-            }
-            else 
-                throw new Exception($"The Product with id={product.ProductId} was not found. Failed to update");
-        }
-
-        public async Task<Product> addProductAsync(Product product)
-        {
-            _context = new();
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
-            return product;
-        }
-
-        public async Task<Product?> GetProductAvailableAsync(int productId, int Status)
-        {
-            _context = new();
-            return await _context.Products.AsNoTracking()
-                .FirstOrDefaultAsync(p => p.ProductId == productId && p.Status == Status);
-        }
     }
 }

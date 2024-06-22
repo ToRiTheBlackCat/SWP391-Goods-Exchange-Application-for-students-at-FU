@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj": {}
+    "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject_MyProject\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj": {
+    "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject_MyProject\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject_MyProject\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
+        "projectPath": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject_MyProject\\GoodsExchangeFUProject\\Repositories\\Repositories.csproj",
         "packagesPath": "C:\\Users\\Senti\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\ExchangeProject\\GoodsExchangeFUProject\\Repositories\\obj\\",
+        "outputPath": "C:\\Users\\Senti\\OneDrive\\Desktop\\GoodsExchangeFUProject_MyProject\\GoodsExchangeFUProject\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Programs(x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -50,13 +50,15 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.5, )"
             },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Microsoft.Build.Utilities.Core": {
+              "target": "Package",
+              "version": "[17.10.4, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.5, )"
             },
@@ -77,6 +79,10 @@
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[8.0.2, )"
             }
           },
           "imports": [

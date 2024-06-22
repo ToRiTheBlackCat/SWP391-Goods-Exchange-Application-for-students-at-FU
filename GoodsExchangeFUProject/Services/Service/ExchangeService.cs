@@ -1,10 +1,9 @@
-﻿using GoodsExchangeFUProject.Repositories;
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Repositories;
 using Repositories.Entities;
 using Repositories.ModelsView;
 using Repositories.Repositories;
+using Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +12,43 @@ using System.Threading.Tasks;
 
 namespace Services.Service
 {
-    public class ExchangeService
+    public class ExchangeService : IExchangeService
     {
-        private readonly ExchangeRepository _repo = new();
-        private readonly ProductRepository _pro_repo = new();
-        private GoodsExchangeFudbContext _context;
+        private readonly ExchangeRepository _repo;
+        private readonly IMapper _mapper;
+        private readonly ProductRepository _pro_repo;
 
+        public ExchangeService(ExchangeRepository exchangeRepository, IMapper mapper, ProductRepository pro_repo)
+        {
+            _repo = exchangeRepository;
+            _mapper = mapper;
+            _pro_repo = pro_repo;
+        }
+        //TRI
+        public async Task<(bool, string)> StudentRatingAndCommentUser(RatingModel ratingModel)
+        {
+            var findExchange = await _repo.FindExchangeByIdAsync(ratingModel.ExchangeId,1);
+            if (findExchange != null)
+            {
+                bool findRating = await _repo.FindRatingByExchangeIdAsync(findExchange.ExchangeId);
+                if (findRating) 
+                {
+                    return (false, "Exchange aldready has rating/ comment");
+                }
+                else
+                {
+                    var rating = _mapper.Map<Rating>(ratingModel);
+                    await _repo.AddRatingAsync(rating);
+                    return (true, "Rating successfully.");
+                }
+            }
+            else
+                return (false, "ExchangeId not existed or exchange not completed");
+        }
+
+        //=================
+        
+        //TUAN
         public List<ExchangeModelView> GetExchangeOfUserUI(int userId)
         {
             if (_repo == null)
@@ -26,21 +56,34 @@ namespace Services.Service
                 throw new NullReferenceException("_exchangeRepository is null");
             }
 
-            List<ExchangeModelView> result =  _repo.GetExchangesByUser(userId);
+            List<ExchangeModelView> result = _repo.GetExchangesByUser(userId);
 
             return result;
         }
+        
 
+        //TUAN
+        public async Task<(List<ExchangeSellerView>?, Product?)> GetProductExchangesUI(int productId)
+        {
+            //Only get the exchanges that is waiting for the user to response
+            //. Do not need to see other cases
+            var exchangeProList = _repo.GetExchangesByProduct(productId).ToList();
+            //Get the product to display (Just bonus)
+            var product = await _pro_repo.FindProductByIdAsync(productId,1);
+            return (exchangeProList, product);
+        }
+
+        //TUAN
         public async Task<String> CreateExchangeUI(ExchangeCreateView createView)
         {
             //Get exchange product(with owner info)
             //Only products that are available (Status = 1) are able to participate in exchange
-            var product = await _pro_repo.GetProductAvailableAsync(createView.ProductId, 1);
+            var product = await _pro_repo.FindProductByIdAsync(createView.ProductId, 1);
             Product? exProduct = null;
             if (createView.ExProductId != null)
-                exProduct = await _pro_repo.GetProductAvailableAsync((int)createView.ExProductId!, 1);
-            
-            if (product == null 
+                exProduct = await _pro_repo.FindProductByIdAsync((int)createView.ExProductId!, 1);
+
+            if (product == null
                 || (createView.ExProductId != null && exProduct == null))
             {
                 return "Product no longer available for exchange!";
@@ -58,9 +101,9 @@ namespace Services.Service
                 ProductId = createView.ProductId,
                 UserId = createView.UserId,
                 CreateDate = DateOnly.FromDateTime(DateTime.Now),
-                Status = 3
+                Status = createView.Status,
             };
-            
+
             try
             {
                 //Add exchange to DB
@@ -69,11 +112,11 @@ namespace Services.Service
                 //Change product status of ExchangeProduct to "trading"
                 if (exProduct != null)
                 {
-                    exProduct.Status = 2;
-                    await _pro_repo.UpdateProductAsync(exProduct);
+                    
+                    await _pro_repo.UpdateProductStatusAsync(exProduct.ProductId,2);
                 }
 
-                
+
             }
             catch (Exception ex)
             {
@@ -84,135 +127,68 @@ namespace Services.Service
             return "Exchange created successfully!";
         }
 
-
-        public async Task<(List<ExchangeSellerView>?, Product?)> GetProductExchangesUI(int productId)
+        //TUAN
+        public async Task<(bool, string)> AcceptExchangeUI(int exchangeId)
         {
-            //Only get the exchanges that is waiting for the user to response
-            //. Do not need to see other cases
-            var exchangeProList = _repo.GetExchangesByProduct(productId).ToList();
-            //Get the product to display (Just bonus)
-            var product = await _pro_repo.GetProductByIdAsync(productId);
-            return (exchangeProList, product);
-        }
-
-
-        public async Task<(bool,string)> AcceptExchangeUI(int exchangeId)
-        {
-            
             try
             {
-                ////get Exchange enity
-                //var exchange = _repo.GetExchangeById(exchangeId);
-                //if (exchange == null)
-                //{
-                //    return (false, "Exchange doesn't exist!");
-                //}
-
-                ////Check availability of product
-                //var product = await _pro_repo.GetProductAvailableAsync(exchange.ProductId, 1);
-                //if (product == null)
-                //    return (false, "Your product currently is currently not available for exchanging! (Check if it has been banned or removed)");
-                ////Check availability of ExchangeProduct entity
-                //var exchangeProduct = new Product();
-                //if (exchange.ExchangeDetails.SingleOrDefault() != null)
-                //{
-                //    exchangeProduct = await _pro_repo.GetProductAvailableAsync( (int)exchange.ExchangeDetails.Single().ProductId!, 2);
-                //    if (exchangeProduct == null)
-                //        return (false, "Your product currently is currently not available for exchanging! (Check if it has been banned or removed)");
-                //}
+                var exchange1 = await _repo.FindExchangeByIdAsync(exchangeId, 2);
+                if (exchange1 == null)
+                    return (true, "Exchange doesn't exist or Status is invalid!");
 
 
-                ////Transfer the owner ship of products
-                //if (exchangeProduct != null)
-                //{
-                //    exchangeProduct.Status = 0;     //set to disabled
-                //    exchangeProduct.UserId = product.UserId;   //set ownership to seller
-                //    //await _pro_repo.UpdateProductAsync(exchangeProduct);
-                //}
-
-                //product.Status = 0;     //set to disabled
-                //product.UserId = exchange.UserId;    //set ownership to buyer
-                ////await _pro_repo.UpdateProductAsync(product);
-
-                //exchange.Status = 1;
-
-                ////Cancel every unaccepted exchange requests to this product
-
-                //Check of the exchange is available (!= null) and in waiting (Status == 3)
-
-                var exchange1 = _repo.GetExchangeById(exchangeId);
-                if (exchange1 == null || exchange1.Status != 3)
-                    return (false, "Exchange doesn't exist or Status is invalid!");
-
-                _context = new();
-                //var exchange = await _context.Exchanges.Include(e => e.ExchangeDetails).FirstOrDefaultAsync(e => e.ExchangeId == exchangeId);
-                //if (exchange == null || exchange.Status != 3)
-                //{
-                //    return (false, "Exchange doesn't exist or Status is invalid!");
-                //}
-
-
-                var product1 = await _pro_repo.GetProductAvailableAsync(exchange1.ProductId, 1);
+                var product1 = await _pro_repo.FindProductByIdAsync((int)exchange1.ProductId, 1);
                 if (product1 == null)
-                    return (false, "Your product currently is currently not available for exchanging! (Check if it has been banned or removed)");
+                    return (true, "Your product currently is currently not available for exchanging! (Check if it has been banned or removed)");
 
-                ////Check availability of product
-                //var product = await _context.Products.FirstOrDefaultAsync(e => e.ProductId == exchange.ProductId && e.Status == 1);
-                //if (product == null)
-                //    return (false, "Your product currently is currently not available for exchanging! (Check if it has been banned or removed)");
-
-                Product? exchangeProduct1 = null;
+                Product? exchangeProduct = null;
                 if (exchange1.ExchangeDetails.Single().ProductId != null)
                 {
-                    exchangeProduct1 = await _pro_repo.GetProductAvailableAsync((int)exchange1.ExchangeDetails.Single().ProductId!, 2);
-                    if (exchangeProduct1 == null)
-                        return (false, "Your product currently is currently not available for exchanging! (Check if it has been banned or removed)");
+                    exchangeProduct = await _pro_repo.FindProductByIdAsync((int)exchange1.ExchangeDetails.Single().ProductId!, 2);
+                    if (exchangeProduct == null)
+                        return (true, "Your product currently is currently not available for exchanging! (Check if it has been banned or removed)");
                 }
-                
-                ////Check availability of ExchangeProduct entity
-                //var exchangeProduct = new Product();
-                //if (exchange.ExchangeDetails.SingleOrDefault()!.ProductId != null)
-                //{
-                //    exchangeProduct = await _context.Products.FirstOrDefaultAsync(e => e.ProductId == exchange.ExchangeDetails.Single()!.ProductId && e.Status == 2);
-                //    if (exchangeProduct == null)
-                //        return (false, "Your product currently is currently not available for exchanging! (Check if it has been banned or removed)");
-                //}
 
-                var buyerId = exchange1.UserId;
-                var sellerId = product1.UserId;
+                //var buyerId = exchange1.UserId;
+                //var sellerId = product1.UserId;
 
                 //Transfer the owner ship of products (If there is a product offer)
-                if (exchangeProduct1 != null)
+                if (exchangeProduct != null)
                 {
-                    exchangeProduct1.Status = 0;     //set to disabled
-                    exchangeProduct1.UserId = sellerId;   //set ownership to seller
-                    await _pro_repo.UpdateProductAsync(exchangeProduct1);
+                    exchangeProduct.Status = 0;     //set to disabled
+                    //exchangeProduct1.UserId = sellerId;   //set ownership to seller
+                    await _pro_repo.UpdateProductStatusAsync(exchangeProduct.ProductId, 0);
                 }
 
                 product1.Status = 0;     //set to disabled
-                product1.UserId = buyerId;    //set ownership to buyer
-                await _pro_repo.UpdateProductAsync(product1);
+                //product1.UserId = buyerId;    //set ownership to buyer
+                await _pro_repo.UpdateProductStatusAsync(product1.ProductId, 0);
 
                 //Accept Exchange
                 await _repo.ExchangeAcceptedAsync(exchange1);
-
-                //Cancel every unaccepted exchange requests to this product
-                //await _context.Exchanges.Include(e => e.ExchangeDetails).ThenInclude(ed => ed.Product).Where(e => e.ProductId == product.ProductId).ForEachAsync(e => 
-                //                                                                                {
-                //                                                                                    e.Status = 0;
-                //                                                                                    if(e.ExchangeDetails.First().Product != null)
-                //                                                                                    {
-                //                                                                                        var product = e.ExchangeDetails.First().Product!;
-                //                                                                                        product.Status = product.Status == 2 ? 1 : product.Status;
-                //                                                                                    }
-                //                                                                                });
-                //await _context.SaveChangesAsync();
+                return (true, "Exchange accepted");
             }
             catch (Exception ex)
             {
                 return (false, ex.Message);
             }
-            return (false, "Failed end");
+        }
+
+        //TUAN
+        public async Task<(bool, string)> CancelExchangeUI(int exchangeId)
+        {
+            //find the exchange that is still WAITING (2)
+            try
+            {
+                //try Removing the exchange
+                await _repo.RemoveExchangeAsync(exchangeId);
+                return (true, "Exchange canceled.");
+            }
+            catch (Exception ex)
+            {
+                //return error message
+                return (false, ex.Message);
+            }
         }
     }
 }

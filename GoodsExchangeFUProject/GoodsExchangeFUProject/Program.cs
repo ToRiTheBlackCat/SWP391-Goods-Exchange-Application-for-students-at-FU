@@ -1,13 +1,17 @@
-
-using GoodsExchangeFUProject.Helpers;
+using Repositories.Entities;
+using Services.Helpers;
+using Services.Interface;
+using Repositories.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using Repositories;
+using System;
 using System.Text;
-using System.Text.Json.Serialization;
-
+using Services.Service;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace GoodsExchangeFUProject
 {
@@ -16,32 +20,41 @@ namespace GoodsExchangeFUProject
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var config = builder.Configuration;
 
             // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            //================================================
-            //Khai báo dependencies cho DBContext
-            builder.Services.AddDbContext<GoodsExchangeFudbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("GoodsExchangeFU")));
-            builder.Services.AddAuthorization();
-            //===============================================
-            //??ng kí cho MAPPER 
-            object value = builder.Services.AddAutoMapper(typeof(Program));
-            //===============================================
-            //Life Cycle DI
-            //builder.Services.AddScoped<IProductRepository, ProductRepository>();
-            //builder.Services.AddScoped<UserManager<User>>();
-            //builder.Services.AddScoped<SignInManager<User>>();
-            //===============================================
-            //??ng kí cho Identity  - Dùng cho phân quy?n 
-            //builder.Services.AddIdentity<User, IdentityRole>()
-            //                .AddEntityFrameworkStores<GoodsExchangeFudbContext>().AddDefaultTokenProviders();
-            //===============================================
-            //Khai báo cho Authentication
+            // Register DbContext
+            builder.Services.AddDbContext<GoodsExchangeFudbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("GoodsExchangeFU")));
+
+            // Register AuthHelper and other dependencies
+            builder.Services.AddScoped<AuthHelper>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<UserRepository>(); // Register UserRepository
+            builder.Services.AddScoped<IProductService, ProductServices>();
+            builder.Services.AddScoped<ProductRepository>();
+            builder.Services.AddScoped<IReportService, ReportService>();
+            builder.Services.AddScoped<ReportRepository>();
+            builder.Services.AddScoped<IExchangeService, ExchangeService>();
+            builder.Services.AddScoped<ExchangeRepository>();
+
+            // Configure AutoMapper
+            builder.Services.AddAutoMapper(typeof(ApplicationMapper));
+
+            //// Configure CORS 
+            //builder.Services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowAll", builder =>
+            //    {
+            //        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            //    });
+            //});
+
+            // Configure Authentication
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -51,50 +64,21 @@ namespace GoodsExchangeFUProject
             {
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"])),
-
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidAudience = builder.Configuration["JWT:ValidAudience"],
                     ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
                     ClockSkew = TimeSpan.Zero
                 };
-
-                //    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
-                //};
-            });
-            builder.Services.AddSingleton<AuthHelper>();
-
-            
-
-            //System.Text.Json.JsonException: A possible object cycle was detected
-            //. This can either be due to a cycle or if the object depth is larger than
-            //the maximum allowed depth of 32. Consider using ReferenceHandler
-            //. Preserve on JsonSerializerOptions to support cycles.
-            builder.Services.AddControllers().AddJsonOptions(x =>
-                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-
-            //===============================================
-
-            builder.Services.AddAuthorizationBuilder()
-                .AddPolicy("admin", p =>
-                {
-                    p.RequireClaim("role", "admin");
-                });
-
-
-            // Configure CORS =============================
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll", builder =>
-                {
-                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-                });
-            });
-            //===============================================
+            });// AddGoogle(googleOptions =>
+            //{
+            //    googleOptions.ClientId = config["Authentication:Google:ClientId"];
+            //    googleOptions.ClientSecret = config["Authentication:Google:ClientSecret"];
+            //});
 
             var app = builder.Build();
 
@@ -105,15 +89,12 @@ namespace GoodsExchangeFUProject
                 app.UseSwaggerUI();
             }
 
-            app.UseStaticFiles();               // Enable serving static files from the wwwroot folder
-
+            app.UseCors(c => c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
             app.UseHttpsRedirection();
-
             app.UseAuthentication();
-
             app.UseAuthorization();
 
-
+            
             app.MapControllers();
 
             app.Run();

@@ -1,28 +1,142 @@
-﻿using GoodsExchangeFUProject.Repositories;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Repositories;
+﻿using AutoMapper;
+using Repositories.ModelsView;
 using Repositories.Entities;
 using Repositories.Repositories;
+using Services.Interface;
+using System.Collections.Concurrent;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Services.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static GoodsExchangeFUProject.ModelsView.ProductModel;
 
 namespace Services.Service
 {
-    public class ProductService
+    public class ProductServices : IProductService
     {
-        private readonly ProductRepository _repo = new ProductRepository();
+        private readonly ProductRepository _repo;
+        private readonly IMapper _mapper;
 
-        public async Task<(bool, List<ProductViewModel>)> GetSortedProductsUI(ProductSortView sortView, string sortOrder, int pageIndex)
+        public ProductServices(ProductRepository productRepository, IMapper mapper)
+        {
+            _repo = productRepository;
+            _mapper = mapper;
+        }
+        //TRI
+        public async Task<(bool, object?)> GetProductDetail(int productId)
+        {
+            var product = await _repo.FindProductByIdAsync(productId, 1);
+            if (product != null)
+            {
+                var productModel = _mapper.Map<ProductModel>(product);
+                return (true, productModel);
+            }
+            return (false, null);
+        }
+        //TRI
+        //Support for ModGetProductWaitingList()
+        public List<ProductModel> ConvertProductToModel(List<Product> listIn)
+        {
+            var listOut = new List<ProductModel>();
+            foreach (var product in listIn)
+            {
+                listOut.Add(_mapper.Map<ProductModel>(product));
+            }
+
+            return listOut;
+        }
+        //TRI
+        //Support for StudentViewOwnProductList()
+        public List<OwnProductModel> ConvertProductToModel2(List<Product> listIn)
+        {
+            var listOut = new List<OwnProductModel>();
+            foreach (var product in listIn)
+            {
+                listOut.Add(_mapper.Map<OwnProductModel>(product));
+            }
+
+            return listOut;
+        }
+        public List<ViewAllProductModel> ConvertProductToModel3(List<Product> listIn)
+        {
+            var listOut = new List<ViewAllProductModel>();
+            foreach (var product in listIn)
+            {
+                listOut.Add(_mapper.Map<ViewAllProductModel>(product));
+            }
+
+            return listOut;
+        }
+        //TRI
+        public async Task<List<ProductModel>> ModGetProductWaitingList()
+        {
+
+            return ConvertProductToModel(_repo.ViewProductsByStatus(3).ToList());
+        }
+
+        public async Task<(bool, string)> ModAcceptProduct(int productId)
+        {
+            
+            var success = await _repo.UpdateProductStatusAsync(productId, 1);
+            if (success)
+            {
+                return (true, "Product accepted");
+            }
+            return (false, "Product not found in the waiting list.");
+        }
+        //TRI
+        public async Task<(bool, string)> ModRejectProduct(int productId)
+        {
+            
+            var success = await _repo.UpdateProductStatusAsync(productId, 0);
+            if (success)
+            {
+                return (true, "Product rejected");
+            }
+            return (false, "Product not found in the waiting list.");
+        }
+        //TRI
+        public async Task<(bool, string)> StudentDeleteProduct(int productId)
+        {
+
+            var success = await _repo.UpdateProductStatusAsync(productId, 0);
+            if (success)
+            {
+                return (true, "Product Deleted");
+            }
+            return (false, "Product not exist");
+        }
+        //TRI
+        public async Task<(bool, string)> StudentUpdateProduct(OwnProductModel product)
+        {
+            var productId = product.ProductId;
+            var success = await _repo.UpdateProductByIdAsync(productId, product);
+            if (success)
+            {
+                return (true, "Product updated");
+            }
+            return (false, "Product not exist");
+        }
+        //TRI
+        public async Task<(bool, string)> StudentAddNewProduct(AddNewProductModel addNewProductModel)
+        {
+            var newProduct = _mapper.Map<Product>(addNewProductModel);
+            newProduct.Status = 3;  //set to 3 for waiting list  
+            await _repo.AddProductAsync(newProduct);
+            return (true, "Product added to the waiting list.");
+        }
+        //TRI
+        public async  Task<List<OwnProductModel>?> StudentViewOwnProductList(int userId)
+        {
+            var list = ConvertProductToModel2(_repo.ViewProductsOfUser(userId).ToList());
+            if (list is not null)
+            {
+                return (list);
+            }
+            return (null);
+        }
+
+        //=========================
+        //TUAN
+        public async Task<(bool, List<ViewAllProductModel>, int)> GetSortedProductsUI(ProductSortView sortView, string sortOrder, int pageIndex)
         {
             //get products that sastify the fields
             var foundProducts = _repo
@@ -33,26 +147,28 @@ namespace Services.Service
                 foundProducts = SortProduct(foundProducts, sortOrder);
 
                 //paging the products
-                int pageSize = 2;
+                int pageSize = 6;
+                var totalPage = (int)Math.Ceiling(foundProducts.Count() / (double)pageSize);
                 PaginatedList<Product> list = await PaginatedList<Product>.CreateAsync(foundProducts, pageIndex, pageSize);
 
-                return 
-                    (true,
-                        list.Select(p => new ProductViewModel()
-                        {
-                            ProductId = p.ProductId,
-                            ProductName = p.ProductName,
-                            ProductDescription = p.ProductDescription,
-                            ProductImage = p.ProductImage,
-                            ProductPrice = p.ProductPrice,
-                            UserId = p.UserId,
-                        }).ToList()
-                    );
+                return(true, ConvertProductToModel3(list), totalPage);
+                //return
+                //    (true,
+                //        list.Select(p => new OwnProductModel()
+                //        {
+                //            ProductId = p.ProductId,
+                //            ProductName = p.ProductName,
+                //            ProductDescription = p.ProductDescription,
+                //            ProductImage = p.ProductImage,
+                //            ProductPrice = p.ProductPrice,
+                //            TypeId = p.TypeId,
+                //            UserId = p.UserId,
+                //        }).ToList()
+                //    );
             }
             //no product found
-            return (false, null!);
+            return (false, null!, 0);
         }
-
         public string? NameSort { get; set; }
         public string? PriceSort { get; set; }
         public string? CurrentSort { get; set; }
@@ -81,32 +197,6 @@ namespace Services.Service
             return productsIQ;
         }
 
-        public async Task<(bool,string)> CreateProductUI(ProductCreateView createView, IFormFile productImage)
-        {
-            // Create a new item listing
-            var createdProduct = new Product
-            {
-                ProductName = createView.ProductName,
-                ProductDescription = createView.ProductDescription,
-                ProductImage = Path.Combine("uploads", Path.GetFileName(productImage.FileName)), // Store relative path
-                ProductPrice = createView.ProductPrice,
-                UserId = createView.UserId,
-                TypeId = createView.TypeId,
-                Status = 1, //temporally add straight to db to test
-            };
-            
-            try
-            {
-                var product = await _repo.addProductAsync(createdProduct);
-                return (true,"Success");
-            }
-            catch (Exception ex)
-            {
-                return (false,ex.Message);
-            }
-        }
-
-
-        
     }
 }
+
