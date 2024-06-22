@@ -207,7 +207,7 @@ namespace Services.Service
                 {
                     if ((DateTime.Now - resetToken.CreatedDate).TotalSeconds > 60 * 3)
                         return (false, "Reset code is invalid!");
-                    user.Password = resetModel.Password;
+                    user.Password = ComputeSha256Hash(resetModel.Password + config["SecurityStr:Key"]);
                     await _repo.UpdateUserAsync(user);
                     return (true, "Password updated.");
                 }
