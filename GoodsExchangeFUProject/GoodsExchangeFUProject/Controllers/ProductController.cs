@@ -190,7 +190,7 @@ namespace GoodsExchangeFUProject.Controllers
         //TRI
         [Authorize(Roles = "student")]
         [HttpPut("Student/UpdateProduct")]
-        public async Task<IActionResult> StudentUpdateProduct([FromBody] OwnProductModel updateProduct,
+        public async Task<IActionResult> StudentUpdateProduct([FromForm] OwnProductModel updateProduct,
             [FromForm] IFormFile? productImage)
         {
             if (productImage == null || productImage.Length == 0)

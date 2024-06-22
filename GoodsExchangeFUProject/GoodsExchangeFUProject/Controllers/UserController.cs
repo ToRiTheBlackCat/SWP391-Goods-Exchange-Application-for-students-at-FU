@@ -36,6 +36,21 @@ namespace GoodsExchangeFUProject.Controllers
             }
             return BadRequest("User not found ");
         }
+        //TRI
+        [HttpPut("user/UpdateUserInfo/{userId}")]
+        public async Task<IActionResult> UpdateUserInfoById(int userId , [FromBody] UpdateInfoUserModel updateModel) 
+        {
+            var userFound = await _userService.GetUserInfo(userId);
+            if (userFound != null)
+            {
+                //var (result, aveScore) = await _userService.GetAverageScore(userFound.UserId);
+                //userFound.AverageScore = aveScore;
+                var message = await _userService.UpdateUserInfo(userId, updateModel);
+
+                return Ok(message);
+            }
+            return BadRequest("User not found ");
+        }
 
         //TRI
         [Authorize(Roles = "mod")]

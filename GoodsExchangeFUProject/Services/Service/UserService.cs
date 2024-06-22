@@ -17,6 +17,7 @@ using System.Net.Mail;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Google.Apis.Util;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Services.Service
 {
@@ -158,6 +159,30 @@ namespace Services.Service
 
             
         }
+        public async Task<string> UpdateUserInfo(int userId, UpdateInfoUserModel updateInfoUserModel)
+        {
+            var user = await _repo.GetUserInfo(userId,1);
+            if (user != null)
+            {
+                try
+                {
+                    user.UserName = updateInfoUserModel.UserName;
+                    user.Address = updateInfoUserModel.Address;
+                    user.Gender = updateInfoUserModel.Gender;
+                    user.Dob = updateInfoUserModel.Dob;
+                    
+                    await _repo.UpdateUserAsync(user);
+                }
+                catch (Exception ex) 
+                {
+                   return (ex.Message); 
+                }
+                
+                return "User profile updated";
+            }
+                
+            return "No user found";
+        }
         //=================
 
         //TUAN
@@ -207,7 +232,7 @@ namespace Services.Service
                 {
                     if ((DateTime.Now - resetToken.CreatedDate).TotalSeconds > 60 * 3)
                         return (false, "Reset code is invalid!");
-                    user.Password = resetModel.Password;
+                    user.Password = ComputeSha256Hash(resetModel.Password + config["SecurityStr:Key"]);
                     await _repo.UpdateUserAsync(user);
                     return (true, "Password updated.");
                 }
