@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
-import styles from '../styles/UserInformation.module.css';
+import styles from '../styles/User-profile.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import user from '../assets/user.jpg';
 

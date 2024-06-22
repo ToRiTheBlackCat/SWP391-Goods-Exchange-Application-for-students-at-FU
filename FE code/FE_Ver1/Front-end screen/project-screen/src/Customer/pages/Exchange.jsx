@@ -15,6 +15,7 @@ const ExchangePage = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [selectedProductImageSrc, setSelectedProductImageSrc] = useState('');
   const [exchangeImageSrc, setExchangeImageSrc] = useState('');
+  const [userEnteredPrice, setUserEnteredPrice] = useState('');
 
   useEffect(() => {
     if (!selectedProduct || !selectedProduct.id) {
@@ -104,7 +105,7 @@ const ExchangePage = () => {
       return;
     }
 
-    const balance = productToExchange.productPrice - selectedProduct.price;
+    const balance = parseFloat(userEnteredPrice.replace(/,/g, '')) - selectedProduct.price;
 
     const exchangeRequest = {
       userId: userId,
@@ -133,6 +134,16 @@ const ExchangePage = () => {
     }
   };
 
+  const formatCurrency = (value) => {
+    if (!value) return '';
+    return parseFloat(value.replace(/,/g, '')).toLocaleString('vi-VN');
+  };
+
+  const handlePriceChange = (e) => {
+    const value = e.target.value.replace(/[^0-9]/g, '');
+    setUserEnteredPrice(value ? formatCurrency(value) : '');
+  };
+
   if (error) {
     return <div className={styles.alert}>{error}</div>;
   }
@@ -140,10 +151,6 @@ const ExchangePage = () => {
   if (!selectedProduct || !productToExchange) {
     return <div>Loading...</div>;
   }
-
-  // Tính toán chênh lệch giá
-  const priceDifference = productToExchange.productPrice - selectedProduct.price;
-  console.log(priceDifference);
 
   return (
     <>
@@ -169,14 +176,16 @@ const ExchangePage = () => {
             </div>
           </div>
         </div>
-        <div className={styles.priceDifference}>
-          {priceDifference > 0 ? (
-            <p>You need to pay an additional {priceDifference.toLocaleString()} VND to complete the exchange.</p>
-          ) : priceDifference < 0 ? (
-            <p>The seller needs to pay you {Math.abs(priceDifference).toLocaleString()} VND to complete the exchange.</p>
-          ) : (
-            <p>The exchange can be completed without any additional payment.</p>
-          )}
+        <div className={styles.priceInputContainer}>
+          <label htmlFor="userPrice">Enter the exchange price:</label>
+          <input
+            type="text"
+            id="userPrice"
+            className={`form-control ${styles.priceInput}`}
+            value={userEnteredPrice}
+            onChange={handlePriceChange}
+            placeholder="Enter price"
+          />
         </div>
         {error && <div className="alert alert-danger">{error}</div>}
         {successMessage && <div className="alert alert-success">{successMessage}</div>}
