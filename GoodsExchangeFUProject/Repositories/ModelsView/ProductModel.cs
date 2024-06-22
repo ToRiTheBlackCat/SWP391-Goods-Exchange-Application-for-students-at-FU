@@ -10,6 +10,7 @@ namespace Repositories.ModelsView
         public string? ProductDescription { get; set; }
         public int ProductPrice { get; set; }
         public int TypeId { get; set; }
+        public int UserId { get; set; }
         public ProductOwner ProductOwner { get; set; } = null!;
     }
     public class OwnProductModel
