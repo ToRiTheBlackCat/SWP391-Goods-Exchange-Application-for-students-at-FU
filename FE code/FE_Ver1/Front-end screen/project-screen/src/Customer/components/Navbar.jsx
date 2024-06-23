@@ -87,6 +87,14 @@ const Navbar = () => {
                 Create product
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
+                to="/waiting-product"
+              >
+                View waiting product
+              </NavLink>
+            </li>
           </ul>
           <form className="d-flex me-2" onSubmit={handleSearchSubmit}>
             <input 

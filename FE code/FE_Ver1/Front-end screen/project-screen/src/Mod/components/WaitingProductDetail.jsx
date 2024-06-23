@@ -88,7 +88,7 @@ const WaitingProductDetail = ({ product }) => {
 
   return (
     <div className={`col-md-8 ${styles.col}`}>
-      <h3>Product Details</h3>
+      <h3>Exchange Details</h3>
       <table className={`table ${styles.table}`}>
         <tbody>
           <tr>

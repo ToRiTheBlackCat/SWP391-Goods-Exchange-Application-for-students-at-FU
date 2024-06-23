@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Navbar from '../components/Navbar';
+import { useState } from 'react';
 import styles from '../styles/UserInformation.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import user from '../assets/user.jpg';
@@ -14,29 +12,6 @@ function UserInformation() {
     address: '',
     gender: '',
   });
-  const [username, setUsername] = useState('');
-
-  useEffect(() => {
-    const userId = localStorage.getItem('userId');
-    if (userId) {
-      axios.get(`https://localhost:7027/api/User/user/GetUserInfo/${userId}`)
-        .then(response => {
-          const data = response.data;
-          setFormData({
-            email: data.email,
-            password: data.password,
-            phone: data.phone,
-            birthday: data.dob ? new Date(data.dob).toISOString().split('T')[0] : '',
-            address: data.address,
-            gender: data.gender ? 'Male' : 'Female', // Assuming gender is a boolean
-          });
-          setUsername(data.userName);
-        })
-        .catch(error => {
-          console.error('There was an error fetching the user data!', error);
-        });
-    }
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,13 +25,11 @@ function UserInformation() {
   };
 
   return (
-    <>
-    <Navbar/>
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
       <div className={`card p-4 ${styles.profileCard}`}>
         <div className="text-center mb-4">
           <img src={user} alt="User Avatar" className={`rounded-circle ${styles.avatar}`} />
-          <p className={styles.username}>{username}</p>
+          <p className={styles.username}>Username</p>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -67,13 +40,13 @@ function UserInformation() {
               id="email"
               name="email"
               value={formData.email}
-              readOnly
+              onChange={handleChange}
             />
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="form-label">Password</label>
             <input
-              type="text"
+              type="password"
               className="form-control"
               id="password"
               name="password"
@@ -89,7 +62,7 @@ function UserInformation() {
               id="phone"
               name="phone"
               value={formData.phone}
-              readOnly
+              onChange={handleChange}
             />
           </div>
           <div className="mb-3">
@@ -129,7 +102,6 @@ function UserInformation() {
         </form>
       </div>
     </div>
-    </>
   );
 }
 

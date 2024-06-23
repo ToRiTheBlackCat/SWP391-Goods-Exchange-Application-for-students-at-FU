@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../styles/Navbar.module.css';
@@ -93,14 +93,6 @@ const Navbar = () => {
                 to="/report-list"
               >
                 View report list
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink 
-                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
-                to="/view-banned-user"
-              >
-                View banned users
               </NavLink>
             </li>
           </ul>

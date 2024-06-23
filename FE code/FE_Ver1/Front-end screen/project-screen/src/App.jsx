@@ -19,11 +19,10 @@ import ReportProduct from './Customer/pages/Report.jsx';
 import WaitingProduct from './Mod/pages/ViewWaitingProduct.jsx';
 import ModPage from './Mod/pages/ModPage.jsx';
 import ModProductPage from './Mod/pages/ModProductPage.jsx';
-import UserProfile from './Mod/pages/User-profile.jsx';
-import ViewBanUser from './Mod/pages/ViewBanUser.jsx';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {Provider} from 'react-redux';
+import ReportList from './Mod/components/ReportList.jsx';
 
 const App = () => {
   return (
@@ -47,9 +46,9 @@ const App = () => {
         <Route path='/waiting-product' element={<WaitingProduct/>}/>
         <Route path="/mod/product/:id" element={<ModProductPage/>}/>
         <Route path='/update-product/:id' element={<UpdateProduct/>}/>
+        <Route path='/report-list' element={<ReportList/>}/>
+
         <Route path='/mod' element={<ModPage/>}/>
-        <Route path='/mod/view-profile/:userId' element={<UserProfile/>}/>
-        <Route path='/view-banned-user' element={<ViewBanUser/>}/>
       </Routes>
     </Router>
     </Provider>
