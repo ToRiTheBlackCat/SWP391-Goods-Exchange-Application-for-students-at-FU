@@ -82,7 +82,7 @@ const ProductPage = () => {
 
   const handleProfileClick = () => {
     dispatch(setProductToExchange(product));
-    navigate('/mod/view-profile');
+    navigate(`/mod/view-profile/${product.userId}`);  
   };
   const handleRemoveClick = () => {
     

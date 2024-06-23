@@ -5,7 +5,7 @@ import styles from '../styles/WaitingProduct.module.css';
 const WaitingProductList = ({ products, onSelectProduct }) => {
     return (
       <div className={`col-md-4 ${styles.col}`}>
-        <h3>Your exchange request</h3>
+        <h3>Waiting products</h3>
         <table className={`table ${styles.table}`}>
           <thead>
             <tr>

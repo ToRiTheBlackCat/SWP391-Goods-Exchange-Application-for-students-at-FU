@@ -105,7 +105,11 @@ const ExchangePage = () => {
       return;
     }
 
-    const balance = parseFloat(userEnteredPrice.replace(/,/g, '')) - selectedProduct.price;
+    const balance = parseFloat(userEnteredPrice.replace(/\./g, '').replace(',', '.'));
+    if (isNaN(balance)) {
+      setError('Please enter a valid price.');
+      return;
+    }
 
     const exchangeRequest = {
       userId: userId,

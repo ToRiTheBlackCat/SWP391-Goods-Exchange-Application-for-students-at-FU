@@ -18,7 +18,7 @@ function ViewProduct() {
   useEffect(() => {
     const userId = localStorage.getItem('userId');
     if (userId) {
-      axiosInstance.get(`/api/Product/Student/ViewOwnProductList/${userId}`)
+      axiosInstance.get(`/api/Product/Student/ViewOwnAvailableProductList/${userId}`)
         .then(response => {
           const fetchedProducts = response.data.map(product => ({
             id: product.productId,
