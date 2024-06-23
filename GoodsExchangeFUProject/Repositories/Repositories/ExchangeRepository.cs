@@ -29,7 +29,7 @@ namespace Repositories.Repositories
         //TRI
         public async Task<Exchange?> FindExchangeByIdAsync(int exchangeId, int statusNum)
         {
-            var exchange = await _context.Exchanges.Include(ex => ex.ExchangeDetails)
+            var exchange = await _context.Exchanges.Include(ex => ex.ExchangeDetails).AsNoTracking()
                 .FirstOrDefaultAsync(p => p.ExchangeId == exchangeId && p.Status == statusNum);
             if (exchange != null)
                 return exchange;
@@ -73,9 +73,9 @@ namespace Repositories.Repositories
             _context = new();
             return _context.Exchanges.Where(e => e.ProductId == productId && e.Status == 2).Select(e => new ExchangeSellerView()
             {
-                ExProductId = !e.ExchangeDetails.IsNullOrEmpty() ? e.ExchangeDetails.First().ProductId : null,
-                ExProductName = !e.ExchangeDetails.IsNullOrEmpty() ? e.ExchangeDetails.First().Product!.ProductName : null,
-                Balance = !e.ExchangeDetails.IsNullOrEmpty() ? e.ExchangeDetails.First().Balance : 0,
+                ExProductId = e.ExchangeDetails.First().ProductId != null ? e.ExchangeDetails.First().ProductId : null,
+                ExProductName = e.ExchangeDetails.First().ProductId != null ? e.ExchangeDetails.First().Product!.ProductName : null,
+                Balance = e.ExchangeDetails.First().Balance,
                 BuyerName = e.User.UserName,
                 CreateDate = e.CreateDate,
                 Status = e.Status,
@@ -109,12 +109,21 @@ namespace Repositories.Repositories
         public async Task RemoveExchangeAsync(int exchangeId)
         {
             _context = new();
-            var exchange = await _context.Exchanges.FirstAsync(ex => ex.ExchangeId == exchangeId && ex.Status == 2);
-            if (exchange == null)
-                throw new Exception("Invalid exchangeId or exchangeStatus");
-            var exchangeDetails = await _context.Exchanges.FirstAsync(ex => ex.ExchangeId == exchangeId);
+            var exchange = await _context.Exchanges.AsNoTracking().FirstOrDefaultAsync(ex => ex.ExchangeId == exchangeId && ex.Status == 2);
+            var exchangeDetails = await _context.ExchangeDetails.AsNoTracking().FirstOrDefaultAsync(ex => ex.ExchangeId == exchangeId);
+            if (exchangeDetails == null || exchange == null)
+                throw new Exception("Invalid exchangeId or exchange is not in WAITING.");
+
+            Product exchangeProduct;
+            if (exchangeDetails.ProductId != null)//Revert product status to (1) if there is one in exDetail
+            {
+                exchangeProduct = await _context.Products.FirstAsync(p => p.ProductId == exchangeDetails.ProductId);
+                exchangeProduct.Status = 1;
+            }
+
+            _context.ExchangeDetails.Remove(exchangeDetails);
             _context.Exchanges.Remove(exchange);
-            _context.Exchanges.Remove(exchangeDetails);
+
             await _context.SaveChangesAsync();
         }
 

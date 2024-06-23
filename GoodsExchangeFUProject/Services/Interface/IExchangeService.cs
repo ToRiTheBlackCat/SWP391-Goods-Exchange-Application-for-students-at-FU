@@ -12,8 +12,9 @@ namespace Services.Interface
     {
         Task<(bool, string)> StudentRatingAndCommentUser(RatingModel rating);
         List<ExchangeModelView> GetExchangeOfUserUI(int userId);
-        Task<(List<ExchangeSellerView>?, Product?)> GetProductExchangesUI(int productId);
+        Task<(List<ExchangeSellerView>, Product)> GetProductExchangesUI(int productId);
         Task<String> CreateExchangeUI(ExchangeCreateView createView);
         Task<(bool, string)> AcceptExchangeUI(int exchangeId);
+        Task<(bool, string)> CancelExchangeUI(int exchangeId);
     }
 }

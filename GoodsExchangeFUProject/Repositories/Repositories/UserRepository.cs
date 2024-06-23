@@ -103,6 +103,7 @@ namespace Repositories.Repositories
             return false;
         }
 
+        //Tuan
         public async Task CreateUser(UserRegisterModel registerModel, int RoleId)
         {
             _context = new();
@@ -125,6 +126,7 @@ namespace Repositories.Repositories
             await _context.SaveChangesAsync();
         }
 
+        //Tuan
         public async Task UpdateUserAsync(User user)
         {
             _context = new();
@@ -132,12 +134,14 @@ namespace Repositories.Repositories
             await _context.SaveChangesAsync();
         }
 
+        //Tuan
         public async Task<ResetToken?> GetResetTokenAsync(int userId)
         {
             _context = new GoodsExchangeFudbContext();
             return await _context.ResetTokens.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId);
         }
 
+        //Tuan
         public async Task CreateResetTokenAsync(int userId, string token, DateTime createdDate)
         {
             _context = new GoodsExchangeFudbContext();
@@ -150,6 +154,7 @@ namespace Repositories.Repositories
             await _context.SaveChangesAsync();
         }
 
+        //Tuan
         public async Task UpdateResetTokenAsync(ResetToken resetToken)
         {
             _context = new GoodsExchangeFudbContext();

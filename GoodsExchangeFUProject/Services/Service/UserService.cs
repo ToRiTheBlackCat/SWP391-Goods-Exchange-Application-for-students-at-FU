@@ -212,9 +212,8 @@ namespace Services.Service
             catch (Exception ex)
             {
                 await Console.Out.WriteLineAsync(ex.StackTrace);
+                return "Encountered an Error!" + ex.Message;
             }
-
-            return "Encountered an Error!";
         }
 
         public async Task<(bool, string)> UserResetPasswordUI(UserPassResetModel resetModel)
@@ -224,7 +223,7 @@ namespace Services.Service
             try
             {
                 //Find user with email address
-                User user = await _repo.GetUserByMailAsync(resetModel.Email);
+                User? user = await _repo.GetUserByMailAsync(resetModel.Email);
                 if (user == null)
                     return (false, "Account not found!");
                 var resetToken = user.ResetToken;
@@ -234,6 +233,8 @@ namespace Services.Service
                         return (false, "Reset code is invalid!");
                     user.Password = ComputeSha256Hash(resetModel.Password + config["SecurityStr:Key"]);
                     await _repo.UpdateUserAsync(user);
+                    resetToken.ResetToken1 = "";
+                    await _repo.UpdateResetTokenAsync(resetToken);
                     return (true, "Password updated.");
                 }
                 return (false, "Wrong reset code!");
@@ -252,10 +253,7 @@ namespace Services.Service
             {
                 if (!await _repo.DuplicatedCredentials(registerModel.UserName, registerModel.Email, registerModel.PhoneNumber))
                 {
-                    //IConfiguration config = new ConfigurationBuilder()
-                    //    .SetBasePath(Directory.GetCurrentDirectory())
-                    //        .AddJsonFile("appsettings.json", true, true)
-                    //        .Build();
+                    //Encode the password
                     registerModel.Password = ComputeSha256Hash(registerModel.Password + config["SecurityStr:Key"]);
 
                     await _repo.CreateUser(registerModel, roleId);

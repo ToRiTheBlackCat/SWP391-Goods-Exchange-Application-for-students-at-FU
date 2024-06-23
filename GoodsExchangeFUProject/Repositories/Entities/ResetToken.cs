@@ -7,7 +7,7 @@ public partial class ResetToken
 {
     public int UserId { get; set; }
 
-    public string ResetToken1 { get; set; } = null!;
+    public required string ResetToken1 { get; set; }
 
     public DateTime CreatedDate { get; set; }
 

@@ -92,6 +92,7 @@ namespace Repositories.Repositories
         }
 
         //=======================
+        //Tuan
         public IQueryable<Product> GetProductsByField(string? getName, string? getDesc, int? getCategoryId)
         {
             _context = new GoodsExchangeFudbContext();

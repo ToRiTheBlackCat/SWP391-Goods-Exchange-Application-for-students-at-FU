@@ -41,6 +41,7 @@ namespace GoodsExchangeFUProject.Controllers
             return Ok(list.Item1);
         }
 
+        //TUAN
         // POST: api/CreateExchange
         [HttpPost("CreateExchange")]
         public async Task<IActionResult> CreateExchange(ExchangeCreateView exchangeCreate)
@@ -52,7 +53,6 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TUAN
-        // PUT: api/ProductExchanges
         [HttpPut("AcceptExchange")]
         public async Task<IActionResult> AcceptExchange(int exchangeId)
         {
@@ -62,6 +62,17 @@ namespace GoodsExchangeFUProject.Controllers
                 return BadRequest(message);
 
             return Ok(message);
+        }
+
+        //TUAN
+        //[Authorize(Roles = "student")]
+        [HttpDelete("Student/CancelExchange")]
+        public async Task<IActionResult> CancelExchange(int exchangeId)
+        {
+            var (result, message) = await _exchangeService.CancelExchangeUI(exchangeId);
+            if (result)
+                return Ok(message);
+            return BadRequest(message);
         }
 
         //===============
