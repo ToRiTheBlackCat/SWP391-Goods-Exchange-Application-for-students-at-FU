@@ -96,16 +96,16 @@ namespace Repositories.Repositories
         public IQueryable<Product> GetProductsByField(string? getName, string? getDesc, int? getCategoryId)
         {
             _context = new GoodsExchangeFudbContext();
-            if (getName == null && getDesc == null)
-            {
+            if (getName == null)
                 getName = string.Empty;
+            if (getDesc == null)
                 getDesc = string.Empty;
-            }
-            var list = _context.Products.AsNoTracking().Include(p => p.Type).Include(p => p.User).Where(p => p.Status == 1);
+
+            var list = _context.Products.Include(p => p.Type).Include(p => p.User).AsNoTracking()
+                .Where(p => p.Status == 1 && p.User.IsBanned == false);
             if (getCategoryId != null)
-            {
                 list = list.Where(p => p.TypeId == getCategoryId);
-            }
+
             list = list.Where(p
                 => p.ProductName.Contains(getName) || p.ProductDescription.Contains(getDesc));
 
