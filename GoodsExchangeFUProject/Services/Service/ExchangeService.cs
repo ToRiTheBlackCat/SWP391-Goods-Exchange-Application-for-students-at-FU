@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.CodeAnalysis.Text;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Entities;
 using Repositories.ModelsView;
@@ -69,14 +70,22 @@ namespace Services.Service
         
 
         //TUAN
-        public async Task<(List<ExchangeSellerView>?, Product?)> GetProductExchangesUI(int productId)
+        public async Task<(List<ExchangeSellerView>, Product)> GetProductExchangesUI(int productId)
         {
-            //Only get the exchanges that is waiting for the user to response
-            //. Do not need to see other cases
-            var exchangeProList = _repo.GetExchangesByProduct(productId).ToList();
-            //Get the product to display (Just bonus)
-            var product = await _pro_repo.FindProductByIdAsync(productId,1);
-            return (exchangeProList, product);
+            try
+            {
+                //Only get the exchanges that is waiting for the user to response
+                //. Do not need to see other cases
+                var exchangeProList = _repo.GetExchangesByProduct(productId).ToList();
+                //Get the product to display (Just bonus)
+                var product = await _pro_repo.FindProductByIdAsync(productId, 1);
+                return (exchangeProList, product);
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.Message);
+                return (null, null);
+            }
         }
 
         //TUAN
@@ -89,10 +98,13 @@ namespace Services.Service
             if (createView.ExProductId != null)
                 exProduct = await _pro_repo.FindProductByIdAsync((int)createView.ExProductId!, 1);
 
-            if (product == null
-                || (createView.ExProductId != null && exProduct == null))
+            if (product == null)
             {
                 return "Product no longer available for exchange!";
+            }
+            else if (createView.ExProductId != null && exProduct == null)
+            {
+                return "Product used for exchange not available!";
             }
             else if (product.UserId == createView.UserId)
                 return "You already own this product";
@@ -118,43 +130,36 @@ namespace Services.Service
                 //Change product status of ExchangeProduct to "trading"
                 if (exProduct != null)
                 {
-                    
                     await _pro_repo.UpdateProductStatusAsync(exProduct.ProductId,2);
                 }
-
-
             }
             catch (Exception ex)
             {
                 return ex.Message;
             }
-
-
             return "Exchange created successfully!";
         }
 
         //TUAN
         public async Task<(bool, string)> AcceptExchangeUI(int exchangeId)
         {
-
             try
             {
-
                 var exchange1 = await _repo.FindExchangeByIdAsync(exchangeId, 2);
                 if (exchange1 == null)
                     return (true, "Exchange doesn't exist or Status is invalid!");
-
 
                 var product1 = await _pro_repo.FindProductByIdAsync(exchange1.ProductId, 1);
                 if (product1 == null)
                     return (true, "Your product currently is currently not available for exchanging! (Check if it has been banned or removed)");
 
+                //Check if there is a product offered with Exchange
                 Product? exchangeProduct = null;
                 if (exchange1.ExchangeDetails.Single().ProductId != null)
                 {
                     exchangeProduct = await _pro_repo.FindProductByIdAsync((int)exchange1.ExchangeDetails.Single().ProductId!, 2);
                     if (exchangeProduct == null)
-                        return (true, "Your product currently is currently not available for exchanging! (Check if it has been banned or removed)");
+                        return (true, "Your EXCHANGE product currently is currently not available for exchanging! (Check if it has been banned or removed)");
                 }
 
                 //var buyerId = exchange1.UserId;
@@ -183,25 +188,25 @@ namespace Services.Service
         }
 
         ////TUAN
-        //public async Task<String> cancelExchangeUI(int exchangeId)
-        //{
-        //    //find the exchange that is still WAITING (2)
+        public async Task<(bool, string)> CancelExchangeUI(int exchangeId)
+        {
+            try
+            {
+                //Find the exchange that is still WAITING (2)
+                var canceledExchange = await _repo.FindExchangeByIdAsync(exchangeId, 2);
 
-        //    if ( exchange == null)
-        //    {
-        //        //return 
-                
-        //    }
-
-        //    try
-        //    {
-        //        //try Removing the exchange
-        //        await _repo.RemoveExchangeAsync(exchangeId);
-        //    }
-        //    catch (Exception ex)
-        //    {
-                
-        //    }
-        //}
+                if (canceledExchange == null)
+                {
+                    return (true, "Exchange not found or Unavailable for removal!");
+                }
+                //try Removing the exchange
+                await _repo.RemoveExchangeAsync(exchangeId);
+                return (true,"Exchange removed");
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
     }
 }
