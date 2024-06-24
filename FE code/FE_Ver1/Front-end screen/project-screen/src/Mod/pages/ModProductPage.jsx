@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../authorized/axiosInstance'; // Import axiosInstance
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
 import anhliem from '../assets/anhliem.jpg';
 import axios from 'axios';
-import styles from '../styles/ModProductPage.module.css';
+import styles from '../styles/ModProductPage.module.css'; // Import CSS module
 import { setProductToExchange } from '../store/store';
 
 const ProductPage = () => {
@@ -28,6 +28,7 @@ const ProductPage = () => {
         setSellerInfo(productData.productOwner);
         setPhoneNumber(productData.productOwner.phone);
 
+        // Fetch product image
         const imageResponse = await axios.get(`http://localhost:5299/api/Product/GetUserImage?imageName=${productData.productImage}`, {
           responseType: 'text',
         });
@@ -46,7 +47,7 @@ const ProductPage = () => {
             mimeType = 'image/webp';
             break;
           default:
-            mimeType = 'image/jpeg';
+            mimeType = 'image/jpeg'; // Default to JPEG if MIME type cannot be determined
             break;
         }
 
@@ -71,24 +72,6 @@ const ProductPage = () => {
     }
   };
 
-  const handleProfileClick = () => {
-    dispatch(setProductToExchange(product));
-    navigate('/mod/view-profile');
-  };
-
-  const handleRemoveClick = async () => {
-    const confirm = window.confirm('Are you sure you want to remove this product?');
-    if (!confirm) return;
-
-    try {
-      await axiosInstance.delete(`/api/Product/Student/RemoveProduct/${id}`);
-      navigate('/mod/view-product-list');
-    } catch (error) {
-      console.error('Error removing product:', error);
-      setError('Error removing product.');
-    }
-  };
-
   if (error) {
     return <div>{error}</div>;
   }
@@ -97,6 +80,14 @@ const ProductPage = () => {
     return <div>Loading...</div>;
   }
 
+  const handleProfileClick = () => {
+    dispatch(setProductToExchange(product));
+    navigate(`/mod/view-profile/${product.userId}`);  
+  };
+  const handleRemoveClick = () => {
+    
+  }
+  
   const currentUser = localStorage.getItem('userName');
 
   return (
@@ -105,10 +96,10 @@ const ProductPage = () => {
       <div className="container mt-5">
         <div className="bg-white p-4 shadow-sm">
           <h1 className="display-4">{product.productName}</h1>
-          <h5 className={styles.sellerName}>Owner: {sellerInfo.userName}</h5>
+          <h5 className={styles.sellerName}>Owner: {sellerInfo.userName}</h5> {/* Apply sellerName style */}
           <p className="text-danger fs-4">Price: {product.productPrice.toLocaleString()} VND</p>
-          <div className={`text-center mb-4 ${styles.productImageContainer}`}>
-            <img src={imageSrc} className={`img-fluid ${styles.productImage}`} alt={product.productName} />
+          <div className={`text-center mb-4 ${styles.productImageContainer}`}> {/* Apply productImageContainer style */}
+            <img src={imageSrc} className={`img-fluid ${styles.productImage}`} alt={product.productName} /> {/* Apply productImage style */}
           </div>
           <div>
             <h2 className="h4">Detailed description</h2>
@@ -129,13 +120,15 @@ const ProductPage = () => {
             </div>
           </div>
           <div className="d-flex justify-content-between mb-3">
-            <button onClick={handlePhoneClick} className={`btn btn-success w-100 me-1 ${styles.phoneNumberButton}`}>{phoneNumber}</button>
+            <button onClick={handlePhoneClick} className={`btn btn-success w-100 me-1 ${styles.phoneNumberButton}`}>{phoneNumber}</button> {/* Apply phoneNumberButton style */}
           </div>
-          <button onClick={handleProfileClick} className="btn btn-info w-100">View user profile</button>
-        </div>
+            <button onClick={handleProfileClick} className="btn btn-info w-100">View user profile</button>
+            
+          </div>
+          
       )}
     </>
   );
 };
 
-export default ModProductPage;
+export default ProductPage;

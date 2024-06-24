@@ -19,6 +19,8 @@ import ReportProduct from './Customer/pages/Report.jsx';
 import WaitingProduct from './Mod/pages/ViewWaitingProduct.jsx';
 import ModPage from './Mod/pages/ModPage.jsx';
 import ModProductPage from './Mod/pages/ModProductPage.jsx';
+import UserProfile from './Mod/pages/User-profile.jsx';
+import ViewBanUser from './Mod/pages/ViewBanUser.jsx';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {Provider} from 'react-redux';
@@ -49,6 +51,8 @@ const App = () => {
         <Route path='/report-list' element={<ReportList/>}/>
 
         <Route path='/mod' element={<ModPage/>}/>
+        <Route path='/mod/view-profile/:userId' element={<UserProfile/>}/>
+        <Route path='/view-banned-user' element={<ViewBanUser/>}/>
       </Routes>
     </Router>
     </Provider>

@@ -95,6 +95,14 @@ const Navbar = () => {
                 View report list
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
+                to="/view-banned-user"
+              >
+                View banned users
+              </NavLink>  
+            </li>
           </ul>
           <form className="d-flex me-2" onSubmit={handleSearchSubmit}>
             <input 

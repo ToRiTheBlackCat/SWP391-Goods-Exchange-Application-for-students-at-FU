@@ -56,6 +56,30 @@ const ExchangeRequests = ({ productId, productName }) => {
       toast.error('Error accepting exchange.');
     }
   };
+  const handleDeclineExchange = async (exchangeId) => {
+    const isConfirmed = window.confirm('Are you sure you want to decline this exchange request?');
+    if (!isConfirmed) {
+      return;
+    }
+
+    console.log('Exchange ID:', exchangeId);
+    try {
+      const response = await axiosInstance.delete(`/api/Exchange/Student/CancelExchange?exchangeId=${exchangeId}`);
+      if (response.status === 200) {
+        setSuccessMessage('Exchange declined successfully!');
+        toast.success('Exchange declined successfully!');
+        // Remove the declined exchange request from the state
+        setExchangeRequests(exchangeRequests.filter(request => request.exchangeId !== exchangeId));
+      } else {
+        setError('Failed to decline exchange.');
+        toast.error('Failed to decline exchange.');
+      }
+    } catch (error) {
+      console.error('Error declining exchange:', error);
+      setError('Error declining exchange.');
+      toast.error('Error declining exchange.');
+    }
+  };
 
   return (
     <Container fluid className={styles.container}>
@@ -86,7 +110,7 @@ const ExchangeRequests = ({ productId, productName }) => {
                     <Button variant="success" onClick={() => handleAcceptExchange(request.exchangeId)} className={styles.btn}>
                       Accept
                     </Button>
-                    <Button variant="danger" className={styles.btn}>
+                    <Button variant="danger" onClick={() => handleDeclineExchange(request.exchangeId)} className={styles.btn}>
                       Decline
                     </Button>
                   </td>

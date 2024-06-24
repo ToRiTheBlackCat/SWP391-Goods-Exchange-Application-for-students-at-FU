@@ -1,7 +1,8 @@
-  import React, { useState, useEffect } from 'react';
+  import { useState, useEffect } from 'react';
   import { Link } from 'react-router-dom';
   import axiosInstance from '../../authorized/axiosInstance';
   import styles from '../styles/ReportList.module.css';
+  import Navbar from './Navbar';
 
   const ReportList = () => {
     const [reports, setReports] = useState([]);
@@ -29,7 +30,7 @@
       if (!confirm) return;
 
       try {
-        await axiosInstance.post(`/api/Report/Mod/ViewReportList/${reportId}/mark-done`);
+        await axiosInstance.post(`/api/Report/Mod/MarkDoneReport/${reportId}`);
         setReports(reports.filter(report => report.reportId !== reportId));
       } catch (error) {
         setError(error.response?.data?.message || 'There was an error marking the report as done!');
@@ -46,6 +47,8 @@
     };
 
     return (
+      <>
+      <Navbar/>
       <div className={styles.reportListContainer}>
         <h1>Reported Products List</h1>
         {loading && <p>Loading...</p>}
@@ -109,6 +112,7 @@
           </div>
         )}
       </div>
+      </>
     );
   };
 

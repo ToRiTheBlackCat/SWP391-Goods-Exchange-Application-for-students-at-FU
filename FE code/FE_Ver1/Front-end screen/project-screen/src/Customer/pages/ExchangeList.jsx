@@ -57,10 +57,22 @@ const ExchangeList = () => {
     }
   };
 
-  const handleCancelExchange = (exchangeId) => {
+  const handleCancelExchange = async (exchangeId) => {
     // Handle the cancel action
     console.log(`Cancelling exchange with ID: ${exchangeId}`);
-    // Implement the cancel functionality here
+    
+    try {
+      const response = await axiosInstance.delete(`/api/Exchange/Student/CancelExchange?exchangeId=${exchangeId}`);
+      if (response.status === 200) {
+        toast.success('Exchange cancelled successfully');
+        // Optionally, remove the cancelled exchange from the state
+        setExchanges(exchanges.filter(exchange => exchange.exchangeId !== exchangeId));
+        setSelectedExchange(null);
+      }
+    } catch (error) {
+      console.error('Error cancelling exchange:', error);
+      setError('Error cancelling exchange. Please try again.');
+    }
   };
 
   const handleSubmitRating = async (e) => {
