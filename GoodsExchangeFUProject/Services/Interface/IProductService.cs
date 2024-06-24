@@ -8,7 +8,7 @@ namespace Services.Interface
     {
         Task<(bool, object?)> GetProductDetail(int productId);
         Task<(bool, string)> StudentAddNewProduct(AddNewProductModel addNewProductModel);
-        Task<List<OwnProductModel>> StudentViewOwnProductList(int userId);
+        Task<List<OwnProductModel>?> StudentViewOwnProductList(int userId);
         Task<List<OwnProductModel>?> StudentViewOwnProductList(int userId, int statusNum);
         Task<(bool, string)> StudentDeleteProduct(int productId);
         Task<(bool, string)> StudentUpdateProduct(OwnProductModel product);

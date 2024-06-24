@@ -22,7 +22,14 @@ namespace GoodsExchangeFUProject.Controllers
         {
             _userService = userService;
         }
-
+        //TRI
+        [Authorize(Roles = "admin")]
+        [HttpGet("Admin/GetAllAccountList")]
+        public async Task<IActionResult> GetAllAccounts()
+        {
+            var list = await _userService.GetAllAccountList();
+            return Ok(list);
+        }
         //TRI
         [HttpGet("user/GetUserInfo/{userId}")]
         public async Task<IActionResult> GetUserInfoById(int userId)
@@ -35,6 +42,14 @@ namespace GoodsExchangeFUProject.Controllers
                 return Ok(userFound);
             }
             return BadRequest("User not found ");
+        }
+        //TRI
+        [Authorize(Roles = "mod")]
+        [HttpGet("Mod/ViewBanAccountList")]
+        public async Task<IActionResult> ModViewBanAccountList()
+        {
+            var accounts = await _userService.ModGetBanAccountList();
+            return Ok(accounts);
         }
         //TRI
         [HttpPut("user/UpdateUserInfo/{userId}")]
@@ -50,15 +65,6 @@ namespace GoodsExchangeFUProject.Controllers
                 return Ok(message);
             }
             return BadRequest("User not found ");
-        }
-
-        //TRI
-        [Authorize(Roles = "mod")]
-        [HttpGet("Mod/ViewBanAccountList")]
-        public async Task<IActionResult> ModViewBanAccountList()
-        {
-            var accounts = await _userService.ModGetBanAccountList();
-            return Ok(accounts);
         }
 
         //TRI
@@ -88,7 +94,19 @@ namespace GoodsExchangeFUProject.Controllers
 
             return Ok(new { Token = response, userId = id });
         }
-
+        //TRI
+        [Authorize(Roles = "admin")]
+        [HttpPost("Admin/DeleteAccount/{userId}")]
+        public async Task<IActionResult> AdminDeleteAccount(int userId)
+        {
+            var userFound = await _userService.GetUserInfo(userId);
+            if (userFound != null)
+            {
+                await _userService.AdminDeleteAccount(userId);
+                return Ok("Delete successfully");
+            }
+            return BadRequest("User not found");
+        }
         //TRI
         [Authorize(Roles = "mod")]
         [HttpPost("Mod/BanAccount/{userId}")]
@@ -115,21 +133,7 @@ namespace GoodsExchangeFUProject.Controllers
             return BadRequest(message);
         }
 
-        //TRI
-        //[Authorize]
-        //[HttpPost("user/logout")]
-        //public async Task<IActionResult> LogOutAccount()
-        //{
-        //    try
-        //    {
-        //        await _userRepository.LogOutAccount(string token);
-        //        return Ok("Sign out successfully");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+        
 
 
         //TUAN

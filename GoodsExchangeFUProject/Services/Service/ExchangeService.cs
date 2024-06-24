@@ -45,9 +45,15 @@ namespace Services.Service
             else
                 return (false, "ExchangeId not existed or exchange not completed");
         }
+        //TRI
+        public List<AllExchangeModelView> GetAllExchangeList()
+        {
+            List<AllExchangeModelView> list = _repo.GetExchangeList();
+            return list;
+        }
 
         //=================
-        
+
         //TUAN
         public List<ExchangeModelView> GetExchangeOfUserUI(int userId)
         {

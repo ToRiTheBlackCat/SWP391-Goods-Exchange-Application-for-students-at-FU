@@ -15,5 +15,6 @@ namespace Services.Interface
         Task<(List<ExchangeSellerView>?, Product?)> GetProductExchangesUI(int productId);
         Task<String> CreateExchangeUI(ExchangeCreateView createView);
         Task<(bool, string)> AcceptExchangeUI(int exchangeId);
+        List<AllExchangeModelView> GetAllExchangeList();
     }
 }

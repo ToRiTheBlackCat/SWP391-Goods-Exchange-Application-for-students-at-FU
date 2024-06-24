@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Google.Apis.Util;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Net.WebSockets;
 
 namespace Services.Service
 {
@@ -39,7 +40,7 @@ namespace Services.Service
         }
 
         //TRI
-        public async Task<(bool, string?, int?, string?,string?)> LoginByEmailAndPassword(LoginUserModel login)
+        public async Task<(bool, string?, int?, string?, string?)> LoginByEmailAndPassword(LoginUserModel login)
         {
             if (login == null || string.IsNullOrEmpty(login.Email) || string.IsNullOrEmpty(login.Password))
             {
@@ -49,10 +50,10 @@ namespace Services.Service
             {
 
                 login.Password = ComputeSha256Hash(login.Password + config["SecurityStr:Key"]);
-                var (isAuthenticated, user, id, name,role) = await _repo.AuthenticateUser(login);
+                var (isAuthenticated, user, id, name, role) = await _repo.AuthenticateUser(login);
                 if (!isAuthenticated)
                 {
-                    return (false, null, 0, null,null);
+                    return (false, null, 0, null, null);
                 }
                 else
                 {
@@ -124,6 +125,11 @@ namespace Services.Service
             var listOut = new List<UserModel2>();
             foreach (var user in listIn)
             {
+                user.Password = user.Password.Trim();
+                user.Email = user.Email.Trim();
+                user.Phone = user.Phone.Trim();
+
+
                 listOut.Add(_mapper.Map<UserModel2>(user));
             }
 
@@ -148,20 +154,20 @@ namespace Services.Service
             double averageScore = (double)listScores.Average();
             return (true, averageScore);
         }
-        //=====================================
+        
         //TRI
-        public async Task<UserModel2?> GetUserInfo( int userId)
+        public async Task<UserModel2?> GetUserInfo(int userId)
         {
-            var user = await _repo.GetUserInfo(userId,1);
+            var user = await _repo.GetUserInfo(userId, 1);
             if (user != null)
                 return (_mapper.Map<UserModel2>(user));
-            return(null);
+            return (null);
 
-            
+
         }
         public async Task<string> UpdateUserInfo(int userId, UpdateInfoUserModel updateInfoUserModel)
         {
-            var user = await _repo.GetUserInfo(userId,1);
+            var user = await _repo.GetUserInfo(userId, 1);
             if (user != null)
             {
                 try
@@ -170,20 +176,37 @@ namespace Services.Service
                     user.Address = updateInfoUserModel.Address;
                     user.Gender = updateInfoUserModel.Gender;
                     user.Dob = updateInfoUserModel.Dob;
-                    
+
                     await _repo.UpdateUserAsync(user);
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
-                   return (ex.Message); 
+                    return (ex.Message);
                 }
-                
+
                 return "User profile updated";
             }
-                
+
             return "No user found";
         }
-        //=================
+        //TRI
+        public async Task<List<UserModel2>> GetAllAccountList()
+        {
+            var list = await _repo.GetAllUserList();
+            foreach (var x in list)
+            {
+                var (result, avescore) = await GetAverageScore(x.UserId);
+                x.AverageScore = avescore;
+            }
+
+            return ConvertUserToModel(list);
+        }
+        
+        //TRI
+        public async Task AdminDeleteAccount(int userId)
+        {
+            await _repo.RemoveUser(userId);
+        }
 
         //TUAN
         public async Task<string> UserForgotPasswordUI(string emailAddress)
@@ -269,6 +292,6 @@ namespace Services.Service
             return (false, "Register failed");
         }
 
-        
+
     }
 }

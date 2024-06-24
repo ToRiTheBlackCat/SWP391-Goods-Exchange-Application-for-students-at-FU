@@ -30,7 +30,7 @@ namespace Repositories.Repositories
                 return (true, user, user.UserId, user.UserName, user.Role.RoleName);
             return (false, null, 0, null, null);
         }
-        
+
         //TRI
         public async Task<bool> UpdateUserStatusAsync(int userId, int status)
         {
@@ -75,7 +75,19 @@ namespace Repositories.Repositories
             var banned = false;
             if (statusNum == 0)
                 banned = true;
-            return _context.Users.Where(u => u.UserId == userId && u.IsBanned == banned ).FirstOrDefault();
+            return _context.Users.Where(u => u.UserId == userId && u.IsBanned == banned).FirstOrDefault();
+        }
+        //TRI
+        public async Task<List<User>> GetAllUserList()
+        {
+            return  _context.Users.Where(u => u.RoleId != 1).ToList();
+
+        }
+        public async Task RemoveUser(int userId)
+        {
+            var user = await GetUserInfo(userId, 1);
+             _context.Remove(user);
+            await _context.SaveChangesAsync();
         }
         //======================================
         public async Task<User?> GetUserByMailAsync(string emailAddress)
@@ -121,7 +133,7 @@ namespace Repositories.Repositories
                 RoleId = RoleId,
                 Gender = registerModel.Gender,
                 Dob = registerModel.Dob,
-            }); 
+            });
             await _context.SaveChangesAsync();
         }
 
