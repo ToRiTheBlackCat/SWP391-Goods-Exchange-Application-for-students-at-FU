@@ -6,6 +6,8 @@ import axios from 'axios';
 import axiosInstance from '../../authorized/axiosInstance';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../styles/Exchange.module.css'; // Import CSS module
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import CSS for confirm alert
 
 const ExchangePage = () => {
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
@@ -16,7 +18,7 @@ const ExchangePage = () => {
   const [selectedProductImageSrc, setSelectedProductImageSrc] = useState('');
   const [exchangeImageSrc, setExchangeImageSrc] = useState('');
   const [userInputBalance, setUserInputBalance] = useState(''); // State to store user input balance
-  const [payer, setPayer] = useState(''); // State to store who will pay the balance
+  const [payer, setPayer] = useState('you'); // State to store who will pay the balance
 
   useEffect(() => {
     if (!selectedProduct || !selectedProduct.id) {
@@ -110,8 +112,7 @@ const ExchangePage = () => {
     let balance = parseInt(userInputBalance.replace(/\./g, ''), 10);
 
     if (isNaN(balance)) {
-      setError('Please enter a valid number for the balance.');
-      return;
+      balance = 0;
     }
 
     if (payer === 'other') {
@@ -127,22 +128,36 @@ const ExchangePage = () => {
     };
     console.log('Exchange Request:', exchangeRequest);
 
-    try {
-      const response = await axiosInstance.post('/api/Exchange/CreateExchange', exchangeRequest);
-      console.log('Response Status:', response.status); // Log response status
-      console.log('Response Data:', response.data); // Log response data
-      if (response.status === 200 || response.status === 201) {
-        setSuccessMessage('Exchange request created successfully! Back to home page now');
-        setTimeout(() => {
-          navigate('/');
-        }, 2000); // Delay navigation by 2 seconds
-      } else {
-        setError('Failed to create exchange request. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error creating exchange request:', error);
-      setError('Error creating exchange request.');
-    }
+    confirmAlert({
+      title: 'Confirm Exchange Request',
+      message: 'Are you sure you want to submit this exchange request?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: async () => {
+            try {
+              const response = await axiosInstance.post('/api/Exchange/CreateExchange', exchangeRequest);
+              console.log('Response Status:', response.status); // Log response status
+              console.log('Response Data:', response.data); // Log response data
+              if (response.status === 200 || response.status === 201) {
+                setSuccessMessage('Exchange request created successfully! Back to home page now');
+                setTimeout(() => {
+                  navigate('/');
+                }, 2000); // Delay navigation by 2 seconds
+              } else {
+                setError('Failed to create exchange request. Please try again.');
+              }
+            } catch (error) {
+              console.error('Error creating exchange request:', error);
+              setError('Error creating exchange request.');
+            }
+          }
+        },
+        {
+          label: 'No'
+        }
+      ]
+    });
   };
 
   const formatCurrency = (value) => {
