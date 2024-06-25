@@ -13,11 +13,12 @@ const ModPage = () => {
   const [totalPages, setTotalPages] = useState(5);
   const [products, setProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState(''); // Default sort order
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const searchTerm = searchParams.get('search') || '';
-  const categoryId = searchParams.get('categoryId') || '';
+  const categoryId = selectedCategoryId || '';
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -55,6 +56,7 @@ const ModPage = () => {
         }
 
         setProducts(productData);
+        setTotalPages(response.data.totalPages); // Assuming the API returns the total number of pages
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -76,16 +78,22 @@ const ModPage = () => {
   };
 
   const handleCategorySelect = (categoryId) => {
-    navigate(`/?categoryId=${categoryId}`);
+    if (selectedCategoryId === categoryId) {
+      setSelectedCategoryId(null);
+      navigate(`/?`); // Reset category filter
+    } else {
+      setSelectedCategoryId(categoryId);
+      navigate(`/?categoryId=${categoryId}`);
+    }
   };
 
   return (
     <div>
       <Navbar />
-      <Category onCategorySelect={handleCategorySelect} selectedCategoryId={parseInt(categoryId, 10)} />
+      <Category onCategorySelect={handleCategorySelect} selectedCategoryId={selectedCategoryId} />
       <Filter onSortChange={handleSortChange} onDeleteSort={handleDeleteSort} sortOrder={sortOrder} />
       <div className="container mt-4">
-        <h2 className={styles.heading}>Product</h2>
+        <h2 className={styles.heading}>Products</h2>
         <ModProductList currentPage={currentPage} sortOrder={sortOrder} searchTerm={searchTerm} categoryId={categoryId} />
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
