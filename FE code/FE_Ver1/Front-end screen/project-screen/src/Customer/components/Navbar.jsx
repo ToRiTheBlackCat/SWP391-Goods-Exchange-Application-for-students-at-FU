@@ -122,12 +122,12 @@ const Navbar = () => {
                     </li>
                     <li>
                       <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/product">
-                        View product list
+                        View incoming exchanges
                       </NavLink>
                     </li>
                     <li>
                       <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/exchange-list">
-                        View exchange list
+                        View sent exchange list
                       </NavLink>
                     </li>
                     <li><hr className={`dropdown-divider ${styles.dropdownDivider}`} />

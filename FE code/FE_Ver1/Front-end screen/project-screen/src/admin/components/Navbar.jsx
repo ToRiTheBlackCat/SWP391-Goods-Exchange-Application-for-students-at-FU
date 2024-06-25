@@ -52,11 +52,11 @@ const Navbar = () => {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    navigate(`/?search=${searchTerm}`);
+    navigate(`/ad/?search=${searchTerm}`);
   };
 
   return (
-    <nav className={`navbar navbar-expand-lg navbar-dark bg-dark ${styles.navbar}`}>
+    <nav className={`navbar navbar-expand-lg navbar-dark bg-dark ${styles.form}`}>
       <div className="container-fluid">
         <button
           className={`navbar-toggler ${styles.navbarToggler}`}
@@ -95,7 +95,6 @@ const Navbar = () => {
                 View Exchange
               </NavLink>
             </li>
-
           </ul>
           <form className="d-flex me-2" onSubmit={handleSearchSubmit}>
             <input

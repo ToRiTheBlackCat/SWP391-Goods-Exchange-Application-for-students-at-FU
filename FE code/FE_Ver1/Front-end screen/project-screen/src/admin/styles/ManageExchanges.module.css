@@ -1,12 +1,12 @@
-.manage-exchanges {
+.manageExchanges {
     padding: 20px;
 }
 
-.exchange-list {
+.exchangeList {
     margin-bottom: 20px;
 }
 
-table {
+.table {
     width: 100%;
     border-collapse: collapse;
 }

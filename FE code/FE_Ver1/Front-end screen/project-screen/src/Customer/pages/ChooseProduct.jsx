@@ -26,6 +26,7 @@ function ChooseProduct() {
             image: product.productImage,
             description: product.productDescription,
             price: product.productPrice ,
+            status: product.status
           }));
           setProducts(fetchedProducts);
           if (fetchedProducts.length > 0) {

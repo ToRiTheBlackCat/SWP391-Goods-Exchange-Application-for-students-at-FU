@@ -2,8 +2,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import axiosInstance from '../../authorized/axiosInstance';
 import axios from 'axios';
+import axiosInstance from '../../authorized/axiosInstance';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../styles/Exchange.module.css'; // Import CSS module
 
@@ -16,6 +16,7 @@ const ExchangePage = () => {
   const [selectedProductImageSrc, setSelectedProductImageSrc] = useState('');
   const [exchangeImageSrc, setExchangeImageSrc] = useState('');
   const [userInputBalance, setUserInputBalance] = useState(''); // State to store user input balance
+  const [payer, setPayer] = useState(''); // State to store who will pay the balance
 
   useEffect(() => {
     if (!selectedProduct || !selectedProduct.id) {
@@ -106,11 +107,15 @@ const ExchangePage = () => {
     }
 
     // Remove dots from formatted balance before sending request
-    const balance = parseInt(userInputBalance.replace(/\./g, ''), 10);
+    let balance = parseInt(userInputBalance.replace(/\./g, ''), 10);
 
     if (isNaN(balance)) {
       setError('Please enter a valid number for the balance.');
       return;
+    }
+
+    if (payer === 'other') {
+      balance = -balance; // Make the balance negative if the other person pays
     }
 
     const exchangeRequest = {
@@ -182,7 +187,6 @@ const ExchangePage = () => {
           </div>
         </div>
         <div className={styles.priceDifference}>
-          <p>Please enter the amount you are willing to exchange:</p>
           <input 
             type="text" 
             value={userInputBalance} 
@@ -190,6 +194,26 @@ const ExchangePage = () => {
             className="form-control" 
             placeholder="Enter amount in VND"
           />
+          <div className={styles.payerOptions}>
+            <label>
+              <input 
+                type="radio" 
+                value="you" 
+                checked={payer === 'you'} 
+                onChange={() => setPayer('you')} 
+              />
+              You pay the balance
+            </label>
+            <label>
+              <input 
+                type="radio" 
+                value="other" 
+                checked={payer === 'other'} 
+                onChange={() => setPayer('other')} 
+              />
+              {productToExchange.productOwner.userName} pays the balance
+            </label>
+          </div>
         </div>
         {error && <div className="alert alert-danger">{error}</div>}
         {successMessage && <div className="alert alert-success">{successMessage}</div>}
