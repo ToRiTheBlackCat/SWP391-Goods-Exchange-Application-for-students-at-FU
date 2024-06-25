@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/ModPage/Footer';
-import ProductList from '../components/ModPage/ModProductList';
+import ModProductList from '../components/ModPage/ModProductList';
 import Category from '../components/ModPage/Category';
 import Filter from '../components/ModPage/Filter';
 import styles from '../styles/ModPage.module.css';
@@ -12,7 +12,7 @@ const ModPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(5);
   const [products, setProducts] = useState([]);
-  const [sortOrder, setSortOrder] = useState('name_asc'); // Default sort order
+  const [sortOrder, setSortOrder] = useState(''); // Default sort order
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
@@ -36,11 +36,24 @@ const ModPage = () => {
           sortOrderParam = 'price_desc';
           break;
         default:
-          sortOrderParam = 'Name';
+          sortOrderParam = ''; // Default sort order
       }
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted?sortOder=${sortOrderParam}&pageIndex=${currentPage}&sortString=${searchTerm}&cateId=${categoryId}`);
-        const productData = response.data.foundList;
+        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
+          params: {
+            sortOder: sortOrderParam,
+            pageIndex: currentPage,
+            sortString: searchTerm,
+            cateId: categoryId,
+          },
+        });
+        let productData = response.data.foundList;
+
+        // Randomize the product list if sortOrder is empty
+        if (!sortOrder) {
+          productData = productData.sort(() => Math.random() - 0.5);
+        }
+
         setProducts(productData);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -48,17 +61,18 @@ const ModPage = () => {
     };
 
     fetchProducts();
-  }, [currentPage, sortOrder, searchTerm, categoryId])
+  }, [currentPage, sortOrder, searchTerm, categoryId]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-  // const handleFilterChange = (filteredProducts) => {
-  //   setProducts(filteredProducts);
-  // };
 
   const handleSortChange = (newSortOrder) => {
     setSortOrder(newSortOrder);
+  };
+
+  const handleDeleteSort = () => {
+    setSortOrder(''); // Reset sort order to default
   };
 
   const handleCategorySelect = (categoryId) => {
@@ -68,14 +82,11 @@ const ModPage = () => {
   return (
     <div>
       <Navbar />
-      <Category 
-        onCategorySelect={handleCategorySelect} 
-        selectedCategoryId={parseInt(categoryId, 10)} 
-      />
-      <Filter onSortChange={handleSortChange} />
+      <Category onCategorySelect={handleCategorySelect} selectedCategoryId={parseInt(categoryId, 10)} />
+      <Filter onSortChange={handleSortChange} onDeleteSort={handleDeleteSort} sortOrder={sortOrder} />
       <div className="container mt-4">
-      <h2 className={styles.heading}>Product</h2>
-        <ProductList currentPage={currentPage} sortOrder={sortOrder} searchTerm={searchTerm} categoryId={categoryId} />
+        <h2 className={styles.heading}>Product</h2>
+        <ModProductList currentPage={currentPage} sortOrder={sortOrder} searchTerm={searchTerm} categoryId={categoryId} />
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
     </div>

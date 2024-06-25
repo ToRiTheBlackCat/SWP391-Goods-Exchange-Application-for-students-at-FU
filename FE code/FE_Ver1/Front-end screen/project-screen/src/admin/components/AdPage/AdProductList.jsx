@@ -33,7 +33,7 @@ const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
           sortOrderParam = 'price_desc';
           break;
         default:
-          sortOrderParam = 'Name';
+          sortOrderParam = '';
       }
       try {
         const response = await axios.get(`https://localhost:7027/api/Product/GetSorted?sortOder=${sortOrderParam}&pageIndex=${currentPage}&sortString=${term}&cateId=${category}`);
@@ -72,7 +72,7 @@ const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
               imgSrc,
               alt: product.productName,
               title: product.productName,
-              link: `/mod/product/${product.productId}`,
+              link: `/product/${product.productId}`,
               condition: product.productDescription,
               price: `${product.productPrice.toLocaleString()} VND`,
               seller: product.productOwner.userName,
@@ -84,7 +84,7 @@ const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
               imgSrc: '', // Provide a placeholder or default image source if there's an error
               alt: product.productName,
               title: product.productName,
-              link: `/mod/product/${product.productId}`,
+              link: `/product/${product.productId}`,
               condition: product.productDescription,
               price: `${product.productPrice.toLocaleString()} VND`,
               seller: 'Unknown',
@@ -122,5 +122,6 @@ const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
     </div>
   );
 };
+
 
 export default AdProductList;

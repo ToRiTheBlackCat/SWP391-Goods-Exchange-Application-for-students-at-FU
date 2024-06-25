@@ -32,5 +32,4 @@ ProductCard.propTypes = {
     rating: PropTypes.number.isRequired,
   }).isRequired,
 };
-
 export default ProductCard;
