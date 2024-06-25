@@ -50,6 +50,19 @@ function PostProductForm() {
         }));
     };
 
+    const formatCurrency = (value) => {
+        return value.replace(/\D/g, '')
+            .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    };
+
+    const handlePriceChange = (event) => {
+        const formattedValue = formatCurrency(event.target.value);
+        setFormData(prevState => ({
+            ...prevState,
+            productPrice: formattedValue
+        }));
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -57,7 +70,7 @@ function PostProductForm() {
             const data = new FormData();
             data.append('productName', formData.productName);
             data.append('productDescription', formData.productDescription);
-            data.append('productPrice', formData.productPrice);
+            data.append('productPrice', formData.productPrice.replace(/\./g, '')); // Loại bỏ dấu chấm
             data.append('typeId', formData.typeId);
             data.append('userId', formData.userId);
 
@@ -134,7 +147,7 @@ function PostProductForm() {
                                 </div>
                                 <div className="form-group col-md-6">
                                     <label htmlFor="productPrice">Giá</label>
-                                    <input type="numeric" className="form-control" id="productPrice" placeholder="Nhập giá sản phẩm" value={formData.productPrice} onChange={handleInputChange} required />
+                                    <input type="text" className="form-control" id="productPrice" placeholder="Nhập giá sản phẩm" value={formData.productPrice} onChange={handlePriceChange} required />
                                 </div>
                             </div>
 

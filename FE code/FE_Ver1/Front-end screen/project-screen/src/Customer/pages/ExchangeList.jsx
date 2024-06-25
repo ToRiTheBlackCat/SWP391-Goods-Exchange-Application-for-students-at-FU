@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Table, Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import styles from '../styles/ExchangeList.module.css'; // Import CSS module
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axiosInstance from '../../authorized/axiosInstance';
@@ -57,10 +59,24 @@ const ExchangeList = () => {
     }
   };
 
-  const handleCancelExchange = async (exchangeId) => {
-    // Handle the cancel action
-    console.log(`Cancelling exchange with ID: ${exchangeId}`);
-    
+  const handleCancelExchange = (exchangeId) => {
+    confirmAlert({
+      title: 'Confirm Cancel',
+      message: 'Are you sure you want to cancel this exchange?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => cancelExchange(exchangeId)
+        },
+        {
+          label: 'No',
+          onClick: () => toast.info('Cancel action aborted')
+        }
+      ]
+    });
+  };
+
+  const cancelExchange = async (exchangeId) => {
     try {
       const response = await axiosInstance.delete(`/api/Exchange/Student/CancelExchange?exchangeId=${exchangeId}`);
       if (response.status === 200) {
@@ -79,11 +95,9 @@ const ExchangeList = () => {
     e.preventDefault();
     // Handle rating submission
     console.log(`Rating: ${rating}, Comment: ${comment}`);
-
-    const userId = localStorage.getItem('userId');
     const ratingData = {
       exchangeId: selectedExchange.exchangeId,
-      userId: parseInt(userId, 10),
+      userId: selectedExchange.ownerId,
       score: parseInt(rating, 10),
       comment: comment,
       ratingDate: new Date().toISOString(),

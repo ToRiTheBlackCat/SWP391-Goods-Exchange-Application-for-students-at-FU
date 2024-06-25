@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import styles from '../styles/WaitingProduct.module.css';
 import axiosInstance from '../../authorized/axiosInstance';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const WaitingProductDetail = ({ product }) => {
+const WaitingProductDetail = ({ product, onProductRemove }) => {
   const [imageSrc, setImageSrc] = useState(null);
   const [loadingImage, setLoadingImage] = useState(true);
 
@@ -15,12 +17,10 @@ const WaitingProductDetail = ({ product }) => {
           const imageResponse = await axios.get(
             `https://localhost:7027/api/Product/GetUserImage?imageName=${product.productImage}`,
             {
-              responseType: 'text', // Change responseType to 'text' to get base64 string directly
+              responseType: 'text',
             }
           );
-          console.log('Image Response Data:', imageResponse.data); // Log image response data
 
-          // Determine MIME type based on file extension
           const fileExtension = product.productImage.split('.').pop().toLowerCase();
           let mimeType;
           switch (fileExtension) {
@@ -35,11 +35,10 @@ const WaitingProductDetail = ({ product }) => {
               mimeType = 'image/webp';
               break;
             default:
-              mimeType = 'image/jpeg'; // Default to JPEG if MIME type cannot be determined
+              mimeType = 'image/jpeg';
               break;
           }
 
-          // Use base64 string directly
           const imgSrc = `data:${mimeType};base64,${imageResponse.data}`;
           setImageSrc(imgSrc);
           setLoadingImage(false);
@@ -59,14 +58,14 @@ const WaitingProductDetail = ({ product }) => {
         `/api/Product/Mod/AcceptProductInWaitingList/${product.productId}`
       );
       if (response.status === 200) {
-        console.log('Product accepted:', product);
-        // Handle additional logic after accepting the product
+        toast.success('Product accepted successfully');
+        onProductRemove(product.productId);
       }
     } catch (error) {
+      toast.error('Error accepting product');
       console.error('Error accepting product', error);
     }
   };
-
 
   const handleDecline = async () => {
     try {
@@ -74,10 +73,11 @@ const WaitingProductDetail = ({ product }) => {
         `/api/Product/Mod/RejectProduct/${product.productId}`
       );
       if (response.status === 200) {
-        console.log('Product declined:', product);
-        // Handle additional logic after declining the product
+        toast.success('Product declined successfully');
+        onProductRemove(product.productId);
       }
     } catch (error) {
+      toast.error('Error declining product');
       console.error('Error declining product', error);
     }
   };
@@ -143,6 +143,7 @@ WaitingProductDetail.propTypes = {
       email: PropTypes.string.isRequired,
     }).isRequired,
   }),
+  onProductRemove: PropTypes.func.isRequired,
 };
 
 export default WaitingProductDetail;

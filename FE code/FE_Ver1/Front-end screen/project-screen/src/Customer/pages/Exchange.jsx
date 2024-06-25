@@ -15,6 +15,7 @@ const ExchangePage = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [selectedProductImageSrc, setSelectedProductImageSrc] = useState('');
   const [exchangeImageSrc, setExchangeImageSrc] = useState('');
+  const [userInputBalance, setUserInputBalance] = useState(''); // State to store user input balance
 
   useEffect(() => {
     if (!selectedProduct || !selectedProduct.id) {
@@ -104,7 +105,13 @@ const ExchangePage = () => {
       return;
     }
 
-    const balance = productToExchange.productPrice - selectedProduct.price;
+    // Remove dots from formatted balance before sending request
+    const balance = parseInt(userInputBalance.replace(/\./g, ''), 10);
+
+    if (isNaN(balance)) {
+      setError('Please enter a valid number for the balance.');
+      return;
+    }
 
     const exchangeRequest = {
       userId: userId,
@@ -133,6 +140,15 @@ const ExchangePage = () => {
     }
   };
 
+  const formatCurrency = (value) => {
+    return value.replace(/\D/g, '')
+      .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
+
+  const handleBalanceChange = (e) => {
+    setUserInputBalance(formatCurrency(e.target.value));
+  };
+
   if (error) {
     return <div className={styles.alert}>{error}</div>;
   }
@@ -140,10 +156,6 @@ const ExchangePage = () => {
   if (!selectedProduct || !productToExchange) {
     return <div>Loading...</div>;
   }
-
-  // Tính toán chênh lệch giá
-  const priceDifference = productToExchange.productPrice - selectedProduct.price;
-  console.log(priceDifference);
 
   return (
     <>
@@ -170,13 +182,14 @@ const ExchangePage = () => {
           </div>
         </div>
         <div className={styles.priceDifference}>
-          {priceDifference > 0 ? (
-            <p>You need to pay an additional {priceDifference.toLocaleString()} VND to complete the exchange.</p>
-          ) : priceDifference < 0 ? (
-            <p>The seller needs to pay you {Math.abs(priceDifference).toLocaleString()} VND to complete the exchange.</p>
-          ) : (
-            <p>The exchange can be completed without any additional payment.</p>
-          )}
+          <p>Please enter the amount you are willing to exchange:</p>
+          <input 
+            type="text" 
+            value={userInputBalance} 
+            onChange={handleBalanceChange} 
+            className="form-control" 
+            placeholder="Enter amount in VND"
+          />
         </div>
         {error && <div className="alert alert-danger">{error}</div>}
         {successMessage && <div className="alert alert-success">{successMessage}</div>}
