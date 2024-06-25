@@ -76,7 +76,7 @@ const AdPage = () => {
   };
 
   const handleCategorySelect = (categoryId) => {
-    navigate(`/?categoryId=${categoryId}`);
+    navigate(`/ad/?categoryId=${categoryId}`);
   };
 
   return (

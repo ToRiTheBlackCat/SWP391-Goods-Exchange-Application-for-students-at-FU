@@ -57,7 +57,7 @@ const Navbar = () => {
 
   return (
     <nav className={`navbar navbar-expand-lg navbar-dark bg-dark ${styles.navbar}`}>
-      <div className="container-fluid">
+      <div className="container-fluid" style={{padding:'0px'}}>
         <button
           className={`navbar-toggler ${styles.navbarToggler}`}
           type="button"

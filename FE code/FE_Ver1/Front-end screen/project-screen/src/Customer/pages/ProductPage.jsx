@@ -110,7 +110,9 @@ const ProductPage = () => {
             <h2 className="h4">Detailed description</h2>
             <p>{product.productDescription}</p>
             <div>
+            {sellerInfo && currentUser !== sellerInfo.userName &&(
             <button onClick={handleReportClick} className="btn btn-info w-100">Report</button>
+          )}
             </div>
           </div>
         </div>
