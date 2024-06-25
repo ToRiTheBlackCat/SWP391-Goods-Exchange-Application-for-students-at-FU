@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import electronic from '../../assets/electronics.jpg';
 import accessories from '../../assets/accessories.jpg';
 import houseware from '../../assets/houseware.jpg';
@@ -21,17 +21,24 @@ const categories = [
 function Category({ onCategorySelect, selectedCategoryId, onSortChange }) {
   return (
     <div className={styles.App}>
-    <Filter onSortChange={onSortChange} />
+      <Filter onSortChange={onSortChange} />
       <main className={`container mt-4 ${styles.main}`}>
         <h2 className={styles.heading}>Categories</h2>
         <Container>
           <Row>
-            {categories.map((category, index) => (
-              <Col md={4} key={index} className={`mb-4 d-flex ${styles.col}`}>
-                <Card className={`${styles.card} ${selectedCategoryId === category.id ? styles.selected : ''}`} 
-                  onClick={() => onCategorySelect(category.id)}>
+            {categories.map((category) => (
+              <Col md={4} key={category.id} className={`mb-4 d-flex ${styles.col}`}>
+                <Card
+                  className={`${styles.card} ${selectedCategoryId === category.id ? styles.selectedCategory : ''}`}
+                  onClick={() => onCategorySelect(category.id)}
+                >
                   <div className={styles.cardContent}>
-                    <Card.Img variant="top" src={category.img} alt={category.text} className={styles.cardImg} />
+                    <Card.Img
+                      variant="top"
+                      src={category.img}
+                      alt={category.text}
+                      className={styles.cardImg}
+                    />
                     <Card.Body className={styles.cardBody}>
                       <Card.Text className={styles.cardText}>{category.text}</Card.Text>
                     </Card.Body>
