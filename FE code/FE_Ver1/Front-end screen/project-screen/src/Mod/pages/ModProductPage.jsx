@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
 import anhliem from '../assets/anhliem.jpg';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from '../styles/ModProductPage.module.css'; // Import CSS module
 import { setProductToExchange } from '../store/store';
 
@@ -84,9 +86,23 @@ const ProductPage = () => {
     dispatch(setProductToExchange(product));
     navigate(`/mod/view-profile/${product.userId}`);  
   };
-  const handleRemoveClick = () => {
-    
-  }
+
+  const handleRemoveClick = async () => {
+    try {
+      const response = await axiosInstance.post(
+        `/api/Product/Mod/RejectProduct/${product.productId}`
+      );
+      if (response.status === 200) {
+        toast.success('Product declined successfully!');
+        setTimeout(() => {
+          navigate('/mod');
+        }, 3000);
+      }
+    } catch (error) {
+      console.error('Error declining product', error);
+      toast.error('Error declining product.');
+    }
+  };
   
   const currentUser = localStorage.getItem('userName');
 
@@ -127,6 +143,7 @@ const ProductPage = () => {
           </div>
           
       )}
+      <ToastContainer />
     </>
   );
 };

@@ -37,9 +37,9 @@
       }
     };
 
-    const viewReportDetail = (report) => {
-      setSelectedReport(report);
-    };
+    // const viewReportDetail = (report) => {
+    //   setSelectedReport(report);
+    // };
 
     const formatDate = (dateString) => {
       const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
@@ -80,13 +80,13 @@
                   >
                     DONE
                   </button>
-                  <button 
+                  {/* <button 
                     className={`${styles.actionButton} ${styles.view}`} 
                     onClick={() => viewReportDetail(report)}
                     aria-label={`View details of report ${report.reportId}`}
                   >
                     View Details
-                  </button>
+                  </button> */}
                   <Link 
                     to={`/mod/product/${report.productId}`} 
                     className={`${styles.actionButton} ${styles.view}`}

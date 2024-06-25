@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setSelectedProduct } from '../../store/store';
 
-function ViewProductDetails({ product, onDelete  }) {
+function ViewProductDetails({ product, onDelete }) {
   const [imageBase64, setImageBase64] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -47,6 +47,7 @@ function ViewProductDetails({ product, onDelete  }) {
   const handleDeleteClick = () => {
     axiosInstance.post(`/api/Product/Student/DeleteProduct/${product.id}`)
       .then(response => {
+        console.response('Product deleted successfully', response);
         alert('Product deleted successfully');
         onDelete(product.id);
       })
@@ -54,6 +55,19 @@ function ViewProductDetails({ product, onDelete  }) {
         console.error('Error deleting product:', error);
         alert('Failed to delete the product');
       });
+  };
+
+  const getStatusText = (status) => {
+    switch (status) {
+      case 1:
+        return 'Selling'; 
+      case 2:
+        return 'Exchanging';
+      case 3:
+        return 'Waiting';
+      default:
+        return 'Undefined';
+    }
   };
 
   return (
@@ -78,6 +92,12 @@ function ViewProductDetails({ product, onDelete  }) {
           <strong>Description</strong>
           <span>{product.description}</span>
         </div>
+        {product.status !== 0 && (
+          <div className={styles['info-item']}>
+            <strong>Status</strong>
+            <span>{getStatusText(product.status)}</span>
+          </div>
+        )}
       </div>
       <div className={styles['button-group']}>
         <button onClick={handleUpdateClick} className={`${styles['button']} btn btn-warning`}>Update</button>
@@ -94,6 +114,7 @@ ViewProductDetails.propTypes = {
     image: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    status: PropTypes.number.isRequired, // Add status to prop types
   }).isRequired,
   onDelete: PropTypes.func.isRequired,
 };

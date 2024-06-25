@@ -39,7 +39,10 @@ const Login = () => {
 
         if (response.data.role === 'mod') {
           navigate('/mod');
-        } else {
+        } else if( response.data.role === 'admin'){
+          navigate('/ad');
+        }
+        else {
           navigate('/');
         }
         setError('');

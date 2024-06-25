@@ -1,7 +1,4 @@
 import { useState, useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-// import { setSelectedProduct } from '../store/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ListProduct from '../components/ChooseProduct/ListProduct';
 import ViewProductDetails from '../components/ViewProduct/ViewProductDetails';
@@ -12,8 +9,6 @@ import axiosInstance from '../../authorized/axiosInstance';
 function ViewProduct() {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProductLocal] = useState(null);
-//   const dispatch = useDispatch();
-// const navigate = useNavigate();
 
   useEffect(() => {
     const userId = localStorage.getItem('userId');
@@ -25,7 +20,8 @@ function ViewProduct() {
             name: product.productName,
             image: product.productImage,
             description: product.productDescription,
-            price: product.productPrice ,
+            price: product.productPrice,
+            status: product.status, // Add status to the product object
           }));
           setProducts(fetchedProducts);
           if (fetchedProducts.length > 0) {
@@ -37,6 +33,7 @@ function ViewProduct() {
         });
     }
   }, []);
+
   const handleDeleteProduct = (productId) => {
     setProducts(prevProducts => prevProducts.filter(product => product.id !== productId));
     setSelectedProductLocal(null);
