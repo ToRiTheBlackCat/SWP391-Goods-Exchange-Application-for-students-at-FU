@@ -54,14 +54,9 @@ const App = () => {
         <Route path='/update-product/:id' element={<UpdateProduct/>}/>
         <Route path='/report-list' element={<ReportList/>}/>
 
-        <Route path='/ad/manage-account/:userId' element={<ManageAccounts/>}/>
         <Route path='/mod' element={<ModPage/>}/>
         <Route path='/mod/view-profile/:userId' element={<UserProfile/>}/>
         <Route path='/view-banned-user' element={<ViewBanUser/>}/>
-
-        <Route path='/manage-account' element={<ManageAccounts/>}/>
-        <Route path='/ad' element={<AdPage/>}/>
-        <Route path='/manage-exchange' element={<ManageExchanges/>}/>
       </Routes>
     </Router>
     </Provider>
