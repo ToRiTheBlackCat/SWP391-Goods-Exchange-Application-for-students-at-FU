@@ -1,4 +1,3 @@
-
 import styles from '../../styles/Footer.module.css'; // Import CSS module
 
 const Footer = ({ currentPage, totalPages, onPageChange }) => {
@@ -35,7 +34,7 @@ const Footer = ({ currentPage, totalPages, onPageChange }) => {
       <ul className={styles.pagination}>
         <li className={styles.paginationItem}>
           <button
-            className={styles.paginationButton}
+            className={`${styles.paginationButton} ${currentPage === 1 ? styles.paginationButtonDisabled : ''}`}
             onClick={() => handlePageChange(1)}
             disabled={currentPage === 1}
           >
@@ -44,7 +43,7 @@ const Footer = ({ currentPage, totalPages, onPageChange }) => {
         </li>
         <li className={styles.paginationItem}>
           <button
-            className={styles.paginationButton}
+            className={`${styles.paginationButton} ${currentPage === 1 ? styles.paginationButtonDisabled : ''}`}
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
@@ -63,7 +62,7 @@ const Footer = ({ currentPage, totalPages, onPageChange }) => {
         ))}
         <li className={styles.paginationItem}>
           <button
-            className={styles.paginationButton}
+            className={`${styles.paginationButton} ${currentPage === totalPages ? styles.paginationButtonDisabled : ''}`}
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
@@ -72,7 +71,7 @@ const Footer = ({ currentPage, totalPages, onPageChange }) => {
         </li>
         <li className={styles.paginationItem}>
           <button
-            className={styles.paginationButton}
+            className={`${styles.paginationButton} ${currentPage === totalPages ? styles.paginationButtonDisabled : ''}`}
             onClick={() => handlePageChange(totalPages)}
             disabled={currentPage === totalPages}
           >

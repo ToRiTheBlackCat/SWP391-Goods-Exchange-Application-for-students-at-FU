@@ -33,7 +33,7 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
           sortOrderParam = 'price_desc';
           break;
         default:
-          sortOrderParam = 'Name';
+          sortOrderParam = '';
       }
       try {
         const response = await axios.get(`https://localhost:7027/api/Product/GetSorted?sortOder=${sortOrderParam}&pageIndex=${currentPage}&sortString=${term}&cateId=${category}`);

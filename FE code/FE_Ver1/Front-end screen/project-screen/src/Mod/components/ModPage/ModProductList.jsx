@@ -4,7 +4,7 @@ import ProductCard from './ModProductCard';
 import styles from '../../styles/ProductList.module.css';
 import { useLocation } from 'react-router-dom';
 
-const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
+const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -33,7 +33,7 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
           sortOrderParam = 'price_desc';
           break;
         default:
-          sortOrderParam = 'Name';
+          sortOrderParam = '';
       }
       try {
         const response = await axios.get(`https://localhost:7027/api/Product/GetSorted?sortOder=${sortOrderParam}&pageIndex=${currentPage}&sortString=${term}&cateId=${category}`);
@@ -72,7 +72,7 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
               imgSrc,
               alt: product.productName,
               title: product.productName,
-              link: `/mod/product/${product.productId}`,
+              link: `/product/${product.productId}`,
               condition: product.productDescription,
               price: `${product.productPrice.toLocaleString()} VND`,
               seller: product.productOwner.userName,
@@ -84,7 +84,7 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
               imgSrc: '', // Provide a placeholder or default image source if there's an error
               alt: product.productName,
               title: product.productName,
-              link: `/mod/product/${product.productId}`,
+              link: `/product/${product.productId}`,
               condition: product.productDescription,
               price: `${product.productPrice.toLocaleString()} VND`,
               seller: 'Unknown',
@@ -123,4 +123,5 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
   );
 };
 
-export default ProductList;
+
+export default ModProductList;

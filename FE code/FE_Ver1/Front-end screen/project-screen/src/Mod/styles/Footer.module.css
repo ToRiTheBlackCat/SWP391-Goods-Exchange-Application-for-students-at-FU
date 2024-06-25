@@ -1,35 +1,42 @@
 .paginationContainer {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .pagination {
-    display: flex;
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .paginationItem {
-    margin: 0 5px;
-  }
-  
-  .paginationButton {
-    padding: 5px 10px;
-    cursor: pointer;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    background-color: #f8f9fa;
-  }
-  
-  .paginationButton:hover {
-    background-color: #e2e6ea;
-  }
-  
-  .paginationButtonActive {
-    font-weight: bold;
-    background-color: #ff0000; /* Highlight color - red */
-    color: black; /* Text color - black */
-    border: none;
-  }
-  
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+.paginationItem {
+  margin: 0 5px;
+}
+
+.paginationButton {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background-color: #ffffff; /* White background for buttons */
+  color: #000000; /* Black text color */
+  font-weight: bold; /* Bold text */
+}
+
+.paginationButton:hover {
+  background-color: #e2e6ea; /* Light grey background on hover */
+}
+
+.paginationButtonActive {
+  font-weight: bold;
+  background-color: #ff0000; /* Highlight color - red */
+  color: #ffffff; /* Text color - white */
+  border: none;
+}
+
+.paginationButtonDisabled {
+  background-color: #f8f9fa; /* Light grey background for disabled buttons */
+  color: #cccccc; /* Grey text color for disabled buttons */
+  cursor: not-allowed; /* Not-allowed cursor for disabled buttons */
+}
