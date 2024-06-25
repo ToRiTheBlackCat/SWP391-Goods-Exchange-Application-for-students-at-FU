@@ -28,8 +28,8 @@ const ManageExchanges = () => {
                             <th>ID</th>
                             <th>Product</th>
                             <th>Owner</th>
-                            <th>Owner</th>
-                            <th>Owner</th>
+                            <th>Price</th>
+                            <th>Date</th>
 
                         </tr>
                     </thead>
