@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/AdPage/Footer';
-import AdProductList from '../components/AdPage/AdProductList';
+import ProductList from '../components/AdPage/AdProductList';
 import Category from '../components/AdPage/Category';
 import Filter from '../components/AdPage/Filter';
 import styles from '../styles/AdPage.module.css';
@@ -78,17 +78,13 @@ const AdPage = () => {
   };
 
   const handleCategorySelect = (categoryId) => {
-<<<<<<< HEAD
     if (selectedCategoryId === categoryId) {
       setSelectedCategoryId(null);
-      navigate(`/?`); // Reset category filter
+      navigate(`/ad`); // Reset category filter
     } else {
       setSelectedCategoryId(categoryId);
-      navigate(`/?categoryId=${categoryId}`);
+      navigate(`/ad/?categoryId=${categoryId}`);
     }
-=======
-    navigate(`/ad/?categoryId=${categoryId}`);
->>>>>>> c1e7f92a476f851dbeec0901ee4d68dad4412118
   };
 
   return (
