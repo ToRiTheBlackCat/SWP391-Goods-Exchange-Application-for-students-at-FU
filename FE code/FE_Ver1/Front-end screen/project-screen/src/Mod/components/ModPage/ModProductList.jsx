@@ -72,7 +72,7 @@ const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
               imgSrc,
               alt: product.productName,
               title: product.productName,
-              link: `/product/${product.productId}`,
+              link: `/mod/product/${product.productId}`,
               condition: product.productDescription,
               price: `${product.productPrice.toLocaleString()} VND`,
               seller: product.productOwner.userName,
@@ -84,7 +84,7 @@ const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId }) => {
               imgSrc: '', // Provide a placeholder or default image source if there's an error
               alt: product.productName,
               title: product.productName,
-              link: `/product/${product.productId}`,
+              link: `/mod/product/${product.productId}`,
               condition: product.productDescription,
               price: `${product.productPrice.toLocaleString()} VND`,
               seller: 'Unknown',

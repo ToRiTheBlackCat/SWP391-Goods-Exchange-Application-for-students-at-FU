@@ -100,8 +100,12 @@ function ViewProductDetails({ product, onDelete }) {
         )}
       </div>
       <div className={styles['button-group']}>
-        <button onClick={handleUpdateClick} className={`${styles['button']} btn btn-warning`}>Update</button>
-        <button onClick={handleDeleteClick} className={`${styles['button']} btn btn-danger`}>Delete</button>
+      {product.status !== 2 && (
+        <div className={styles['button-group']}>
+          <button onClick={handleUpdateClick} className={`${styles['button']} btn btn-warning`}>Update</button>
+          <button onClick={handleDeleteClick} className={`${styles['button']} btn btn-danger`}>Delete</button>
+        </div>
+      )}
       </div>
     </div>
   );

@@ -78,6 +78,7 @@ const AdPage = () => {
   };
 
   const handleCategorySelect = (categoryId) => {
+<<<<<<< HEAD
     if (selectedCategoryId === categoryId) {
       setSelectedCategoryId(null);
       navigate(`/?`); // Reset category filter
@@ -85,6 +86,9 @@ const AdPage = () => {
       setSelectedCategoryId(categoryId);
       navigate(`/?categoryId=${categoryId}`);
     }
+=======
+    navigate(`/ad/?categoryId=${categoryId}`);
+>>>>>>> c1e7f92a476f851dbeec0901ee4d68dad4412118
   };
 
   return (
