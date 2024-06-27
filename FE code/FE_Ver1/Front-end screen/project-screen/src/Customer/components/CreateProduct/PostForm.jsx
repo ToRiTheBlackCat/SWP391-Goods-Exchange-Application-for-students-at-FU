@@ -24,7 +24,7 @@ function PostProductForm() {
                 userId: parseInt(userId)
             }));
         } else {
-            console.error('User ID không được tìm thấy trong localStorage');
+            console.error('User ID was not found in localStorage');
         }
     }, []);
 
@@ -38,7 +38,7 @@ function PostProductForm() {
             };
             reader.readAsDataURL(file);
         } else {
-            alert('Vui lòng chọn một file hình ảnh hợp lệ');
+            alert('Please select a valid image file');
         }
     };
 
@@ -79,7 +79,7 @@ function PostProductForm() {
             }
 
             // Hiển thị dữ liệu gửi đi trên console
-            console.log('Dữ liệu gửi đi:');
+            console.log('Data sent:');
             for (let pair of data.entries()) {
                 if (pair[1] instanceof File) {
                     console.log(`${pair[0]}: [File]`);
@@ -95,15 +95,15 @@ function PostProductForm() {
               });
             console.log(response.data);
             if (response.status === 200 || response.status === 201) {
-                alert('Tạo sản phẩm thành công');
+                alert('Create successful products');
                 navigate('/');
             }
         } catch (error) {
-            console.error('Lỗi khi tạo sản phẩm:', error);
+            console.error('Error while creating product:', error);
             if (error.response && error.response.status === 403) {
-                alert('Từ chối quyền truy cập. Bạn không được phép thực hiện hành động này.');
+                alert('Deny access. You are not authorized to perform this action.');
             } else {
-                alert('Lỗi khi tạo sản phẩm.');
+                alert('Error while creating product.');
             }
         }
     };
@@ -128,6 +128,7 @@ function PostProductForm() {
                     <div className="col-md-9">
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
+                                <label htmlFor="typeId">Category</label>
                                 <label htmlFor="typeId">Category</label>
                                 <select className="form-control" id="typeId" value={formData.typeId} onChange={handleInputChange}>
                                     <option value="0">Choose a category</option>
@@ -155,7 +156,7 @@ function PostProductForm() {
                                 <label htmlFor="productDescription">Description</label>
                                 <textarea className="form-control" id="productDescription" rows="4" placeholder="Nhập mô tả chi tiết" value={formData.productDescription} onChange={handleInputChange} required></textarea>
                             </div>
-                            <button type="submit" className={`btn ${styles.btnWarning} text-white`}>Tạo</button>
+                            <button type="submit" className={`btn ${styles.btnWarning} text-white`}>Create</button>
                         </form>
                     </div>
                 </div>

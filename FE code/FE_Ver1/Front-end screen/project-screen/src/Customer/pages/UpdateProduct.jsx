@@ -136,7 +136,7 @@ function UpdateProduct() {
           <div className="row">
             <div className="col-md-4 d-flex flex-column align-items-center">
               <div className="mb-3">
-                <label htmlFor="productImage" className="form-label">Hình ảnh</label>
+                <label htmlFor="productImage" className="form-label">Image</label>
                 <input
                   type="file"
                   id="productImage"
@@ -149,7 +149,7 @@ function UpdateProduct() {
             </div>
             <div className="col-md-8">
               <div className="mb-3">
-                <label htmlFor="typeId" className="form-label">Danh mục</label>
+                <label htmlFor="typeId" className="form-label">Category</label>
                 <select
                   id="typeId"
                   name="typeId"
@@ -157,7 +157,7 @@ function UpdateProduct() {
                   onChange={handleInputChange}
                   className="form-select"
                 >
-                  <option value="">Chọn một danh mục</option>
+                  <option value="">Choose a category</option>
                   <option value="1">Electronic</option>
                   <option value="2">Books</option>
                   <option value="3">Accessories</option>
@@ -167,7 +167,7 @@ function UpdateProduct() {
                 </select>
               </div>
               <div className="mb-3">
-                <label htmlFor="productName" className="form-label">Tên</label>
+                <label htmlFor="productName" className="form-label">Name</label>
                 <input
                   type="text"
                   id="productName"
@@ -175,11 +175,11 @@ function UpdateProduct() {
                   value={product.productName}
                   onChange={handleInputChange}
                   className="form-control"
-                  placeholder="Nhập tên sản phẩm"
+                  placeholder="Enter product name"
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="productPrice" className="form-label">Giá</label>
+                <label htmlFor="productPrice" className="form-label">Price</label>
                 <input
                   type="number"
                   id="productPrice"
@@ -187,22 +187,22 @@ function UpdateProduct() {
                   value={product.productPrice}
                   onChange={handleInputChange}
                   className="form-control"
-                  placeholder="Nhập giá sản phẩm"
+                  placeholder="Enter product price"
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="productDescription" className="form-label">Mô tả chi tiết</label>
+                <label htmlFor="productDescription" className="form-label">Detailed description</label>
                 <textarea
                   id="productDescription"
                   name="productDescription"
                   value={product.productDescription}
                   onChange={handleInputChange}
                   className="form-control"
-                  placeholder="Nhập mô tả chi tiết"
+                  placeholder="Enter a detailed description"
                   rows="3"
                 ></textarea>
               </div>
-              <button type="submit" className="btn btn-warning">Cập nhật</button>
+              <button type="submit" className="btn btn-warning">Update</button>
             </div>
           </div>
         </form>
