@@ -56,7 +56,7 @@ const ModPage = () => {
         }
 
         setProducts(productData);
-        setTotalPages(response.data.totalPages); // Assuming the API returns the total number of pages
+        setTotalPages(response.data.pageSize); // Assuming the API returns the total number of pages
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -80,10 +80,10 @@ const ModPage = () => {
   const handleCategorySelect = (categoryId) => {
     if (selectedCategoryId === categoryId) {
       setSelectedCategoryId(null);
-      navigate(`/?`); // Reset category filter
+      navigate(`/mod`); // Reset category filter
     } else {
       setSelectedCategoryId(categoryId);
-      navigate(`/?categoryId=${categoryId}`);
+      navigate(`/mod/?categoryId=${categoryId}`);
     }
   };
 

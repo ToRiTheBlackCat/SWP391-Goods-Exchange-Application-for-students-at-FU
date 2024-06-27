@@ -56,7 +56,7 @@ const AdPage = () => {
         }
 
         setProducts(productData);
-        setTotalPages(response.data.totalPages); // Assuming the API returns the total number of pages
+        setTotalPages(response.data.pageSize); // Assuming the API returns the total number of pages
       } catch (error) {
         console.error('Error fetching products:', error);
       }
