@@ -7,10 +7,11 @@ import Category from '../components/HomePage/Category';
 import Filter from '../components/HomePage/Filter';
 import styles from '../styles/HomePage.module.css';
 import axios from 'axios';
+import axiosInstance from '../../authorized/axiosInstance'
 
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(5);
   const [products, setProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState(''); // Default sort order
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
@@ -40,7 +41,7 @@ const HomePage = () => {
           sortOrderParam = ''; // Default sort order
       }
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
+        const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
             sortOder: sortOrderParam,
             pageIndex: currentPage,
@@ -91,7 +92,7 @@ const HomePage = () => {
   return (
     <div>
       <Navbar />
-      <Category onCategorySelect={handleCategorySelect} selectedCategoryId={parseInt(categoryId, 10)} />
+      <Category onCategorySelect={handleCategorySelect} selectedCategoryId={selectedCategoryId} />
       <Filter onSortChange={handleSortChange} onDeleteSort={handleDeleteSort} sortOrder={sortOrder} />
       <div className="container mt-4">
         <h2 className={styles.heading}>Products</h2>
