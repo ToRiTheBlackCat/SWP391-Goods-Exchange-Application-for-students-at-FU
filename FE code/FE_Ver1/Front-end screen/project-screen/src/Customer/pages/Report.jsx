@@ -43,7 +43,7 @@ const ReportProduct = () => {
         }
       );
       if (response.status === 200) {
-        toast.success('Chúng tôi sẽ xử lý báo cáo của bạn', {
+        toast.success('We will process your report', {
           onClose: () => navigate('/'), // Redirect to home after the toast is closed
           autoClose: 2000, // Close the toast after 2 seconds
         });

@@ -24,7 +24,7 @@ function PostProductForm() {
                 userId: parseInt(userId)
             }));
         } else {
-            console.error('User ID không được tìm thấy trong localStorage');
+            console.error('User ID was not found in localStorage');
         }
     }, []);
 
@@ -38,7 +38,7 @@ function PostProductForm() {
             };
             reader.readAsDataURL(file);
         } else {
-            alert('Vui lòng chọn một file hình ảnh hợp lệ');
+            alert('Please select a valid image file');
         }
     };
 
@@ -79,7 +79,7 @@ function PostProductForm() {
             }
 
             // Hiển thị dữ liệu gửi đi trên console
-            console.log('Dữ liệu gửi đi:');
+            console.log('Data sent:');
             for (let pair of data.entries()) {
                 if (pair[1] instanceof File) {
                     console.log(`${pair[0]}: [File]`);
@@ -95,15 +95,15 @@ function PostProductForm() {
               });
             console.log(response.data);
             if (response.status === 200 || response.status === 201) {
-                alert('Tạo sản phẩm thành công');
+                alert('Create successful products');
                 navigate('/');
             }
         } catch (error) {
-            console.error('Lỗi khi tạo sản phẩm:', error);
+            console.error('Error while creating product:', error);
             if (error.response && error.response.status === 403) {
-                alert('Từ chối quyền truy cập. Bạn không được phép thực hiện hành động này.');
+                alert('Deny access. You are not authorized to perform this action.');
             } else {
-                alert('Lỗi khi tạo sản phẩm.');
+                alert('Error while creating product.');
             }
         }
     };
@@ -114,12 +114,12 @@ function PostProductForm() {
                 <div className="row">
                     <div className="col-md-3">
                         <div className="form-group">
-                            <label>Hình ảnh</label>
+                            <label>Image</label>
                             <div className={`border p-4 text-center ${styles.picturePlaceholder}`} id="picture-placeholder">
                                 {selectedImage ? (
                                     <img src={selectedImage} alt="Selected" className="img-fluid" />
                                 ) : (
-                                    "Hình ảnh"
+                                    "Image"
                                 )}
                             </div>
                             <input type="file" className="form-control mt-2" onChange={handleImageChange} />
@@ -128,34 +128,34 @@ function PostProductForm() {
                     <div className="col-md-9">
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
-                                <label htmlFor="typeId">Danh mục</label>
+                                <label htmlFor="typeId">Category</label>
                                 <select className="form-control" id="typeId" value={formData.typeId} onChange={handleInputChange}>
-                                    <option value="0">Chọn một danh mục</option>
-                                    <option value="1">Điện tử</option>
-                                    <option value="2">Phụ kiện</option>
-                                    <option value="3">Đồ gia dụng</option>
-                                    <option value="4">Sách</option>
-                                    <option value="5">Dụng cụ học tập</option>
-                                    <option value="6">Quần áo</option>
+                                    <option value="0">Choose one category</option>
+                                    <option value="1">Electronics</option>
+                                    <option value="2">Accessories</option>
+                                    <option value="3">Houseware</option>
+                                    <option value="4">Book</option>
+                                    <option value="5">School supplies</option>
+                                    <option value="6">Clothes</option>
                                 </select>
                             </div>
 
                             <div className="form-row">
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="productName">Tên</label>
-                                    <input type="text" className="form-control" id="productName" placeholder="Nhập tên sản phẩm" value={formData.productName} onChange={handleInputChange} required />
+                                    <label htmlFor="productName">Name</label>
+                                    <input type="text" className="form-control" id="productName" placeholder="Enter the product name" value={formData.productName} onChange={handleInputChange} required />
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="productPrice">Giá</label>
-                                    <input type="text" className="form-control" id="productPrice" placeholder="Nhập giá sản phẩm" value={formData.productPrice} onChange={handlePriceChange} required />
+                                    <label htmlFor="productPrice">Price</label>
+                                    <input type="text" className="form-control" id="productPrice" placeholder="Enter product price" value={formData.productPrice} onChange={handlePriceChange} required />
                                 </div>
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="productDescription">Mô tả chi tiết</label>
-                                <textarea className="form-control" id="productDescription" rows="4" placeholder="Nhập mô tả chi tiết" value={formData.productDescription} onChange={handleInputChange} required></textarea>
+                                <label htmlFor="productDescription">Detailed description</label>
+                                <textarea className="form-control" id="productDescription" rows="4" placeholder="Enter a detailed description" value={formData.productDescription} onChange={handleInputChange} required></textarea>
                             </div>
-                            <button type="submit" className={`btn ${styles.btnWarning} text-white`}>Tạo</button>
+                            <button type="submit" className={`btn ${styles.btnWarning} text-white`}>Create</button>
                         </form>
                     </div>
                 </div>
