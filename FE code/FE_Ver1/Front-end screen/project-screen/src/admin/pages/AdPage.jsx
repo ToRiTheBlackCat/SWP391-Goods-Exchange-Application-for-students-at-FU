@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/AdPage/Footer';
-import ProductList from '../components/AdPage/AdProductList';
+import AdProductList from '../components/AdPage/AdProductList';
 import Category from '../components/AdPage/Category';
 import Filter from '../components/AdPage/Filter';
 import styles from '../styles/AdPage.module.css';
@@ -60,6 +60,7 @@ const AdPage = () => {
       } catch (error) {
         console.error('Error fetching products:', error);
       }
+
     };
 
     fetchProducts();
@@ -80,10 +81,10 @@ const AdPage = () => {
   const handleCategorySelect = (categoryId) => {
     if (selectedCategoryId === categoryId) {
       setSelectedCategoryId(null);
-      navigate(`/ad`); // Reset category filter
+      navigate(`/?`); // Reset category filter
     } else {
       setSelectedCategoryId(categoryId);
-      navigate(`/ad/?categoryId=${categoryId}`);
+      navigate(`/?categoryId=${categoryId}`);
     }
   };
 
@@ -94,7 +95,7 @@ const AdPage = () => {
       <Filter onSortChange={handleSortChange} onDeleteSort={handleDeleteSort} sortOrder={sortOrder} />
       <div className="container mt-4">
         <h2 className={styles.heading}>Products</h2>
-        <ProductList currentPage={currentPage} sortOrder={sortOrder} searchTerm={searchTerm} categoryId={categoryId} />
+        <AdProductList currentPage={currentPage} sortOrder={sortOrder} searchTerm={searchTerm} categoryId={categoryId} />
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
     </div>

@@ -24,6 +24,7 @@ const Footer = ({ currentPage, totalPages, onPageChange }) => {
       range.push(range[range.length - 1] + 1);
     }
 
+
     return range;
   };
 

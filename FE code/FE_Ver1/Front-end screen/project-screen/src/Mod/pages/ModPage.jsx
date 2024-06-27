@@ -60,6 +60,7 @@ const ModPage = () => {
       } catch (error) {
         console.error('Error fetching products:', error);
       }
+
     };
 
     fetchProducts();
