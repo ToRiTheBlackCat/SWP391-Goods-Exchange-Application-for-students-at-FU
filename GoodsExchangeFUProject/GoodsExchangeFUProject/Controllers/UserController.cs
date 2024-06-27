@@ -167,7 +167,7 @@ namespace GoodsExchangeFUProject.Controllers
             if (result.Item1)
                 return Ok(result.Item2);
             //return CreatedAtAction("GetUser", new { id = 20 }, registerView);
-            return Ok(result.Item2);
+            return BadRequest(result.Item2);
         }
 
         //TUAN
@@ -180,7 +180,7 @@ namespace GoodsExchangeFUProject.Controllers
             if (result.Item1)
                 return Ok(result.Item2);
             //return CreatedAtAction("GetUser", new { id = 20 }, registerView);
-            return Ok(result.Item2);
+            return BadRequest(result.Item2);
         }
 
 
