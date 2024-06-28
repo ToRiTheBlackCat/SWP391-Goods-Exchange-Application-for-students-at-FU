@@ -3,11 +3,10 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../styles/Navbar.module.css';
 
-const Navbar = () => {
+const Navbar = ({ onHomeClick, searchTerm, setSearchTerm }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
@@ -18,20 +17,20 @@ const Navbar = () => {
       setIsLoggedIn(true);
       setUsername(user);
     }
-  }, [username]);
+  }, []);
 
   useEffect(() => {
+    const handleClickOutsideDropdown = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutsideDropdown);
     return () => {
       document.removeEventListener('mousedown', handleClickOutsideDropdown);
     };
   }, []);
-
-  const handleClickOutsideDropdown = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsDropdownOpen(false);
-    }
-  };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -55,6 +54,11 @@ const Navbar = () => {
     navigate(`/?search=${searchTerm}`);
   };
 
+  const handleHomeClick = () => {
+    setSearchTerm(''); // Clear the search term
+    onHomeClick(); // Call the reset function passed from HomePage
+  };
+
   return (
     <nav className={`navbar navbar-expand-lg navbar-dark bg-dark ${styles.navbar}`}>
       <div className="container-fluid" style={{padding:'0px'}}>
@@ -75,6 +79,7 @@ const Navbar = () => {
               <NavLink 
                 className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
                 to="/"
+                onClick={handleHomeClick}
               >
                 Home
               </NavLink>

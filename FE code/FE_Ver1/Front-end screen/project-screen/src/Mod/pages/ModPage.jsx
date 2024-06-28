@@ -14,10 +14,11 @@ const ModPage = () => {
   const [products, setProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState(''); // Default sort order
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
-  const searchTerm = searchParams.get('search') || '';
+  const term = searchTerm || searchParams.get('search') || '';
   const categoryId = selectedCategoryId || '';
 
   useEffect(() => {
@@ -42,9 +43,9 @@ const ModPage = () => {
       try {
         const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
           params: {
-            sortOder: sortOrderParam,
+            sortOrder: sortOrderParam,
             pageIndex: currentPage,
-            sortString: searchTerm,
+            sortString: term,
             cateId: categoryId,
           },
         });
@@ -64,7 +65,7 @@ const ModPage = () => {
     };
 
     fetchProducts();
-  }, [currentPage, sortOrder, searchTerm, categoryId]);
+  }, [currentPage, sortOrder, term, categoryId]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -88,18 +89,31 @@ const ModPage = () => {
     }
   };
 
+  const handleReset = () => {
+    setSearchTerm('');
+    setSortOrder('');
+    setSelectedCategoryId(null);
+    setCurrentPage(1);
+    navigate('/');
+  };
+
   return (
     <div>
-      <Navbar />
+      <Navbar onHomeClick={handleReset} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Category onCategorySelect={handleCategorySelect} selectedCategoryId={selectedCategoryId} />
       <Filter onSortChange={handleSortChange} onDeleteSort={handleDeleteSort} sortOrder={sortOrder} />
       <div className="container mt-4">
         <h2 className={styles.heading}>Products</h2>
-        <ModProductList currentPage={currentPage} sortOrder={sortOrder} searchTerm={searchTerm} categoryId={categoryId} />
+        <ModProductList
+          currentPage={currentPage}
+          sortOrder={sortOrder}
+          searchTerm={searchTerm}
+          categoryId={categoryId}
+          setTotalPages={setTotalPages}
+        />
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
     </div>
   );
 };
-
 export default ModPage;
