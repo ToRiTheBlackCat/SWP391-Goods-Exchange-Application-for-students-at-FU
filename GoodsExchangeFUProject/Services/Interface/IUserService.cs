@@ -22,7 +22,7 @@ namespace Services.Interface
         Task<string> UserForgotPasswordUI(string emailAddress);
         Task<(bool, string)> RegisterUserUI(UserRegisterModel registerModel, int n);
 
-        Task<(bool, string?, int)> GoogleAuthorizeUser(string id_token);
+        Task<(bool, string?, int?, string?, string?)> GoogleAuthorizeUser(string id_token);
 
         Task<(bool, string)> UserResetPasswordUI(UserPassResetModel resetModel);
     }

@@ -95,7 +95,7 @@ namespace Repositories.Repositories
             if (emailAddress.IsNullOrEmpty())
                 throw new Exception("Email field is null");
             _context = new();
-            var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Email.Equals(emailAddress) && u.RoleId == (int)RoleEnum.Student);
+            var user = await _context.Users.Include(u => u.Role).AsNoTracking().FirstOrDefaultAsync(u => u.Email.Equals(emailAddress) && u.RoleId == (int)RoleEnum.Student);
             if (user == null)
                 return null;
             _context.Entry(user).Reference(u => u.ResetToken).Load();

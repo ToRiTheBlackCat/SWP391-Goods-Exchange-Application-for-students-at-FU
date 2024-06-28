@@ -17,5 +17,6 @@ namespace Services.Interface
         Task<(bool, string)> AcceptExchangeUI(int exchangeId);
         List<AllExchangeModelView> GetAllExchangeList();
         Task<(bool, string)> CancelExchangeUI(int exchangeId);
+        Task<(bool, string)> DeclineExchangeUI(int exchangeId);
     }
 }

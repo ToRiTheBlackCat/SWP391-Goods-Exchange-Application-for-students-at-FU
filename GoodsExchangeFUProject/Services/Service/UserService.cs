@@ -64,7 +64,7 @@ namespace Services.Service
         }
 
         //TUAN
-        public async Task<(bool, string?, int)> GoogleAuthorizeUser(string id_token)
+        public async Task<(bool, string?, int?, string?, string?)> GoogleAuthorizeUser(string id_token)
         {
             //string accountId;
             //RoleEnum role;
@@ -81,18 +81,27 @@ namespace Services.Service
                     Email = payload.Email,
                     Password = ComputeSha256Hash(payload.Email + config["SecurityStr:Key"]),
                     UserName = payload.Name,
+                    PhoneNumber = "",
                 };
-                var result = await RegisterUserUI(register, (int)RoleEnum.Student);
-                getUser = await _repo.GetUserByMailAsync(payload.Email.Trim());
+
+                try
+                {
+                    await _repo.CreateUser(register, (int)RoleEnum.Student);
+                    getUser = await _repo.GetUserByMailAsync(payload.Email.Trim());
+                }
+                catch (Exception ex)
+                {
+                    return (false, $"Error: {ex}", getUser.UserId, getUser.UserName, getUser.Role.RoleName);
+                }
             }
             else    // If there is then login
             {
                 if (getUser.IsBanned)
-                    return (false, "Get banned Bozo!!!", 0);
+                    return (false, "Get banned Bozo!!!", getUser.UserId, getUser.UserName, getUser.Role.RoleName);
             }
 
             var token = _authHelper.GenerateJwtToken(getUser);
-            return (true, token, getUser.UserId);
+            return (true, token, getUser.UserId, getUser.UserName, getUser.Role.RoleName);
         }
 
         //TRI
