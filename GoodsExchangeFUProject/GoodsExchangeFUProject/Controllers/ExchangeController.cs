@@ -20,6 +20,14 @@ namespace GoodsExchangeFUProject.Controllers
             _exchangeService = exchangeService;
         }
 
+        //TRI
+        [Authorize(Roles = "admin")]
+        [HttpGet("Admin/GetAllExchangeList")]
+        public IActionResult GetAllExchange()
+        {
+            var list = _exchangeService.GetAllExchangeList();
+            return Ok(list);
+        }
 
         //TUAN
         // GET: api/Exchanges/EchangeRequests

@@ -59,4 +59,15 @@ namespace Repositories.ModelsView
         //Status: 0 - rejected, 1 - acepted, 2 - waiting
     }
 
+
+    public class AllExchangeModelView
+    {
+        public int ExchangeId { get; set; }
+        public string ExchangeReceiver { get; set; }
+        public string ProductWantToGet { get; set; }
+        public string ExchangeSender { get; set; }
+        public string? ProductUseToExchange { get; set; }
+        public int? Balance { get; set; }
+        public DateOnly CreateDate { get; set; }
+    }
 }

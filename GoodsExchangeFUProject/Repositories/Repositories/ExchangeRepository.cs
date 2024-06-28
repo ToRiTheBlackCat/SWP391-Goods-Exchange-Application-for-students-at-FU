@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.CodeAnalysis.Text;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Repositories.Entities;
 using Repositories.ModelsView;
@@ -45,6 +46,22 @@ namespace Repositories.Repositories
                 return false;
             return true;
         }
+        public List<AllExchangeModelView> GetExchangeList()
+        {
+            return _context.Exchanges.AsNoTracking()
+                            .Where(ex => ex.Status == 1)
+                            .Select(exchange => new AllExchangeModelView()
+                            {
+                                ExchangeId = exchange.ExchangeId,
+                                ExchangeReceiver = exchange.Product.User.UserName,
+                                ProductWantToGet = exchange.Product.ProductName,
+                                ExchangeSender = exchange.User.UserName,
+                                ProductUseToExchange = exchange.ExchangeDetails.First().Product != null ? exchange.ExchangeDetails.First().Product!.ProductName : null,
+                                Balance = exchange.ExchangeDetails.First().Balance,
+                                CreateDate = exchange.CreateDate,
+                            }).OrderByDescending(e => e.CreateDate).ToList();
+        }
+        
         //======================
         //TUAN
         public List<ExchangeModelView> GetExchangesByUser(int userId)

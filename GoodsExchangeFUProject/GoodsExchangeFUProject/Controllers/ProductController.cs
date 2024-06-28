@@ -43,7 +43,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TRI
-        [Authorize(Roles = "student")]
+        //[Authorize(Roles = "student")]
         [HttpGet("Student/ViewOwnProductList/{userId}")]
         public async Task<IActionResult> StudentViewOwnProductList(int userId)  //Xem tất cả sản phẩm trong productList tất cả status 
         {
@@ -51,7 +51,7 @@ namespace GoodsExchangeFUProject.Controllers
             return Ok(list);
         }
         //TRI
-        [Authorize(Roles = "student")]
+        //[Authorize(Roles = "student")]
         [HttpGet("Student/ViewOwnAvailableProductList/{userId}")]
         public async Task<IActionResult> StudentViewOwnAvailableProductList(int userId)     //Xem chỉ được các product đang available với status = 1 
         {

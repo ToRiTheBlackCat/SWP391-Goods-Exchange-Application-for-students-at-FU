@@ -41,10 +41,12 @@ namespace Repositories.Repositories
         public IQueryable<Product> ViewProductsOfUser(int userId)
         {
             return _context.Products
+                .Where(p => p.Status != 0 && p.Status != 3)
                 .Include(p => p.User)
                 .Include(p => p.Type)
                 .Where(p => p.User.UserId == userId);
         }
+
         //TRI
         public IQueryable<Product> ViewProductsOfUser(int userId, int statusNum)
         {
@@ -77,7 +79,7 @@ namespace Repositories.Repositories
         //TRI
         public async Task<bool> UpdateProductByIdAsync(OwnProductModel update)
         {
-            var product =  _context.Products.FirstOrDefault(p => p.ProductId == update.ProductId);
+            var product = _context.Products.FirstOrDefault(p => p.ProductId == update.ProductId);
             if (product == null)
                 return false;
 
