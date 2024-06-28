@@ -114,12 +114,12 @@ function PostProductForm() {
                 <div className="row">
                     <div className="col-md-3">
                         <div className="form-group">
-                            <label>Image</label>
+                            <label>Picture</label>
                             <div className={`border p-4 text-center ${styles.picturePlaceholder}`} id="picture-placeholder">
                                 {selectedImage ? (
                                     <img src={selectedImage} alt="Selected" className="img-fluid" />
                                 ) : (
-                                    "Image"
+                                    "Picture"
                                 )}
                             </div>
                             <input type="file" className="form-control mt-2" onChange={handleImageChange} />
@@ -129,12 +129,13 @@ function PostProductForm() {
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="typeId">Category</label>
+                                <label htmlFor="typeId">Category</label>
                                 <select className="form-control" id="typeId" value={formData.typeId} onChange={handleInputChange}>
-                                    <option value="0">Choose one category</option>
+                                    <option value="0">Choose a category</option>
                                     <option value="1">Electronics</option>
-                                    <option value="2">Accessories</option>
-                                    <option value="3">Houseware</option>
-                                    <option value="4">Book</option>
+                                    <option value="2">Books</option>
+                                    <option value="3">Accessories</option>
+                                    <option value="4">Housewares</option>
                                     <option value="5">School supplies</option>
                                     <option value="6">Clothes</option>
                                 </select>
@@ -143,17 +144,17 @@ function PostProductForm() {
                             <div className="form-row">
                                 <div className="form-group col-md-6">
                                     <label htmlFor="productName">Name</label>
-                                    <input type="text" className="form-control" id="productName" placeholder="Enter the product name" value={formData.productName} onChange={handleInputChange} required />
+                                    <input type="text" className="form-control" id="productName" placeholder="Nhập tên sản phẩm" value={formData.productName} onChange={handleInputChange} required />
                                 </div>
                                 <div className="form-group col-md-6">
                                     <label htmlFor="productPrice">Price</label>
-                                    <input type="text" className="form-control" id="productPrice" placeholder="Enter product price" value={formData.productPrice} onChange={handlePriceChange} required />
+                                    <input type="text" className="form-control" id="productPrice" placeholder="Nhập giá sản phẩm" value={formData.productPrice} onChange={handlePriceChange} required />
                                 </div>
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="productDescription">Detailed description</label>
-                                <textarea className="form-control" id="productDescription" rows="4" placeholder="Enter a detailed description" value={formData.productDescription} onChange={handleInputChange} required></textarea>
+                                <label htmlFor="productDescription">Description</label>
+                                <textarea className="form-control" id="productDescription" rows="4" placeholder="Nhập mô tả chi tiết" value={formData.productDescription} onChange={handleInputChange} required></textarea>
                             </div>
                             <button type="submit" className={`btn ${styles.btnWarning} text-white`}>Create</button>
                         </form>

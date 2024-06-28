@@ -64,7 +64,7 @@ const ExchangeRequests = ({ productId, productName }) => {
 
     console.log('Exchange ID:', exchangeId);
     try {
-      const response = await axiosInstance.delete(`/api/Exchange/Student/CancelExchange?exchangeId=${exchangeId}`);
+      const response = await axiosInstance.put(`/api/Exchange/Student/DeclineExchangeRequest?exchangeId=${exchangeId}`);
       if (response.status === 200) {
         setSuccessMessage('Exchange declined successfully!');
         toast.success('Exchange declined successfully!');

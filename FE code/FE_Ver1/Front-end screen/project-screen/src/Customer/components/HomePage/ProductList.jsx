@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import axiosInstance from '../../../authorized/axiosInstance';
 import ProductCard from './ProductCard';
 import styles from '../../styles/ProductList.module.css';
 import { useLocation } from 'react-router-dom';
@@ -36,13 +37,13 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalP
           sortOrderParam = '';
       }
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
+        const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
             sortOrder: sortOrderParam,
             pageIndex: currentPage,
             sortString: term,
             cateId: category,
-            pageSize: 6, // Define page size here
+            pageSize: setTotalPages, // Define page size here
           },
         });
         const productData = response.data.foundList;

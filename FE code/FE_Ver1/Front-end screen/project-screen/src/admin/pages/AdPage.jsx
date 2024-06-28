@@ -82,10 +82,10 @@ const AdPage = () => {
   const handleCategorySelect = (categoryId) => {
     if (selectedCategoryId === categoryId) {
       setSelectedCategoryId(null);
-      navigate(`/?`); // Reset category filter
+      navigate(`/ad/?`); // Reset category filter
     } else {
       setSelectedCategoryId(categoryId);
-      navigate(`/?categoryId=${categoryId}`);
+      navigate(`/ad/?categoryId=${categoryId}`);
     }
   };
 

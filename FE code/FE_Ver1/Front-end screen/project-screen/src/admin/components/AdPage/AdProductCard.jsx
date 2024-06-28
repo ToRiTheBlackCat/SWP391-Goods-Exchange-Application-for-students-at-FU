@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
       <img className={`card-img-top ${styles.cardImgTop}`} src={product.imgSrc} alt={product.alt} />
       <div className={`card-body ${styles.cardBody}`}>
         <h5 className={`card-title ${styles.cardTitle}`}>
-          <Link to={product.link}>{product.title}</Link>
+          <h2 to={product.link}>{product.title}</h2>
         </h5>
         <p className={`card-text ${styles.cardText}`}>{product.condition}</p>
         {product.size && <p className={`card-text ${styles.cardText}`}>{product.size}</p>}

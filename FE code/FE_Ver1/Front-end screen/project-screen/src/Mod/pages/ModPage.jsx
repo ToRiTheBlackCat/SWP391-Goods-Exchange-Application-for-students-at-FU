@@ -82,10 +82,10 @@ const ModPage = () => {
   const handleCategorySelect = (categoryId) => {
     if (selectedCategoryId === categoryId) {
       setSelectedCategoryId(null);
-      navigate(`/?`); // Reset category filter
+      navigate(`/mod/?`); // Reset category filter
     } else {
       setSelectedCategoryId(categoryId);
-      navigate(`/?categoryId=${categoryId}`);
+      navigate(`/mod/?categoryId=${categoryId}`);
     }
   };
 

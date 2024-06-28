@@ -7,6 +7,7 @@ import Category from '../components/HomePage/Category';
 import Filter from '../components/HomePage/Filter';
 import styles from '../styles/HomePage.module.css';
 import axios from 'axios';
+import axiosInstance from '../../authorized/axiosInstance'
 
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,7 +42,7 @@ const HomePage = () => {
           sortOrderParam = ''; // Default sort order
       }
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
+        const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
             sortOrder: sortOrderParam,
             pageIndex: currentPage,

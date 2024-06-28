@@ -45,7 +45,7 @@ function ChooseProduct() {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid" style={{padding:'0px'}}>
     <Navbar/>
       <div className="row">
         <div className={`col-md-3 ${styles.sidebar}`}>
