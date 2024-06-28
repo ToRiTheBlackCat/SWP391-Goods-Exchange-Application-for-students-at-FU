@@ -65,4 +65,3 @@ Category.defaultProps = {
 };
 
 export default Category;
-``

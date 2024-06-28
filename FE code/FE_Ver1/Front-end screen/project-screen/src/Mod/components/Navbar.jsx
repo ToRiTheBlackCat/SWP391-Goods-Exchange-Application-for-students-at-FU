@@ -3,10 +3,11 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../styles/Navbar.module.css';
 
-const Navbar = ({ onHomeClick, searchTerm, setSearchTerm }) => {
+const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
@@ -17,20 +18,20 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm }) => {
       setIsLoggedIn(true);
       setUsername(user);
     }
-  }, []);
+  }, [username]);
 
   useEffect(() => {
-    const handleClickOutsideDropdown = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-
     document.addEventListener('mousedown', handleClickOutsideDropdown);
     return () => {
       document.removeEventListener('mousedown', handleClickOutsideDropdown);
     };
   }, []);
+
+  const handleClickOutsideDropdown = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpen(false);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -51,17 +52,12 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm }) => {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    navigate(`/?search=${searchTerm}`);
-  };
-
-  const handleHomeClick = () => {
-    setSearchTerm(''); // Clear the search term
-    onHomeClick(); // Call the reset function passed from HomePage
+    navigate(`/mod/?search=${searchTerm}`);
   };
 
   return (
     <nav className={`navbar navbar-expand-lg navbar-dark bg-dark ${styles.navbar}`}>
-      <div className="container-fluid" style={{padding:'0px'}}>
+      <div className="container-fluid">
         <button
           className={`navbar-toggler ${styles.navbarToggler}`}
           type="button"
@@ -78,8 +74,7 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm }) => {
             <li className="nav-item">
               <NavLink 
                 className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
-                to="/"
-                onClick={handleHomeClick}
+                to="/mod"
               >
                 Home
               </NavLink>
@@ -87,10 +82,26 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm }) => {
             <li className="nav-item">
               <NavLink 
                 className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
-                to="/create-product"
+                to="/waiting-product"
               >
-                Create product
+                View waiting product
               </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
+                to="/report-list"
+              >
+                View report list
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
+                to="/view-banned-user"
+              >
+                View banned users
+              </NavLink>  
             </li>
           </ul>
           <form className="d-flex me-2" onSubmit={handleSearchSubmit}>
@@ -115,28 +126,6 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm }) => {
               <ul className={`dropdown-menu ${styles.dropdownMenu}`} style={{ display: isDropdownOpen ? 'block' : 'none' }}>
                 {isLoggedIn ? (
                   <>
-                    <li>
-                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/profile">
-                        Profile
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/own-product">
-                        Your product
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/product">
-                        View incoming exchanges
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/exchange-list">
-                        View sent exchange list
-                      </NavLink>
-                    </li>
-                    <li><hr className={`dropdown-divider ${styles.dropdownDivider}`} />
-                    </li>
                     <li>
                       <button
                         className={`dropdown-item ${styles.dropdownItem}`}

@@ -14,11 +14,10 @@ const AdPage = () => {
   const [products, setProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState(''); // Default sort order
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
-  const term = searchTerm || searchParams.get('search') || '';
+  const searchTerm = searchParams.get('search') || '';
   const categoryId = selectedCategoryId || '';
 
   useEffect(() => {
@@ -43,9 +42,9 @@ const AdPage = () => {
       try {
         const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
-            sortOrder: sortOrderParam,
+            sortOder: sortOrderParam,
             pageIndex: currentPage,
-            sortString: term,
+            sortString: searchTerm,
             cateId: categoryId,
           },
         });
@@ -65,7 +64,7 @@ const AdPage = () => {
     };
 
     fetchProducts();
-  }, [currentPage, sortOrder, term, categoryId]);
+  }, [currentPage, sortOrder, searchTerm, categoryId]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -89,28 +88,14 @@ const AdPage = () => {
     }
   };
 
-  const handleReset = () => {
-    setSearchTerm('');
-    setSortOrder('');
-    setSelectedCategoryId(null);
-    setCurrentPage(1);
-    navigate('/');
-  };
-
   return (
     <div>
-      <Navbar onHomeClick={handleReset} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <Navbar />
       <Category onCategorySelect={handleCategorySelect} selectedCategoryId={selectedCategoryId} />
       <Filter onSortChange={handleSortChange} onDeleteSort={handleDeleteSort} sortOrder={sortOrder} />
       <div className="container mt-4">
         <h2 className={styles.heading}>Products</h2>
-        <AdProductList
-          currentPage={currentPage}
-          sortOrder={sortOrder}
-          searchTerm={searchTerm}
-          categoryId={categoryId}
-          setTotalPages={setTotalPages}
-        />
+        <AdProductList currentPage={currentPage} sortOrder={sortOrder} searchTerm={searchTerm} categoryId={categoryId} />
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
     </div>

@@ -54,4 +54,3 @@ function Category({ onCategorySelect, selectedCategoryId, onSortChange }) {
 }
 
 export default Category;
-``
