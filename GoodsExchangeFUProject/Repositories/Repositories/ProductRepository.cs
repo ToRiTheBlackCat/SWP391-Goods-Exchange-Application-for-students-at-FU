@@ -41,7 +41,7 @@ namespace Repositories.Repositories
         public IQueryable<Product> ViewProductsOfUser(int userId)
         {
             return _context.Products
-                .Where(p => p.Status != 0 && p.Status != 3)
+                .Where(p => p.Status != 0)
                 .Include(p => p.User)
                 .Include(p => p.Type)
                 .Where(p => p.User.UserId == userId);
