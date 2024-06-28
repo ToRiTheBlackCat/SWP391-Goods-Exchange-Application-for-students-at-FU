@@ -10,6 +10,7 @@ using Services.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
 namespace GoodsExchangeFUProject.Controllers
 {
     [ApiController]
@@ -77,16 +78,16 @@ namespace GoodsExchangeFUProject.Controllers
 
         //TUAN
         [HttpPost("/api/user/google-login")]
-        public async Task<ActionResult> GoogleLogin([FromHeader] string token)
+        public async Task<ActionResult> GoogleLogin([FromBody] string credential)
         {
-            var (success, response, id) = await _userService.GoogleAuthorizeUser(token);
+            var (success, response, id, name, role) = await _userService.GoogleAuthorizeUser(credential);
 
             if (!success)
             {
-                return Unauthorized(response);
+                return Unauthorized(new { Message = response, userId = id, userName = name, Role = role.Trim() });
             }
 
-            return Ok(new { Token = response, userId = id });
+            return Ok(new { Token = response, userId = id, userName = name, Role = role.Trim() });
         }
 
         //TRI

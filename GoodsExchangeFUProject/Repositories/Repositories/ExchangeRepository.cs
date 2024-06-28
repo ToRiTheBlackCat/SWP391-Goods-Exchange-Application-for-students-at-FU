@@ -127,6 +127,35 @@ namespace Repositories.Repositories
             await _context.SaveChangesAsync();
         }
 
+        //TUAN
+        public async Task DeclineExchangeAsync(int exchangeId)
+        {
+            _context = new GoodsExchangeFudbContext();
+            var declinedExchange = await _context.Exchanges.Include(ex => ex.ExchangeDetails).FirstOrDefaultAsync(ex => ex.ExchangeId == exchangeId && ex.Status == 2);
+
+            if (declinedExchange == null)
+                throw new Exception("Invalid exchangeId or exchange is not in WAITING.");
+
+            var exchangeDetails = declinedExchange.ExchangeDetails.FirstOrDefault();
+
+            Product exchangeProduct;
+            if (exchangeDetails.ProductId != null)//Revert product status to (1) if there is one in exDetail
+            {
+                exchangeProduct = await _context.Products.FirstAsync(p => p.ProductId == exchangeDetails.ProductId && p.Status == 2);
+                if (exchangeProduct == null)
+                {
+                    declinedExchange.Status = 0;
+                    await _context.SaveChangesAsync();
+                    throw new Exception("The product used in exchange not found or in invalid state to switch back to (1). The exchange will still be decline.");
+                }
+                exchangeProduct.Status = 1;
+            }
+
+            declinedExchange.Status = 0;
+
+            await _context.SaveChangesAsync();
+        }
+
         public async Task ExchangeAcceptedAsync(Exchange exchange)
         {
             //Cancel every unaccepted exchange requests to this product

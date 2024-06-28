@@ -75,6 +75,16 @@ namespace GoodsExchangeFUProject.Controllers
             return BadRequest(message);
         }
 
+        //TUAN
+        [HttpPut("Student/DeclineExchangeRequest")]
+        public async Task<IActionResult> DeclineExchange(int exchangeId)
+        {
+            var (result, message) = await _exchangeService.DeclineExchangeUI(exchangeId);
+            if (result)
+                return Ok(message);
+            return BadRequest(message);
+        }
+
         //===============
         //TRI
         [Authorize(Roles = "student")]

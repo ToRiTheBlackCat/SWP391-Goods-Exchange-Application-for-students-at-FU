@@ -202,5 +202,19 @@ namespace Services.Service
                 return (false, ex.Message);
             }
         }
+
+        //TUAN
+        public async Task<(bool, string)> DeclineExchangeUI(int exchangeId)
+        {
+            try
+            {
+                await _repo.DeclineExchangeAsync(exchangeId);
+                return (true, "Success. Exchange declined.");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Encountered a problem: {ex.Message}");
+            }
+        }
     }
 }
