@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axiosInstance from '../../authorized/axiosInstance'; // Import axiosInstance
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
-import anhliem from '../assets/anhliem.jpg';
+import anhliem from '../assets/user.jpg';
 import styles from '../styles/ProductPage.module.css'; // Import CSS module
 import { setProductToExchange, setSelectedProduct } from '../store/store'; // Updated to setSelectedProduct
 

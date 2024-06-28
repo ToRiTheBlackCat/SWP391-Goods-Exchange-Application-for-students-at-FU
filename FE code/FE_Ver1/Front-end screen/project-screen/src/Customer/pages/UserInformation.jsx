@@ -86,7 +86,7 @@ function UserInformation() {
   return (
     <>
       <Navbar />
-      <div className="d-flex justify-content-center align-items-center vh-100 bg-light" >
+      <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
         <div className={`card p-4 ${styles.profileCard}`}>
           <form onSubmit={handleSubmit}>
             <div className="text-center mb-4">
