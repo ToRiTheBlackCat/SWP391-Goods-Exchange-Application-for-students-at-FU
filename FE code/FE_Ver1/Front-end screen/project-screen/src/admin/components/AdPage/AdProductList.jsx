@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import ProductCard from '../AdPage/AdProductCard';
 import styles from '../../styles/ProductList.module.css';
 import { useLocation } from 'react-router-dom';
+import axiosInstance from '../../../authorized/axiosInstance';
 
 const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalPages }) => {
   const [products, setProducts] = useState([]);
@@ -36,7 +36,7 @@ const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTota
           sortOrderParam = '';
       }
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
+        const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
             sortOrder: sortOrderParam,
             pageIndex: currentPage,
@@ -49,10 +49,7 @@ const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTota
 
         const promises = productData.map(async (product) => {
           try {
-            const imageResponse = await axios.get(`https://localhost:7027/api/Product/GetUserImage`, {
-              params: { imageName: product.productImage },
-              responseType: 'text',
-            });
+            const imageResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${product.productImage}`);
 
             const fileExtension = product.productImage.split('.').pop().toLowerCase();
             let mimeType;

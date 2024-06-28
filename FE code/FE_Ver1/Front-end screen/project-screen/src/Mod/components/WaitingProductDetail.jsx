@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/WaitingProduct.module.css';
 import axiosInstance from '../../authorized/axiosInstance';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,12 +13,10 @@ const WaitingProductDetail = ({ product, onProductRemove }) => {
     if (product) {
       const fetchImage = async () => {
         try {
-          const imageResponse = await axios.get(
-            `https://localhost:7027/api/Product/GetUserImage?imageName=${product.productImage}`,
-            {
-              responseType: 'text',
-            }
+          const imageResponse = await axiosInstance.get(
+            `/api/Product/GetUserImage?imageName=${product.productImage}`,
           );
+          console.log(imageResponse);
 
           const fileExtension = product.productImage.split('.').pop().toLowerCase();
           let mimeType;
@@ -40,6 +37,7 @@ const WaitingProductDetail = ({ product, onProductRemove }) => {
           }
 
           const imgSrc = `data:${mimeType};base64,${imageResponse.data}`;
+          console.log(imgSrc);
           setImageSrc(imgSrc);
           setLoadingImage(false);
         } catch (error) {

@@ -1,23 +1,27 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../../styles/ChooseProduct.module.css';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../../authorized/axiosInstance';
 
 function ProductInfo({ product, onSelect }) {
   const [imageBase64, setImageBase64] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (product.image) {
-      axios.get(`https://localhost:7027/api/Product/GetUserImage?imageName=${product.image}`)
-        .then(response => {
+    const fetchImage = async () => {
+      if (product.image) {
+        try {
+          const response = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${product.image}`);
+          console.log(response.data); // Log the response to verify the data
           setImageBase64(response.data);
-        })
-        .catch(error => {
+        } catch (error) {
           console.error('Error fetching image:', error);
-        });
-    }
+        }
+      }
+    };
+
+    fetchImage();
   }, [product.image]);
 
   const getImageMimeType = (fileName) => {

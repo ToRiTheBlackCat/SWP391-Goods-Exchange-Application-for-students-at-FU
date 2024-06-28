@@ -6,7 +6,7 @@ import ModProductList from '../components/ModPage/ModProductList';
 import Category from '../components/ModPage/Category';
 import Filter from '../components/ModPage/Filter';
 import styles from '../styles/ModPage.module.css';
-import axios from 'axios';
+import axiosInstance from '../../authorized/axiosInstance';
 
 const ModPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,7 +40,7 @@ const ModPage = () => {
           sortOrderParam = ''; // Default sort order
       }
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
+        const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
             sortOder: sortOrderParam,
             pageIndex: currentPage,

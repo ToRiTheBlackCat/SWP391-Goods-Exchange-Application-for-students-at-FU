@@ -6,7 +6,7 @@ import AdProductList from '../components/AdPage/AdProductList';
 import Category from '../components/AdPage/Category';
 import Filter from '../components/AdPage/Filter';
 import styles from '../styles/AdPage.module.css';
-import axios from 'axios';
+import axiosInstance from '../../authorized/axiosInstance';
 
 const AdPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,7 +40,7 @@ const AdPage = () => {
           sortOrderParam = ''; // Default sort order
       }
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
+        const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
             sortOder: sortOrderParam,
             pageIndex: currentPage,

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import ProductCard from './ModProductCard';
 import styles from '../../styles/ProductList.module.css';
 import { useLocation } from 'react-router-dom';
+import axiosInstance from '../../../authorized/axiosInstance';
 
 const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalPages }) => {
   const [products, setProducts] = useState([]);
@@ -36,7 +36,7 @@ const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTot
           sortOrderParam = '';
       }
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
+        const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
             sortOrder: sortOrderParam,
             pageIndex: currentPage,
@@ -46,13 +46,11 @@ const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTot
           },
         });
         const productData = response.data.foundList;
+        console.log(productData);
 
         const promises = productData.map(async (product) => {
           try {
-            const imageResponse = await axios.get(`https://localhost:7027/api/Product/GetUserImage`, {
-              params: { imageName: product.productImage },
-              responseType: 'text',
-            });
+            const imageResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${product.productImage}`);
 
             const fileExtension = product.productImage.split('.').pop().toLowerCase();
             let mimeType;
@@ -77,7 +75,7 @@ const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTot
               imgSrc,
               alt: product.productName,
               title: product.productName,
-              link: `/product/${product.productId}`,
+              link: `/mod/product/${product.productId}`,
               condition: product.productDescription,
               price: `${product.productPrice.toLocaleString()} VND`,
               seller: product.productOwner.userName,
@@ -89,7 +87,7 @@ const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTot
               imgSrc: '',
               alt: product.productName,
               title: product.productName,
-              link: `/product/${product.productId}`,
+              link: `/mod/product/${product.productId}`,
               condition: product.productDescription,
               price: `${product.productPrice.toLocaleString()} VND`,
               seller: 'Unknown',

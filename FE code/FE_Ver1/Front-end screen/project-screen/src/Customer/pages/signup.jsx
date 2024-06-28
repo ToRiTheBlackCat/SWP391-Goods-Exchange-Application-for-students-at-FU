@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import styles from '../styles/SignUpForm.module.css';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import axiosInstance from '../../authorized/axiosInstance'; // Import axiosInstance
+import { toast, ToastContainer } from 'react-toastify'; // Import toast and ToastContainer
+import 'react-toastify/dist/ReactToastify.css'; // Import toastify CSS
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -25,11 +27,31 @@ const SignUpForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhoneNumber = (phone) => {
+    const phoneRegex = /^[0-9]{10}$/;
+    return phoneRegex.test(phone);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    if (!validateEmail(formData.email)) {
+      toast.error("Invalid email format. Please enter a valid email.");
+      return;
+    }
+
+    if (!validatePhoneNumber(formData.phone)) {
+      toast.error("Invalid phone number format. Please enter a valid 10-digit phone number.");
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
+      toast.error("Passwords do not match!");
       return;
     }
 
@@ -40,28 +62,27 @@ const SignUpForm = () => {
       phoneNumber: formData.phone,
       address: formData.address,
       gender: formData.gender === 'male',
-      dob: formData.dateOfBirth
+      dob: formData.dateOfBirth // Directly assign the date string
     };
+    console.log(data);
 
-    axios.post('https://localhost:7027/api/User/Create-Customer-Account', data, {
-      headers: {
-        'Content-Type': 'application/json',
-        'accept': 'text/plain'
-      }
-    })
-      .then(response => {
-        console.log(response);
-        // Navigate to the login page after successful registration
+    try {
+      const response = await axiosInstance.post('/api/User/Create-Customer-Account', data);
+      console.log(response);
+      toast.success('Registration successful! Redirecting to login page...');
+      // Navigate to the login page after 3 seconds
+      setTimeout(() => {
         navigate('/login');
-      })
-      .catch(error => {
-        console.log(data);
+      }, 3000);
+    } catch (error) {
         console.error('There was an error!', error);
-      });
+        toast.error('An unexpected error occurred. Please try again.');
+    }
   };
 
   return (
     <div className={styles.signUpController}>
+      <ToastContainer /> {/* Add ToastContainer for displaying toasts */}
       <h2>Register account</h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.inputGroup}>
@@ -157,6 +178,9 @@ const SignUpForm = () => {
         </div>
         <button className={styles.registerBtn} type="submit">Sign up</button>
       </form>
+      <div className={styles.loginLink}>
+        Already have an account? <Link to="/login">Login</Link>
+      </div>
     </div>
   );
 };

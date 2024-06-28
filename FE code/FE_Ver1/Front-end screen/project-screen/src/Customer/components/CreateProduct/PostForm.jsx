@@ -129,7 +129,6 @@ function PostProductForm() {
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="typeId">Category</label>
-                                <label htmlFor="typeId">Category</label>
                                 <select className="form-control" id="typeId" value={formData.typeId} onChange={handleInputChange}>
                                     <option value="0">Choose a category</option>
                                     <option value="1">Electronics</option>

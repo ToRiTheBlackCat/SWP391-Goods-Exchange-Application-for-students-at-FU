@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import axios from 'axios';
 import axiosInstance from '../../authorized/axiosInstance';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../styles/Exchange.module.css'; // Import CSS module
@@ -34,8 +33,7 @@ const ExchangePage = () => {
       try {
         // Fetch image for selected product
         if (selectedProduct.image) {
-          const selectedProductResponse = await axios.get(`https://localhost:7027/api/Product/GetUserImage?imageName=${selectedProduct.image}`, {
-            responseType: 'text',
+          const selectedProductResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${selectedProduct.image}`, {
           });
 
           const selectedProductFileExtension = selectedProduct.image.split('.').pop().toLowerCase();
@@ -64,8 +62,7 @@ const ExchangePage = () => {
 
         // Fetch image for product to exchange
         if (productToExchange.productImage) {
-          const productToExchangeResponse = await axios.get(`https://localhost:7027/api/Product/GetUserImage?imageName=${productToExchange.productImage}`, {
-            responseType: 'text',
+          const productToExchangeResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${productToExchange.productImage}`, {
           });
 
           const productToExchangeFileExtension = productToExchange.productImage.split('.').pop().toLowerCase();

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../components/Navbar';
 import styles from '../styles/UserInformation.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import user from '../assets/user.jpg';
+import axiosInstance from '../../authorized/axiosInstance';
 
 function UserInformation() {
   const [formData, setFormData] = useState({
@@ -21,7 +21,7 @@ function UserInformation() {
 
   useEffect(() => {
     if (userId) {
-      axios.get(`https://localhost:7027/api/User/user/GetUserInfo/${userId}`)
+      axiosInstance.get(`/api/User/user/GetUserInfo/${userId}`)
         .then(response => {
           const data = response.data;
           setFormData({
@@ -68,7 +68,7 @@ function UserInformation() {
     console.log('Data being sent:', updateData);
 
     if (userId) {
-      axios.put(`https://localhost:7027/api/User/user/UpdateUserInfo/${userId}`, updateData)
+      axiosInstance.put(`/api/User/user/UpdateUserInfo/${userId}`, updateData)
         .then(response => {
           if (response.status === 200) {
             console.log('User information updated successfully!');

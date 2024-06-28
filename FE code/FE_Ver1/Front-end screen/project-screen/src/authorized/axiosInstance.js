@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://localhost:7027', // Địa chỉ base của backend
+  baseURL: 'https://goodsexchangefu-api.azurewebsites.net/', // Địa chỉ base của backend
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
