@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css'; // Import FontAwesome
 import styles from '../styles/Login.module.css';
 import axiosInstance from '../../authorized/axiosInstance';
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -17,7 +17,7 @@ const Login = () => {
     e.preventDefault();
     setError('');
     setMessage('');
-
+  
     try {
       const response = await axiosInstance.post(
         '/user/login',
@@ -38,7 +38,9 @@ const Login = () => {
         localStorage.setItem('userId', response.data.userId);
         localStorage.setItem('userName', response.data.userName);
         localStorage.setItem('role', response.data.role);
-
+        const expirationTime = new Date().getTime() + 30 * 60 * 1000; 
+        localStorage.setItem('expirationTime', expirationTime);
+  
         if (response.data.role === 'mod') {
           navigate('/mod');
         } else if (response.data.role === 'admin') {
@@ -54,16 +56,14 @@ const Login = () => {
       setError('Login failed. Please check your email or password');
     }
   };
-
+  
   const handleGoogleLoginSuccess = async (response) => {
-    const crendecial = response.credential;
-    console.log(crendecial);
+    const credential = response.credential;
+    console.log(credential);
     try {
       const googleResponse = await axiosInstance.post(
         '/api/user/google-login',
-        
-        crendecial,
-        
+        credential,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -73,11 +73,21 @@ const Login = () => {
       );
       if (googleResponse.status === 200) {
         setMessage('Login successfully');
-        localStorage.setItem('token', googleResponse.data.token);
-        localStorage.setItem('userId', googleResponse.data.userId);
-        localStorage.setItem('userName', googleResponse.data.userName);
-        localStorage.setItem('role', googleResponse.data.role);
+        const token = response.data.token;
+        const userId = response.data.userId;
+        const userName = response.data.userName;
+        const role = response.data.role;
+        const expirationTime = new Date().getTime() + 30 * 60 * 1000; 
 
+        // Reset localStorage and state
+        localStorage.setItem('token', token);
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('userName', userName);
+        localStorage.setItem('role', role);
+        localStorage.setItem('expirationTime', expirationTime);
+
+        setIsLoggedIn(true); // Cập nhật trạng thái đăng nhập
+  
         if (googleResponse.data.role === 'mod') {
           navigate('/mod');
         } else if (googleResponse.data.role === 'admin') {
@@ -106,41 +116,41 @@ const Login = () => {
             <div className={styles.loginContainer}>
               <h2 className="text-center mb-4">Login</h2>
               <form onSubmit={handleSubmit}>
-                <div className="mb-3 input-group">
-                  <span className="input-group-text" id="basic-addon1">@</span>
+                <div className={`mb-3 input-group ${styles.inputGroup}`}>
+                  <span className={`input-group-text ${styles.inputIcon}`}><i className="fa fa-user"></i></span>
                   <input
                     type="text"
-                    className="form-control"
+                    className={`form-control ${styles.inputField}`}
                     placeholder="Email"
-                    aria-label="Email"
-                    aria-describedby="basic-addon1"
                     name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
-                <div className="mb-3 input-group">
-                  <span className="input-group-text" id="basic-addon2">🔒</span>
+                <div className={`mb-3 input-group ${styles.inputGroup}`}>
+                  <span className={`input-group-text ${styles.inputIcon}`}><i className="fa fa-lock"></i></span>
                   <input
                     type="password"
-                    className="form-control"
+                    className={`form-control ${styles.inputField}`}
                     placeholder="Password"
-                    aria-label="Password"
-                    aria-describedby="basic-addon2"
                     name="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                 </div>
-                <button type="submit" className={`btn btn-primary w-100 ${styles.btnSmall}`}>Login</button>
-                <GoogleLogin
-                  onSuccess={handleGoogleLoginSuccess}
-                  onError={handleGoogleLoginFailure}
-                  useOneTap
-                  className={`btn btn-info w-100 mt-2 ${styles.btnSmall}`}
-                />
+                <div className="d-flex justify-content-center">
+                  <button type="submit" className={`btn btn-primary ${styles.btnSmall}`}>Login</button>
+                </div>
+                <div className="d-flex justify-content-center mt-2">
+                  <GoogleLogin
+                    onSuccess={handleGoogleLoginSuccess}
+                    onError={handleGoogleLoginFailure}
+                    useOneTap
+                    className={`btn btn-info mt-2 ${styles.btnSmall}`}
+                  />
+                </div>
               </form>
               {error && <p className="text-danger mt-3">{error}</p>}
               {message && <p className="text-success mt-3">{message}</p>}

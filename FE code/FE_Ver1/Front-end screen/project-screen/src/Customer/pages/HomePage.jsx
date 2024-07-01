@@ -19,7 +19,7 @@ const HomePage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
-  const term = searchTerm || searchParams.get('search') || '';
+  const searchTerm = searchParams.get('search') || '';
   const categoryId = selectedCategoryId || '';
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const HomePage = () => {
           params: {
             sortOrder,
             pageIndex: currentPage,
-            sortString: term,
+            sortString: searchTerm,
             cateId: categoryId,
           },
         });

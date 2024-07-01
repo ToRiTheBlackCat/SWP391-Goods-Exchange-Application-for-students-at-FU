@@ -4,8 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axiosInstance from '../../authorized/axiosInstance'; // Import axiosInstance
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
-import anhliem from '../assets/user.jpg';
-import axios from 'axios';
+import anhliem from '../assets/anhliem.jpg';
 import styles from '../styles/ProductPage.module.css'; // Import CSS module
 import { setProductToExchange, setSelectedProduct } from '../store/store'; // Updated to setSelectedProduct
 
@@ -29,8 +28,8 @@ const ProductPage = () => {
         setPhoneNumber(productData.productOwner.phone);
 
         // Fetch product image
-        const imageResponse = await axios.get(`https://localhost:7027/api/Product/GetUserImage?imageName=${productData.productImage}`, {
-          responseType: 'text',
+        const imageResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${productData.productImage}`, {
+
         });
 
         const fileExtension = productData.productImage.split('.').pop().toLowerCase();

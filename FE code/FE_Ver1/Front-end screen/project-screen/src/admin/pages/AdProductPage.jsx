@@ -29,8 +29,7 @@ const ProductPage = () => {
         setPhoneNumber(productData.productOwner.phone);
 
         // Fetch product image
-        const imageResponse = await axios.get(`http://localhost:5299/api/Product/GetUserImage?imageName=${productData.productImage}`, {
-          responseType: 'text',
+        const imageResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${productData.productImage}`, {
         });
 
         const fileExtension = productData.productImage.split('.').pop().toLowerCase();

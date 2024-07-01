@@ -32,10 +32,7 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalP
 
         const promises = productData.map(async (product) => {
           try {
-            const imageResponse = await axios.get(`https://localhost:7027/api/Product/GetUserImage`, {
-              params: { imageName: product.productImage },
-              responseType: 'text',
-            });
+            const imageResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${product.productImage}`);
 
             const fileExtension = product.productImage.split('.').pop().toLowerCase();
             const mimeTypes = {

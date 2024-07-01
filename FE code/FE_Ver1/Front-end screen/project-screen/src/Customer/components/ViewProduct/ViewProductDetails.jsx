@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../../styles/ChooseProduct.module.css';
-import axios from 'axios';
 import axiosInstance from '../../../authorized/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -14,7 +13,7 @@ function ViewProductDetails({ product, onDelete }) {
 
   useEffect(() => {
     if (product.image) {
-      axios.get(`https://localhost:7027/api/Product/GetUserImage?imageName=${product.image}`)
+      axiosInstance.get(`/api/Product/GetUserImage?imageName=${product.image}`)
         .then(response => {
           setImageBase64(response.data);
         })

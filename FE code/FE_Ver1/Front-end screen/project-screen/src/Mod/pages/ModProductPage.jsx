@@ -5,7 +5,6 @@ import axiosInstance from '../../authorized/axiosInstance'; // Import axiosInsta
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
 import anhliem from '../assets/anhliem.jpg';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from '../styles/ModProductPage.module.css'; // Import CSS module
@@ -29,11 +28,14 @@ const ProductPage = () => {
         setProduct(productData);
         setSellerInfo(productData.productOwner);
         setPhoneNumber(productData.productOwner.phone);
+        console.log(productData.productImage);
 
         // Fetch product image
-        const imageResponse = await axios.get(`http://localhost:5299/api/Product/GetUserImage?imageName=${productData.productImage}`, {
-          responseType: 'text',
+        const imageResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${productData.productImage}`, {
+
         });
+        console.log(productData);
+        console.log(imageResponse);
 
         const fileExtension = productData.productImage.split('.').pop().toLowerCase();
         let mimeType;
@@ -55,6 +57,7 @@ const ProductPage = () => {
 
         const imgSrc = `data:${mimeType};base64,${imageResponse.data}`;
         setImageSrc(imgSrc);
+        console.log(imgSrc);
         productData.imageSrc = imgSrc;
 
       } catch (error) {
@@ -65,7 +68,6 @@ const ProductPage = () => {
 
     fetchProduct();
   }, [id]);
-
   const handlePhoneClick = () => {
     if (phoneNumber) {
       alert(`Phone number: ${phoneNumber}`);

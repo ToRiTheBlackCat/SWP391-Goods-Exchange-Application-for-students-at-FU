@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../authorized/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,7 +21,7 @@ const ChangePassword = () => {
     }
 
     try {
-      const response = await axios.post('https://localhost:7027/api/User/UserResetPassword', {
+      const response = await axiosInstance.post('/api/User/UserResetPassword', {
         email: email,
         resetCode: otp,
         password: newPassword,

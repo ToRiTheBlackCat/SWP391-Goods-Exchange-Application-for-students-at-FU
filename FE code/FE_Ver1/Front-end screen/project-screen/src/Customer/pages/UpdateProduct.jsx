@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearSelectedProduct, setSelectedProduct } from '../store/store';
+import { toast, ToastContainer } from 'react-toastify';  // Import toast and ToastContainer
+import 'react-toastify/dist/ReactToastify.css';  // Import toastify CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../styles/UpdateProduct.module.css';
 import Navbar from '../components/Navbar';
 import axiosInstance from '../../authorized/axiosInstance';
@@ -18,7 +20,7 @@ function UpdateProduct() {
     productName: '',
     productImage: '',
     productDescription: '',
-    productPrice: 0,
+    productPrice: '',
     typeId: 0,
     userId: 0
   });
@@ -34,7 +36,7 @@ function UpdateProduct() {
         productName: selectedProduct.productName,
         productImage: selectedProduct.productImage,
         productDescription: selectedProduct.productDescription,
-        productPrice: selectedProduct.productPrice,
+        productPrice: formatNumber(selectedProduct.productPrice),
         typeId: selectedProduct.typeId,
         userId: userId // Thiết lập userId từ localStorage
       });
@@ -42,7 +44,7 @@ function UpdateProduct() {
         fetchProductImage(selectedProduct.productImage);
       }
     } else {
-      axios.get(`https://localhost:7027/api/Product/Student/ViewProductDetailWithId/${id}`)
+      axiosInstance.get(`/api/Product/Student/ViewProductDetailWithId/${id}`)
         .then(response => {
           const data = response.data;
           setProduct({
@@ -50,7 +52,7 @@ function UpdateProduct() {
             productName: data.productName,
             productImage: data.productImage,
             productDescription: data.productDescription,
-            productPrice: data.productPrice,
+            productPrice: formatNumber(data.productPrice),
             typeId: data.typeId,
             userId: userId // Thiết lập userId từ localStorage
           });
@@ -69,7 +71,7 @@ function UpdateProduct() {
   }, [id, selectedProduct, dispatch]);
 
   const fetchProductImage = (imageName) => {
-    axios.get(`https://localhost:7027/api/Product/GetUserImage?imageName=${imageName}`)
+    axiosInstance.get(`/api/Product/GetUserImage?imageName=${imageName}`)
       .then(response => {
         setImageBase64(`data:image/jpeg;base64,${response.data}`);
       })
@@ -80,7 +82,14 @@ function UpdateProduct() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setProduct({ ...product, [name]: value });
+
+    if (name === "productPrice") {
+      const numericValue = value.replace(/\D/g, ''); // Remove non-digit characters
+      const formattedValue = formatNumber(numericValue);
+      setProduct({ ...product, [name]: formattedValue });
+    } else {
+      setProduct({ ...product, [name]: value });
+    }
   };
 
   const handleFileChange = (e) => {
@@ -96,14 +105,21 @@ function UpdateProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const numericPrice = product.productPrice.replace(/\./g, ''); // Convert formatted price to numeric
     const formData = new FormData();
     formData.append('productId', product.productId);
     formData.append('productName', product.productName);
-    formData.append('productImage', file);
     formData.append('productDescription', product.productDescription);
-    formData.append('productPrice', product.productPrice);
+    formData.append('productPrice', numericPrice);
     formData.append('typeId', product.typeId);
     formData.append('userId', product.userId);
+
+    if (file) {
+      formData.append('productImage', file);
+    } else {
+      formData.append('productImage', product.productImage);
+    }
 
     // Log FormData values
     for (let [key, value] of formData.entries()) {
@@ -117,14 +133,16 @@ function UpdateProduct() {
         }
       });
       console.log('API Response:', response.data); // Kiểm tra phản hồi từ API
-      alert('Product updated successfully');
+      toast.success('Product updated successfully');
       // Cập nhật Redux store
       dispatch(setSelectedProduct(product));
       console.log('Updated Product in Redux:', product);
-      navigate(-1);
+      setTimeout(() => {
+        navigate(-1);
+      }, 3000); // Navigate back after 3 seconds
     } catch (error) {
       console.error('Error updating product:', error);
-      alert('Failed to update product');
+      toast.error(`Error updating product`);
     }
   };
 
@@ -181,7 +199,7 @@ function UpdateProduct() {
               <div className="mb-3">
                 <label htmlFor="productPrice" className="form-label">Price</label>
                 <input
-                  type="number"
+                  type="text"
                   id="productPrice"
                   name="productPrice"
                   value={product.productPrice}
@@ -207,8 +225,14 @@ function UpdateProduct() {
           </div>
         </form>
       </div>
+      <ToastContainer />  {/* Add ToastContainer for displaying toasts */}
     </>
   );
 }
 
 export default UpdateProduct;
+
+const formatNumber = (value) => {
+  if (!value) return '';
+  return new Intl.NumberFormat('vi-VN').format(value);
+};

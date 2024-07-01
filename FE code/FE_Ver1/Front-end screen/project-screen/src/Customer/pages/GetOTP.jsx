@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '../styles/GetOTP.module.css';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../../authorized/axiosInstance';
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const ForgotPassword = () => {
 
   const handleChangePassword = async () => {
     try {
-      const response = await axios.post(`https://localhost:7027/api/User/UserForgotPassword?emailAddress=${encodeURIComponent(email)}`, {
+      const response = await axiosInstance.post(`/api/User/UserForgotPassword?emailAddress=${encodeURIComponent(email)}`, {
         headers: {
           'Content-Type': 'application/json',
         },

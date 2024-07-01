@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import Navbar from '../components/Navbar';
 import styles from '../styles/User-profile.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,7 +23,7 @@ function UserInformation() {
 
   useEffect(() => {
     if (userId) {
-      axios.get(`https://localhost:7027/api/User/user/GetUserInfo/${userId}`)
+      axiosInstance.get(`/api/User/user/GetUserInfo/${userId}`)
         .then(response => {
           const data = response.data;
           setFormData({

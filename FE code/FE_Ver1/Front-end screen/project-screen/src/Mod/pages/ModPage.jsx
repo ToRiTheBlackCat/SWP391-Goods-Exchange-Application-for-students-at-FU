@@ -6,7 +6,7 @@ import ModProductList from '../components/ModPage/ModProductList';
 import Category from '../components/ModPage/Category';
 import Filter from '../components/ModPage/Filter';
 import styles from '../styles/ModPage.module.css';
-import axios from 'axios';
+import axiosInstance from '../../authorized/axiosInstance';
 
 const ModPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,7 +19,7 @@ const ModPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
-  const term = searchTerm || searchParams.get('search') || '';
+  const searchTerm = searchParams.get('search') || '';
   const categoryId = selectedCategoryId || '';
 
   useEffect(() => {
@@ -27,9 +27,9 @@ const ModPage = () => {
       try {
         const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
           params: {
-            sortOrder,
+            sortOrder: sortOrderParam,
             pageIndex: currentPage,
-            sortString: term,
+            sortString: searchTerm,
             cateId: categoryId,
           },
         });
@@ -48,7 +48,7 @@ const ModPage = () => {
     };
 
     fetchProducts();
-  }, [currentPage, sortOrder, term, categoryId, searchSubmitted]);
+  }, [currentPage, sortOrder, term, categoryId]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -77,29 +77,22 @@ const ModPage = () => {
     setSortOrder('');
     setSelectedCategoryId(null);
     setCurrentPage(1);
-    setSearchSubmitted(false); // Reset search submission
-    navigate('/');
-  };
-
-  const handleSearchSubmit = () => {
-    setSearchSubmitted(true); // Set search submission to true
+    navigate('/mod');
   };
 
   return (
     <div>
-      <Navbar onHomeClick={handleReset} searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearchSubmit={handleSearchSubmit} />
+      <Navbar onHomeClick={handleReset} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Category onCategorySelect={handleCategorySelect} selectedCategoryId={selectedCategoryId} />
       <Filter onSortChange={handleSortChange} onDeleteSort={handleDeleteSort} sortOrder={sortOrder} />
       <div className="container mt-4">
         <h2 className={styles.heading}>Products</h2>
         <ModProductList
-          products={products} // Pass the fetched products to the ProductList component
           currentPage={currentPage}
           sortOrder={sortOrder}
           searchTerm={searchTerm}
           categoryId={categoryId}
           setTotalPages={setTotalPages}
-          searchSubmitted={searchSubmitted} // Pass search submission state to ProductList
         />
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>

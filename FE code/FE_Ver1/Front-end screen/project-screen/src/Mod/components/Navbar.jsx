@@ -9,6 +9,7 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
@@ -19,20 +20,20 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
       setIsLoggedIn(true);
       setUsername(user);
     }
-  }, []);
+  }, [username]);
 
   useEffect(() => {
-    const handleClickOutsideDropdown = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-
     document.addEventListener('mousedown', handleClickOutsideDropdown);
     return () => {
       document.removeEventListener('mousedown', handleClickOutsideDropdown);
     };
   }, []);
+
+  const handleClickOutsideDropdown = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpen(false);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -56,9 +57,9 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
     setSearchTerm(inputValue);
     if (inputValue.trim() !== '') {
       onSearchSubmit(); // Trigger search submit action
-      navigate(`/?search=${inputValue}`);
+      navigate(`/mod/?search=${inputValue}`);
     } else {
-      navigate('/');
+      navigate('/mod');
       onHomeClick();
     }
   };
@@ -140,28 +141,6 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
               <ul className={`dropdown-menu ${styles.dropdownMenu}`} style={{ display: isDropdownOpen ? 'block' : 'none' }}>
                 {isLoggedIn ? (
                   <>
-                    <li>
-                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/profile">
-                        Profile
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/own-product">
-                        Your product
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/product">
-                        View incoming exchanges
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink className={`dropdown-item ${styles.dropdownItem}`} to="/exchange-list">
-                        View sent exchange list
-                      </NavLink>
-                    </li>
-                    <li><hr className={`dropdown-divider ${styles.dropdownDivider}`} />
-                    </li>
                     <li>
                       <button
                         className={`dropdown-item ${styles.dropdownItem}`}

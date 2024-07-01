@@ -6,7 +6,7 @@ import AdProductList from '../components/AdPage/AdProductList';
 import Category from '../components/AdPage/Category';
 import Filter from '../components/AdPage/Filter';
 import styles from '../styles/AdPage.module.css';
-import axios from 'axios';
+import axiosInstance from '../../authorized/axiosInstance';
 
 const AdPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,7 +19,7 @@ const AdPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
-  const term = searchTerm || searchParams.get('search') || '';
+  const searchTerm = searchParams.get('search') || '';
   const categoryId = selectedCategoryId || '';
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const AdPage = () => {
           params: {
             sortOrder,
             pageIndex: currentPage,
-            sortString: term,
+            sortString: searchTerm,
             cateId: categoryId,
           },
         });
@@ -78,7 +78,7 @@ const AdPage = () => {
     setSelectedCategoryId(null);
     setCurrentPage(1);
     setSearchSubmitted(false); // Reset search submission
-    navigate('/');
+    navigate('/ad');
   };
 
   const handleSearchSubmit = () => {

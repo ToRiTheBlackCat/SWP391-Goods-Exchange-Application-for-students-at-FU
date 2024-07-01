@@ -9,6 +9,7 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
@@ -19,20 +20,20 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
       setIsLoggedIn(true);
       setUsername(user);
     }
-  }, []);
+  }, [username]);
 
   useEffect(() => {
-    const handleClickOutsideDropdown = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-
     document.addEventListener('mousedown', handleClickOutsideDropdown);
     return () => {
       document.removeEventListener('mousedown', handleClickOutsideDropdown);
     };
   }, []);
+
+  const handleClickOutsideDropdown = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpen(false);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -88,7 +89,6 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
               <NavLink 
                 className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
                 to="/"
-                onClick={handleHomeClick}
               >
                 Home
               </NavLink>
