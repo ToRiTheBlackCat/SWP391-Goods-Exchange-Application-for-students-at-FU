@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css'; // Import FontAwesome
 import styles from '../styles/Login.module.css';
 import axiosInstance from '../../authorized/axiosInstance';
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -18,7 +17,7 @@ const Login = () => {
     e.preventDefault();
     setError('');
     setMessage('');
-
+  
     try {
       const response = await axiosInstance.post(
         '/user/login',
@@ -39,7 +38,9 @@ const Login = () => {
         localStorage.setItem('userId', response.data.userId);
         localStorage.setItem('userName', response.data.userName);
         localStorage.setItem('role', response.data.role);
-
+        const expirationTime = new Date().getTime() + 30 * 60 * 1000; 
+        localStorage.setItem('expirationTime', expirationTime);
+  
         if (response.data.role === 'mod') {
           navigate('/mod');
         } else if (response.data.role === 'admin') {
@@ -55,14 +56,14 @@ const Login = () => {
       setError('Login failed. Please check your email or password');
     }
   };
-
+  
   const handleGoogleLoginSuccess = async (response) => {
-    const crendecial = response.credential;
-    console.log(crendecial);
+    const credential = response.credential;
+    console.log(credential);
     try {
       const googleResponse = await axiosInstance.post(
         '/api/user/google-login',
-        crendecial,
+        credential,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -72,11 +73,21 @@ const Login = () => {
       );
       if (googleResponse.status === 200) {
         setMessage('Login successfully');
-        localStorage.setItem('token', googleResponse.data.token);
-        localStorage.setItem('userId', googleResponse.data.userId);
-        localStorage.setItem('userName', googleResponse.data.userName);
-        localStorage.setItem('role', googleResponse.data.role);
+        const token = response.data.token;
+        const userId = response.data.userId;
+        const userName = response.data.userName;
+        const role = response.data.role;
+        const expirationTime = new Date().getTime() + 30 * 60 * 1000; 
 
+        // Reset localStorage and state
+        localStorage.setItem('token', token);
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('userName', userName);
+        localStorage.setItem('role', role);
+        localStorage.setItem('expirationTime', expirationTime);
+
+        setIsLoggedIn(true); // Cập nhật trạng thái đăng nhập
+  
         if (googleResponse.data.role === 'mod') {
           navigate('/mod');
         } else if (googleResponse.data.role === 'admin') {
