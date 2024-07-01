@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ProductCard from '../AdPage/AdProductCard';
+import ProductCard from './AdProductCard';
 import styles from '../../styles/ProductList.module.css';
 import { useLocation } from 'react-router-dom';
 
-const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalPages }) => {
+const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalPages, searchSubmitted }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -18,27 +18,10 @@ const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTota
       setLoading(true);
       setError('');
 
-      let sortOrderParam;
-      switch (sortOrder) {
-        case 'name_asc':
-          sortOrderParam = 'Name';
-          break;
-        case 'name_desc':
-          sortOrderParam = 'name_desc';
-          break;
-        case 'price_asc':
-          sortOrderParam = 'Price';
-          break;
-        case 'price_desc':
-          sortOrderParam = 'price_desc';
-          break;
-        default:
-          sortOrderParam = '';
-      }
       try {
         const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
           params: {
-            sortOrder: sortOrderParam,
+            sortOder: sortOrder,
             pageIndex: currentPage,
             sortString: term,
             cateId: category,
@@ -55,29 +38,20 @@ const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTota
             });
 
             const fileExtension = product.productImage.split('.').pop().toLowerCase();
-            let mimeType;
-            switch (fileExtension) {
-              case 'jpeg':
-              case 'jpg':
-                mimeType = 'image/jpeg';
-                break;
-              case 'png':
-                mimeType = 'image/png';
-                break;
-              case 'webp':
-                mimeType = 'image/webp';
-                break;
-              default:
-                mimeType = 'image/jpeg';
-                break;
-            }
-
+            const mimeTypes = {
+              jpeg: 'image/jpeg',
+              jpg: 'image/jpeg',
+              png: 'image/png',
+              webp: 'image/webp',
+            };
+            const mimeType = mimeTypes[fileExtension] || 'image/jpeg';
             const imgSrc = `data:${mimeType};base64,${imageResponse.data}`;
+
             return {
               imgSrc,
               alt: product.productName,
               title: product.productName,
-              // link: `/product/${product.productId}`,
+              link: `/product/${product.productId}`,
               condition: product.productDescription,
               price: `${product.productPrice.toLocaleString()} VND`,
               seller: product.productOwner.userName,
@@ -89,7 +63,7 @@ const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTota
               imgSrc: '',
               alt: product.productName,
               title: product.productName,
-              // link: `/product/${product.productId}`,
+              link: `/product/${product.productId}`,
               condition: product.productDescription,
               price: `${product.productPrice.toLocaleString()} VND`,
               seller: 'Unknown',
@@ -109,7 +83,7 @@ const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTota
     };
 
     fetchProducts();
-  }, [currentPage, sortOrder, term, category, setTotalPages]);
+  }, [currentPage, sortOrder, term, category, setTotalPages, searchSubmitted]);
 
   if (loading) {
     return <div>Loading...</div>;

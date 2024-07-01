@@ -58,7 +58,7 @@ const App = () => {
             <Route path='/report' element={<ReportProduct />} />
             <Route path='/waiting-product' element={<WaitingProduct />} />
             <Route path="/mod/product/:id" element={<ModProductPage />} />
-            <Route path='/update-product/:id' element={<UpdateProduct />} />
+            <Route path='/ureport-listpdate-product/:id' element={<UpdateProduct />} />
             <Route path='/report-list' element={<ReportList />} />
             <Route path='/ad/manage-account/:userId' element={<ManageAccounts />} />
             <Route path='/mod' element={<ModPage />} />

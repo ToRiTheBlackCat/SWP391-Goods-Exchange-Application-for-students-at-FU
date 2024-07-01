@@ -90,9 +90,9 @@ function PostProductForm() {
 
             const response = await axiosInstance.post('/api/Product/Student/AddNewProduct', data, {
                 headers: {
-                  'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data'
                 }
-              });
+            });
             console.log(response.data);
             if (response.status === 200 || response.status === 201) {
                 alert('Create successful products');
@@ -129,7 +129,6 @@ function PostProductForm() {
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="typeId">Category</label>
-                                <label htmlFor="typeId">Category</label>
                                 <select className="form-control" id="typeId" value={formData.typeId} onChange={handleInputChange}>
                                     <option value="0">Choose a category</option>
                                     <option value="1">Electronics</option>
@@ -144,17 +143,17 @@ function PostProductForm() {
                             <div className="form-row">
                                 <div className="form-group col-md-6">
                                     <label htmlFor="productName">Name</label>
-                                    <input type="text" className="form-control" id="productName" placeholder="Nhập tên sản phẩm" value={formData.productName} onChange={handleInputChange} required />
+                                    <input type="text" className="form-control" id="productName" placeholder="Enter Product's Name" value={formData.productName} onChange={handleInputChange} required />
                                 </div>
                                 <div className="form-group col-md-6">
                                     <label htmlFor="productPrice">Price</label>
-                                    <input type="text" className="form-control" id="productPrice" placeholder="Nhập giá sản phẩm" value={formData.productPrice} onChange={handlePriceChange} required />
+                                    <input type="text" className="form-control" id="productPrice" placeholder="Enter Product's Price" value={formData.productPrice} onChange={handlePriceChange} required />
                                 </div>
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="productDescription">Description</label>
-                                <textarea className="form-control" id="productDescription" rows="4" placeholder="Nhập mô tả chi tiết" value={formData.productDescription} onChange={handleInputChange} required></textarea>
+                                <textarea className="form-control" id="productDescription" rows="4" placeholder="Enter Detailed Description" value={formData.productDescription} onChange={handleInputChange} required></textarea>
                             </div>
                             <button type="submit" className={`btn ${styles.btnWarning} text-white`}>Create</button>
                         </form>

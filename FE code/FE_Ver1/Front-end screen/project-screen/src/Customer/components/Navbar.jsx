@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PropTypes from 'prop-types';
 import styles from '../styles/Navbar.module.css';
 
-const Navbar = ({ onHomeClick, searchTerm, setSearchTerm }) => {
+const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
+  const [inputValue, setInputValue] = useState(searchTerm);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -46,22 +48,29 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm }) => {
   };
 
   const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
+    setInputValue(event.target.value);
   };
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    navigate(`/?search=${searchTerm}`);
+    setSearchTerm(inputValue);
+    if (inputValue.trim() !== '') {
+      onSearchSubmit(); // Trigger search submit action
+      navigate(`/?search=${inputValue}`);
+    } else {
+      navigate('/');
+      onHomeClick();
+    }
   };
 
   const handleHomeClick = () => {
-    setSearchTerm(''); // Clear the search term
+    setInputValue(''); // Clear the search term
     onHomeClick(); // Call the reset function passed from HomePage
   };
 
   return (
     <nav className={`navbar navbar-expand-lg navbar-dark bg-dark ${styles.navbar}`}>
-      <div className="container-fluid" style={{padding:'0px'}}>
+      <div className="container-fluid" style={{ padding: '0px' }}>
         <button
           className={`navbar-toggler ${styles.navbarToggler}`}
           type="button"
@@ -99,8 +108,8 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm }) => {
               type="search" 
               placeholder="Search" 
               aria-label="Search" 
-              value={searchTerm}
-              onChange={handleSearchChange} 
+              value={inputValue}
+              onChange={handleSearchChange}
             />
             <button className={`btn btn-primary ${styles.btnPrimary}`} type="submit">Search</button>
           </form>
@@ -167,6 +176,13 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm }) => {
       </div>
     </nav>
   );
+};
+
+Navbar.propTypes = {
+  onHomeClick: PropTypes.func.isRequired,
+  searchTerm: PropTypes.string.isRequired,
+  setSearchTerm: PropTypes.func.isRequired,
+  onSearchSubmit: PropTypes.func.isRequired,
 };
 
 export default Navbar;

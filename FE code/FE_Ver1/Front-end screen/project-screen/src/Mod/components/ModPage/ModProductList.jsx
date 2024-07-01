@@ -4,7 +4,7 @@ import ProductCard from './ModProductCard';
 import styles from '../../styles/ProductList.module.css';
 import { useLocation } from 'react-router-dom';
 
-const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalPages }) => {
+const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalPages, searchSubmitted }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -18,27 +18,10 @@ const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTot
       setLoading(true);
       setError('');
 
-      let sortOrderParam;
-      switch (sortOrder) {
-        case 'name_asc':
-          sortOrderParam = 'Name';
-          break;
-        case 'name_desc':
-          sortOrderParam = 'name_desc';
-          break;
-        case 'price_asc':
-          sortOrderParam = 'Price';
-          break;
-        case 'price_desc':
-          sortOrderParam = 'price_desc';
-          break;
-        default:
-          sortOrderParam = '';
-      }
       try {
         const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
           params: {
-            sortOrder: sortOrderParam,
+            sortOder: sortOrder,
             pageIndex: currentPage,
             sortString: term,
             cateId: category,
@@ -55,24 +38,15 @@ const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTot
             });
 
             const fileExtension = product.productImage.split('.').pop().toLowerCase();
-            let mimeType;
-            switch (fileExtension) {
-              case 'jpeg':
-              case 'jpg':
-                mimeType = 'image/jpeg';
-                break;
-              case 'png':
-                mimeType = 'image/png';
-                break;
-              case 'webp':
-                mimeType = 'image/webp';
-                break;
-              default:
-                mimeType = 'image/jpeg';
-                break;
-            }
-
+            const mimeTypes = {
+              jpeg: 'image/jpeg',
+              jpg: 'image/jpeg',
+              png: 'image/png',
+              webp: 'image/webp',
+            };
+            const mimeType = mimeTypes[fileExtension] || 'image/jpeg';
             const imgSrc = `data:${mimeType};base64,${imageResponse.data}`;
+
             return {
               imgSrc,
               alt: product.productName,
@@ -109,7 +83,7 @@ const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTot
     };
 
     fetchProducts();
-  }, [currentPage, sortOrder, term, category, setTotalPages]);
+  }, [currentPage, sortOrder, term, category, setTotalPages, searchSubmitted]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -129,4 +103,5 @@ const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTot
     </div>
   );
 };
+
 export default ModProductList;
