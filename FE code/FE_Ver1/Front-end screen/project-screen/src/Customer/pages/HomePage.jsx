@@ -6,7 +6,7 @@ import ProductList from '../components/HomePage/ProductList';
 import Category from '../components/HomePage/Category';
 import Filter from '../components/HomePage/Filter';
 import styles from '../styles/HomePage.module.css';
-import axios from 'axios';
+
 import axiosInstance from '../../authorized/axiosInstance'
 
 const HomePage = () => {
@@ -15,10 +15,12 @@ const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState(''); // Default sort order
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchSubmitted, setSearchSubmitted] = useState(false); // Track search submission
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
-  const searchTerm = searchParams.get('search') || '';
+  const term = searchTerm || searchParams.get('search') || '';
   const categoryId = selectedCategoryId || '';
 
   useEffect(() => {
@@ -45,7 +47,7 @@ const HomePage = () => {
           params: {
             sortOder: sortOrderParam,
             pageIndex: currentPage,
-            sortString: searchTerm,
+            sortString: term,
             cateId: categoryId,
           },
         });
@@ -65,7 +67,7 @@ const HomePage = () => {
     };
 
     fetchProducts();
-  }, [currentPage, sortOrder, searchTerm, categoryId]);
+  }, [currentPage, sortOrder, term, searchSubmitted, categoryId]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -88,15 +90,33 @@ const HomePage = () => {
       navigate(`/?categoryId=${categoryId}`);
     }
   };
+  const handleReset = () => {
+    setSearchTerm('');
+    setSortOrder('');
+    setSelectedCategoryId(null);
+    setCurrentPage(1);
+    setSearchSubmitted(false); // Reset search submission
+    navigate('/');
+  };
+  const handleSearchSubmit = () => {
+    setSearchSubmitted(true); // Set search submission to true
+  };
 
   return (
     <div>
-      <Navbar />
+      <Navbar onHomeClick={handleReset} searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearchSubmit={handleSearchSubmit} />
       <Category onCategorySelect={handleCategorySelect} selectedCategoryId={selectedCategoryId} />
       <Filter onSortChange={handleSortChange} onDeleteSort={handleDeleteSort} sortOrder={sortOrder} />
       <div className="container mt-4">
         <h2 className={styles.heading}>Products</h2>
-        <ProductList currentPage={currentPage} sortOrder={sortOrder} searchTerm={searchTerm} categoryId={categoryId} />
+        <ProductList
+          currentPage={currentPage}
+          sortOrder={sortOrder}
+          searchTerm={searchTerm}
+          categoryId={categoryId}
+          setTotalPages={setTotalPages}
+          searchSubmitted={searchSubmitted} // Pass search submission state to ProductList
+        />
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
     </div>

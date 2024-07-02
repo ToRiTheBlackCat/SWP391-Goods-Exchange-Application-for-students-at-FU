@@ -1,10 +1,9 @@
 /* Navbar.module.css */
-
 .navbar-brand {
   font-weight: bold;
 }
 
-.nav-link {
+.navLink {
   color: white !important;
 }
 
@@ -12,10 +11,10 @@
   width: 200px;
 }
 
-.nav-link.active {
+.navLink.active {
   font-weight: bold;
   color: #ffffff;
-  background-color: #007bff;
+  background-color: #4a75a3;
   border-radius: 4px;
 }
 
@@ -48,6 +47,11 @@
   background-color: #495057;
 }
 
+.dropdown-item.active {
+  background-color: #007bff;
+  color: #ffffff !important;
+}
+
 .dropdown-divider {
   border-color: rgba(255, 255, 255, 0.1);
 }
@@ -61,6 +65,7 @@
   background-color: #0056b3;
   border-color: #004085;
 }
+
 .dropdownMenu {
   background-color: #bbd2ea;
   border: none;

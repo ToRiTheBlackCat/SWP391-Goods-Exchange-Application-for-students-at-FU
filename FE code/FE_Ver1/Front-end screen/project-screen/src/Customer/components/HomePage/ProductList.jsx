@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import axiosInstance from '../../../authorized/axiosInstance';
 import ProductCard from './ProductCard';
 import styles from '../../styles/ProductList.module.css';
 import { useLocation } from 'react-router-dom';
+import axiosInstance from '../../../authorized/axiosInstance';
 
-const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalPages }) => {
+const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalPages, searchSubmitted }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -19,27 +19,10 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalP
       setLoading(true);
       setError('');
 
-      let sortOrderParam;
-      switch (sortOrder) {
-        case 'name_asc':
-          sortOrderParam = 'Name';
-          break;
-        case 'name_desc':
-          sortOrderParam = 'name_desc';
-          break;
-        case 'price_asc':
-          sortOrderParam = 'Price';
-          break;
-        case 'price_desc':
-          sortOrderParam = 'price_desc';
-          break;
-        default:
-          sortOrderParam = '';
-      }
       try {
         const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
-            sortOrder: sortOrderParam,
+            sortOder: sortOrder,
             pageIndex: currentPage,
             sortString: term,
             cateId: category,
@@ -107,7 +90,7 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalP
     };
 
     fetchProducts();
-  }, [currentPage, sortOrder, term, category, setTotalPages]);
+  }, [currentPage, sortOrder, term, category, setTotalPages, searchSubmitted]);
 
   if (loading) {
     return <div>Loading...</div>;

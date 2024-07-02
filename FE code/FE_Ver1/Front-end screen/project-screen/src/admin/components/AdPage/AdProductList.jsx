@@ -42,7 +42,7 @@ const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTota
             pageIndex: currentPage,
             sortString: term,
             cateId: category,
-            pageSize: 6, // Define page size here
+            pageSize: setTotalPages, // Define page size here
           },
         });
         const productData = response.data.foundList;
