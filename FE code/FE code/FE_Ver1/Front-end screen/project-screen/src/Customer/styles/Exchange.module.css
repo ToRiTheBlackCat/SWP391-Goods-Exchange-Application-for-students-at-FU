@@ -1,0 +1,88 @@
+.container {
+  margin-top: 50px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.colMd6 {
+  flex: 0 0 48%;
+  max-width: 48%;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.productDetails {
+  text-align: center;
+}
+
+.productImage {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.productDetails p {
+  margin: 5px 0;
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+.priceDifference {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.payerOptions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.payerOptions label {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  flex: 1;
+  margin: 0 5px;
+}
+
+.btnCancel {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: none;
+}
+
+.btnCancel:hover {
+  background-color: #dd616d;
+}

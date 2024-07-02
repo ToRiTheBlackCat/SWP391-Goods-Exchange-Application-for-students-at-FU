@@ -6,7 +6,7 @@ import houseware from '../../assets/houseware.jpg';
 import books from '../../assets/books.jpg';
 import school_supplies from '../../assets/school_supplies.jpg';
 import clothes from '../../assets/clothes.jpg';
-import styles from '../../styles/Category.module.css';  // Import CSS module
+import styles from '../../styles/Category.module.css';
 import Filter from './Filter';
 
 const categories = [

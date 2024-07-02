@@ -1,0 +1,68 @@
+.container {
+    margin-top: 50px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.colMd3 {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-right: 1px solid #dee2e6;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.selectedExchange {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.exchangeDetails {
+    margin-bottom: 20px;
+}
+
+.exchangeDetails div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.status-accepted {
+    color: green;
+}
+
+.status-waiting {
+    color: orange;
+}
+
+.status-rejected {
+    color: red;
+}
+
+.ratingForm {
+    margin-top: 20px;
+}
+
+.ratingForm .form-group {
+    margin-bottom: 15px;
+}
+
+.ratingForm .form-control {
+    width: 100px; /* Adjust the width as needed */
+    display: inline-block; /* Keeps the input inline */
+    margin-right: 10px; /* Adds space between the rating and comment */
+}

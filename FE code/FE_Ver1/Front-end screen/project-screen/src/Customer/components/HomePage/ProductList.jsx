@@ -20,13 +20,13 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalP
       setError('');
 
       try {
-        const response = await axiosInstance.get(`/api/Product/GetSorted`, {
+        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
           params: {
             sortOder: sortOrder,
             pageIndex: currentPage,
             sortString: term,
             cateId: category,
-            pageSize: setTotalPages, // Define page size here
+            pageSize: 6, // Define page size here
           },
         });
         const productData = response.data.foundList;
@@ -36,24 +36,15 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalP
             const imageResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${product.productImage}`);
 
             const fileExtension = product.productImage.split('.').pop().toLowerCase();
-            let mimeType;
-            switch (fileExtension) {
-              case 'jpeg':
-              case 'jpg':
-                mimeType = 'image/jpeg';
-                break;
-              case 'png':
-                mimeType = 'image/png';
-                break;
-              case 'webp':
-                mimeType = 'image/webp';
-                break;
-              default:
-                mimeType = 'image/jpeg';
-                break;
-            }
-
+            const mimeTypes = {
+              jpeg: 'image/jpeg',
+              jpg: 'image/jpeg',
+              png: 'image/png',
+              webp: 'image/webp',
+            };
+            const mimeType = mimeTypes[fileExtension] || 'image/jpeg';
             const imgSrc = `data:${mimeType};base64,${imageResponse.data}`;
+
             return {
               imgSrc,
               alt: product.productName,
