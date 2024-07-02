@@ -17,8 +17,6 @@ const HomePage = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchSubmitted, setSearchSubmitted] = useState(false); // Track search submission
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchSubmitted, setSearchSubmitted] = useState(false); // Track search submission
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
@@ -27,10 +25,27 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
+      let sortOrderParam;
+      switch (sortOrder) {
+        case 'name_asc':
+          sortOrderParam = 'Name';
+          break;
+        case 'name_desc':
+          sortOrderParam = 'name_desc';
+          break;
+        case 'price_asc':
+          sortOrderParam = 'Price';
+          break;
+        case 'price_desc':
+          sortOrderParam = 'price_desc';
+          break;
+        default:
+          sortOrderParam = ''; // Default sort order
+      }
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
+        const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
-            sortOrder,
+            sortOder: sortOrderParam,
             pageIndex: currentPage,
             sortString: term,
             cateId: categoryId,
@@ -48,6 +63,7 @@ const HomePage = () => {
       } catch (error) {
         console.error('Error fetching products:', error);
       }
+
     };
 
     fetchProducts();
@@ -88,7 +104,6 @@ const HomePage = () => {
 
   return (
     <div>
-      <Navbar onHomeClick={handleReset} searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearchSubmit={handleSearchSubmit} />
       <Navbar onHomeClick={handleReset} searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearchSubmit={handleSearchSubmit} />
       <Category onCategorySelect={handleCategorySelect} selectedCategoryId={selectedCategoryId} />
       <Filter onSortChange={handleSortChange} onDeleteSort={handleDeleteSort} sortOrder={sortOrder} />

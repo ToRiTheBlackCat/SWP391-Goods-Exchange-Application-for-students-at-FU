@@ -19,17 +19,34 @@ const ModPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
-  const searchTerm = searchParams.get('search') || '';
+  const term = searchTerm || searchParams.get('search') || '';
   const categoryId = selectedCategoryId || '';
 
   useEffect(() => {
     const fetchProducts = async () => {
+      let sortOrderParam;
+      switch (sortOrder) {
+        case 'name_asc':
+          sortOrderParam = 'Name';
+          break;
+        case 'name_desc':
+          sortOrderParam = 'name_desc';
+          break;
+        case 'price_asc':
+          sortOrderParam = 'Price';
+          break;
+        case 'price_desc':
+          sortOrderParam = 'price_desc';
+          break;
+        default:
+          sortOrderParam = ''; // Default sort order
+      }
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
+        const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
-            sortOrder: sortOrderParam,
+            sortOder: sortOrderParam,
             pageIndex: currentPage,
-            sortString: searchTerm,
+            sortString: term,
             cateId: categoryId,
           },
         });
@@ -45,10 +62,11 @@ const ModPage = () => {
       } catch (error) {
         console.error('Error fetching products:', error);
       }
+
     };
 
     fetchProducts();
-  }, [currentPage, sortOrder, term, categoryId]);
+  }, [currentPage, sortOrder, term, searchSubmitted, categoryId]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -71,18 +89,21 @@ const ModPage = () => {
       navigate(`/mod/?categoryId=${categoryId}`);
     }
   };
-
   const handleReset = () => {
     setSearchTerm('');
     setSortOrder('');
     setSelectedCategoryId(null);
     setCurrentPage(1);
+    setSearchSubmitted(false); // Reset search submission
     navigate('/mod');
+  };
+  const handleSearchSubmit = () => {
+    setSearchSubmitted(true); // Set search submission to true
   };
 
   return (
     <div>
-      <Navbar onHomeClick={handleReset} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <Navbar onHomeClick={handleReset} searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearchSubmit={handleSearchSubmit} />
       <Category onCategorySelect={handleCategorySelect} selectedCategoryId={selectedCategoryId} />
       <Filter onSortChange={handleSortChange} onDeleteSort={handleDeleteSort} sortOrder={sortOrder} />
       <div className="container mt-4">
@@ -93,6 +114,7 @@ const ModPage = () => {
           searchTerm={searchTerm}
           categoryId={categoryId}
           setTotalPages={setTotalPages}
+          searchSubmitted={searchSubmitted} // Pass search submission state to ProductList
         />
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>

@@ -25,26 +25,34 @@ const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTot
             pageIndex: currentPage,
             sortString: term,
             cateId: category,
-            pageSize: 6, // Define page size here
+            pageSize: setTotalPages, // Define page size here
           },
         });
         const productData = response.data.foundList;
-        console.log(productData);
 
         const promises = productData.map(async (product) => {
           try {
             const imageResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${product.productImage}`);
 
             const fileExtension = product.productImage.split('.').pop().toLowerCase();
-            const mimeTypes = {
-              jpeg: 'image/jpeg',
-              jpg: 'image/jpeg',
-              png: 'image/png',
-              webp: 'image/webp',
-            };
-            const mimeType = mimeTypes[fileExtension] || 'image/jpeg';
-            const imgSrc = `data:${mimeType};base64,${imageResponse.data}`;
+            let mimeType;
+            switch (fileExtension) {
+              case 'jpeg':
+              case 'jpg':
+                mimeType = 'image/jpeg';
+                break;
+              case 'png':
+                mimeType = 'image/png';
+                break;
+              case 'webp':
+                mimeType = 'image/webp';
+                break;
+              default:
+                mimeType = 'image/jpeg';
+                break;
+            }
 
+            const imgSrc = `data:${mimeType};base64,${imageResponse.data}`;
             return {
               imgSrc,
               alt: product.productName,
@@ -101,5 +109,4 @@ const ModProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTot
     </div>
   );
 };
-
 export default ModProductList;

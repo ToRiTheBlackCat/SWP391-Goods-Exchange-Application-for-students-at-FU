@@ -1,12 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import PropTypes from 'prop-types'; 
 import electronic from '../../assets/electronics.jpg';
 import accessories from '../../assets/accessories.jpg';
 import houseware from '../../assets/houseware.jpg';
 import books from '../../assets/books.jpg';
 import school_supplies from '../../assets/school_supplies.jpg';
 import clothes from '../../assets/clothes.jpg';
-import styles from '../../styles/Category.module.css';
+import styles from '../../styles/Category.module.css';  // Import CSS module
 import Filter from './Filter';
 
 const categories = [
@@ -52,5 +53,15 @@ function Category({ onCategorySelect, selectedCategoryId, onSortChange }) {
     </div>
   );
 }
+Category.propTypes = {
+  onCategorySelect: PropTypes.func.isRequired,
+  selectedCategoryId: PropTypes.number,
+  onSortChange: PropTypes.func.isRequired,
+};
+
+// Define default props
+Category.defaultProps = {
+  selectedCategoryId: null,
+};
 
 export default Category;

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import ProductCard from './ProductCard';
 import styles from '../../styles/ProductList.module.css';
 import { useLocation } from 'react-router-dom';
@@ -20,13 +19,13 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalP
       setError('');
 
       try {
-        const response = await axios.get(`https://localhost:7027/api/Product/GetSorted`, {
+        const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
             sortOder: sortOrder,
             pageIndex: currentPage,
             sortString: term,
             cateId: category,
-            pageSize: 6, // Define page size here
+            pageSize: setTotalPages, // Define page size here
           },
         });
         const productData = response.data.foundList;
@@ -36,15 +35,24 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalP
             const imageResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${product.productImage}`);
 
             const fileExtension = product.productImage.split('.').pop().toLowerCase();
-            const mimeTypes = {
-              jpeg: 'image/jpeg',
-              jpg: 'image/jpeg',
-              png: 'image/png',
-              webp: 'image/webp',
-            };
-            const mimeType = mimeTypes[fileExtension] || 'image/jpeg';
-            const imgSrc = `data:${mimeType};base64,${imageResponse.data}`;
+            let mimeType;
+            switch (fileExtension) {
+              case 'jpeg':
+              case 'jpg':
+                mimeType = 'image/jpeg';
+                break;
+              case 'png':
+                mimeType = 'image/png';
+                break;
+              case 'webp':
+                mimeType = 'image/webp';
+                break;
+              default:
+                mimeType = 'image/jpeg';
+                break;
+            }
 
+            const imgSrc = `data:${mimeType};base64,${imageResponse.data}`;
             return {
               imgSrc,
               alt: product.productName,

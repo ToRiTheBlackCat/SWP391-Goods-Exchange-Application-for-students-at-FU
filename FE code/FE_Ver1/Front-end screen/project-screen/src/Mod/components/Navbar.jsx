@@ -9,7 +9,6 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
@@ -71,7 +70,7 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
 
   return (
     <nav className={`navbar navbar-expand-lg navbar-dark bg-dark ${styles.navbar}`}>
-      <div className="container-fluid" style={{ padding: '0px' }}>
+      <div className="container-fluid">
         <button
           className={`navbar-toggler ${styles.navbarToggler}`}
           type="button"
@@ -86,8 +85,8 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
         <div className={`collapse navbar-collapse ${styles.navbarCollapse}`} id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink
-                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`}
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
                 to="/mod"
                 onClick={handleHomeClick}
               >
@@ -95,36 +94,36 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`}
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
                 to="/waiting-product"
               >
-                Waiting Product List
+                View waiting product
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`}
-                to="/view-banned-user"
-              >
-                View Ban User
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`}
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
                 to="/report-list"
               >
-                Report List
+                View report list
               </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink 
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`} 
+                to="/view-banned-user"
+              >
+                View banned users
+              </NavLink>  
             </li>
           </ul>
           <form className="d-flex me-2" onSubmit={handleSearchSubmit}>
-            <input
-              className={`form-control me-2 ${styles.formControl}`}
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
+            <input 
+              className={`form-control me-2 ${styles.formControl}`} 
+              type="search" 
+              placeholder="Search" 
+              aria-label="Search" 
               value={inputValue}
               onChange={handleSearchChange}
             />
@@ -172,7 +171,6 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
     </nav>
   );
 };
-
 Navbar.propTypes = {
   onHomeClick: PropTypes.func.isRequired,
   searchTerm: PropTypes.string.isRequired,

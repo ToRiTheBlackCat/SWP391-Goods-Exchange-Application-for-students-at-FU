@@ -17,9 +17,9 @@ const Filter = ({ onSortChange, onDeleteSort, sortOrder }) => {
         aria-label="Sort by"
       >
         <option value="">None</option>
-        <option value="Name">Name A-Z</option>
+        <option value="name_asc">Name A-Z</option>
         <option value="name_desc">Name Z-A</option>
-        <option value="Price">Price Ascending</option>
+        <option value="price_asc">Price Ascending</option>
         <option value="price_desc">Price Descending</option>
       </select>
       <button
