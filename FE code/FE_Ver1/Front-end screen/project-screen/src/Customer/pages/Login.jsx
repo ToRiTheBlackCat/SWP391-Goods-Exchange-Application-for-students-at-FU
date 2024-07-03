@@ -4,7 +4,7 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css'; // Import FontAwesome
 import styles from '../styles/Login.module.css';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../utils/axiosInstance';
 
 const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');

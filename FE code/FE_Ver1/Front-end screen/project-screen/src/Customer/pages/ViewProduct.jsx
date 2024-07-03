@@ -4,7 +4,7 @@ import ListProduct from '../components/ChooseProduct/ListProduct';
 import ViewProductDetails from '../components/ViewProduct/ViewProductDetails';
 import Navbar from '../components/Navbar';
 import styles from '../styles/ChooseProduct.module.css';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../utils/axiosInstance';
 
 function ViewProduct() {
   const [products, setProducts] = useState([]);

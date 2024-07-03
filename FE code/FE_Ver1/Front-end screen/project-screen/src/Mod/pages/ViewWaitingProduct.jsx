@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../utils/axiosInstance';
 import WaitingProductList from '../components/WaitingProductList';
 import WaitingProductDetail from '../components/WaitingProductDetail';
 import styles from '../styles/WaitingProduct.module.css';

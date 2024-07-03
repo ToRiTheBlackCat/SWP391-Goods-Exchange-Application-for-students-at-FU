@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../utils/axiosInstance';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
 import styles from '../styles/ReportProduct.module.css';

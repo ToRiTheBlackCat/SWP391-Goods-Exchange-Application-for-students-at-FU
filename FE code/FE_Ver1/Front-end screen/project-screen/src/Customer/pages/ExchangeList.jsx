@@ -6,7 +6,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import styles from '../styles/ExchangeList.module.css'; // Import CSS module
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../utils/axiosInstance';
 import Navbar from '../components/Navbar';
 
 const ExchangeList = () => {

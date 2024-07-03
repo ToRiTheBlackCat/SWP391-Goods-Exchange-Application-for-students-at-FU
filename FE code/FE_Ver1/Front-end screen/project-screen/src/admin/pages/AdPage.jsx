@@ -6,7 +6,7 @@ import AdProductList from '../components/AdPage/AdProductList';
 import Category from '../components/AdPage/Category';
 import Filter from '../components/AdPage/Filter';
 import styles from '../styles/AdPage.module.css';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../utils/axiosInstance';
 
 const AdPage = () => {
   const [currentPage, setCurrentPage] = useState(1);

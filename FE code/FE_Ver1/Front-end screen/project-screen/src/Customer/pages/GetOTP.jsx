@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '../styles/GetOTP.module.css';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../utils/axiosInstance';
 
 const ForgotPassword = () => {
   const navigate = useNavigate();

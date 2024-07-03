@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import styles from '../styles/User-profile.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import user from '../assets/user.jpg';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../utils/axiosInstance';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

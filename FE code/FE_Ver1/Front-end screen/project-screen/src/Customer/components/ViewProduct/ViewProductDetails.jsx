@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../../styles/ChooseProduct.module.css';
-import axiosInstance from '../../../authorized/axiosInstance';
+import axiosInstance from '../../../utils/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setSelectedProduct } from '../../store/store';

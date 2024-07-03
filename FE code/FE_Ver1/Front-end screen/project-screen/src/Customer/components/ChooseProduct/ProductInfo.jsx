@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../../styles/ChooseProduct.module.css';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../../authorized/axiosInstance';
+import axiosInstance from '../../../utils/axiosInstance';
 
 function ProductInfo({ product, onSelect }) {
   const [imageBase64, setImageBase64] = useState('');

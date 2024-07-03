@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';  // Import toastify CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../styles/UpdateProduct.module.css';
 import Navbar from '../components/Navbar';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../utils/axiosInstance';
 
 function UpdateProduct() {
   const { id } = useParams();

@@ -7,7 +7,7 @@ import Category from '../components/HomePage/Category';
 import Filter from '../components/HomePage/Filter';
 import styles from '../styles/HomePage.module.css';
 
-import axiosInstance from '../../authorized/axiosInstance'
+import axiosInstance from '../../utils/axiosInstance'
 
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);

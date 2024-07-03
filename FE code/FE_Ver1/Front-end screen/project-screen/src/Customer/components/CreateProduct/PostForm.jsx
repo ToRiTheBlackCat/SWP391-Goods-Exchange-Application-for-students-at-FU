@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../../styles/PostForm.module.css';
-import axiosInstance from '../../../authorized/axiosInstance'; // Import axiosInstance
+import axiosInstance from '../../../utils/axiosInstance'; // Import axiosInstance
 import { useNavigate } from 'react-router-dom';
 
 function PostProductForm() {

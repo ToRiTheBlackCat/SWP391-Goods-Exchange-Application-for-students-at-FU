@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '../styles/SignUpForm.module.css';
 import { useNavigate, Link } from 'react-router-dom';
-import axiosInstance from '../../authorized/axiosInstance'; // Import axiosInstance
+import axiosInstance from '../../utils/axiosInstance'; // Import axiosInstance
 import { toast, ToastContainer } from 'react-toastify'; // Import toast and ToastContainer
 import 'react-toastify/dist/ReactToastify.css'; // Import toastify CSS
 

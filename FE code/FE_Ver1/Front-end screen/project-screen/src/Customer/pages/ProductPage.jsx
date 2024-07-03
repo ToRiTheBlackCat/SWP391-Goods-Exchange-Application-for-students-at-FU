@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import axiosInstance from '../../authorized/axiosInstance'; // Import axiosInstance
+import axiosInstance from '../../utils/axiosInstance'; // Import axiosInstance
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
 import anhliem from '../assets/anhliem.jpg';
@@ -85,7 +85,7 @@ const ProductPage = () => {
   };
 
   const handleChatClick = () => {
-    // Handle chat button click
+    navigate('/chat');
   };
 
   const handleReportClick = () => {

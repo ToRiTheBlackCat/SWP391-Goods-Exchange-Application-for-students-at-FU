@@ -7,7 +7,7 @@ import ListProduct from '../components/ChooseProduct/ListProduct';
 import ProductInfo from '../components/ChooseProduct/ProductInfo';
 import Navbar from '../components/Navbar';
 import styles from '../styles/ChooseProduct.module.css';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../utils/axiosInstance';
 
 function ChooseProduct() {
   const [products, setProducts] = useState([]);

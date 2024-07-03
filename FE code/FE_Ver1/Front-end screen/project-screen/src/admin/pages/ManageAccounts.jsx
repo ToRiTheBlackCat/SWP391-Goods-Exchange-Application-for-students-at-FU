@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/ManageAccounts.module.css';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../utils/axiosInstance';
 import { confirmAlert } from 'react-confirm-alert';
 import Navbar from '../components/Navbar';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css

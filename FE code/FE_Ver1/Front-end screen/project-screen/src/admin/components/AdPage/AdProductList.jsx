@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import AdProductCard from '../AdPage/AdProductCard';
 import styles from '../../styles/ProductList.module.css';
 import { useLocation } from 'react-router-dom';
-import axiosInstance from '../../../authorized/axiosInstance';
+import axiosInstance from '../../../utils/axiosInstance';
 
 const AdProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalPages, searchSubmitted }) => {
   const [products, setProducts] = useState([]);

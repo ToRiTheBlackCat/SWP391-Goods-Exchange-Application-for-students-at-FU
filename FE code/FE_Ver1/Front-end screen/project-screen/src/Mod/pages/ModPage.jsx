@@ -6,7 +6,7 @@ import ModProductList from '../components/ModPage/ModProductList';
 import Category from '../components/ModPage/Category';
 import Filter from '../components/ModPage/Filter';
 import styles from '../styles/ModPage.module.css';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../utils/axiosInstance';
 
 const ModPage = () => {
   const [currentPage, setCurrentPage] = useState(1);

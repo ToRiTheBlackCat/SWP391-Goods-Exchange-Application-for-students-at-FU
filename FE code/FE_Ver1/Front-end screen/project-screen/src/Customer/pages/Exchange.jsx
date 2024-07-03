@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import axiosInstance from '../../authorized/axiosInstance';
+import axiosInstance from '../../utils/axiosInstance';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../styles/Exchange.module.css'; // Import CSS module
 import { confirmAlert } from 'react-confirm-alert';
