@@ -68,10 +68,10 @@ const ReportProduct = () => {
             <div className={styles.reportContainer}>
               <h2 className="text-center mb-4">Report Product</h2>
               <div className="card mb-4">
-                <div className="card-body">
-                  <h5 className="card-title">{product.productName}</h5>
-                  <p className="card-text">{product.productDescription}</p>
-                  <p className="card-text"><strong>Price:</strong> ${product.productPrice.toLocaleString()}</p>
+                <div className={styles.cardBody}>
+                  <h5 className="card-title"><strong>Product:</strong> {product.productName}</h5>
+                  <p className="card-text"><strong>Description:</strong> {product.productDescription}</p>
+                  <p className="card-text"><strong>Price:</strong> {product.productPrice.toLocaleString()} VND</p>
                   {product.productImage && (
                     <img src={product.imageSrc} alt={product.productName} className="img-thumbnail" />
                   )}
@@ -90,7 +90,10 @@ const ReportProduct = () => {
                     required
                   ></textarea>
                 </div>
-                <button type="submit" className="btn btn-danger w-100">Submit Report</button>
+                <div className={styles.buttonContainer}>
+                  <button type="submit" className="btn btn-danger">Submit Report</button>
+                  <button type="button" className="btn btn-secondary" onClick={() => navigate(-1)}>Back</button>
+                </div>
               </form>
               {error && <p className="text-danger mt-3">{error}</p>}
             </div>

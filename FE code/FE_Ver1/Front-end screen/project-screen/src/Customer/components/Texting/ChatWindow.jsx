@@ -32,6 +32,13 @@ export function ChatWindowSender({avatar, user, message}){
   return(
     <>
     <div style={{display:'flex', justifyContent:'flex-end', flexDirection: 'row'}}>
+    
+    <p style={{padding:10, backgroundColor: '#fff', borderRadius: 10, maxWidth: '60%'}}>
+      <strong style={{fontSize: 13}}>
+        {user}
+      </strong><br></br>
+      {message}
+    </p>
     <Avatar
     size={50}
     src={<Image
@@ -45,12 +52,6 @@ export function ChatWindowSender({avatar, user, message}){
         preview={false}
     />}
     />
-    <p style={{padding:10, backgroundColor: '#fff', borderRadius: 10, maxWidth: '60%'}}>
-      <strong style={{fontSize: 13}}>
-        {user}
-      </strong><br></br>
-      {message}
-    </p>
     </div>
     </>
   )

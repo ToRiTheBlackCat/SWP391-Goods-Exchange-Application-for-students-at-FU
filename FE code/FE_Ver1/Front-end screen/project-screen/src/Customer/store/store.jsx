@@ -7,6 +7,7 @@ const productSlice = createSlice({
     selectedProduct: null,
     productToExchange: null,
     user: null,
+    sellerInfo: null,
   },
   reducers: {
     setSelectedProduct: (state, action) => {
@@ -24,10 +25,14 @@ const productSlice = createSlice({
       console.log('Setting product to exchange:', action.payload); // Thêm log để kiểm tra
       state.productToExchange = action.payload;
     },
+    setSellerInfo: (state, action) => {
+      console.log('Setting seller info:', action.payload); // Thêm log để kiểm tra
+      state.sellerInfo = action.payload;
+    },
   },
 });
 
-export const { setSelectedProduct, setProductToExchange, clearSelectedProduct, setUser } = productSlice.actions;
+export const { setSelectedProduct, setProductToExchange, clearSelectedProduct, setUser, setSellerInfo } = productSlice.actions;
 
 const store = configureStore({
   reducer: {
