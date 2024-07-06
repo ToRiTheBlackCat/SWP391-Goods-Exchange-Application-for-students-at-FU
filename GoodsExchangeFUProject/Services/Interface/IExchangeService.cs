@@ -18,5 +18,6 @@ namespace Services.Interface
         List<AllExchangeModelView> GetAllExchangeList();
         Task<(bool, string)> CancelExchangeUI(int exchangeId);
         Task<(bool, string)> DeclineExchangeUI(int exchangeId);
+        Task<string> CancelExchangesOfProduct(int productID);
     }
 }

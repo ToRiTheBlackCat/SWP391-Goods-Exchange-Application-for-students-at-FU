@@ -28,6 +28,15 @@ namespace GoodsExchangeFUProject.Controllers
             var list = _exchangeService.GetAllExchangeList();
             return Ok(list);
         }
+        //TRI
+        [Authorize(Roles = "student")]
+        [HttpPost("CancelExchangeList/{productID}")]
+        public async Task<IActionResult> CancelExchangeListOfProduct(int productID)
+        {
+            var result = await _exchangeService.CancelExchangesOfProduct(productID);
+
+            return Ok(result);
+        }
 
         //TUAN
         // GET: api/Exchanges/EchangeRequests

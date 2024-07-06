@@ -12,6 +12,7 @@ using System;
 using System.Text;
 using Services.Service;
 using Microsoft.AspNetCore.Authentication.Google;
+using SignalRChat.Hubs;
 
 namespace GoodsExchangeFUProject
 {
@@ -26,7 +27,20 @@ namespace GoodsExchangeFUProject
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddSignalR();
+            //===============
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:8075", "http://localhost:5173", "https://swp391.is-very.fun")
+                            .AllowAnyHeader()
+                            .WithMethods("GET", "POST")
+                            .AllowCredentials();
+                    });
+            });
+            //===============
             // Register DbContext
             builder.Services.AddDbContext<GoodsExchangeFudbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionStringDB")));
@@ -88,15 +102,16 @@ namespace GoodsExchangeFUProject
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
-            app.UseCors(c => c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+            app.UseRouting();
+            //app.UseCors(c => c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+            app.UseCors();
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
 
             
             app.MapControllers();
-
+            app.MapHub<ChatHub>("/chat");
             app.Run();
         }
     }

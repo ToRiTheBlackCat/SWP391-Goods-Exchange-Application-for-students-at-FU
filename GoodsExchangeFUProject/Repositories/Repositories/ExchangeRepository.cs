@@ -61,7 +61,16 @@ namespace Repositories.Repositories
                                 CreateDate = exchange.CreateDate,
                             }).OrderByDescending(e => e.CreateDate).ToList();
         }
-        
+        //TRI
+        public async Task CancelExchangesOfProduct(int productID)
+        {
+            var list = _context.Exchanges.Where(e => e.ProductId ==  productID).ToList();
+            foreach (var exchange in list)
+            {
+                exchange.Status = 0;
+            }
+            _context.SaveChanges();
+        }
         //======================
         //TUAN
         public List<ExchangeModelView> GetExchangesByUser(int userId)

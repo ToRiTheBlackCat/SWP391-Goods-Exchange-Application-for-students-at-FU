@@ -52,6 +52,12 @@ namespace Services.Service
             List<AllExchangeModelView> list = _repo.GetExchangeList();
             return list;
         }
+        //TRI
+        public async Task<string> CancelExchangesOfProduct(int productID)
+        {
+            await _repo.CancelExchangesOfProduct(productID);
+            return "Cancel all Exchanges of Product successfully";
+        }
 
         //=================
 
