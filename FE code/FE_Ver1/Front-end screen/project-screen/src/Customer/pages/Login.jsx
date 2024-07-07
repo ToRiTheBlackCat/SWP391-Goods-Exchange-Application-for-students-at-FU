@@ -73,10 +73,10 @@ const Login = ({ setIsLoggedIn }) => {
       );
       if (googleResponse.status === 200) {
         setMessage('Login successfully');
-        const token = response.data.token;
-        const userId = response.data.userId;
-        const userName = response.data.userName;
-        const role = response.data.role;
+        const token = googleResponse.data.token;
+        const userId = googleResponse.data.userId;
+        const userName = googleResponse.data.userName;
+        const role = googleResponse.data.role;
         const expirationTime = new Date().getTime() + 30 * 60 * 1000; 
 
         // Reset localStorage and state
