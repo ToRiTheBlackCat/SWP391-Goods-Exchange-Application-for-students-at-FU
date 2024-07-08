@@ -6,7 +6,7 @@ import 'font-awesome/css/font-awesome.min.css'; // Import FontAwesome
 import styles from '../styles/Login.module.css';
 import axiosInstance from '../../utils/axiosInstance';
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -71,22 +71,23 @@ const Login = ({ setIsLoggedIn }) => {
           }
         }
       );
+      console.log(googleResponse.data);
+      console.log(googleResponse.status);
       if (googleResponse.status === 200) {
         setMessage('Login successfully');
         const token = googleResponse.data.token;
         const userId = googleResponse.data.userId;
         const userName = googleResponse.data.userName;
         const role = googleResponse.data.role;
-        const expirationTime = new Date().getTime() + 30 * 60 * 1000; 
+        
 
         // Reset localStorage and state
         localStorage.setItem('token', token);
         localStorage.setItem('userId', userId);
         localStorage.setItem('userName', userName);
         localStorage.setItem('role', role);
+        const expirationTime = new Date().getTime() + 30 * 60 * 1000; 
         localStorage.setItem('expirationTime', expirationTime);
-
-        setIsLoggedIn(true); // Cập nhật trạng thái đăng nhập
   
         if (googleResponse.data.role === 'mod') {
           navigate('/mod');

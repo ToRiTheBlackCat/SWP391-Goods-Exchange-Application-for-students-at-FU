@@ -33,7 +33,7 @@ export function ChatWindowSender({avatar, user, message}){
     <>
     <div style={{display:'flex', justifyContent:'flex-end', flexDirection: 'row'}}>
     
-    <p style={{padding:10, backgroundColor: '#fff', borderRadius: 10, maxWidth: '60%'}}>
+    <p style={{padding:10, backgroundColor: 'lemonchiffon', borderRadius: 10, maxWidth: '60%'}}>
       <strong style={{fontSize: 13}}>
         {user}
       </strong><br></br>
