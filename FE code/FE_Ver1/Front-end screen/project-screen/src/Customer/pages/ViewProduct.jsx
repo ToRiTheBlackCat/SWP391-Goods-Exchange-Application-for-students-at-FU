@@ -40,7 +40,7 @@ function ViewProduct() {
   };
 
   return (
-    <div className="container-fluid"  style={{padding:'0px'}}>
+    <div className="container-fluid" style={{ padding: '0px' }}>
       <Navbar />
       <div className="row">
         <div className={`col-md-3 ${styles.sidebar}`}>
@@ -48,7 +48,12 @@ function ViewProduct() {
           <ListProduct products={products} setSelectedProduct={setSelectedProductLocal} />
         </div>
         <div className={`col-md-9 ${styles['product-details']} d-flex flex-column align-items-center justify-content-center`}>
-          {selectedProduct && <ViewProductDetails product={selectedProduct} onDelete={handleDeleteProduct} />}
+          {selectedProduct && (
+            <ViewProductDetails
+              product={selectedProduct}
+              onDelete={handleDeleteProduct}
+            />
+          )}
         </div>
       </div>
     </div>

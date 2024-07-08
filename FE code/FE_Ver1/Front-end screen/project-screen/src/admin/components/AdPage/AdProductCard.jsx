@@ -5,19 +5,30 @@ import styles from '../../styles/ProductCard.module.css';
 const ProductCard = ({ product }) => {
   return (
     <div className={`card ${styles.card}`}>
-      <img className={`card-img-top ${styles.cardImgTop}`} src={product.imgSrc} alt={product.alt} />
+      <img
+        className={`card-img-top ${styles.cardImgTop}`}
+        src={product.imgSrc}
+        alt={product.alt}
+      />
       <div className={`card-body ${styles.cardBody}`}>
         <h5 className={`card-title ${styles.cardTitle}`}>
-          <h2 to={product.link}>{product.title}</h2>
+          <Link to={product.link}>{product.title}</Link>
         </h5>
         <p className={`card-text ${styles.cardText}`}>{product.condition}</p>
-        {product.size && <p className={`card-text ${styles.cardText}`}>{product.size}</p>}
-        <p className={`card-text ${styles.cardText} ${styles.textDanger}`}>{product.price}</p>
-        <p className={`card-text ${styles.cardText}`}>{product.seller} - Rating: <span className={styles.textWarning}>{product.rating}/5</span></p>
+        {product.size && (
+          <p className={`card-text ${styles.cardText}`}>{product.size}</p>
+        )}
+        <p className={`card-text ${styles.cardText} ${styles.textDanger}`}>
+          {product.price}
+        </p>
+        <p className={`card-text ${styles.cardText}`}>
+          {product.seller} - Rating: <span className={styles.textWarning}>{product.rating}/5</span>
+        </p>
       </div>
     </div>
   );
-}
+};
+
 
 ProductCard.propTypes = {
   product: PropTypes.shape({

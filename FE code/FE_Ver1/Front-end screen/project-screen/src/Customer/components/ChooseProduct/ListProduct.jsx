@@ -5,7 +5,7 @@ function ListProduct({ products, setSelectedProduct }) {
   const getStatusText = (status) => {
     switch (status) {
       case 1:
-        return 'Available'; 
+        return 'Available';
       case 2:
         return 'Exchanging';
       case 3:

@@ -7,11 +7,13 @@ import { useDispatch } from 'react-redux';
 import { setSelectedProduct } from '../../store/store';
 
 function ViewProductDetails({ product, onDelete }) {
+  const [editableProduct, setEditableProduct] = useState(product);
   const [imageBase64, setImageBase64] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setEditableProduct(product);
     if (product.image) {
       axiosInstance.get(`/api/Product/GetUserImage?imageName=${product.image}`)
         .then(response => {
@@ -21,7 +23,15 @@ function ViewProductDetails({ product, onDelete }) {
           console.error('Error fetching image:', error);
         });
     }
-  }, [product.image]);
+  }, [product]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditableProduct(prevProduct => ({
+      ...prevProduct,
+      [name]: value
+    }));
+  };
 
   const getImageMimeType = (fileName) => {
     const extension = fileName.split('.').pop().toLowerCase();
@@ -38,17 +48,34 @@ function ViewProductDetails({ product, onDelete }) {
     }
   };
 
-  const handleUpdateClick = () => {
-    dispatch(setSelectedProduct(product));
-    navigate(`/update-product/${product.id}`);
+  const handleUpdateClick = async () => {
+    if (editableProduct.status === 1) {
+      const confirmMessage = 'This product may have incoming exchange requests. If you update the product information, all such requests will be automatically canceled. confirm?';
+      if (window.confirm(confirmMessage)) {
+
+        const cancelResult = await handleCancelExchange(editableProduct.id);
+        console.log('Exchange cancelled successfully');
+        dispatch(setSelectedProduct(editableProduct));
+        navigate(`/update-product/${editableProduct.id}`);
+
+
+      }
+    }
   };
 
-  const handleDeleteClick = () => {
-    axiosInstance.post(`/api/Product/Student/DeleteProduct/${product.id}`)
+  const handleDeleteClick = async () => {
+    if (editableProduct.status === 1) {
+      const confirmMessage = 'This product may have incoming exchange requests. If you delete this product, all such requests will be automatically canceled. Confirm?';
+      if (!window.confirm(confirmMessage)) {
+        return;
+      }
+    }
+    const cancelResult = await handleCancelExchange(editableProduct.id);
+    axiosInstance.post(`/api/Product/Student/DeleteProduct/${editableProduct.id}`)
       .then(response => {
-        console.response('Product deleted successfully', response);
+        console.log('Product deleted successfully', response);
         alert('Product deleted successfully');
-        onDelete(product.id);
+        onDelete(editableProduct.id);
       })
       .catch(error => {
         console.error('Error deleting product:', error);
@@ -56,10 +83,20 @@ function ViewProductDetails({ product, onDelete }) {
       });
   };
 
+  const handleCancelExchange = async () => {
+    try {
+      const response = await axiosInstance.post(`/api/Exchange/CancelExchangeList/${editableProduct.id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error cancelling exchange:', error);
+      return null;
+    }
+  };
+
   const getStatusText = (status) => {
     switch (status) {
       case 1:
-        return 'Selling'; 
+        return 'Selling';
       case 2:
         return 'Exchanging';
       case 3:
@@ -99,15 +136,16 @@ function ViewProductDetails({ product, onDelete }) {
         )}
       </div>
       <div className={styles['button-group']}>
-      {product.status !== 2 && (
-        <div className={styles['button-group']}>
-          <button onClick={handleUpdateClick} className={`${styles['button']} btn btn-warning`}>Update</button>
-          <button onClick={handleDeleteClick} className={`${styles['button']} btn btn-danger`}>Delete</button>
-        </div>
-      )}
+        {product.status !== 2 && (
+          <div className={styles['button-group']}>
+            <button onClick={handleUpdateClick} className={`${styles['button']} btn btn-warning`}>Update</button>
+            <button onClick={handleDeleteClick} className={`${styles['button']} btn btn-danger`}>Delete</button>
+          </div>
+        )}
       </div>
     </div>
   );
+
 }
 
 ViewProductDetails.propTypes = {
