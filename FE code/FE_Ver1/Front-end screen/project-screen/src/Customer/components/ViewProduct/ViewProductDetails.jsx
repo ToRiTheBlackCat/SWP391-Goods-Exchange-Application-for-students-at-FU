@@ -54,11 +54,10 @@ function ViewProductDetails({ product, onDelete }) {
       if (window.confirm(confirmMessage)) {
 
         const cancelResult = await handleCancelExchange(editableProduct.id);
-        if (cancelResult) {
-          console.log('Exchange cancelled successfully');
-          dispatch(setSelectedProduct(editableProduct));
-          navigate(`/update-product/${editableProduct.id}`);
-        }
+        console.log('Exchange cancelled successfully');
+        dispatch(setSelectedProduct(editableProduct));
+        navigate(`/update-product/${editableProduct.id}`);
+
 
       }
     }
@@ -137,12 +136,12 @@ function ViewProductDetails({ product, onDelete }) {
         )}
       </div>
       <div className={styles['button-group']}>
-      {product.status !== 2 && (
-        <div className={styles['button-group']}>
-          <button onClick={handleUpdateClick} className={`${styles['button']} btn btn-warning`}>Update</button>
-          <button onClick={handleDeleteClick} className={`${styles['button']} btn btn-danger`}>Delete</button>
-        </div>
-      )}
+        {product.status !== 2 && (
+          <div className={styles['button-group']}>
+            <button onClick={handleUpdateClick} className={`${styles['button']} btn btn-warning`}>Update</button>
+            <button onClick={handleDeleteClick} className={`${styles['button']} btn btn-danger`}>Delete</button>
+          </div>
+        )}
       </div>
     </div>
   );

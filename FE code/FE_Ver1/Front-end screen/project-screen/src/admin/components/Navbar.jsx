@@ -63,7 +63,7 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
   };
   const handleHomeClick = () => {
     setInputValue(''); // Clear the search term
-    onHomeClick(); // Call the reset function passed from HomePage
+    onHomeClick(); // Call the reset function passed from ADPage
   };
 
   return (
