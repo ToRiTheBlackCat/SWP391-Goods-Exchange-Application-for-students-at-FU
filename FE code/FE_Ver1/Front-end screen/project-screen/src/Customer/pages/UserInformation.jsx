@@ -86,100 +86,102 @@ function UserInformation() {
   return (
     <>
       <Navbar />
-      <div className="d-flex justify-content-center align-items-center vh-100 bg-light" >
-        <div className={`card p-4 ${styles.profileCard}`}>
-          <form onSubmit={handleSubmit}>
-            <div className="text-center mb-4">
-              <img src={user} alt="User Avatar" className={`rounded-circle ${styles.avatar}`} />
-              <p className={styles.username}>{formData.userName}</p>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="userName" className="form-label">Username</label>
-              <input
-                type="text"
-                className="form-control"
-                id="userName"
-                name="userName"
-                value={formData.userName}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-                value={formData.email}
-                readOnly
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="phone" className="form-label">Phone</label>
-              <input
-                type="tel"
-                className="form-control"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                readOnly
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="birthday" className="form-label">Birthday</label>
-              <input
-                type="date"
-                className="form-control"
-                id="birthday"
-                name="birthday"
-                value={formData.birthday}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="address" className="form-label">Address</label>
-              <input
-                type="text"
-                className="form-control"
-                id="address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Gender</label>
-              <div>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="gender"
-                    id="male"
-                    value={true}
-                    checked={formData.gender === true}
-                    onChange={handleGenderChange}
-                  />
-                  <label className="form-check-label" htmlFor="male">Male</label>
-                </div>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="gender"
-                    id="female"
-                    value={false}
-                    checked={formData.gender === false}
-                    onChange={handleGenderChange}
-                  />
-                  <label className="form-check-label" htmlFor="female">Female</label>
+      <div className={`container`}>
+        <div className="d-flex justify-content-center align-items-center">
+          <div className={`card p-4 ${styles.profileCard}`}>
+            <form onSubmit={handleSubmit}>
+              <div className="text-center mb-4">
+                <img src={user} alt="User Avatar" className={`rounded-circle ${styles.avatar}`} />
+                <p className={styles.username}>{formData.userName}</p>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="userName" className="form-label">Username</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="userName"
+                  name="userName"
+                  value={formData.userName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  readOnly
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="phone" className="form-label">Phone</label>
+                <input
+                  type="tel"
+                  className="form-control"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  readOnly
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="birthday" className="form-label">Birthday</label>
+                <input
+                  type="date"
+                  className="form-control"
+                  id="birthday"
+                  name="birthday"
+                  value={formData.birthday}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="address" className="form-label">Address</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="address"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Gender</label>
+                <div>
+                  <div className="form-check form-check-inline">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="male"
+                      value={true}
+                      checked={formData.gender === true}
+                      onChange={handleGenderChange}
+                    />
+                    <label className="form-check-label" htmlFor="male">Male</label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="female"
+                      value={false}
+                      checked={formData.gender === false}
+                      onChange={handleGenderChange}
+                    />
+                    <label className="form-check-label" htmlFor="female">Female</label>
+                  </div>
                 </div>
               </div>
-            </div>
-            <button type="submit" className="btn btn-success w-100">Update</button>
-          </form>
+              <button type="submit" className="btn btn-success w-100">Update</button>
+            </form>
+          </div>
         </div>
       </div>
       <ToastContainer />

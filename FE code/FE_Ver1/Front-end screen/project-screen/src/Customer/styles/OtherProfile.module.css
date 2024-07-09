@@ -1,0 +1,61 @@
+body{
+  height: auto;
+}
+.container {
+  min-height: 90vh; /* Ensure the container covers the full viewport height */
+  background-color: #f8f9fa; /* Match the body background color */
+}
+
+.profileCard {
+  width: 400px;
+  height: auto; /* Adjust as necessary, e.g., height: 800px; */
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+}
+
+
+.avatar {
+  width: 80px;
+  height: 80px;
+}
+
+.username {
+  margin-top: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-text {
+  margin-bottom: 5px;
+}
+
+.text-muted {
+  font-size: 0.9em;
+}
+
+.rating-comments {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.rating {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.comments {
+  flex: 2;
+  max-height: 400px; /* Adjust height as needed */
+  overflow-y: auto; /* Add scroll if comments overflow */
+}

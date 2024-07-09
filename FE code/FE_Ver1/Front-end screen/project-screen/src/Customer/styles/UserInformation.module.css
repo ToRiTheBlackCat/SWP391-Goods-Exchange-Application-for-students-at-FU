@@ -1,14 +1,62 @@
+body {
+  background-color: #f8f9fa; /* Đặt màu nền nhất quán */
+}
+
+.container {
+  min-height: 100vh; /* Đảm bảo container bao phủ toàn bộ chiều cao viewport */
+  background-color: #f8f9fa; /* Khớp màu nền với body */
+  padding-top: 80px; /* Điều chỉnh giá trị này để có đủ không gian dưới Navbar */
+}
+
 .profileCard {
-    width: 400px;
-    margin-top: 100px;
-  }
-  
-  .avatar {
-    width: 80px;
-    height: 80px;
-  }
-  
-  .username {
-    margin-top: 10px;
-  }
-  
+  width: 400px;
+  height: auto; /* Điều chỉnh theo yêu cầu, ví dụ: height: 800px; */
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 40px auto; /* Căn giữa thẻ theo chiều ngang */
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+}
+
+.username {
+  margin-top: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-text {
+  margin-bottom: 5px;
+}
+
+.text-muted {
+  font-size: 0.9em;
+}
+
+.rating-comments {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.rating {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.comments {
+  flex: 2;
+  max-height: 400px; /* Điều chỉnh chiều cao theo yêu cầu */
+  overflow-y: auto; /* Thêm cuộn nếu bình luận tràn */
+}

@@ -21,6 +21,7 @@ import ViewProduct from './Customer/pages/ViewProduct.jsx';
 import UpdateProduct from './Customer/pages/UpdateProduct.jsx';
 import ReportProduct from './Customer/pages/Report.jsx';
 import Chat from './Customer/components/Texting/Chat.jsx';
+import OtherProfile from './Customer/pages/OtherProfile.jsx';
 
 // Mod pages
 import WaitingProduct from './Mod/pages/ViewWaitingProduct.jsx';
@@ -68,6 +69,7 @@ const App = () => {
               <Route path='/ad' element={<AdPage />} />
               <Route path='/manage-exchange' element={<ManageExchanges />} />
               <Route path='/chat' element={<Chat/>}/>
+              <Route path='/other-profile' element={<OtherProfile/>}/>
             </Routes>
           </AuthWrapper>
         </Router>
