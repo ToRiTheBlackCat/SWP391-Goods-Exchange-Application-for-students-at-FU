@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
         <p className={`card-text ${styles.cardText}`}>{product.condition}</p>
         {product.size && <p className={`card-text ${styles.cardText}`}>{product.size}</p>}
         <p className={`card-text ${styles.cardText} ${styles.textDanger}`}>{product.price}</p>
-        <p className={`card-text ${styles.cardText}`}>{product.seller} - Rating: <span className={styles.textWarning}>{product.rating}/5</span></p>
+        <p className={`card-text ${styles.cardText}`}>{product.seller} - Seller's Rating: <span className={styles.textWarning}>{product.rating}/5</span></p>
       </div>
     </div>
   );

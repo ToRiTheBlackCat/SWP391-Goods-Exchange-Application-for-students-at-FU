@@ -67,7 +67,7 @@ function OtherProfile() {
               <p className={styles.username}>{formData.userName}</p>
             </div>
             <div className="mb-3">
-              <label htmlFor="userName" className="form-label">Username</label>
+              <label htmlFor="userName" className="form-label"><strong>Username</strong></label>
               <input
                 type="text"
                 className="form-control"
@@ -78,7 +78,7 @@ function OtherProfile() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email</label>
+              <label htmlFor="email" className="form-label"><strong>Email</strong></label>
               <input
                 type="email"
                 className="form-control"
@@ -89,7 +89,7 @@ function OtherProfile() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="phone" className="form-label">Phone</label>
+              <label htmlFor="phone" className="form-label"><strong>Phone</strong></label>
               <input
                 type="tel"
                 className="form-control"
@@ -100,7 +100,7 @@ function OtherProfile() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="birthday" className="form-label">Birthday</label>
+              <label htmlFor="birthday" className="form-label"><strong>Birthday</strong></label>
               <input
                 type="date"
                 className="form-control"
@@ -111,7 +111,7 @@ function OtherProfile() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="address" className="form-label">Address</label>
+              <label htmlFor="address" className="form-label"><strong>Address</strong></label>
               <input
                 type="text"
                 className="form-control"
@@ -123,11 +123,11 @@ function OtherProfile() {
             </div>
             <div className={`mb-3 ${styles.ratingComments}`}>
               <div className={styles.rating}>
-                <label htmlFor="rating" className="form-label">Rating</label>
+                <label htmlFor="rating" className="form-label"><strong>Rating</strong></label>
                 <div id="rating">{formData.averageScore}/5</div>
               </div>
               <div className={styles.comments}>
-                <label htmlFor="comments" className="form-label">Comments</label>
+                <label htmlFor="comments" className="form-label"><strong>Comments</strong></label>
                 <div id="comments">
                   {formData.comments.map((comment, index) => (
                     <div key={index} className="card mb-2">
