@@ -22,9 +22,10 @@
   background-color: #ffffff; /* White background for buttons */
   color: #000000; /* Black text color */
   font-weight: bold; /* Bold text */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
-.paginationButton:hover {
+.paginationButton:hover:not(.paginationButtonDisabled) {
   background-color: #e2e6ea; /* Light grey background on hover */
 }
 
@@ -40,4 +41,3 @@
   color: #cccccc; /* Grey text color for disabled buttons */
   cursor: not-allowed; /* Not-allowed cursor for disabled buttons */
 }
-  

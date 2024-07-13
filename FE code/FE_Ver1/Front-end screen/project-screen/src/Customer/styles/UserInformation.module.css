@@ -2,29 +2,41 @@ body {
   background-color: #f8f9fa; /* Đặt màu nền nhất quán */
 }
 
-.container {
+.profilePage {
+  background-image: url('../assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   min-height: 100vh; /* Đảm bảo container bao phủ toàn bộ chiều cao viewport */
-  background-color: #f8f9fa; /* Khớp màu nền với body */
-  padding-top: 80px; /* Điều chỉnh giá trị này để có đủ không gian dưới Navbar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: rgba(248, 249, 250, 0.8); /* Khớp màu nền với body, thêm độ trong suốt */
+  padding: 0; /* Remove padding */
+  border-radius: 10px; /* Thêm bo góc cho container */
 }
 
 .profileCard {
-  width: 400px;
-  height: auto; /* Điều chỉnh theo yêu cầu, ví dụ: height: 800px; */
-  background-color: #ffffff;
+  width: 100%;
+  max-width: 300px; /* Giới hạn chiều rộng tối đa */
+  background-color: #ffffff; /* Keep the white background color */
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 40px auto; /* Căn giữa thẻ theo chiều ngang */
+  padding: 15px; /* Giảm padding để giảm chiều cao */
+  margin-top: -30px; /* Dịch chuyển lên trên một chút */
 }
 
 .avatar {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 }
 
 .username {
-  margin-top: 10px;
-  font-size: 1.5em;
+  margin-top: 5px; /* Adjusted margin top */
+  font-size: 1.2em;
   font-weight: bold;
 }
 
@@ -33,7 +45,7 @@ body {
 }
 
 .card-body {
-  padding: 10px;
+  padding: 0; /* Remove padding */
 }
 
 .card-text {

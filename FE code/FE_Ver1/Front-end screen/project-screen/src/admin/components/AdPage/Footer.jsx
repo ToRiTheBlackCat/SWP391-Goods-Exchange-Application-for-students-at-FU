@@ -1,12 +1,15 @@
+import PropTypes from 'prop-types';
 import styles from '../../styles/Footer.module.css'; // Import CSS module
 
 const Footer = ({ currentPage, totalPages, onPageChange }) => {
+  // Handles the page change by calling onPageChange if the new page is within the valid range
   const handlePageChange = (page) => {
     if (page > 0 && page <= totalPages) {
       onPageChange(page);
     }
   };
 
+  // Generates the range of page numbers to display in the pagination
   const getPaginationRange = () => {
     const range = [];
     const start = Math.max(1, currentPage - 2);
@@ -17,13 +20,12 @@ const Footer = ({ currentPage, totalPages, onPageChange }) => {
     }
 
     // Ensure that exactly 5 pages are shown when possible
-    while (range.length < totalPages && range[0] > 1) {
+    while (range.length < 5 && range[0] > 1) {
       range.unshift(range[0] - 1);
     }
-    while (range.length < totalPages && range[range.length - 1] < totalPages) {
+    while (range.length < 5 && range[range.length - 1] < totalPages) {
       range.push(range[range.length - 1] + 1);
     }
-
 
     return range;
   };
@@ -39,7 +41,7 @@ const Footer = ({ currentPage, totalPages, onPageChange }) => {
             onClick={() => handlePageChange(1)}
             disabled={currentPage === 1}
           >
-            &#xab;
+            &#xab; {/* Double left arrow */}
           </button>
         </li>
         <li className={styles.paginationItem}>
@@ -48,7 +50,7 @@ const Footer = ({ currentPage, totalPages, onPageChange }) => {
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
-            &#x2039;
+            &#x2039; {/* Single left arrow */}
           </button>
         </li>
         {paginationRange.map((num) => (
@@ -67,7 +69,7 @@ const Footer = ({ currentPage, totalPages, onPageChange }) => {
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
-            &#x203a;
+            &#x203a; {/* Single right arrow */}
           </button>
         </li>
         <li className={styles.paginationItem}>
@@ -76,7 +78,7 @@ const Footer = ({ currentPage, totalPages, onPageChange }) => {
             onClick={() => handlePageChange(totalPages)}
             disabled={currentPage === totalPages}
           >
-            &#xbb;
+            &#xbb; {/* Double right arrow */}
           </button>
         </li>
       </ul>

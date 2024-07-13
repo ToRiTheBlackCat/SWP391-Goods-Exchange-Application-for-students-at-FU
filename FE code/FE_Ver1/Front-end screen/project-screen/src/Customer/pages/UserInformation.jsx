@@ -11,12 +11,13 @@ function UserInformation() {
   const [formData, setFormData] = useState({
     userName: '',
     email: '',
-    password: '',
     phone: '',
     birthday: '',
     address: '',
     gender: true, // Default to true (Male)
   });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const userId = localStorage.getItem('userId');
 
   useEffect(() => {
@@ -27,7 +28,6 @@ function UserInformation() {
           setFormData({
             userName: data.userName || '',
             email: data.email || '',
-            password: data.password || '',
             phone: data.phone || '',
             birthday: data.dob ? new Date(data.dob).toISOString().split('T')[0] : '',
             address: data.address || '',
@@ -36,7 +36,9 @@ function UserInformation() {
         })
         .catch(error => {
           console.error('There was an error fetching the user data!', error);
-        });
+          setError('There was an error fetching the user data.');
+        })
+        .finally(() => setLoading(false));
     }
   }, [userId]);
 
@@ -52,8 +54,6 @@ function UserInformation() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form data submitted:', formData);
-
     const [year, month, day] = formData.birthday.split('-');
     const gender = formData.gender === true;
     const dob = `${year}-${month}-${day}`; // Format the dob as "YYYY-MM-DD"
@@ -65,13 +65,10 @@ function UserInformation() {
       address: formData.address,
     };
 
-    console.log('Data being sent:', updateData);
-
     if (userId) {
       axiosInstance.put(`/api/User/user/UpdateUserInfo/${userId}`, updateData)
         .then(response => {
           if (response.status === 200) {
-            console.log('User information updated successfully!');
             toast.success('User information updated successfully!');
             setFormData(updateData); // Update the form with the new data
           }
@@ -83,18 +80,21 @@ function UserInformation() {
     }
   };
 
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
   return (
     <>
       <Navbar />
-      <div className={`container`}>
-        <div className="d-flex justify-content-center align-items-center">
-          <div className={`card p-4 ${styles.profileCard}`}>
+      <div className={styles.profilePage}>
+        <div className={styles.container}>
+          <div className={`card ${styles.profileCard}`}>
             <form onSubmit={handleSubmit}>
-              <div className="text-center mb-4">
+              <div className="text-center mb-3"> {/* Adjusted margin bottom */}
                 <img src={user} alt="User Avatar" className={`rounded-circle ${styles.avatar}`} />
                 <p className={styles.username}>{formData.userName}</p>
               </div>
-              <div className="mb-3">
+              <div className="mb-2"> {/* Adjusted margin bottom */}
                 <label htmlFor="userName" className="form-label">Username</label>
                 <input
                   type="text"
@@ -103,9 +103,10 @@ function UserInformation() {
                   name="userName"
                   value={formData.userName}
                   onChange={handleChange}
+                  required
                 />
               </div>
-              <div className="mb-3">
+              <div className="mb-2"> {/* Adjusted margin bottom */}
                 <label htmlFor="email" className="form-label">Email</label>
                 <input
                   type="email"
@@ -116,7 +117,7 @@ function UserInformation() {
                   readOnly
                 />
               </div>
-              <div className="mb-3">
+              <div className="mb-2"> {/* Adjusted margin bottom */}
                 <label htmlFor="phone" className="form-label">Phone</label>
                 <input
                   type="tel"
@@ -124,11 +125,10 @@ function UserInformation() {
                   id="phone"
                   name="phone"
                   value={formData.phone}
-                  onChange={handleChange}
                   readOnly
                 />
               </div>
-              <div className="mb-3">
+              <div className="mb-2"> {/* Adjusted margin bottom */}
                 <label htmlFor="birthday" className="form-label">Birthday</label>
                 <input
                   type="date"
@@ -137,9 +137,10 @@ function UserInformation() {
                   name="birthday"
                   value={formData.birthday}
                   onChange={handleChange}
+                  required
                 />
               </div>
-              <div className="mb-3">
+              <div className="mb-2"> {/* Adjusted margin bottom */}
                 <label htmlFor="address" className="form-label">Address</label>
                 <input
                   type="text"
@@ -148,9 +149,10 @@ function UserInformation() {
                   name="address"
                   value={formData.address}
                   onChange={handleChange}
+                  required
                 />
               </div>
-              <div className="mb-3">
+              <div className="mb-2"> {/* Adjusted margin bottom */}
                 <label className="form-label">Gender</label>
                 <div>
                   <div className="form-check form-check-inline">

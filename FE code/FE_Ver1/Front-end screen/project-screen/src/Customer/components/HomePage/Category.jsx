@@ -7,7 +7,7 @@ import houseware from '../../assets/houseware.jpg';
 import books from '../../assets/books.jpg';
 import school_supplies from '../../assets/school_supplies.jpg';
 import clothes from '../../assets/clothes.jpg';
-import styles from '../../styles/Category.module.css';  // Import CSS module
+import styles from '../../styles/Category.module.css';
 import Filter from './Filter';
 
 const categories = [
@@ -19,7 +19,7 @@ const categories = [
   { img: clothes, text: 'Clothes', id: 6 },
 ];
 
-function Category({ onCategorySelect, selectedCategoryId, onSortChange }) {
+const Category = ({ onCategorySelect, selectedCategoryId, onSortChange }) => {
   return (
     <div className={styles.App}>
       <Filter onSortChange={onSortChange} />
@@ -53,13 +53,13 @@ function Category({ onCategorySelect, selectedCategoryId, onSortChange }) {
     </div>
   );
 }
+
 Category.propTypes = {
   onCategorySelect: PropTypes.func.isRequired,
   selectedCategoryId: PropTypes.number,
   onSortChange: PropTypes.func.isRequired,
 };
 
-// Define default props
 Category.defaultProps = {
   selectedCategoryId: null,
 };
