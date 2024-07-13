@@ -1,29 +1,42 @@
-body{
-  height: auto;
+body {
+  background-color: #f8f9fa; /* Đặt màu nền nhất quán */
 }
+
+.profilePage {
+  background-image: url('../assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Đảm bảo container bao phủ toàn bộ chiều cao viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
-  min-height: 90vh; /* Ensure the container covers the full viewport height */
-  background-color: #f8f9fa; /* Match the body background color */
+  background-color: rgba(248, 249, 250, 0.8); /* Khớp màu nền với body, thêm độ trong suốt */
+  padding: 0; /* Remove padding */
+  border-radius: 10px; /* Thêm bo góc cho container */
 }
 
 .profileCard {
-  width: 400px;
-  height: auto; /* Adjust as necessary, e.g., height: 800px; */
+  width: 100%;
+  max-width: 300px; /* Giới hạn chiều rộng tối đa */
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
+  padding: 15px; /* Giảm padding để giảm chiều cao */
+  margin-top: -30px; /* Dịch chuyển lên trên một chút */
 }
 
-
 .avatar {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 }
 
 .username {
-  margin-top: 10px;
-  font-size: 1.5em;
+  margin-top: 5px; /* Adjusted margin top */
+  font-size: 1.2em;
   font-weight: bold;
 }
 
@@ -32,7 +45,7 @@ body{
 }
 
 .card-body {
-  padding: 10px;
+  padding: 0; /* Remove padding */
 }
 
 .card-text {
@@ -56,6 +69,6 @@ body{
 
 .comments {
   flex: 2;
-  max-height: 400px; /* Adjust height as needed */
-  overflow-y: auto; /* Add scroll if comments overflow */
+  max-height: 400px; /* Điều chỉnh chiều cao theo yêu cầu */
+  overflow-y: auto; /* Thêm cuộn nếu bình luận tràn */
 }

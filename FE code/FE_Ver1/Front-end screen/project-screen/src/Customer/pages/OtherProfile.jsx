@@ -10,7 +10,6 @@ function OtherProfile() {
   const [formData, setFormData] = useState({
     userName: '',
     email: '',
-    password: '',
     phone: '',
     birthday: '',
     address: '',
@@ -30,7 +29,6 @@ function OtherProfile() {
             ...prevState,
             userName: data.userName || '',
             email: data.email || '',
-            password: data.password || '',
             phone: data.phone || '',
             birthday: data.dob ? new Date(data.dob).toISOString().split('T')[0] : '',
             address: data.address || '',
@@ -59,15 +57,15 @@ function OtherProfile() {
   return (
     <>
       <Navbar />
-      <div className={`container`}>
-        <div className="d-flex justify-content-center align-items-center">
-          <div className={`card p-4 ${styles.profileCard}`}>
-            <div className="text-center mb-4">
+      <div className={styles.profilePage}>
+        <div className={styles.container}>
+          <div className={`card ${styles.profileCard}`}>
+            <div className="text-center mb-3"> {/* Adjusted margin bottom */}
               <img src={user} alt="User Avatar" className={`rounded-circle ${styles.avatar}`} />
               <p className={styles.username}>{formData.userName}</p>
             </div>
-            <div className="mb-3">
-              <label htmlFor="userName" className="form-label"><strong>Username</strong></label>
+            <div className="mb-2"> {/* Adjusted margin bottom */}
+              <label htmlFor="userName" className="form-label">Username</label>
               <input
                 type="text"
                 className="form-control"
@@ -77,8 +75,8 @@ function OtherProfile() {
                 readOnly
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label"><strong>Email</strong></label>
+            <div className="mb-2"> {/* Adjusted margin bottom */}
+              <label htmlFor="email" className="form-label">Email</label>
               <input
                 type="email"
                 className="form-control"
@@ -88,8 +86,8 @@ function OtherProfile() {
                 readOnly
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="phone" className="form-label"><strong>Phone</strong></label>
+            <div className="mb-2"> {/* Adjusted margin bottom */}
+              <label htmlFor="phone" className="form-label">Phone</label>
               <input
                 type="tel"
                 className="form-control"
@@ -99,8 +97,8 @@ function OtherProfile() {
                 readOnly
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="birthday" className="form-label"><strong>Birthday</strong></label>
+            <div className="mb-2"> {/* Adjusted margin bottom */}
+              <label htmlFor="birthday" className="form-label">Birthday</label>
               <input
                 type="date"
                 className="form-control"
@@ -110,8 +108,8 @@ function OtherProfile() {
                 readOnly
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="address" className="form-label"><strong>Address</strong></label>
+            <div className="mb-2"> {/* Adjusted margin bottom */}
+              <label htmlFor="address" className="form-label">Address</label>
               <input
                 type="text"
                 className="form-control"
@@ -123,11 +121,11 @@ function OtherProfile() {
             </div>
             <div className={`mb-3 ${styles.ratingComments}`}>
               <div className={styles.rating}>
-                <label htmlFor="rating" className="form-label"><strong>Rating</strong></label>
+                <label htmlFor="rating" className={`form-label ${styles.formLabel}`}><strong>Rating</strong></label>
                 <div id="rating">{formData.averageScore}/5</div>
               </div>
               <div className={styles.comments}>
-                <label htmlFor="comments" className="form-label"><strong>Comments</strong></label>
+                <label htmlFor="comments" className={`form-label ${styles.formLabel}`}><strong>Comments</strong></label>
                 <div id="comments">
                   {formData.comments.map((comment, index) => (
                     <div key={index} className="card mb-2">
