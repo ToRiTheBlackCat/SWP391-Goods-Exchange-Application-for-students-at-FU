@@ -63,6 +63,14 @@ namespace Services.Service
             }
         }
 
+        //TRI
+        public async Task<List<AllRatingAndCommentModel>> GetAllRatingAndComment(int userId)
+        {
+            var ratings = await _repo.GetRatingAndComment(userId);
+            return ratings;
+        }
+
+
         //TUAN
         public async Task<(bool, string?, int?, string?, string?)> GoogleAuthorizeUser(string id_token)
         {

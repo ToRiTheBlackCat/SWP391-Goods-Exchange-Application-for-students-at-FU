@@ -17,6 +17,7 @@ namespace Services.Interface
         Task<string> UpdateUserInfo(int userId, UpdateInfoUserModel updateInfoUserModel);
         Task<List<UserModel2>> GetAllAccountList();
         Task AdminDeleteAccount(int userId );
+        Task<List<AllRatingAndCommentModel>> GetAllRatingAndComment(int userId);
 
         //==============
         Task<string> UserForgotPasswordUI(string emailAddress);

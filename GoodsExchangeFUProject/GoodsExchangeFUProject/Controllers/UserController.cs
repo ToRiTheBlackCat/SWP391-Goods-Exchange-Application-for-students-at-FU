@@ -133,9 +133,13 @@ namespace GoodsExchangeFUProject.Controllers
             }
             return BadRequest(message);
         }
-
-        
-
+        //TRI
+        [HttpGet("GetAllRatingAndComment/{userId}")]
+        public async Task<IActionResult> GetAllRatingAndCommentOfUser(int userId)
+        {
+            var list = await _userService.GetAllRatingAndComment(userId);
+            return Ok(list);
+        }
 
         //TUAN
         [HttpPost("UserForgotPassword")]

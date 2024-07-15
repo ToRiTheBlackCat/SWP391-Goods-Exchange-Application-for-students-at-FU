@@ -29,7 +29,7 @@ namespace GoodsExchangeFUProject.Controllers
             return Ok(list);
         }
         //TRI
-        [Authorize(Roles = "student")]
+        //[Authorize(Roles = "student")]
         [HttpPost("CancelExchangeList/{productID}")]
         public async Task<IActionResult> CancelExchangeListOfProduct(int productID)
         {

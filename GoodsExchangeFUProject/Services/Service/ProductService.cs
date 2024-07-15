@@ -30,6 +30,15 @@ namespace Services.Service
             if (product != null)
             {
                 var productModel = _mapper.Map<ProductModel>(product);
+                var (userFound, listScores) = await _user_repo.GetAllScoresOfUserByIdAsync(product.UserId);
+                if (listScores == null || !listScores.Any())
+                {
+                    productModel.ProductOwner.AverageScore = 0;
+                }
+                else
+                {
+                    productModel.ProductOwner.AverageScore = (double)listScores.Average();
+                }
                 return (true, productModel);
             }
             return (false, null);

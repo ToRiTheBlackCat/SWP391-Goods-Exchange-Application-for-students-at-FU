@@ -16,6 +16,10 @@ namespace Services.Helpers
         {
             PageIndex = pageIndex;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+            if (TotalPages == 1)
+            {
+                PageIndex = 1;
+            }
 
             this.AddRange(items);
         }
@@ -27,6 +31,13 @@ namespace Services.Helpers
             IQueryable<T> source, int pageIndex, int pageSize)
         {
             var count = await source.CountAsync();
+
+           var TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+            if (TotalPages < pageIndex)
+            {
+                pageIndex = 1;
+            }
+
             var items = await source
                 .Skip((pageIndex - 1) * pageSize)
                 .Take(pageSize).ToListAsync();

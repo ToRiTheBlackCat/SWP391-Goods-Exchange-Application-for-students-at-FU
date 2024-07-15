@@ -8,7 +8,7 @@ namespace Services.Helpers
 {
     public class ConnectionDictionary
     {
-        private readonly Dictionary<string, string> _connections =
+        public readonly Dictionary<string, string> _connections =
             new Dictionary<string, string>();
 
         public int Count

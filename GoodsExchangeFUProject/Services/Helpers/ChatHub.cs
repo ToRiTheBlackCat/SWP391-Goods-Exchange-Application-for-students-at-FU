@@ -13,6 +13,7 @@ namespace SignalRChat.Hubs
     {
         Task<string> ApproveConnect(string connectionId);
         Task<string> ReceiveMessage(string user, string message);
+        Task ReceiveNotification(string userName, int productId, string productName);
     }
     public class ChatHub : Hub<IChatClient>
     {
@@ -34,7 +35,7 @@ namespace SignalRChat.Hubs
                     throw new Exception("You don't have a connection. Message not sent.");
 
                 //var connectResult = await Clients.Client(toId).InvokeAsync<string>("ApproveConnect", Context.ConnectionAborted);
-               // var connectResult = await Clients.Client(toId).ApproveConnect(Context.ConnectionId);
+                // var connectResult = await Clients.Client(toId).ApproveConnect(Context.ConnectionId);
 
 
                 //if (!connectResult.Contains("Yesed")) //Check if the client is still on
@@ -46,7 +47,16 @@ namespace SignalRChat.Hubs
 
 
                 //await Clients.Client(toId).SendAsync("ReceiveMessage", user, $"{message} [to {toUser}]. from: {fromUser}");
-               string result = await Clients.Client(toId).ReceiveMessage(user, $"{message}. [to {toUser}]");
+                string result;
+                try
+                {
+                    result = await Clients.Client(toId).ReceiveMessage(user, $"{message}. [to {toUser}]");
+                }
+                catch (Exception ex)
+                {
+                    result = "";
+                }
+
                 if (string.IsNullOrEmpty(result)) throw new Exception($"Connect to {toUser} lost");
                 //await Clients.Caller.SendAsync("ReceiveMessage", user, $"{message}. from: {Context.ConnectionId}");
                 await Clients.Caller.ReceiveMessage("Me", $"{message}.");
@@ -69,13 +79,20 @@ namespace SignalRChat.Hubs
             }
 
             _connections.Add(userName.ToLower(), Context.ConnectionId);
-            await Clients.All.ReceiveMessage("System", $"{userName} connected. from: {Context.ConnectionId}");
+          
+            foreach (var x in _connections._connections)
+            {
+                Clients.Client(x.Value).ReceiveMessage("System", $"{userName} connected. from: {Context.ConnectionId}");
+            }
         }
 
-        public async Task<string> GetConnection(string userName)
+        public async Task<string> GetConnection(string userName, string stringProductId, string productName)
         {
+
             try
             {
+                int productId = int.Parse(stringProductId);
+            
                 string toId = _connections.GetConnection(userName.ToLower());
 
                 var fromUser = _connections.GetUser(Context.ConnectionId);
@@ -84,7 +101,7 @@ namespace SignalRChat.Hubs
 
                 if (string.IsNullOrEmpty(toId)) //check if there is client
                 {
-                    throw new Exception($"Failed to connect to {userName}. This user is in other chat or not online. Please try again later");
+                    throw new Exception($"{userName} is in other chat or not online. Please try again later");
                 }
                 if (toId.Equals(Context.ConnectionId))
                 {
@@ -96,21 +113,33 @@ namespace SignalRChat.Hubs
                 //if (!message.Contains("Yesed")) //Check if the client is still on
                 //    throw new Exception($"Failed to connect to {userName}");
                 //string message = await Clients.Client(toId).InvokeAsync<string>("ApproveConnect", (string)Context.ConnectionId, CancellationToken.None);
+                string message;
+                try
+                {
+                    message = await Clients.Client(toId).ApproveConnect(Context.ConnectionId);
+                }
+                catch (Exception ex)
+                {
+                    message = "";
+                }
 
-
-                string message = await Clients.Client(toId).ApproveConnect(Context.ConnectionId);
                 if (!message.Contains("Yesed")) //Check if the client is still on
-                    throw new Exception($"Failed to connect to {userName}. This user is in other chat or not online. Please try again later");
-                //string testMess = await Clients.Caller.ApproveConnect(Context.ConnectionId);
+                {
 
-                await Clients.Caller.ReceiveMessage("System", $"Connected to {userName}");
-                await Clients.Client(toId).ReceiveMessage("System", $"Connected with {fromUser}");
+                     Clients.Client(toId).ReceiveNotification(fromUser, productId, productName);
+                    throw new Exception($"Failed to connect to {userName}. Request for chat sent, you can wait for {fromUser} to respond or exit chat session.");
+                }
+
+                //string testMess = await Clients.Caller.ApproveConnect(Context.ConnectionId);
+                 Clients.Caller.ReceiveMessage("System", $"Connected to {userName}");
+                 Clients.Client(toId).ReceiveMessage("System", $"Connected with {fromUser}");
 
                 return toId;
             }
             catch (Exception ex)
             {
-                await Clients.Caller.ReceiveMessage("System", $"Exception! {ex.Message}");
+
+                Clients.Caller.ReceiveMessage("System", $"Exception! {ex.Message}");
                 return null;
             }
         }

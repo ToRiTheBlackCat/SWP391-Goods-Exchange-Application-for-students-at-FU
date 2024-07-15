@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.Elfie.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Repositories.Entities;
+using Repositories.ModelsView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,6 +90,30 @@ namespace Repositories.Repositories
              _context.Remove(user);
             await _context.SaveChangesAsync();
         }
+
+        //TRI
+        public async Task<List<AllRatingAndCommentModel>> GetRatingAndComment(int userId)
+        {
+            var ratings = await _context.Ratings
+                .Include(r => r.Exchange)
+                    .ThenInclude(e => e.User)
+                .Include(r => r.User)
+                .Where(r => r.UserId == userId)
+                .ToListAsync();
+
+            var result = ratings.Select(r => new AllRatingAndCommentModel
+            {
+                RaterId = r.Exchange.UserId,
+                RaterName = r.Exchange.User.UserName, 
+                UserId = r.UserId,
+                Score = r.Score,
+                Comment = r.Comment,
+                RatingDate = r.RatingDate
+            }).ToList();
+
+            return result;
+        }
+
         //======================================
         public async Task<User?> GetUserByMailAsync(string emailAddress)
         {
