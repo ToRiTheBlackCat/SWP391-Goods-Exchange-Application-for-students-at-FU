@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosInstance'; // Import axiosInstance
+import { toast } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
 import anhliem from '../assets/user.jpg';
@@ -25,12 +26,9 @@ const ProductPage = () => {
         const productData = response.data;
         setProduct(productData);
         setSellerInfo(productData.productOwner);
-        
 
         // Fetch product image
-        const imageResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${productData.productImage}`, {
-
-        });
+        const imageResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${productData.productImage}`);
 
         const fileExtension = productData.productImage.split('.').pop().toLowerCase();
         let mimeType;
@@ -63,7 +61,6 @@ const ProductPage = () => {
     fetchProduct();
   }, [id]);
 
-
   if (error) {
     return <div>{error}</div>;
   }
@@ -73,24 +70,58 @@ const ProductPage = () => {
   }
 
   const handleExchangeClick = () => {
-    dispatch(setProductToExchange(product));
-    navigate('/choose-product');
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    const userId = user.userId;
+    if (userId) {
+      dispatch(setProductToExchange(product));
+      navigate('/choose-product');
+    } else {
+      toast.error("Please log in first to perform this action");
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
+    }
   };
 
   const handleChatClick = () => {
-    navigate('/chat', { state: { sellerInfo: sellerInfo.userName } });
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    const userId = user.userId;
+    if (userId) {
+      dispatch(setSelectedProduct(product));
+      const queryParams = new URLSearchParams({
+        user: sellerInfo.userName,
+        productID: product.productId,
+        productName: product.productName
+      }).toString();
+      navigate(`/chat?${queryParams}`, { state: { sellerInfo: sellerInfo.userName } });
+    } else {
+      toast.error("Please log in first to perform this action");
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
+    }
   };
 
   const handleReportClick = () => {
-    dispatch(setSelectedProduct(product));
-    navigate('/report');
-  }
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    const userId = user.userId;
+    if (userId) {
+      dispatch(setSelectedProduct(product));
+      navigate('/report');
+    } else {
+      toast.error("Please log in first to perform this action");
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
+    }
+  };
+
   const handleProfileClick = () => {
     navigate('/other-profile', { state: { userId: product.userId } });
     console.log(product.userId);
   };
-
-  const currentUser = localStorage.getItem('userName');
+  const user = JSON.parse(localStorage.getItem('loggedInUser'));
+  const currentUser = user.userName;
 
   return (
     <>
@@ -107,9 +138,9 @@ const ProductPage = () => {
             <h2 className="h4">Detailed description</h2>
             <p>{product.productDescription}</p>
             <div>
-            {sellerInfo && currentUser !== sellerInfo.userName &&(
-            <button onClick={handleReportClick} className="btn btn-info w-100">Report</button>
-          )}
+              {sellerInfo && currentUser !== sellerInfo.userName && (
+                <button onClick={handleReportClick} className="btn btn-info w-100">Report</button>
+              )}
             </div>
           </div>
         </div>
@@ -121,7 +152,7 @@ const ProductPage = () => {
             <div>
               <div className="fw-bold">{sellerInfo.userName}</div>
               <div className="text-muted">
-                <span className="text-warning">{sellerInfo.averageScore} ⭐</span> 
+                <span className="text-warning">{sellerInfo.averageScore} ⭐</span>
               </div>
             </div>
           </div>

@@ -85,6 +85,17 @@ const SignUpForm = () => {
       <ToastContainer /> {/* Add ToastContainer for displaying toasts */}
       <h2>Register account</h2>
       <form onSubmit={handleSubmit}>
+      <div className={styles.inputGroup}>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <div className={styles.inputGroup}>
           <label htmlFor="username">Username</label>
           <input
@@ -92,17 +103,6 @@ const SignUpForm = () => {
             id="username"
             name="username"
             value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className={styles.inputGroup}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
             onChange={handleChange}
             required
           />

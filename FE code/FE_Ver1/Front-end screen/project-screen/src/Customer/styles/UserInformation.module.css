@@ -1,10 +1,10 @@
 body {
-  background-color: #f8f9fa; /* Đặt màu nền nhất quán */
+  background-color: f#ffffff; /* Đặt màu nền nhất quán */
 }
 
 .container {
   min-height: 100vh; /* Đảm bảo container bao phủ toàn bộ chiều cao viewport */
-  background-color: #f8f9fa; /* Khớp màu nền với body */
+  background-color: #ffffff; /* Khớp màu nền với body */
   padding-top: 80px; /* Điều chỉnh giá trị này để có đủ không gian dưới Navbar */
 }
 

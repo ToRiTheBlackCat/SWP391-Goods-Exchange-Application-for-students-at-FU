@@ -19,6 +19,7 @@
 }
 .heading {
   margin-bottom: 10px;
+  margin-left: 65px;
   border-bottom: 1px solid #000;
   display: inline-block;
 }

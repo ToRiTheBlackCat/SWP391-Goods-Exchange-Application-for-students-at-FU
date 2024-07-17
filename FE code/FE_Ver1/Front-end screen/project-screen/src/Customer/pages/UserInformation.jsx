@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../components/Navbar';
 import styles from '../styles/UserInformation.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import user from '../assets/user.jpg';
+import userImg from '../assets/user.jpg';
 import axiosInstance from '../../utils/axiosInstance';
 
 function UserInformation() {
@@ -17,7 +17,8 @@ function UserInformation() {
     address: '',
     gender: true, // Default to true (Male)
   });
-  const userId = localStorage.getItem('userId');
+  const user = JSON.parse(localStorage.getItem('loggedInUser'));
+  const userId = user.userId;
 
   useEffect(() => {
     if (userId) {
@@ -91,7 +92,7 @@ function UserInformation() {
           <div className={`card p-4 ${styles.profileCard}`}>
             <form onSubmit={handleSubmit}>
               <div className="text-center mb-4">
-                <img src={user} alt="User Avatar" className={`rounded-circle ${styles.avatar}`} />
+                <img src={userImg} alt="User Avatar" className={`rounded-circle ${styles.avatar}`} />
                 <p className={styles.username}>{formData.userName}</p>
               </div>
               <div className="mb-3">

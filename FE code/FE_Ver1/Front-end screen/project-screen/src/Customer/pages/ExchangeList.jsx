@@ -20,7 +20,8 @@ const ExchangeList = () => {
 
   useEffect(() => {
     const fetchExchanges = async () => {
-      const userId = localStorage.getItem('userId');
+      const user = JSON.parse(localStorage.getItem('loggedInUser'));
+      const userId = user.userId;
       if (!userId) {
         setError('User ID not found. Please log in.');
         return;
@@ -43,7 +44,8 @@ const ExchangeList = () => {
     setIsRating(false); // Reset rating form when selecting a new exchange
 
     // Check if the user has already rated this exchange
-    const userId = localStorage.getItem('userId');
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    const userId = user.userId;
     if (exchange.ratings && exchange.ratings.some(rating => rating.userId === parseInt(userId, 10))) {
       setHasRated(true);
     } else {

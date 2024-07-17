@@ -105,8 +105,8 @@ const ProductPage = () => {
       toast.error('Error declining product.');
     }
   };
-  
-  const currentUser = localStorage.getItem('userName');
+  const user = JSON.parse(localStorage.getItem('loggedInUser'));
+  const currentUser = user.userName;
 
   return (
     <>

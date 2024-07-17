@@ -13,13 +13,27 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('userName');
-    if (token && user) {
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (user && user.token) {
       setIsLoggedIn(true);
-      setUsername(user);
+      setUsername(user.userName);
     }
-  }, [username]);
+
+    // Lắng nghe sự thay đổi trong localStorage
+    const handleStorageChange = () => {
+      const updatedUser = JSON.parse(localStorage.getItem('loggedInUser'));
+      if (!updatedUser || !updatedUser.token) {
+        setIsLoggedIn(false);
+        setUsername('');
+        navigate('/login');
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, [navigate]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutsideDropdown);
@@ -35,9 +49,7 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userName');
-    localStorage.removeItem('userId');
+    localStorage.clear();
     setIsLoggedIn(false);
     setUsername('');
     navigate('/login');

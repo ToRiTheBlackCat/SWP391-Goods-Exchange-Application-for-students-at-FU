@@ -22,7 +22,8 @@ const ReportProduct = () => {
     e.preventDefault();
     setError('');
 
-    const userId = localStorage.getItem('userId');
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    const userId = user.userId;
 
     const reportData = {
       userId: parseInt(userId, 10),

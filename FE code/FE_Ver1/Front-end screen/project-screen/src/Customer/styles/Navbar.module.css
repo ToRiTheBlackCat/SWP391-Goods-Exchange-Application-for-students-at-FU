@@ -1,4 +1,3 @@
-/* Navbar.module.css */
 .navbar-brand {
   font-weight: bold;
 }
@@ -69,6 +68,19 @@
 .dropdownMenu {
   background-color: #bbd2ea;
   border: none;
-  right: 0; /* Thêm dòng này để căn phải */
-  left: auto; /* Thêm dòng này để bỏ căn trái */
+  right: 0;
+  left: auto;
+}
+
+.dropdownNotification {
+  background-color: #bbd2ea;
+  border: none;
+  left: auto;
+}
+
+.buttonSelected {
+  font-weight: bold;
+  color: #ffffff !important;
+  background-color: #4a75a3 !important;
+  border-radius: 4px;
 }

@@ -1,30 +1,42 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as signalR from '@microsoft/signalr';
-import { useLocation } from 'react-router-dom';
 import userIcon from '../../assets/user.jpg';
 import ChatWindowReceiver, { ChatWindowSender } from './ChatWindow';
 import MessageInput from './MessageInput';
-import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../../utils/axiosInstance';
 
-export default function ChatContainer(){
+export default function ChatContainer() {
     const location = useLocation();
-    const sellerInfo = location.state?.sellerInfo; // Lấy sellerInfo từ state
+    const queryParams = new URLSearchParams(location.search);
+    const userID = queryParams.get('user');
+    const productID = queryParams.get('productID');
+    const productName = queryParams.get('productName');
 
+    // const [sellerInfo, setSellerInfo] = useState(location.state?.sellerInfo); // Lấy sellerInfo từ state
+    const [product, setProduct] = useState(null);
     const [chats, setChats] = useState([]);
-    const [user, setUser] = useState(localStorage.getItem("userName"));
-    const [avatar, setAvatar] = useState(userIcon);
+
+    const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('loggedInUser')));
+    const user= currentUser.userName;
+    const [avatar] = useState(userIcon);
     const [connection, setConnection] = useState(null);
     const [toAddress, setToAddress] = useState("");
     const navigate = useNavigate();
-    const inSession = useRef(false);
+    var inSession = false;
+    const connectionInitialized = useRef(false);
 
+    // Tạo kết nối SignalR chỉ một lần
     useEffect(() => {
-        const newConnection = new signalR.HubConnectionBuilder()
-            .withUrl("https://goodsexchangefu-api.azurewebsites.net/chat")
-            .configureLogging(signalR.LogLevel.Information)
-            .build();
-
-        setConnection(newConnection);
+        
+            const newConnection = new signalR.HubConnectionBuilder()
+                .withUrl("https://goodsexchangefu-api.azurewebsites.net/chat")
+                .configureLogging(signalR.LogLevel.Information)
+                .build();
+            
+            setConnection(newConnection);
+            
+        
     }, []);
 
     const signUpConnection = useCallback(async () => {
@@ -38,107 +50,138 @@ export default function ChatContainer(){
     }, [connection, user]);
 
     const connectWithUser = useCallback(async () => {
-        // if (connection && connection.connectionStarted) {
-            try {
-                if(inSession.current==false){
-                const result = await connection.invoke("GetConnection", sellerInfo);
-                if(result.length>5){
-                    setToAddress(result);
-                    inSession.current=true;
-                }
-            }
-            } catch (err) {
-                console.error(err.toString());
-            }
-        // } else {
-        //     console.log('No connection to server yet.');
+        // if (userID) {
+        //     setSellerInfo(userID);
         // }
-    }, [connection, sellerInfo]);
+        try {
+            const result = await connection.invoke("GetConnection", userID, productID, productName);
+            console.log("value", userID);
+            console.log("value", productID);
+            console.log("value", productName);
+            console.log("Get connection: ",result);
+            if (result != null) {
+                setToAddress(result);
+                inSession = true;  // Đặt trạng thái inSession ở đây
+                console.log("Get connection successfully", { inSession: true });
+            } else {
+                console.log("Get connection failed");
+            }
+        } catch (err) {
+            console.error(err.toString());
+        }
+    }, [userID, connection, productID, productName]);
 
-    const CheckConnection = useCallback(() => {
+    const checkConnection = useCallback(() => {
         if (connection) {
             connection.invoke("GetCurrentConnect")
-                .then(function (result) {
+                .then((result) => {
                     console.log("Current Connection ID:", result);
-                }).catch(function (err) {
-                    return console.error("Exception: " + err.toString());
+                })
+                .catch((err) => {
+                    console.error("Exception: " + err.toString());
                 });
         }
     }, [connection]);
 
     useEffect(() => {
-        if (connection) {
+        if (connection && !connectionInitialized.current) {
             connection.start()
-                .then(result => {
+                .then(() => {
                     console.log('Connected!');
-                    signUpConnection();
-                    CheckConnection();
-                    connectWithUser();
+                    connectionInitialized.current = true;
                     connection.on('ReceiveMessage', (user, message) => {
+                        checkConnection();
                         setChats(prevChats => [...prevChats, { user, message }]);
+                        console.log("session value: ", inSession);
                         return "Sent";
                     });
                     connection.on("ApproveConnect", (connectionId) => {
-                        if (connectionId != null && connectionId !== "") {
-                            if(inSession.current==false){
-                                setToAddress(connectionId);
-                                inSession.current=true;
-                                return "Yesed";
-                            }else{
-                                return "No";
-                            }
-                        }
+                        checkConnection();
                         
+                        if (connectionId && inSession==false) {
+                            setToAddress(connectionId);
+                            inSession = true;
+                            console.log("Approve connect", connectionId, { inSession: inSession });
+                            return "Yesed";
+                        } else {
+                            return "No";
+                        }
                     });
+
+                    signUpConnection();
+                    checkConnection();
+                    connectWithUser();
                 })
-                .catch(e => console.log('Connection failed: ', e));
+                .catch(e => {
+                    console.log('Connection failed: ', e);
+                    throw new Error('Connection failed, stopping further execution.');
+                });
         }
 
-        return () => {
-            if (connection) {
-                connection.stop();
+        const fetchProduct = async () => {
+            try {
+                const response = await axiosInstance.get(`/api/Product/Student/ViewProductDetailWithId/${productID}`);
+                setProduct(response.data);
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error fetching product:', error);
             }
         };
-    }, [connection, signUpConnection, connectWithUser, CheckConnection]);
+        fetchProduct();
 
-    function sendChatToServer(chat) {
-        // if (connection && connection.connectionStarted) {
+        // return () => {
+        //     if (connection) {
+        //         connection.stop();
+        //     }
+        // };
+    }, [connection, signUpConnection, connectWithUser, checkConnection, productID, inSession]);
+
+    const sendChatToServer = (chat) => {
+        if (connection) {
             connection.invoke('SendMessagePrivate', chat.user, chat.message, toAddress)
                 .catch(err => console.error('Error while sending message: ', err));
-        // }
-        //  else {
-        //     console.log('No connection to server yet.');
-        // }
-    }
+        }
+    };
 
-    function addMessage(chat) {
+    const addMessage = (chat) => {
         const newChat = { ...chat, user, avatar };
-        // setChats(prevChats => [...prevChats, newChat]);
         sendChatToServer(newChat);
-    }
+    };
 
-    function ChatList(){
+    const ChatList = () => {
         return chats.map((chat, index) => {
-            if(chat.user === "Me") return <ChatWindowSender key={index} message={chat.message} avatar={avatar} user={chat.user}/>;
-            return <ChatWindowReceiver key={index} message={chat.message} avatar={avatar} user={chat.user}/>;
+            if (chat.user === "Me") return <ChatWindowSender key={index} message={chat.message} avatar={avatar} user={chat.user} />;
+            return <ChatWindowReceiver key={index} message={chat.message} avatar={avatar} user={chat.user} />;
         });
-    }
-    function handleBack(){
-        navigate(-1);
-    }
+    };
 
-    return(
-        <div style={{marginBottom:'100px'}}>
-            <div style={{display: 'flex', flexDirection:"row", justifyContent:'space-between'}}>
+    const handleBack = () => {
+        if (connection) {
+            connection.stop().then(() => {
+                navigate("/");
+            });
+        } else {
+            navigate("/");
+        }
+    };
+
+    return (
+        <div style={{ marginBottom: '100px' }}>
+            <div style={{ display: 'flex', flexDirection: "row", justifyContent: 'space-between' }}>
                 <h4>Username: {user}</h4>
-                {sellerInfo && <h4>Chatting with: {sellerInfo}</h4>}
+                {userID && <h4>Chatting with: {userID}</h4>}
             </div>
+            {product && (
+                <div>
+                    <h5>Product name: {product.productName}</h5>
+                    <h5>Product description: {product.productDescription}</h5>
+                </div>
+            )}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                {/* <button onClick={signUpConnection}>Sign up</button> */}
-                <button onClick={handleBack} style={{backgroundColor:'black'}}>Back</button>
+                <button onClick={handleBack} style={{ backgroundColor: 'black' }}>Back</button>
             </div>
-            <ChatList/>
-            <MessageInput addMessage={addMessage}/>
+            <ChatList />
+            <MessageInput addMessage={addMessage} />
         </div>
     );
 }

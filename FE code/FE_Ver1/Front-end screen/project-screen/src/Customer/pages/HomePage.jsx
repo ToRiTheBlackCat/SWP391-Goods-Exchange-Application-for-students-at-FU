@@ -6,17 +6,18 @@ import ProductList from '../components/HomePage/ProductList';
 import Category from '../components/HomePage/Category';
 import Filter from '../components/HomePage/Filter';
 import styles from '../styles/HomePage.module.css';
-
-import axiosInstance from '../../utils/axiosInstance'
+import axiosInstance from '../../utils/axiosInstance';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(5);
   const [products, setProducts] = useState([]);
-  const [sortOrder, setSortOrder] = useState(''); // Default sort order
+  const [sortOrder, setSortOrder] = useState('');
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchSubmitted, setSearchSubmitted] = useState(false); // Track search submission
+  const [searchSubmitted, setSearchSubmitted] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
@@ -24,6 +25,7 @@ const HomePage = () => {
   const categoryId = selectedCategoryId || '';
 
   useEffect(() => {
+    const controller = new AbortController();
     const fetchProducts = async () => {
       let sortOrderParam;
       switch (sortOrder) {
@@ -40,33 +42,40 @@ const HomePage = () => {
           sortOrderParam = 'price_desc';
           break;
         default:
-          sortOrderParam = ''; // Default sort order
+          sortOrderParam = '';
       }
       try {
         const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
-            sortOder: sortOrderParam,
+            sortOrder: sortOrderParam,
             pageIndex: currentPage,
             sortString: term,
             cateId: categoryId,
           },
+          signal: controller.signal,
         });
         let productData = response.data.foundList;
 
-        // Randomize the product list if sortOrder is empty
         if (!sortOrder) {
           productData = productData.sort(() => Math.random() - 0.5);
         }
 
         setProducts(productData);
-        setTotalPages(response.data.pageSize); // Assuming the API returns the total number of pages
+        setTotalPages(response.data.pageSize);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        if (axiosInstance.isCancel(error)) {
+          console.log('Request canceled:', error.message);
+        } else {
+          console.error('Error fetching products:', error);
+          toast.error('Error fetching products. Please try again.');
+        }
       }
-
     };
 
     fetchProducts();
+    return () => {
+      controller.abort();
+    };
   }, [currentPage, sortOrder, term, searchSubmitted, categoryId]);
 
   const handlePageChange = (page) => {
@@ -78,33 +87,37 @@ const HomePage = () => {
   };
 
   const handleDeleteSort = () => {
-    setSortOrder(''); // Reset sort order to default
+    setSortOrder('');
   };
 
   const handleCategorySelect = (categoryId) => {
     if (selectedCategoryId === categoryId) {
       setSelectedCategoryId(null);
-      navigate(`/?`); // Reset category filter
+      navigate(`/?`);
     } else {
       setSelectedCategoryId(categoryId);
       navigate(`/?categoryId=${categoryId}`);
     }
   };
+
   const handleReset = () => {
     setSearchTerm('');
     setSortOrder('');
     setSelectedCategoryId(null);
     setCurrentPage(1);
-    setSearchSubmitted(false); // Reset search submission
+    setSearchSubmitted(false);
     navigate('/');
   };
+
   const handleSearchSubmit = () => {
-    setSearchSubmitted(true); // Set search submission to true
+    setSearchSubmitted(true);
+    navigate(`/?search=${searchTerm}`);
   };
 
   return (
     <div>
       <Navbar onHomeClick={handleReset} searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearchSubmit={handleSearchSubmit} />
+      <ToastContainer />
       <Category onCategorySelect={handleCategorySelect} selectedCategoryId={selectedCategoryId} />
       <Filter onSortChange={handleSortChange} onDeleteSort={handleDeleteSort} sortOrder={sortOrder} />
       <div className="container mt-4">
@@ -115,7 +128,7 @@ const HomePage = () => {
           searchTerm={searchTerm}
           categoryId={categoryId}
           setTotalPages={setTotalPages}
-          searchSubmitted={searchSubmitted} // Pass search submission state to ProductList
+          searchSubmitted={searchSubmitted}
         />
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
