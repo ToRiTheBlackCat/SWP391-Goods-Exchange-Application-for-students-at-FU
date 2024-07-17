@@ -65,70 +65,72 @@ function UserInformation() {
     <>
       <Navbar />
       <ToastContainer />
-      <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
-        <div className={`card p-4 ${styles.profileCard}`}>
-          <div className="text-center mb-4">
-            <img src={user} alt="User Avatar" className={`rounded-circle ${styles.avatar}`} />
-            <p className={styles.username}>{username}</p>
+      <div className={styles.profilePage}>
+        <div className={styles.container}>
+          <div className={`card p-4 ${styles.profileCard}`}>
+            <div className="text-center mb-4">
+              <img src={user} alt="User Avatar" className={`rounded-circle ${styles.avatar}`} />
+              <p className={styles.username}>{username}</p>
+            </div>
+            <form>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  readOnly
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="phone" className="form-label">Phone</label>
+                <input
+                  type="tel"
+                  className="form-control"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  readOnly
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="birthday" className="form-label">Birthday</label>
+                <input
+                  type="date"
+                  className="form-control"
+                  id="birthday"
+                  name="birthday"
+                  value={formData.birthday}
+                  readOnly
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="address" className="form-label">Address</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="address"
+                  name="address"
+                  value={formData.address}
+                  readOnly
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="gender" className="form-label">Gender</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="gender"
+                  name="gender"
+                  value={formData.gender}
+                  readOnly
+                />
+              </div>
+              <button type="button" className="btn btn-danger w-100" onClick={handleBanUser}>Ban User</button>
+            </form>
           </div>
-          <form>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-                value={formData.email}
-                readOnly
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="phone" className="form-label">Phone</label>
-              <input
-                type="tel"
-                className="form-control"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                readOnly
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="birthday" className="form-label">Birthday</label>
-              <input
-                type="date"
-                className="form-control"
-                id="birthday"
-                name="birthday"
-                value={formData.birthday}
-                readOnly
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="address" className="form-label">Address</label>
-              <input
-                type="text"
-                className="form-control"
-                id="address"
-                name="address"
-                value={formData.address}
-                readOnly
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="gender" className="form-label">Gender</label>
-              <input
-                type="text"
-                className="form-control"
-                id="gender"
-                name="gender"
-                value={formData.gender}
-                readOnly
-              />
-            </div>
-            <button type="button" className="btn btn-danger w-100" onClick={handleBanUser}>Ban User</button>
-          </form>
         </div>
       </div>
     </>

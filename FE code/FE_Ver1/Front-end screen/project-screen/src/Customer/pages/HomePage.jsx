@@ -27,7 +27,7 @@ const HomePage = () => {
   useEffect(() => {
     const controller = new AbortController();
     const fetchProducts = async () => {
-      let sortOrderParam;
+      let sortOrderParam = '';
       switch (sortOrder) {
         case 'name_asc':
           sortOrderParam = 'Name';
@@ -43,7 +43,9 @@ const HomePage = () => {
           break;
         default:
           sortOrderParam = '';
+          sortOrderParam = '';
       }
+
       try {
         const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
@@ -54,6 +56,7 @@ const HomePage = () => {
           },
           signal: controller.signal,
         });
+
         let productData = response.data.foundList;
 
         if (!sortOrder) {
@@ -61,6 +64,7 @@ const HomePage = () => {
         }
 
         setProducts(productData);
+        setTotalPages(response.data.pageSize);
         setTotalPages(response.data.pageSize);
       } catch (error) {
         if (axiosInstance.isCancel(error)) {
@@ -88,6 +92,7 @@ const HomePage = () => {
 
   const handleDeleteSort = () => {
     setSortOrder('');
+    setSortOrder('');
   };
 
   const handleCategorySelect = (categoryId) => {
@@ -100,14 +105,17 @@ const HomePage = () => {
     }
   };
 
+
   const handleReset = () => {
     setSearchTerm('');
     setSortOrder('');
     setSelectedCategoryId(null);
     setCurrentPage(1);
     setSearchSubmitted(false);
+    setSearchSubmitted(false);
     navigate('/');
   };
+
 
   const handleSearchSubmit = () => {
     setSearchSubmitted(true);
@@ -130,10 +138,15 @@ const HomePage = () => {
           setTotalPages={setTotalPages}
           searchSubmitted={searchSubmitted}
         />
-        <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+        <Footer
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );
 };
 
 export default HomePage;
+

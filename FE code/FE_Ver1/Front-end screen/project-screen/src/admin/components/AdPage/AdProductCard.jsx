@@ -27,9 +27,7 @@ const ProductCard = ({ product }) => {
       </div>
     </div>
   );
-};
-
-
+}
 ProductCard.propTypes = {
   product: PropTypes.shape({
     imgSrc: PropTypes.string.isRequired,

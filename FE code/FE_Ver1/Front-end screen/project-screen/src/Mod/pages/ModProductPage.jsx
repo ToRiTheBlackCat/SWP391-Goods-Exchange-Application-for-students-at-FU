@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosInstance'; // Import axiosInstance
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
-import anhliem from '../assets/anhliem.jpg';
+import user from '../assets/user.jpg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from '../styles/ModProductPage.module.css'; // Import CSS module
@@ -129,7 +129,7 @@ const ProductPage = () => {
       {sellerInfo && currentUser !== sellerInfo.userName && (
         <div className="position-fixed top-0 end-0 p-3 bg-light border rounded mt-5 me-3">
           <div className="d-flex align-items-center mb-3">
-            <img src={anhliem} alt="Seller Avatar" className="rounded-circle me-3" style={{ width: '50px', height: '50px' }} />
+            <img src={user} alt="Seller Avatar" className="rounded-circle me-3" style={{ width: '50px', height: '50px' }} />
             <div>
               <div className="fw-bold">{sellerInfo.userName}</div>
               <div className="text-muted">
