@@ -83,7 +83,7 @@ const Footer = ({ currentPage, totalPages, onPageChange }) => {
         </ul>
       </div>
 
-      <div className={styles.footerInfo}>
+      {/* <div className={styles.footerInfo}>
         <div className={styles.footerSection}>
           <h3>Intro</h3>
           <p>
@@ -93,13 +93,13 @@ const Footer = ({ currentPage, totalPages, onPageChange }) => {
         <div className={styles.footerSection}>
           <h3>Contact us</h3>
           <p>Phone: +84 23456 7890</p>
-          <p>Email: courtmaster@company.com</p>
+          <p>Email: goodsexchangefustudent@company.com</p>
         </div>
         
         <div className={styles.footerBottom}>
           <p>© Goods Exchange FU Students</p>
         </div>
-      </div>
+      </div> */}
     </footer>
   );
 };

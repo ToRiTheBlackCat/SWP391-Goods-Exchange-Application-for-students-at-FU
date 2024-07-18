@@ -6,7 +6,9 @@ import ProductList from '../components/HomePage/ProductList';
 import Category from '../components/HomePage/Category';
 import Filter from '../components/HomePage/Filter';
 import styles from '../styles/HomePage.module.css';
+import Paging from '../components/HomePage/Paging';
 import axiosInstance from '../../utils/axiosInstance';
+
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -150,6 +152,7 @@ const HomePage = () => {
       <div className={styles.pagingWrapper}>
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
+      <Paging/>
     </div>
   );
 };
