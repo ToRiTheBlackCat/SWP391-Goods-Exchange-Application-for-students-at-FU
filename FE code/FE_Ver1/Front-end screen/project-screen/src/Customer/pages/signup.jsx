@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styles from '../styles/SignUpForm.module.css';
 import { useNavigate, Link } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosInstance'; // Import axiosInstance
@@ -75,16 +75,16 @@ const SignUpForm = () => {
         navigate('/login');
       }, 3000);
     } catch (error) {
-        console.error('There was an error!', error);
-        toast.error('An unexpected error occurred. Please try again.');
+      console.error('There was an error!', error);
+      toast.error('An unexpected error occurred. Please try again.');
     }
   };
 
   return (
     <div className={styles.signUpController}>
       <ToastContainer /> {/* Add ToastContainer for displaying toasts */}
-      <h2>Register account</h2>
-      <form onSubmit={handleSubmit}>
+      <h2>Register Account</h2>
+      <form onSubmit={handleSubmit} noValidate>
         <div className={styles.inputGroup}>
           <label htmlFor="username">Username</label>
           <input
@@ -94,6 +94,7 @@ const SignUpForm = () => {
             value={formData.username}
             onChange={handleChange}
             required
+            aria-describedby="usernameError"
           />
         </div>
         <div className={styles.inputGroup}>
@@ -105,7 +106,13 @@ const SignUpForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
+            aria-describedby="emailError"
           />
+          {!validateEmail(formData.email) && formData.email && (
+            <span id="emailError" className={styles.error}>
+              Invalid email format.
+            </span>
+          )}
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="password">Password</label>
@@ -116,10 +123,11 @@ const SignUpForm = () => {
             value={formData.password}
             onChange={handleChange}
             required
+            aria-describedby="passwordError"
           />
         </div>
         <div className={styles.inputGroup}>
-          <label htmlFor="confirmPassword">Confirm password</label>
+          <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             type="password"
             id="confirmPassword"
@@ -127,10 +135,16 @@ const SignUpForm = () => {
             value={formData.confirmPassword}
             onChange={handleChange}
             required
+            aria-describedby="confirmPasswordError"
           />
+          {formData.password !== formData.confirmPassword && formData.confirmPassword && (
+            <span id="confirmPasswordError" className={styles.error}>
+              Passwords do not match.
+            </span>
+          )}
         </div>
         <div className={styles.inputGroup}>
-          <label htmlFor="phone">Phone number</label>
+          <label htmlFor="phone">Phone Number</label>
           <input
             type="tel"
             id="phone"
@@ -139,7 +153,13 @@ const SignUpForm = () => {
             value={formData.phone}
             onChange={handleChange}
             required
+            aria-describedby="phoneError"
           />
+          {!validatePhoneNumber(formData.phone) && formData.phone && (
+            <span id="phoneError" className={styles.error}>
+              Invalid phone number format.
+            </span>
+          )}
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="address">Address</label>
@@ -176,7 +196,7 @@ const SignUpForm = () => {
             required
           />
         </div>
-        <button className={styles.registerBtn} type="submit">Sign up</button>
+        <button className={styles.registerBtn} type="submit">Sign Up</button>
       </form>
       <div className={styles.loginLink}>
         Already have an account? <Link to="/login">Login</Link>

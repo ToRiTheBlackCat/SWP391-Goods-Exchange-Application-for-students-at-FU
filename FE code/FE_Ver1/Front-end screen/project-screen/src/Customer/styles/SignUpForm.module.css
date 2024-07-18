@@ -15,18 +15,32 @@
   position: relative;
 }
 
-.inputGroup input {
+.inputGroup input,
+.inputGroup select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  font-size: 0.875em;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
 }
 
 .registerBtn {
   display: block;
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 26px;
+  width: 100%;
   padding: 10px;
   background-color: #289fa7;
   color: white;
@@ -34,6 +48,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  margin-top: 10px;
 }
 
 .registerBtn:hover {
@@ -51,7 +66,7 @@ h2 {
 .checkbox input {
   margin-right: 5px;
 }
-/* Add this CSS to style the login link */
+
 .loginLink {
   margin-top: 20px;
   text-align: center;
@@ -64,4 +79,22 @@ h2 {
 
 .loginLink a:hover {
   text-decoration: underline;
+}
+
+body {
+   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+@media (max-width: 500px) {
+  .signUpController {
+    margin: 50px 10px;
+    padding: 15px;
+  }
+
+  .registerBtn {
+    font-size: 14px;
+    padding: 8px;
+  }
 }

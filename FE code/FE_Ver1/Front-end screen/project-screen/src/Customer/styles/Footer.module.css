@@ -1,43 +1,79 @@
+.footer {
+  background-color: #f0f0f0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
 .paginationContainer {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .pagination {
-  display: flex;
-  list-style-type: none;
+  display: inline-block;
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .paginationItem {
-  margin: 0 5px;
+  display: inline;
 }
 
 .paginationButton {
-  padding: 5px 10px;
+  background: none;
+  border: none;
+  color: #007bff;
+  padding: 8px 16px;
   cursor: pointer;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  background-color: #ffffff; /* White background for buttons */
-  color: #000000; /* Black text color */
-  font-weight: bold; /* Bold text */
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  font-size: 1em;
 }
 
 .paginationButton:hover:not(.paginationButtonDisabled) {
-  background-color: #e2e6ea; /* Light grey background on hover */
+  text-decoration: underline;
+}
+
+.paginationButtonDisabled {
+  color: #c0c0c0;
+  cursor: not-allowed;
 }
 
 .paginationButtonActive {
   font-weight: bold;
-  background-color: #ff0000; /* Highlight color - red */
-  color: #ffffff; /* Text color - white */
-  border: none;
+  color: #000;
 }
 
-.paginationButtonDisabled {
-  background-color: #f8f9fa; /* Light grey background for disabled buttons */
-  color: #cccccc; /* Grey text color for disabled buttons */
-  cursor: not-allowed; /* Not-allowed cursor for disabled buttons */
+.footerInfo {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.footerSection {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.footerSection h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.footerSection p {
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+.socialIcons a {
+  margin-right: 10px;
+}
+
+.footerBottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.8em;
+}
+
+.footerBottom p {
+  margin: 0;
 }

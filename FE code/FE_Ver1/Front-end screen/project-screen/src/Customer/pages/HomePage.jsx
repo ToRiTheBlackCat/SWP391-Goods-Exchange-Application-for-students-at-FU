@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Footer from '../components/HomePage/Footer';
+import Footer from '../components/HomePage/Footer'; // Ensure import Footer
 import ProductList from '../components/HomePage/ProductList';
 import Category from '../components/HomePage/Category';
 import Filter from '../components/HomePage/Filter';
 import styles from '../styles/HomePage.module.css';
-
 import axiosInstance from '../../utils/axiosInstance';
 
 const HomePage = () => {
@@ -22,7 +21,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const term = searchTerm || searchParams.get('search') || '';
-  const categoryId = selectedCategoryId || '';
+  const categoryId = selectedCategoryId || searchParams.get('categoryId') || '';
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -99,10 +98,11 @@ const HomePage = () => {
 
   const handleSearchSubmit = () => {
     setSearchSubmitted(true);
+    navigate(`/?search=${searchTerm}`);
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <Navbar
         onHomeClick={handleReset}
         searchTerm={searchTerm}
@@ -119,21 +119,12 @@ const HomePage = () => {
         onDeleteSort={handleDeleteSort}
         sortOrder={sortOrder}
       />
-      <div className="container mt-4">
+      <div className={`container mt-4 ${styles.productListWrapper}`}>
         <h2 className={styles.heading}>Products</h2>
-        <ProductList
-          currentPage={currentPage}
-          sortOrder={sortOrder}
-          searchTerm={searchTerm}
-          categoryId={categoryId}
-          setTotalPages={setTotalPages}
-          searchSubmitted={searchSubmitted}
-        />
-        <Footer
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
+        <ProductList products={products} />
+      </div>
+      <div className={styles.pagingWrapper}>
+        <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
     </div>
   );

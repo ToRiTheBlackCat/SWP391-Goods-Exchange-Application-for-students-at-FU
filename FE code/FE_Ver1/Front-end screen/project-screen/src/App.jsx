@@ -22,7 +22,6 @@ import UpdateProduct from './Customer/pages/UpdateProduct.jsx';
 import ReportProduct from './Customer/pages/Report.jsx';
 import Chat from './Customer/components/Texting/Chat.jsx';
 import OtherProfile from './Customer/pages/OtherProfile.jsx';
-
 // Mod pages
 import WaitingProduct from './Mod/pages/ViewWaitingProduct.jsx';
 import ModPage from './Mod/pages/ModPage.jsx';
