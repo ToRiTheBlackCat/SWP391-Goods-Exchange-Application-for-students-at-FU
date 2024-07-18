@@ -11,7 +11,8 @@ function ViewProduct() {
   const [selectedProduct, setSelectedProductLocal] = useState(null);
 
   useEffect(() => {
-    const userId = localStorage.getItem('userId');
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    const userId = user.userId;
     if (userId) {
       axiosInstance.get(`/api/Product/Student/ViewOwnProductList/${userId}`)
         .then(response => {

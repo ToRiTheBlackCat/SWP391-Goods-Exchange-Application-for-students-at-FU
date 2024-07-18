@@ -29,7 +29,8 @@ function UpdateProduct() {
   const [file, setFile] = useState(null);
 
   useEffect(() => {
-    const userId = localStorage.getItem('userId');
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    const userId = user.userId;
     if (selectedProduct && selectedProduct.productId === parseInt(id, 10)) {
       setProduct({
         productId: selectedProduct.productId,

@@ -25,10 +25,10 @@ const productSlice = createSlice({
       console.log('Setting product to exchange:', action.payload); // Thêm log để kiểm tra
       state.productToExchange = action.payload;
     },
-    setSellerInfo: (state, action) => {
-      console.log('Setting seller info:', action.payload); // Thêm log để kiểm tra
-      state.sellerInfo = action.payload;
-    },
+    // setSellerInfo: (state, action) => {
+    //   console.log('Setting seller info:', action.payload); // Thêm log để kiểm tra
+    //   state.sellerInfo = action.payload;
+    // },
   },
 });
 

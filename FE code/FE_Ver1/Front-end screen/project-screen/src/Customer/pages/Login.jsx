@@ -17,6 +17,12 @@ const Login = () => {
     e.preventDefault();
     setError('');
     setMessage('');
+
+    // Kiểm tra xem có người dùng nào đã đăng nhập không
+    if (localStorage.getItem('loggedInUser')) {
+      setError('Another account has been logged in. Please log out to log in this account');
+      return;
+    }
   
     try {
       const response = await axiosInstance.post(
@@ -34,10 +40,16 @@ const Login = () => {
       );
       if (response.status === 200) {
         setMessage('Login successfully');
+        const userData = {
+          token: response.data.token,
+          userId: response.data.userId,
+          userName: response.data.userName,
+          role: response.data.role
+        };
+        localStorage.setItem('loggedInUser', JSON.stringify(userData));
         localStorage.setItem('token', response.data.token);
-        localStorage.setItem('userId', response.data.userId);
         localStorage.setItem('userName', response.data.userName);
-        localStorage.setItem('role', response.data.role);
+        // localStorage.setItem('userId', response.data.userId);
         const expirationTime = new Date().getTime() + 30 * 60 * 1000; 
         localStorage.setItem('expirationTime', expirationTime);
   
@@ -60,6 +72,13 @@ const Login = () => {
   const handleGoogleLoginSuccess = async (response) => {
     const credential = response.credential;
     console.log(credential);
+
+    // Kiểm tra xem có người dùng nào đã đăng nhập không
+    if (localStorage.getItem('loggedInUser')) {
+      setError('Another account has been logged in. Please log out to log in this account');
+      return;
+    }
+  
     try {
       const googleResponse = await axiosInstance.post(
         '/api/user/google-login',
@@ -79,13 +98,18 @@ const Login = () => {
         const userId = googleResponse.data.userId;
         const userName = googleResponse.data.userName;
         const role = googleResponse.data.role;
-        
 
         // Reset localStorage and state
-        localStorage.setItem('token', token);
-        localStorage.setItem('userId', userId);
-        localStorage.setItem('userName', userName);
-        localStorage.setItem('role', role);
+        const loggedInUser = {
+          token,
+          userId,
+          userName,
+          role
+        };
+        localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+        localStorage.setItem('token', googleResponse.data.token);
+        localStorage.setItem('userName', googleResponse.data.userName);
+        // localStorage.setItem('userId', googleResponse.data.userId);
         const expirationTime = new Date().getTime() + 30 * 60 * 1000; 
         localStorage.setItem('expirationTime', expirationTime);
   
@@ -105,7 +129,7 @@ const Login = () => {
     }
   };
 
-  const handleGoogleLoginFailure = (response) => {
+  const handleGoogleLoginFailure = () => {
     setError('Google login was unsuccessful. Try again later.');
   };
 

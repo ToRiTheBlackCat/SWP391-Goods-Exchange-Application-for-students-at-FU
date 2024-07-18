@@ -1,5 +1,5 @@
 body {
-  background-color: #f8f9fa; /* Đặt màu nền nhất quán */
+  background-color: f#ffffff; /* Đặt màu nền nhất quán */
 }
 
 .profilePage {
@@ -21,12 +21,13 @@ body {
 
 .profileCard {
   width: 100%;
-  max-width: 300px; /* Giới hạn chiều rộng tối đa */
+  height: auto;
+  /* max-width: 300px; Giới hạn chiều rộng tối đa */
   background-color: #ffffff; /* Keep the white background color */
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 15px; /* Giảm padding để giảm chiều cao */
-  margin-top: -30px; /* Dịch chuyển lên trên một chút */
+  margin-top: 20px; /* Dịch chuyển lên trên một chút */
 }
 
 .avatar {

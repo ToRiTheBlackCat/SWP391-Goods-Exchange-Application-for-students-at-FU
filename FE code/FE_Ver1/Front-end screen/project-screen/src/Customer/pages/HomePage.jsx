@@ -7,6 +7,8 @@ import Category from '../components/HomePage/Category';
 import Filter from '../components/HomePage/Filter';
 import styles from '../styles/HomePage.module.css';
 import axiosInstance from '../../utils/axiosInstance';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,7 +18,6 @@ const HomePage = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchSubmitted, setSearchSubmitted] = useState(false);
-
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
@@ -24,6 +25,7 @@ const HomePage = () => {
   const categoryId = selectedCategoryId || searchParams.get('categoryId') || '';
 
   useEffect(() => {
+    const controller = new AbortController();
     const fetchProducts = async () => {
       let sortOrderParam = '';
       switch (sortOrder) {
@@ -51,6 +53,7 @@ const HomePage = () => {
             sortString: term,
             cateId: categoryId,
           },
+          signal: controller.signal,
         });
 
         let productData = response.data.foundList;
@@ -62,11 +65,19 @@ const HomePage = () => {
         setProducts(productData);
         setTotalPages(response.data.pageSize);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        if (axiosInstance.isCancel(error)) {
+          console.log('Request canceled:', error.message);
+        } else {
+          console.error('Error fetching products:', error);
+          toast.error('Error fetching products. Please try again.');
+        }
       }
     };
 
     fetchProducts();
+    return () => {
+      controller.abort();
+    };
   }, [currentPage, sortOrder, term, searchSubmitted, categoryId]);
 
   const handlePageChange = (page) => {
@@ -82,10 +93,15 @@ const HomePage = () => {
   };
 
   const handleCategorySelect = (categoryId) => {
-    setSelectedCategoryId(categoryId);
-    setCurrentPage(1); // Reset to page 1
-    navigate(`/?categoryId=${categoryId}`); // Update URL
+    if (selectedCategoryId === categoryId) {
+      setSelectedCategoryId(null);
+      navigate(`/?`);
+    } else {
+      setSelectedCategoryId(categoryId);
+      navigate(`/?categoryId=${categoryId}`);
+    }
   };
+
 
   const handleReset = () => {
     setSearchTerm('');
@@ -96,19 +112,20 @@ const HomePage = () => {
     navigate('/');
   };
 
+
   const handleSearchSubmit = () => {
     setSearchSubmitted(true);
     navigate(`/?search=${searchTerm}`);
   };
 
   return (
-    <div className={styles.container}>
-      <Navbar
-        onHomeClick={handleReset}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        onSearchSubmit={handleSearchSubmit}
-      />
+    <div className={styles.container}>      
+    <Navbar
+      onHomeClick={handleReset}
+      searchTerm={searchTerm}
+      setSearchTerm={setSearchTerm}
+      onSearchSubmit={handleSearchSubmit}
+    />
       <Category
         onCategorySelect={handleCategorySelect}
         selectedCategoryId={selectedCategoryId}
@@ -120,8 +137,15 @@ const HomePage = () => {
         sortOrder={sortOrder}
       />
       <div className={`container mt-4 ${styles.productListWrapper}`}>
-        <h2 className={styles.heading}>Products</h2>
-        <ProductList products={products} />
+      <h2 className={styles.heading}>Products</h2>
+        <ProductList
+          currentPage={currentPage}
+          sortOrder={sortOrder}
+          searchTerm={searchTerm}
+          categoryId={categoryId}
+          setTotalPages={setTotalPages}
+          searchSubmitted={searchSubmitted}
+        />
       </div>
       <div className={styles.pagingWrapper}>
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
@@ -131,3 +155,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+

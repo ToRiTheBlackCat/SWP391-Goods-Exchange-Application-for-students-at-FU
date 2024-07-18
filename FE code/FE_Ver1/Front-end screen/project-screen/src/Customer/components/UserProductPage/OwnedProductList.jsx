@@ -11,7 +11,8 @@ const OwnedProductsList = ({ onSelectProduct }) => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const userId = localStorage.getItem('userId');
+      const user = JSON.parse(localStorage.getItem('loggedInUser'));
+      const userId = user.userId;
       if (!userId) {
         setError('User ID not found. Please log in.');
         return;

@@ -83,7 +83,7 @@ const SignUpForm = () => {
   return (
     <div className={styles.signUpController}>
       <ToastContainer /> {/* Add ToastContainer for displaying toasts */}
-      <h2>Register Account</h2>
+      <h2>Register account</h2>
       <form onSubmit={handleSubmit} noValidate>
         <div className={styles.inputGroup}>
           <label htmlFor="username">Username</label>
@@ -106,9 +106,8 @@ const SignUpForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            aria-describedby="emailError"
           />
-          {!validateEmail(formData.email) && formData.email && (
+           {!validateEmail(formData.email) && formData.email && (
             <span id="emailError" className={styles.error}>
               Invalid email format.
             </span>
