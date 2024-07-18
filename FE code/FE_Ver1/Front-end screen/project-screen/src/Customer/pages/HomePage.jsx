@@ -43,7 +43,6 @@ const HomePage = () => {
           break;
         default:
           sortOrderParam = '';
-          sortOrderParam = '';
       }
 
       try {
@@ -64,7 +63,6 @@ const HomePage = () => {
         }
 
         setProducts(productData);
-        setTotalPages(response.data.pageSize);
         setTotalPages(response.data.pageSize);
       } catch (error) {
         if (axiosInstance.isCancel(error)) {
@@ -92,7 +90,6 @@ const HomePage = () => {
 
   const handleDeleteSort = () => {
     setSortOrder('');
-    setSortOrder('');
   };
 
   const handleCategorySelect = (categoryId) => {
@@ -111,7 +108,6 @@ const HomePage = () => {
     setSortOrder('');
     setSelectedCategoryId(null);
     setCurrentPage(1);
-    setSearchSubmitted(false);
     setSearchSubmitted(false);
     navigate('/');
   };

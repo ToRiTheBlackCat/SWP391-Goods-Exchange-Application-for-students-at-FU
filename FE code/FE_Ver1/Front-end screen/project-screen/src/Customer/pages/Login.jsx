@@ -48,6 +48,8 @@ const Login = () => {
         };
         localStorage.setItem('loggedInUser', JSON.stringify(userData));
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('userName', response.data.userName);
+        // localStorage.setItem('userId', response.data.userId);
         const expirationTime = new Date().getTime() + 30 * 60 * 1000; 
         localStorage.setItem('expirationTime', expirationTime);
   
@@ -73,7 +75,7 @@ const Login = () => {
 
     // Kiểm tra xem có người dùng nào đã đăng nhập không
     if (localStorage.getItem('loggedInUser')) {
-      setError('Một tài khoản đã đăng nhập. Vui lòng đăng xuất trước khi đăng nhập tài khoản khác.');
+      setError('Another account has been logged in. Please log out to log in this account');
       return;
     }
   
@@ -105,6 +107,9 @@ const Login = () => {
           role
         };
         localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+        localStorage.setItem('token', googleResponse.data.token);
+        localStorage.setItem('userName', googleResponse.data.userName);
+        // localStorage.setItem('userId', googleResponse.data.userId);
         const expirationTime = new Date().getTime() + 30 * 60 * 1000; 
         localStorage.setItem('expirationTime', expirationTime);
   

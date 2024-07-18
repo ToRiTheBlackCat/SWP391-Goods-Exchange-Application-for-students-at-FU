@@ -61,8 +61,16 @@
     margin-bottom: 15px;
 }
 
-.ratingForm .form-control {
-    width: 100px; /* Adjust the width as needed */
+.ratingForm .formControl {
+    width: 50%; /* Adjust the width as needed */
     display: inline-block; /* Keeps the input inline */
-    margin-right: 10px; /* Adds space between the rating and comment */
+    margin-right: auto; /* Adds space between the rating and comment */
+    margin-left: 22px;
+}
+
+.ratingForm .commentForm{
+    width: 80%;
+    display: inline-block;
+    margin-right: auto;
+    margin-left: 10px;
 }

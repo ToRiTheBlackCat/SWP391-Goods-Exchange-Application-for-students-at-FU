@@ -250,6 +250,7 @@ const ExchangeList = () => {
                           value={comment}
                           onChange={(e) => setComment(e.target.value)}
                           required
+                          className={styles.commentForm}
                         />
                       </Form.Group>
                       <Button variant="success" type="submit" className="mt-3">

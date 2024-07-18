@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import PropTypes from 'prop-types';
 import store from './Customer/store/store.jsx';
 import useAuthCheck from './Customer/components/useAuthCheck.jsx';
 
@@ -83,6 +84,9 @@ const App = () => {
 const AuthWrapper = ({ children }) => {
   useAuthCheck();
   return <>{children}</>;
+};
+AuthWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default App;

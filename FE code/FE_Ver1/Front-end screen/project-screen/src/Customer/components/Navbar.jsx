@@ -136,14 +136,14 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
                   Create Product
                 </button>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <button
                   className={`btn btn-link nav-link ${styles.navLink} ${activeLink === 'chat' ? styles.active : ''}`}
                   onClick={() => handleProtectedClick('/chat', 'chat')}
                 >
                   Chat
                 </button>
-              </li>
+              </li> */}
               <div ref={dropdownRef}>
                 <button
                   className={`btn btn-dark dropdown-toggle ${styles.navLink}`}

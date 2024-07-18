@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavbarComponent from '../components/Navbar.jsx';
+// import NavbarComponent from '../components/Navbar.jsx';
 import {Container, Row, Col, Card } from 'react-bootstrap';
 import electronic from '../assets/electronics.jpg';
 import accessories from '../assets/accessories.jpg';
@@ -21,9 +21,9 @@ const categories = [
 function Category() {
   return (
     <div className={styles.App}>
-      <header>
+      {/* <header>
         <NavbarComponent/>
-      </header>
+      </header> */}
       <main className={`container mt-4 ${styles.main}`}>
         <h2 className={styles.heading}>Categories</h2>
         <Container>

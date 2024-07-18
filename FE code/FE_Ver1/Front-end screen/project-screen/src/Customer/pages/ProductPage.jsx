@@ -121,7 +121,7 @@ const ProductPage = () => {
     console.log(product.userId);
   };
   const user = JSON.parse(localStorage.getItem('loggedInUser'));
-  const currentUser = user.userName;
+  const currentUser = localStorage.getItem('userName');
 
   return (
     <>
