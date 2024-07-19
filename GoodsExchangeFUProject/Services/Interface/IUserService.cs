@@ -26,5 +26,11 @@ namespace Services.Interface
         Task<(bool, string?, int?, string?, string?)> GoogleAuthorizeUser(string id_token);
 
         Task<(bool, string)> UserResetPasswordUI(UserPassResetModel resetModel);
+
+        Task<(string, List<NotificationReceivedView>?)> GetReceivedNotifications(int userId);
+
+        Task<(string, bool)> SendNotification(NotificationSendView sendView);
+
+        Task<(string, bool)> UserReplyToNotification(NotificationReceivedView receivedView);
     }
 }

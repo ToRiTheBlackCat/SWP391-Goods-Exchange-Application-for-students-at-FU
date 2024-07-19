@@ -1,35 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Repositories.Entities
+namespace Repositories.Entities;
+
+public partial class Product
 {
+    public int ProductId { get; set; }
 
+    public string ProductName { get; set; } = null!;
 
+    public string ProductImage { get; set; } = null!;
 
-    public partial class Product
-    {
-        public int ProductId { get; set; }
+    public string? ProductDescription { get; set; }
 
-        public string ProductName { get; set; } = null!;
+    public int ProductPrice { get; set; }
 
-        public string ProductImage { get; set; } = null!;
+    public int TypeId { get; set; }
 
-        public string? ProductDescription { get; set; }
+    public int UserId { get; set; }
 
-        public int ProductPrice { get; set; }
+    public int Status { get; set; }
 
-        public int TypeId { get; set; }
+    public virtual ICollection<ExchangeDetail> ExchangeDetails { get; set; } = new List<ExchangeDetail>();
 
-        public int UserId { get; set; }
+    public virtual ICollection<Exchange> Exchanges { get; set; } = new List<Exchange>();
 
-        public int Status { get; set; }
+    public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 
-        public virtual ICollection<ExchangeDetail> ExchangeDetails { get; set; } = new List<ExchangeDetail>();
+    public virtual ICollection<Report> Reports { get; set; } = new List<Report>();
 
-        public virtual ICollection<Exchange> Exchanges { get; set; } = new List<Exchange>();
+    public virtual ProductType Type { get; set; } = null!;
 
-        public virtual ProductType Type { get; set; } = null!;
-
-        public virtual User User { get; set; } = null!;
-    }
+    public virtual User User { get; set; } = null!;
 }

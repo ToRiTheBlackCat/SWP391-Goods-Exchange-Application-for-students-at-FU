@@ -1,266 +1,266 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿//using System;
+//using System.Collections.Generic;
+//using Microsoft.EntityFrameworkCore;
+//using Microsoft.Extensions.Configuration;
 
-namespace Repositories.Entities
-{
+//namespace Repositories.Entities
+//{
 
 
 
-    public partial class GoodsExchangeFudbContext : DbContext
-    {
-        public GoodsExchangeFudbContext()
-        {
-        }
+//    public partial class GoodsExchangeFudbContext : DbContext
+//    {
+//        public GoodsExchangeFudbContext()
+//        {
+//        }
 
-        public GoodsExchangeFudbContext(DbContextOptions<GoodsExchangeFudbContext> options)
-            : base(options)
-        {
-        }
+//        public GoodsExchangeFudbContext(DbContextOptions<GoodsExchangeFudbContext> options)
+//            : base(options)
+//        {
+//        }
 
-        public virtual DbSet<Exchange> Exchanges { get; set; }
+//        public virtual DbSet<Exchange> Exchanges { get; set; }
 
-        public virtual DbSet<ExchangeDetail> ExchangeDetails { get; set; }
+//        public virtual DbSet<ExchangeDetail> ExchangeDetails { get; set; }
 
-        public virtual DbSet<Product> Products { get; set; }
+//        public virtual DbSet<Product> Products { get; set; }
 
-        public virtual DbSet<ProductType> ProductTypes { get; set; }
+//        public virtual DbSet<ProductType> ProductTypes { get; set; }
 
-        public virtual DbSet<Rating> Ratings { get; set; }
+//        public virtual DbSet<Rating> Ratings { get; set; }
 
-        public virtual DbSet<Report> Reports { get; set; }
+//        public virtual DbSet<Report> Reports { get; set; }
 
-        public virtual DbSet<Role> Roles { get; set; }
+//        public virtual DbSet<Role> Roles { get; set; }
 
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<ResetToken> ResetTokens { get; set; }
+//        public virtual DbSet<User> Users { get; set; }
+//        public virtual DbSet<ResetToken> ResetTokens { get; set; }
 
-        private string GetConnectionString()
-        {
-            IConfiguration config = new ConfigurationBuilder()
-                 .SetBasePath(Directory.GetCurrentDirectory())
-                        .AddJsonFile("appsettings.json", true, true)
-                        .Build();
-            var strConn = config["ConnectionStrings:DefaultConnectionStringDB"];
-            //sua lai tag cho phu hop
+//        private string GetConnectionString()
+//        {
+//            IConfiguration config = new ConfigurationBuilder()
+//                 .SetBasePath(Directory.GetCurrentDirectory())
+//                        .AddJsonFile("appsettings.json", true, true)
+//                        .Build();
+//            var strConn = config["ConnectionStrings:DefaultConnectionStringDB"];
+//            //sua lai tag cho phu hop
 
-            return strConn;
-        }
+//            return strConn;
+//        }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer(GetConnectionString());
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//            => optionsBuilder.UseSqlServer(GetConnectionString());
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Exchange>(entity =>
-            {
-                entity.ToTable("Exchange");
+//        protected override void OnModelCreating(ModelBuilder modelBuilder)
+//        {
+//            modelBuilder.Entity<Exchange>(entity =>
+//            {
+//                entity.ToTable("Exchange");
 
-                entity.Property(e => e.ExchangeId).HasColumnName("exchangeID");
-                entity.Property(e => e.CreateDate).HasColumnName("createDate");
-                entity.Property(e => e.ProductId).HasColumnName("productID");
-                entity.Property(e => e.Status).HasColumnName("status");
-                entity.Property(e => e.UserId).HasColumnName("userID");
+//                entity.Property(e => e.ExchangeId).HasColumnName("exchangeID");
+//                entity.Property(e => e.CreateDate).HasColumnName("createDate");
+//                entity.Property(e => e.ProductId).HasColumnName("productID");
+//                entity.Property(e => e.Status).HasColumnName("status");
+//                entity.Property(e => e.UserId).HasColumnName("userID");
 
-                entity.HasOne(d => d.Product).WithMany(p => p.Exchanges)
-                    .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Exchange_Product_SellerProductID");
+//                entity.HasOne(d => d.Product).WithMany(p => p.Exchanges)
+//                    .HasForeignKey(d => d.ProductId)
+//                    .OnDelete(DeleteBehavior.ClientSetNull)
+//                    .HasConstraintName("FK_Exchange_Product_SellerProductID");
 
-                entity.HasOne(d => d.User).WithMany(p => p.Exchanges)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Exchange_User_BuyerID");
-            });
+//                entity.HasOne(d => d.User).WithMany(p => p.Exchanges)
+//                    .HasForeignKey(d => d.UserId)
+//                    .OnDelete(DeleteBehavior.ClientSetNull)
+//                    .HasConstraintName("FK_Exchange_User_BuyerID");
+//            });
 
-            modelBuilder.Entity<ExchangeDetail>(entity =>
-            {
-                entity.HasKey(e => e.Exdid);
+//            modelBuilder.Entity<ExchangeDetail>(entity =>
+//            {
+//                entity.HasKey(e => e.Exdid);
 
-                entity.ToTable("ExchangeDetail");
+//                entity.ToTable("ExchangeDetail");
 
-                entity.Property(e => e.Exdid).HasColumnName("EXDID");
-                entity.Property(e => e.Balance).HasColumnName("balance");
-                entity.Property(e => e.ExchangeId).HasColumnName("exchangeID");
-                entity.Property(e => e.ProductId).HasColumnName("productID");
+//                entity.Property(e => e.Exdid).HasColumnName("EXDID");
+//                entity.Property(e => e.Balance).HasColumnName("balance");
+//                entity.Property(e => e.ExchangeId).HasColumnName("exchangeID");
+//                entity.Property(e => e.ProductId).HasColumnName("productID");
 
-                entity.HasOne(d => d.Exchange).WithMany(p => p.ExchangeDetails)
-                    .HasForeignKey(d => d.ExchangeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ExchangeDetail_Exchange_ExchangeID");
+//                entity.HasOne(d => d.Exchange).WithMany(p => p.ExchangeDetails)
+//                    .HasForeignKey(d => d.ExchangeId)
+//                    .OnDelete(DeleteBehavior.ClientSetNull)
+//                    .HasConstraintName("FK_ExchangeDetail_Exchange_ExchangeID");
 
-                entity.HasOne(d => d.Product).WithMany(p => p.ExchangeDetails)
-                    .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK_ExchangeDetail_Product_BuyerProduct");
-            });
+//                entity.HasOne(d => d.Product).WithMany(p => p.ExchangeDetails)
+//                    .HasForeignKey(d => d.ProductId)
+//                    .HasConstraintName("FK_ExchangeDetail_Product_BuyerProduct");
+//            });
 
-            modelBuilder.Entity<Product>(entity =>
-            {
-                entity.ToTable("Product");
+//            modelBuilder.Entity<Product>(entity =>
+//            {
+//                entity.ToTable("Product");
 
-                entity.Property(e => e.ProductId).HasColumnName("productID");
-                entity.Property(e => e.ProductDescription)
-                    .HasMaxLength(255)
-                    .HasColumnName("productDescription");
-                entity.Property(e => e.ProductImage)
-                    .HasMaxLength(255)
-                    .HasColumnName("productImage");
-                entity.Property(e => e.ProductName)
-                    .HasMaxLength(100)
-                    .HasColumnName("productName");
-                entity.Property(e => e.ProductPrice).HasColumnName("productPrice");
-                entity.Property(e => e.Status).HasColumnName("status");
-                entity.Property(e => e.TypeId).HasColumnName("typeID");
-                entity.Property(e => e.UserId).HasColumnName("userID");
+//                entity.Property(e => e.ProductId).HasColumnName("productID");
+//                entity.Property(e => e.ProductDescription)
+//                    .HasMaxLength(255)
+//                    .HasColumnName("productDescription");
+//                entity.Property(e => e.ProductImage)
+//                    .HasMaxLength(255)
+//                    .HasColumnName("productImage");
+//                entity.Property(e => e.ProductName)
+//                    .HasMaxLength(100)
+//                    .HasColumnName("productName");
+//                entity.Property(e => e.ProductPrice).HasColumnName("productPrice");
+//                entity.Property(e => e.Status).HasColumnName("status");
+//                entity.Property(e => e.TypeId).HasColumnName("typeID");
+//                entity.Property(e => e.UserId).HasColumnName("userID");
 
-                entity.HasOne(d => d.Type).WithMany(p => p.Products)
-                    .HasForeignKey(d => d.TypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Product_ProductType_TypeID");
+//                entity.HasOne(d => d.Type).WithMany(p => p.Products)
+//                    .HasForeignKey(d => d.TypeId)
+//                    .OnDelete(DeleteBehavior.ClientSetNull)
+//                    .HasConstraintName("FK_Product_ProductType_TypeID");
 
-                entity.HasOne(d => d.User).WithMany(p => p.Products)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-        .HasConstraintName("FK_Product_User_UserProduct");
-            });
+//                entity.HasOne(d => d.User).WithMany(p => p.Products)
+//                    .HasForeignKey(d => d.UserId)
+//                    .OnDelete(DeleteBehavior.ClientSetNull)
+//        .HasConstraintName("FK_Product_User_UserProduct");
+//            });
 
-            modelBuilder.Entity<ProductType>(entity =>
-            {
-                entity.HasKey(e => e.TypeId);
+//            modelBuilder.Entity<ProductType>(entity =>
+//            {
+//                entity.HasKey(e => e.TypeId);
 
-                entity.ToTable("ProductType");
+//                entity.ToTable("ProductType");
 
-                entity.Property(e => e.TypeId).HasColumnName("typeID");
-                entity.Property(e => e.TypeName)
-                    .HasMaxLength(15)
-                    .IsFixedLength()
-                    .HasColumnName("typeName");
-            });
+//                entity.Property(e => e.TypeId).HasColumnName("typeID");
+//                entity.Property(e => e.TypeName)
+//                    .HasMaxLength(15)
+//                    .IsFixedLength()
+//                    .HasColumnName("typeName");
+//            });
 
-            modelBuilder.Entity<Rating>(entity =>
-            {
-                entity.HasKey("RatingId");
-                entity.ToTable("Rating");
+//            modelBuilder.Entity<Rating>(entity =>
+//            {
+//                entity.HasKey("RatingId");
+//                entity.ToTable("Rating");
 
-                entity.Property(e => e.Comment)
-                    .HasMaxLength(255)
-                    .HasColumnName("comment");
-                entity.Property(e => e.ExchangeId).HasColumnName("exchangeID");
-                entity.Property(e => e.RatingDate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("ratingDate");
-                entity.Property(e => e.Score)
-                    .HasColumnType("decimal(18, 0)")
-                    .HasColumnName("score");
-                entity.Property(e => e.UserId).HasColumnName("userID");
+//                entity.Property(e => e.Comment)
+//                    .HasMaxLength(255)
+//                    .HasColumnName("comment");
+//                entity.Property(e => e.ExchangeId).HasColumnName("exchangeID");
+//                entity.Property(e => e.RatingDate)
+//                    .HasColumnType("datetime")
+//                    .HasColumnName("ratingDate");
+//                entity.Property(e => e.Score)
+//                    .HasColumnType("decimal(18, 0)")
+//                    .HasColumnName("score");
+//                entity.Property(e => e.UserId).HasColumnName("userID");
 
-                entity.HasOne(d => d.Exchange).WithMany()
-                    .HasForeignKey(d => d.ExchangeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Rating_Exchange");
+//                entity.HasOne(d => d.Exchange).WithMany()
+//                    .HasForeignKey(d => d.ExchangeId)
+//                    .OnDelete(DeleteBehavior.ClientSetNull)
+//                    .HasConstraintName("FK_Rating_Exchange");
 
-                entity.HasOne(d => d.User).WithMany()
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Rating_User_RatingForUserID");
-            });
+//                entity.HasOne(d => d.User).WithMany()
+//                    .HasForeignKey(d => d.UserId)
+//                    .OnDelete(DeleteBehavior.ClientSetNull)
+//                    .HasConstraintName("FK_Rating_User_RatingForUserID");
+//            });
 
-            modelBuilder.Entity<Report>(entity =>
-            {
-                entity.ToTable("Report");
+//            modelBuilder.Entity<Report>(entity =>
+//            {
+//                entity.ToTable("Report");
 
-                entity.Property(e => e.ReportId).HasColumnName("reportID");
-                entity.Property(e => e.Detail)
-                    .HasMaxLength(255)
-                    .HasColumnName("detail");
-                entity.Property(e => e.ProductId).HasColumnName("productID");
-                entity.Property(e => e.ReportDate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("reportDate");
-                entity.Property(e => e.UserId).HasColumnName("userID");
+//                entity.Property(e => e.ReportId).HasColumnName("reportID");
+//                entity.Property(e => e.Detail)
+//                    .HasMaxLength(255)
+//                    .HasColumnName("detail");
+//                entity.Property(e => e.ProductId).HasColumnName("productID");
+//                entity.Property(e => e.ReportDate)
+//                    .HasColumnType("datetime")
+//                    .HasColumnName("reportDate");
+//                entity.Property(e => e.UserId).HasColumnName("userID");
 
-                entity.HasOne(d => d.Product).WithMany()
-                    .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Report_Product_ReportedProductID");
+//                entity.HasOne(d => d.Product).WithMany()
+//                    .HasForeignKey(d => d.ProductId)
+//                    .OnDelete(DeleteBehavior.ClientSetNull)
+//                    .HasConstraintName("FK_Report_Product_ReportedProductID");
 
-                entity.HasOne(d => d.User).WithMany()
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Report_User_StudentID");
-            });
+//                entity.HasOne(d => d.User).WithMany()
+//                    .HasForeignKey(d => d.UserId)
+//                    .OnDelete(DeleteBehavior.ClientSetNull)
+//                    .HasConstraintName("FK_Report_User_StudentID");
+//            });
 
-            modelBuilder.Entity<ResetToken>(entity =>
-            {
-                entity.HasKey(e => e.UserId);
+//            modelBuilder.Entity<ResetToken>(entity =>
+//            {
+//                entity.HasKey(e => e.UserId);
 
-                entity.ToTable("ResetToken");
+//                entity.ToTable("ResetToken");
 
-                entity.Property(e => e.UserId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("userID");
-                entity.Property(e => e.CreatedDate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("createdDate");
-                entity.Property(e => e.ResetToken1).HasColumnName("ResetTOKEN");
+//                entity.Property(e => e.UserId)
+//                    .ValueGeneratedNever()
+//                    .HasColumnName("userID");
+//                entity.Property(e => e.CreatedDate)
+//                    .HasColumnType("datetime")
+//                    .HasColumnName("createdDate");
+//                entity.Property(e => e.ResetToken1).HasColumnName("ResetTOKEN");
 
-                entity.HasOne(d => d.User).WithOne(p => p.ResetToken)
-                    .HasForeignKey<ResetToken>(d => d.UserId)
-        .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ResetToken_User");
-            });
+//                entity.HasOne(d => d.User).WithOne(p => p.ResetToken)
+//                    .HasForeignKey<ResetToken>(d => d.UserId)
+//        .OnDelete(DeleteBehavior.ClientSetNull)
+//                    .HasConstraintName("FK_ResetToken_User");
+//            });
 
-            modelBuilder.Entity<Role>(entity =>
-            {
-                entity.ToTable("Role");
+//            modelBuilder.Entity<Role>(entity =>
+//            {
+//                entity.ToTable("Role");
 
-                entity.Property(e => e.RoleId).HasColumnName("roleID");
-                entity.Property(e => e.RoleName)
-                    .HasMaxLength(50)
-                    .IsFixedLength()
-                    .HasColumnName("roleName");
-            });
+//                entity.Property(e => e.RoleId).HasColumnName("roleID");
+//                entity.Property(e => e.RoleName)
+//                    .HasMaxLength(50)
+//                    .IsFixedLength()
+//                    .HasColumnName("roleName");
+//            });
 
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.ToTable("User");
+//            modelBuilder.Entity<User>(entity =>
+//            {
+//                entity.ToTable("User");
 
-                entity.Property(e => e.UserId).HasColumnName("userID");
-                entity.Property(e => e.Address)
-                    .HasMaxLength(255)
-                    .HasColumnName("address");
-                entity.Property(e => e.AverageScore).HasColumnName("averageScore");
-                entity.Property(e => e.Dob).HasColumnName("DOB");
-                entity.Property(e => e.Email)
-                    .HasMaxLength(100)
-                    .IsFixedLength()
-                    .HasColumnName("email");
-                entity.Property(e => e.Gender).HasColumnName("gender");
-                entity.Property(e => e.IsBanned).HasColumnName("isBanned");
-                entity.Property(e => e.Password)
-                    .HasMaxLength(255)
-                    .IsFixedLength()
-                    .HasColumnName("password");
-                entity.Property(e => e.Phone)
-                    .HasMaxLength(12)
-                    .IsUnicode(false)
-                    .IsFixedLength()
-                    .HasColumnName("phone");
-                entity.Property(e => e.RoleId).HasColumnName("roleID");
-                entity.Property(e => e.UserName)
-                    .HasMaxLength(50)
-                    .HasColumnName("userName");
+//                entity.Property(e => e.UserId).HasColumnName("userID");
+//                entity.Property(e => e.Address)
+//                    .HasMaxLength(255)
+//                    .HasColumnName("address");
+//                entity.Property(e => e.AverageScore).HasColumnName("averageScore");
+//                entity.Property(e => e.Dob).HasColumnName("DOB");
+//                entity.Property(e => e.Email)
+//                    .HasMaxLength(100)
+//                    .IsFixedLength()
+//                    .HasColumnName("email");
+//                entity.Property(e => e.Gender).HasColumnName("gender");
+//                entity.Property(e => e.IsBanned).HasColumnName("isBanned");
+//                entity.Property(e => e.Password)
+//                    .HasMaxLength(255)
+//                    .IsFixedLength()
+//                    .HasColumnName("password");
+//                entity.Property(e => e.Phone)
+//                    .HasMaxLength(12)
+//                    .IsUnicode(false)
+//                    .IsFixedLength()
+//                    .HasColumnName("phone");
+//                entity.Property(e => e.RoleId).HasColumnName("roleID");
+//                entity.Property(e => e.UserName)
+//                    .HasMaxLength(50)
+//                    .HasColumnName("userName");
 
-                entity.HasOne(d => d.Role).WithMany(p => p.Users)
-                    .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_User_User_RoleID");
-            });
+//                entity.HasOne(d => d.Role).WithMany(p => p.Users)
+//                    .HasForeignKey(d => d.RoleId)
+//                    .OnDelete(DeleteBehavior.ClientSetNull)
+//                    .HasConstraintName("FK_User_User_RoleID");
+//            });
 
-            OnModelCreatingPartial(modelBuilder);
-        }
+//            OnModelCreatingPartial(modelBuilder);
+//        }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-    }
-}
+//        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+//    }
+//}
