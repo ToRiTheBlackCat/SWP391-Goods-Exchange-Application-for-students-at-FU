@@ -23,7 +23,7 @@ namespace SignalRChat.Hubs
         public async Task SendMessage(string user, string message)
         {
             //await Clients.All.SendAsync("ReceiveMessage", user, $"{message}. from: {Context.ConnectionId}");
-            await Clients.All.ReceiveMessage(user, $"{message}. from: {Context.ConnectionId}");
+            //await Clients.All.ReceiveMessage(user, $"{message}. from: {Context.ConnectionId}");                                   mới comment 
         }
 
         public async Task SendMessagePrivate(string user, string message, string toId)
@@ -31,8 +31,8 @@ namespace SignalRChat.Hubs
             try
             {
                 var fromUser = _connections.GetUser(Context.ConnectionId);
-                if (string.IsNullOrEmpty(fromUser))
-                    throw new Exception("You don't have a connection. Message not sent.");
+                //if (string.IsNullOrEmpty(fromUser))           mới comment 
+                //    throw new Exception("You don't have a connection. Message not sent.");        mới comment 
 
                 //var connectResult = await Clients.Client(toId).InvokeAsync<string>("ApproveConnect", Context.ConnectionAborted);
                 // var connectResult = await Clients.Client(toId).ApproveConnect(Context.ConnectionId);
@@ -50,14 +50,14 @@ namespace SignalRChat.Hubs
                 string result;
                 try
                 {
-                    result = await Clients.Client(toId).ReceiveMessage(user, $"{message}. [to {toUser}]");
+                    result = await Clients.Client(toId).ReceiveMessage(user, $"{message}");
                 }
                 catch (Exception ex)
                 {
                     result = "";
                 }
 
-                if (string.IsNullOrEmpty(result)) throw new Exception($"Connect to {toUser} lost");
+               if (string.IsNullOrEmpty(result)) throw new Exception($"Connect to {toUser} lost");                  
                 //await Clients.Caller.SendAsync("ReceiveMessage", user, $"{message}. from: {Context.ConnectionId}");
                 await Clients.Caller.ReceiveMessage("Me", $"{message}.");
             }
@@ -66,7 +66,7 @@ namespace SignalRChat.Hubs
                 //await Clients.Caller.SendAsync("ReceiveMessage", "System", $"Failed to connect to {toId}");
                 await Clients.Caller.ReceiveMessage("System", "Failed to connect to this user");
                 //await Clients.Caller.SendAsync("ReceiveMessage", "System", $"{e.Message}");
-                await Clients.Caller.ReceiveMessage("System", $"Exception: {e.Message}");
+                //await Clients.Caller.ReceiveMessage("System", $"Exception: {e.Message}");                                 mới comment 
             }
         }
 
@@ -79,11 +79,11 @@ namespace SignalRChat.Hubs
             }
 
             _connections.Add(userName.ToLower(), Context.ConnectionId);
-          
-            foreach (var x in _connections._connections)
-            {
-                Clients.Client(x.Value).ReceiveMessage("System", $"{userName} connected. from: {Context.ConnectionId}");
-            }
+
+            //foreach (var x in _connections._connections)                      mới comment 
+            //{
+            //    Clients.Client(x.Value).ReceiveMessage("System", $"{userName} connected. from: {Context.ConnectionId}");      mới comment 
+            //}             mới comment 
         }
 
         public async Task<string> GetConnection(string userName, string stringProductId, string productName)
@@ -127,19 +127,19 @@ namespace SignalRChat.Hubs
                 {
 
                      Clients.Client(toId).ReceiveNotification(fromUser, productId, productName);
-                    throw new Exception($"Failed to connect to {userName}. Request for chat sent, you can wait for {fromUser} to respond or exit chat session.");
+                    throw new Exception($"Request for chat sent to {userName} , you can wait for {fromUser} to respond or exit chat session.");
                 }
 
                 //string testMess = await Clients.Caller.ApproveConnect(Context.ConnectionId);
-                 Clients.Caller.ReceiveMessage("System", $"Connected to {userName}");
-                 Clients.Client(toId).ReceiveMessage("System", $"Connected with {fromUser}");
+                Clients.Caller.ReceiveMessage("System", $"Connected to {userName}");                 
+                Clients.Client(toId).ReceiveMessage("System", $"Connected with {fromUser}");          
 
                 return toId;
             }
             catch (Exception ex)
             {
 
-                Clients.Caller.ReceiveMessage("System", $"Exception! {ex.Message}");
+                Clients.Caller.ReceiveMessage("System", $"{ex.Message}");
                 return null;
             }
         }
