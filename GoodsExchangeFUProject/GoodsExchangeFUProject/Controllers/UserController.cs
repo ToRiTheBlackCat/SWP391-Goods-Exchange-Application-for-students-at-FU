@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
+using NuGet.Protocol;
+using Microsoft.AspNetCore.Http.HttpResults;
 namespace GoodsExchangeFUProject.Controllers
 {
     [ApiController]
@@ -54,7 +56,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
         //TRI
         [HttpPut("user/UpdateUserInfo/{userId}")]
-        public async Task<IActionResult> UpdateUserInfoById(int userId , [FromBody] UpdateInfoUserModel updateModel) 
+        public async Task<IActionResult> UpdateUserInfoById(int userId, [FromBody] UpdateInfoUserModel updateModel)
         {
             var userFound = await _userService.GetUserInfo(userId);
             if (userFound != null)
@@ -168,7 +170,7 @@ namespace GoodsExchangeFUProject.Controllers
         public async Task<ActionResult<string>> PostUser(UserRegisterModel registerModel)
         {
 
-            (bool, string) result = await _userService.RegisterUserUI(registerModel, 3);
+            (bool, string) result = await _userService.RegisterUserUI(registerModel, (int)RoleEnum.Student);
             if (result.Item1)
                 return Ok(result.Item2);
             //return CreatedAtAction("GetUser", new { id = 20 }, registerView);
@@ -181,14 +183,45 @@ namespace GoodsExchangeFUProject.Controllers
         public async Task<ActionResult<string>> PostModderator(UserRegisterModel registerView)
         {
 
-            (bool, string) result = await _userService.RegisterUserUI(registerView, 2);
+            (bool, string) result = await _userService.RegisterUserUI(registerView, (int)RoleEnum.Mod);
             if (result.Item1)
                 return Ok(result.Item2);
             //return CreatedAtAction("GetUser", new { id = 20 }, registerView);
             return BadRequest(result.Item2);
         }
 
+        //TUAN
+        [HttpGet("GetAllNotification/{userId}")]
+        public async Task<IActionResult> GetAllNotificationOfUser(int userId)
+        {
+            var (result, list) = await _userService.GetReceivedNotifications(userId);
+            return Ok(new
+            {
+                Result = result,
+                Notifications = list,
+            });
+        }
 
+        [HttpPost("SendNotificationToUser")]
+        public async Task<IActionResult> SendNotificationToUser(NotificationSendView sendView)
+        {
+            var (message, result) = await _userService.SendNotification(sendView);
+            return Ok(new
+            {
+                Message = message,
+                Result = result
+            });
+        }
 
+        [HttpPost("ReplyNotification")]
+        public async Task<IActionResult> ReplyNotification(NotificationReceivedView sendView)
+        {
+            var (message, result) = await _userService.UserReplyToNotification(sendView);
+            return Ok(new
+            {
+                Message = message,
+                Result = result
+            });
+        }
     }
 }

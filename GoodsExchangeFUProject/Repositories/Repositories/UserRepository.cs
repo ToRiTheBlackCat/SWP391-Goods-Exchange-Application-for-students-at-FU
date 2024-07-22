@@ -81,13 +81,13 @@ namespace Repositories.Repositories
         //TRI
         public async Task<List<User>> GetAllUserList()
         {
-            return  _context.Users.Where(u => u.RoleId != 1).ToList();
+            return _context.Users.AsNoTracking().Where(u => u.RoleId != 1).ToList();
 
         }
         public async Task RemoveUser(int userId)
         {
             var user = await GetUserInfo(userId, 1);
-             _context.Remove(user);
+            _context.Remove(user);
             await _context.SaveChangesAsync();
         }
 
@@ -104,7 +104,7 @@ namespace Repositories.Repositories
             var result = ratings.Select(r => new AllRatingAndCommentModel
             {
                 RaterId = r.Exchange.UserId,
-                RaterName = r.Exchange.User.UserName, 
+                RaterName = r.Exchange.User.UserName,
                 UserId = r.UserId,
                 Score = r.Score,
                 Comment = r.Comment,
@@ -197,6 +197,70 @@ namespace Repositories.Repositories
             _context = new GoodsExchangeFudbContext();
             _context.ResetTokens.Update(resetToken);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Notification>> GetNotifications()
+        {
+            _context = new GoodsExchangeFudbContext();
+            var notification = await _context.Notifications
+                .Include(n => n.Product)
+                .Include(n => n.User)
+                .Include(n => n.Requester)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return notification;
+        }
+
+        public async Task CreateNotification(Notification notification)
+        {
+            _context = new GoodsExchangeFudbContext();
+            var existNotification = await _context.Notifications
+                .FirstOrDefaultAsync(n => n.UserId == notification.UserId
+                    && n.RequesterId == notification.RequesterId
+                    && n.ProductId == notification.ProductId);
+
+            if (existNotification != null)
+            {
+                existNotification.CreatedDate = notification.CreatedDate;
+                await _context.SaveChangesAsync();
+                throw new Exception("Chat request date updated");
+            }
+
+            await _context.Notifications.AddAsync(notification);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task ClearOutDatedNotifications()
+        {
+            _context = new GoodsExchangeFudbContext();
+            await _context.Notifications
+                .ForEachAsync((n) =>
+                {
+                    if (DateTime.Now.Subtract(n.CreatedDate).TotalDays > 3.0)
+                    {
+                        _context.Remove(n);
+                    }
+                });
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task RemoveNotification(NotificationReceivedView receivedView)
+        {
+            _context = new GoodsExchangeFudbContext();
+            var removedNotification = await _context.Notifications
+                .FirstOrDefaultAsync(n =>
+                n.ProductId == receivedView.ProductId
+                && n.UserId == receivedView.UserId
+                && n.RequesterId == receivedView.RequesterId);
+            if (removedNotification != null)
+            {
+                _context.Notifications.Remove(removedNotification);
+                await _context.SaveChangesAsync();
+                return;
+            }
+
+            throw new Exception("Exception: Failed to remove notification");
         }
     }
 }

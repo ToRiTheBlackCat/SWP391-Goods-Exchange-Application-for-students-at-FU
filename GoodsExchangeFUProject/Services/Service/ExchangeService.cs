@@ -55,8 +55,17 @@ namespace Services.Service
         //TRI
         public async Task<string> CancelExchangesOfProduct(int productID)
         {
-            await _repo.CancelExchangesOfProduct(productID);
-            return "Cancel all Exchanges of Product successfully";
+            try
+            {
+                await _repo.CancelExchangesOfProduct(productID);
+                return "Cancel all Exchanges of Product successfully";
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+           
+           
         }
 
         //=================

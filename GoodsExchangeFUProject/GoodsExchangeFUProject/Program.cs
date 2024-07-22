@@ -1,4 +1,4 @@
-using Repositories.Entities;
+﻿using Repositories.Entities;
 using Services.Helpers;
 using Services.Interface;
 using Repositories.Repositories;
@@ -45,8 +45,13 @@ namespace GoodsExchangeFUProject
             builder.Services.AddDbContext<GoodsExchangeFudbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionStringDB")));
 
+            //.AddSingleton.Tại lần đầu chạy nếu chưa có tự tạo ra, các lần sau gọi lại vẫn lấy chính đổi tượng lần đầu đó 
+            //.AddTransient. Mỗi lần gọi dịch vụ là 1 đối tượng mới đc tạo ra
+            //.AddScoped. Với mỗi phạm vi scope mà đc gọi dịch vụ đó sẽ tạo ra 1 đối tượng 
+
             // Register AuthHelper and other dependencies
             builder.Services.AddScoped<AuthHelper>();
+            //đăng ký tương ứng giữa interface và service đó thiết kế này sau này muốn đổi chỉ cần thay thế chỗ service khác miễn implement cái interface đó - SỰ PHỤ THUỘC LỎNG LẺO 
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<UserRepository>(); // Register UserRepository
             builder.Services.AddScoped<IProductService, ProductServices>();

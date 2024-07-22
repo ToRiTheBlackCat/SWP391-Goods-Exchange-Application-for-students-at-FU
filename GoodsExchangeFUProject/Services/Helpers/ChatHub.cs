@@ -138,7 +138,6 @@ namespace SignalRChat.Hubs
             }
             catch (Exception ex)
             {
-
                 Clients.Caller.ReceiveMessage("System", $"{ex.Message}");
                 return null;
             }

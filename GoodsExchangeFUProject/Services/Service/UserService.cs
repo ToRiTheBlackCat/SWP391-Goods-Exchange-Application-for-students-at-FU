@@ -26,17 +26,19 @@ namespace Services.Service
     {
         private readonly AuthHelper _authHelper;
         private readonly UserRepository _repo;
+        private readonly ProductRepository _productRepo;
         private readonly IMapper _mapper;
         IConfiguration config = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
                         .AddJsonFile("appsettings.json", true, true)
                         .Build();
 
-        public UserService(AuthHelper authHelper, UserRepository repo, IMapper mapper)
+        public UserService(AuthHelper authHelper, UserRepository repo, IMapper mapper, ProductRepository productRepo)
         {
             _authHelper = authHelper;
             _repo = repo;
             _mapper = mapper;
+            _productRepo = productRepo;
         }
 
         //TRI
@@ -171,7 +173,7 @@ namespace Services.Service
             double averageScore = (double)listScores.Average();
             return (true, averageScore);
         }
-        
+
         //TRI
         public async Task<UserModel2?> GetUserInfo(int userId)
         {
@@ -218,7 +220,7 @@ namespace Services.Service
 
             return ConvertUserToModel(list);
         }
-        
+
         //TRI
         public async Task AdminDeleteAccount(int userId)
         {
@@ -269,7 +271,7 @@ namespace Services.Service
                 var resetToken = user.ResetToken;
                 if (resetToken != null && resetToken.ResetToken1.Equals(resetModel.resetCode))
                 {
-                    if ((DateTime.Now - resetToken.CreatedDate).TotalSeconds > 60 * 3)
+                    if ((DateTime.Now - (DateTime)resetToken.CreatedDate!).TotalSeconds > 60 * 3)
                         return (false, "Reset code is invalid!");
                     user.Password = ComputeSha256Hash(resetModel.Password + config["SecurityStr:Key"]);
                     await _repo.UpdateUserAsync(user);
@@ -307,6 +309,108 @@ namespace Services.Service
             return (false, "Register failed");
         }
 
+        //TUAN
+        public async Task<(string, List<NotificationReceivedView>?)> GetReceivedNotifications(int userId)
+        {
+            try
+            {
+                await _repo.ClearOutDatedNotifications();
+                var notifications = await _repo.GetNotifications();
+                var receivedNotifications = notifications.Where(n => n.UserId == userId).OrderByDescending(n => n.CreatedDate)
+                    .Select(n => new NotificationReceivedView()
+                    {
+                        UserId = n.UserId,
+                        ProductId = n.ProductId,
+                        ProductName = n.Product.ProductName,
+                        RequesterId = n.RequesterId,
+                        RequesterUserName = n.Requester.UserName,
+                    });
+                if (receivedNotifications.Count() > 0)
+                    return ($"{receivedNotifications.Count()} notification(s)", receivedNotifications.ToList());
 
+                return ($"No notifications", null);
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.StackTrace);
+            }
+
+            return ("Error fetching notifications", null);
+        }
+
+        public async Task<(string, bool)> SendNotification(NotificationSendView sendView)
+        {
+            try
+            {
+                var users = await _repo.GetAllUserList();
+
+                var requester = users.FirstOrDefault(u => u.UserId == sendView.RequesterId && u.RoleId == 3);
+                if (requester == null || requester.IsBanned)
+                    throw new Exception("Your account is banned.");
+
+                var receiver = users.FirstOrDefault(u => u.UserId == sendView.UserId && u.RoleId == 3);
+                if (receiver == null || receiver.IsBanned)
+                    throw new Exception("User not found or is banned.");
+
+                if (receiver.UserId == requester.UserId)
+                    throw new Exception("Can't send notification to yourself.");
+
+                var product = await _productRepo.FindProductByIdAsync(sendView.ProductId, 1);
+                if (product == null)
+                    throw new Exception("Product not found or is unavailable.");
+
+                if (product.UserId != receiver.UserId)
+                    throw new Exception("Product not own by this user.");
+
+                Notification notification = new Notification()
+                {
+                    UserId = sendView.UserId,
+                    ProductId = sendView.ProductId,
+                    RequesterId = sendView.RequesterId,
+                    CreatedDate = DateTime.Now,
+                };
+                await _repo.CreateNotification(notification);
+
+                return ($"Notification successfully sent to {receiver.UserName}.", true);
+            }
+            catch (Exception ex)
+            {
+                Console.Out.WriteLineAsync(ex.StackTrace);
+                return ($"Failed to send notification. {ex.Message}", false);
+            }
+        }
+
+        public async Task<(string, bool)> UserReplyToNotification(NotificationReceivedView receivedView)
+        {
+            try
+            {
+                await _repo.RemoveNotification(receivedView);
+
+                var users = await _repo.GetAllUserList();
+                var requester = users.FirstOrDefault(u => u.UserId == receivedView.RequesterId && u.RoleId == 3);
+                if (requester == null || requester.IsBanned)
+                    throw new Exception("Your account is banned.");
+
+                var receiver = users.FirstOrDefault(u => u.UserId == receivedView.UserId && u.RoleId == 3);
+                if (receiver == null || receiver.IsBanned)
+                    throw new Exception("User not found or is banned.");
+
+                if (receiver.UserId == requester.UserId)
+                    throw new Exception("Can't send notification to yourself.");
+
+                var product = await _productRepo.FindProductByIdAsync(receivedView.ProductId, 1);
+                if (product == null)
+                    throw new Exception("Product not found or is unavailable.");
+
+                if (product.UserId != receiver.UserId)
+                    throw new Exception("Product not own by this user.");
+
+                return ($"Notification successfully removed(replied)", true);
+            }
+            catch (Exception ex)
+            {
+                return ($"Failed to reply to notification. {ex.Message}", false);
+            }
+        }
     }
 }
