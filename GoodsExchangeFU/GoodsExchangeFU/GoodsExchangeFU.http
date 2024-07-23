@@ -1,6 +1,0 @@
-@GoodsExchangeFU_HostAddress = http://localhost:7224
-
-GET {{GoodsExchangeFU_HostAddress}}/GoodsExchangeFU_HostAddress/
-Accept: application/json
-
-###
