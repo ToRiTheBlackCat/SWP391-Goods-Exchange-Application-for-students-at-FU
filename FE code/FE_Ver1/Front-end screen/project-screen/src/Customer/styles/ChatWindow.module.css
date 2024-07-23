@@ -1,0 +1,56 @@
+.chatWindow {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .messages {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .message {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 15px;
+    max-width: 60%;
+  }
+  
+  .friend {
+    align-self: flex-start;
+    background-color: #fff;
+    border: 1px solid #ddd;
+  }
+  
+  .me {
+    align-self: flex-end;
+    background-color: #dcf8c6;
+    border: 1px solid #ddd;
+  }
+  
+  .textContainer {
+    margin-left: 10px;
+  }
+  
+  .text {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .time {
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+  }
+  
+  .userImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }

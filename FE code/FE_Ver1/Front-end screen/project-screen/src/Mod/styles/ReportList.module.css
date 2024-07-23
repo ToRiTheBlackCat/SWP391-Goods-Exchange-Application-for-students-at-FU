@@ -1,0 +1,63 @@
+/* Container for the report list */
+.reportListContainer {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Table styling */
+.reportTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 18px;
+  text-align: left;
+}
+
+/* Table header styling */
+.reportTable th, .reportTable td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Table row hover effect */
+.reportTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Action buttons styling */
+.actionButton {
+  padding: 8px 10px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  width: 120px; /* Increase width to fit text */
+  height: 40px; /* Set a fixed height */
+  line-height: 24px; /* Center text vertically */
+  font-size: 14px; /* Adjust font size */
+}
+
+.actionButton.done {
+  background-color: #28a745;
+}
+
+.actionButton.view {
+  background-color: #007bff;
+}
+
+.actionButton.done:hover {
+  background-color: #218838;
+}
+
+.actionButton.view:hover {
+  background-color: #0056b3;
+}
+
+.actionButtonContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}

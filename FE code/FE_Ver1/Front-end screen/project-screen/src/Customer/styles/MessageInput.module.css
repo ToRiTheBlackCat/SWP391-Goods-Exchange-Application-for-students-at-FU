@@ -1,0 +1,30 @@
+.button {
+  width: 10%;
+  height: 50px;
+  font-weight: bold;
+  border-radius: 10px;
+  font-size: 18px;
+  background-color: #34f170;
+  border-width: 0;
+  color: #fff;
+}
+
+.textarea {
+  width: 60%;
+  height: 80px;
+  border-radius: 10px;
+  border-width: 0;
+  padding: 10px;
+  font-size: 18px;
+  background-color: #34b7f1;
+}
+
+.textContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+}
