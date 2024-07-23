@@ -1,0 +1,12 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .colMd4 {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }

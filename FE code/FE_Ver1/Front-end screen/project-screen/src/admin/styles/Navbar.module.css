@@ -1,0 +1,74 @@
+/* Navbar.module.css */
+.navbar-brand {
+  font-weight: bold;
+}
+
+.navLink {
+  color: white !important;
+}
+
+.form-control {
+  width: 200px;
+}
+
+.navLink.active {
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #4a75a3;
+  border-radius: 4px;
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler-icon {
+  color: white;
+}
+
+.navbar-collapse {
+  justify-content: space-between;
+}
+
+.dropdown-menu {
+  background-color: #343a40;
+  border: none;
+}
+
+.dropdown-item {
+  color: white !important;
+}
+
+.dropdown-item:hover {
+  background-color: #495057;
+}
+
+.dropdown-item:active {
+  background-color: #495057;
+}
+
+.dropdown-item.active {
+  background-color: #007bff;
+  color: #ffffff !important;
+}
+
+.dropdown-divider {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.dropdownMenu {
+  background-color: #bbd2ea;
+  border: none;
+  right: 0; /* Thêm dòng này để căn phải */
+  left: auto; /* Thêm dòng này để bỏ căn trái */
+}
