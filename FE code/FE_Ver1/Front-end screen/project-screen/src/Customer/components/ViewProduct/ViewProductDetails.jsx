@@ -5,6 +5,7 @@ import axiosInstance from '../../../utils/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setSelectedProduct } from '../../store/store';
+import { toast } from 'react-toastify';
 
 function ViewProductDetails({ product, onDelete }) {
   const [editableProduct, setEditableProduct] = useState(product);
@@ -50,16 +51,15 @@ function ViewProductDetails({ product, onDelete }) {
 
   const handleUpdateClick = async () => {
     if (editableProduct.status === 1) {
-      const confirmMessage = 'This product may have incoming exchange requests. If you update the product information, all such requests will be automatically canceled. confirm?';
+      const confirmMessage = 'This product may have incoming exchange requests. If you update the product information, all such requests will be automatically canceled. Confirm?';
       if (window.confirm(confirmMessage)) {
-
-        const cancelResult = await handleCancelExchange(editableProduct.id);
-        console.log('Exchange cancelled successfully');
+        await handleCancelExchange(editableProduct.id);
         dispatch(setSelectedProduct(editableProduct));
         navigate(`/update-product/${editableProduct.id}`);
-
-
       }
+    } else {
+      dispatch(setSelectedProduct(editableProduct));
+      navigate(`/update-product/${editableProduct.id}`);
     }
   };
 
@@ -70,22 +70,24 @@ function ViewProductDetails({ product, onDelete }) {
         return;
       }
     }
-    const cancelResult = await handleCancelExchange(editableProduct.id);
+    await handleCancelExchange(editableProduct.id);
     axiosInstance.post(`/api/Product/Student/DeleteProduct/${editableProduct.id}`)
       .then(response => {
         console.log('Product deleted successfully', response);
-        alert('Product deleted successfully');
+        toast.success('Product deleted successfully');
         onDelete(editableProduct.id);
       })
       .catch(error => {
         console.error('Error deleting product:', error);
-        alert('Failed to delete the product');
+        toast.error('Failed to delete the product');
       });
   };
 
-  const handleCancelExchange = async () => {
+  const handleCancelExchange = async (productId) => {
     try {
-      const response = await axiosInstance.post(`/api/Exchange/CancelExchangeList/${editableProduct.id}`);
+      const response = await axiosInstance.post(`/api/Exchange/CancelExchangeList/${productId}`);
+      // console.log("Cancel successfully");
+      console.log("respone", response.data);
       return response.data;
     } catch (error) {
       console.error('Error cancelling exchange:', error);
@@ -136,11 +138,11 @@ function ViewProductDetails({ product, onDelete }) {
         )}
       </div>
       <div className={styles['button-group']}>
-        {product.status !== 2 && (
-          <div className={styles['button-group']}>
+        {product.status == 1 &&(
+          <>
             <button onClick={handleUpdateClick} className={`${styles['button']} btn btn-warning`}>Update</button>
             <button onClick={handleDeleteClick} className={`${styles['button']} btn btn-danger`}>Delete</button>
-          </div>
+          </>
         )}
       </div>
     </div>

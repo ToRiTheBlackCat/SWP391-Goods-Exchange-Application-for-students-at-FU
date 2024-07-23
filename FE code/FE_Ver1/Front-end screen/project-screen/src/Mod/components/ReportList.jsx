@@ -73,27 +73,23 @@
                 <td>{report.detail}</td>
                 <td>{formatDate(report.reportDate)}</td>
                 <td>
-                  <button 
-                    className={`${styles.actionButton} ${styles.done}`} 
-                    onClick={() => markDone(report.reportId)}
-                    aria-label={`Mark report ${report.reportId} as done`}
-                  >
+                  <div className={styles.actionButtonContainer}>
+                    <button 
+                      className={`${styles.actionButton} ${styles.done}`} 
+                      onClick={() => markDone(report.reportId)}
+                      aria-label={`Mark report ${report.reportId} as done`}
+                    >
                     DONE
-                  </button>
-                  {/* <button 
-                    className={`${styles.actionButton} ${styles.view}`} 
-                    onClick={() => viewReportDetail(report)}
-                    aria-label={`View details of report ${report.reportId}`}
-                  >
-                    View Details
-                  </button> */}
-                  <Link 
-                    to={`/mod/product/${report.productId}`} 
-                    className={`${styles.actionButton} ${styles.view}`}
-                  >
-                    View Product
-                  </Link>
+                    </button>
+                      <Link 
+                        to={`/mod/product/${report.productId}`} 
+                          className={`${styles.actionButton} ${styles.view}`}
+                    >
+                     View Product
+                      </Link>
+                  </div>
                 </td>
+
               </tr>
             ))}
           </tbody>

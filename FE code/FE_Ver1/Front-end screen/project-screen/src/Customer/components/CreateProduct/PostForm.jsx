@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../../styles/PostForm.module.css';
 import axiosInstance from '../../../utils/axiosInstance'; // Import axiosInstance
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function PostProductForm() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -39,7 +40,7 @@ function PostProductForm() {
             };
             reader.readAsDataURL(file);
         } else {
-            alert('Please select a valid image file');
+            toast.error('Please select a valid image file');
         }
     };
 
@@ -96,15 +97,15 @@ function PostProductForm() {
               });
             console.log(response.data);
             if (response.status === 200 || response.status === 201) {
-                alert('Create successful products');
+                toast.success('Create successful products');
                 navigate('/');
             }
         } catch (error) {
             console.error('Error while creating product:', error);
             if (error.response && error.response.status === 403) {
-                alert('Deny access. You are not authorized to perform this action.');
+                toast.error('Deny access. You are not authorized to perform this action.');
             } else {
-                alert('Error while creating product.');
+                toast.error('Error while creating product.');
             }
         }
     };

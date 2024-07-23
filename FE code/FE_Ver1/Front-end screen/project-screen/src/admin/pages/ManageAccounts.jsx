@@ -54,7 +54,7 @@ const ManageAccounts = () => {
         e.preventDefault();
         console.log('Mod Data:', newMod);
 
-        if (newMod.password.length <= 5) {
+        if (newMod.password.length < 5) {
             toast.error('Password must be greater than 5 characters.');
             return;
         }

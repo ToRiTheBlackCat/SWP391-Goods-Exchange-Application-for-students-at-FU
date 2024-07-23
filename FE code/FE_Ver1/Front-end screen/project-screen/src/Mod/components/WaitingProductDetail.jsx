@@ -80,6 +80,10 @@ const WaitingProductDetail = ({ product, onProductRemove }) => {
     }
   };
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  };
+
   if (!product) {
     return <div className={`col-md-8 ${styles.col}`}>Select a product to see details</div>;
   }
@@ -109,7 +113,7 @@ const WaitingProductDetail = ({ product, onProductRemove }) => {
           </tr>
           <tr>
             <th>Price</th>
-            <td>{product.productPrice} VND</td>
+            <td>{formatPrice(product.productPrice)}</td>
           </tr>
           <tr>
             <th>Owner</th>

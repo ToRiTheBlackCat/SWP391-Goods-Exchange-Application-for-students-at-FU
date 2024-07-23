@@ -14,7 +14,6 @@ body {
 }
 
 .container {
-  background-color: rgba(248, 249, 250, 0.8); /* Khớp màu nền với body, thêm độ trong suốt */
   padding: 0; /* Remove padding */
   border-radius: 10px; /* Thêm bo góc cho container */
 }

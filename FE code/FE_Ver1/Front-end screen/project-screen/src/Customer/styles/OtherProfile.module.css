@@ -14,19 +14,18 @@ body {
 }
 
 .container {
-  background-color: rgba(248, 249, 250, 0.8); /* Khớp màu nền với body, thêm độ trong suốt */
+  /* background-color: #f8f9fa;  */
   padding: 0; /* Remove padding */
   border-radius: 10px; /* Thêm bo góc cho container */
 }
 
 .profileCard {
-  width: 100%;
-  max-width: 300px; /* Giới hạn chiều rộng tối đa */
+  width: 400px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 15px; /* Giảm padding để giảm chiều cao */
-  margin-top: -30px; /* Dịch chuyển lên trên một chút */
+  margin-top: 40px; /* Dịch chuyển lên trên một chút */
 }
 
 .avatar {

@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axiosInstance from '../../utils/axiosInstance';
 import styles from '../styles/ViewBanUser.module.css'; // Import CSS module
+import { toast } from 'react-toastify';
 
 function ViewBanUser() {
   const [bannedUsers, setBannedUsers] = useState([]);
@@ -31,13 +32,13 @@ function ViewBanUser() {
   const handleUnbanUser = (userId) => {
     axiosInstance.post(`/api/User/Mod/UnbanAccount/${userId}`)
       .then(response => {
-        alert('User has been unbanned successfully');
+        toast.success('User has been unbanned successfully');
         setBannedUsers(bannedUsers.filter(user => user.userId !== userId));
         setSelectedUser(null);
       })
       .catch(error => {
         console.error('There was an error unbanning the user!', error);
-        alert('Failed to unban the user');
+        toast.error('Failed to unban the user');
       });
   };
 

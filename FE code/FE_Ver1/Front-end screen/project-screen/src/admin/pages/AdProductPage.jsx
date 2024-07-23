@@ -63,13 +63,13 @@ const ProductPage = () => {
     fetchProduct();
   }, [id]);
 
-  const handlePhoneClick = () => {
-    if (phoneNumber) {
-      alert(`Phone number: ${phoneNumber}`);
-    } else {
-      alert('Phone number not available.');
-    }
-  };
+  // const handlePhoneClick = () => {
+  //   if (phoneNumber) {
+  //     alert(`Phone number: ${phoneNumber}`);
+  //   } else {
+  //     alert('Phone number not available.');
+  //   }
+  // };
 
   if (error) {
     return <div>{error}</div>;
@@ -120,7 +120,7 @@ const ProductPage = () => {
             </div>
           </div>
           <div className="d-flex justify-content-between mb-3">
-            <button onClick={handlePhoneClick} className={`btn btn-success w-100 me-1 ${styles.phoneNumberButton}`}>{phoneNumber}</button> {/* Apply phoneNumberButton style */}
+            <button className={`btn btn-success w-100 me-1 ${styles.phoneNumberButton}`}>{phoneNumber}</button> {/* Apply phoneNumberButton style */}
           </div>
             <button onClick={handleProfileClick} className="btn btn-info w-100">View user profile</button>
             

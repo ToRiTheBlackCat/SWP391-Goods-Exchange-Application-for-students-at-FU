@@ -57,11 +57,6 @@ const SignalRProvider = () => {
         .catch(e => console.log('Connection failed: ', e));
     }
 
-    // Loại bỏ phần này để tránh thiết lập thông báo ban đầu trùng lặp
-    // var notification = { user: "thanh333", productID: 4, productName: "tai nghe" };
-    // notificationsRef.current = [notification];
-    // setUpdate(prev => prev + 1); // Buộc cập nhật lại
-
     return () => {
       if (connectionRef.current) {
         connectionRef.current.stop();

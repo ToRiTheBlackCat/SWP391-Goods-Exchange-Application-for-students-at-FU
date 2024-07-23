@@ -13,30 +13,42 @@ export default function ChatContainer() {
     const productID = queryParams.get('productID');
     const productName = queryParams.get('productName');
 
-    // const [sellerInfo, setSellerInfo] = useState(location.state?.sellerInfo); // Lấy sellerInfo từ state
     const [product, setProduct] = useState(null);
     const [chats, setChats] = useState([]);
-
     const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('loggedInUser')));
-    const user= currentUser.userName;
+    const user = currentUser.userName;
     const [avatar] = useState(userIcon);
     const [connection, setConnection] = useState(null);
     const [toAddress, setToAddress] = useState("");
     const navigate = useNavigate();
-    var inSession = false;
+    const inSessionRef = useRef(false);
     const connectionInitialized = useRef(false);
 
-    // Tạo kết nối SignalR chỉ một lần
     useEffect(() => {
-        
-            const newConnection = new signalR.HubConnectionBuilder()
-                .withUrl("https://goodsexchangefu-api.azurewebsites.net/chat")
-                .configureLogging(signalR.LogLevel.Information)
-                .build();
-            
-            setConnection(newConnection);
-            
-        
+        const fetchProduct = async () => {
+            // initializeConnection();
+            try {
+                const response = await axiosInstance.get(`/api/Product/Student/ViewProductDetailWithId/${productID}`);
+                setProduct(response.data);
+                console.log(response.data);
+
+                // Once the product data is fetched, initialize the SignalR connection
+                initializeConnection();
+            } catch (error) {
+                console.error('Error fetching product:', error);
+            }
+        };
+
+        fetchProduct();
+    }, [productID]);
+
+    const initializeConnection = useCallback(() => {
+        const newConnection = new signalR.HubConnectionBuilder()
+            .withUrl("https://goodsexchangefu-api.azurewebsites.net/chat")
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
+
+        setConnection(newConnection);
     }, []);
 
     const signUpConnection = useCallback(async () => {
@@ -50,21 +62,17 @@ export default function ChatContainer() {
     }, [connection, user]);
 
     const connectWithUser = useCallback(async () => {
-        // if (userID) {
-        //     setSellerInfo(userID);
-        // }
+        if (inSessionRef.current) return; // Check if already in session to avoid duplicate calls
+
         try {
             const result = await connection.invoke("GetConnection", userID, productID, productName);
-            console.log("value", userID);
-            console.log("value", productID);
-            console.log("value", productName);
-            console.log("Get connection: ",result);
             if (result != null) {
                 setToAddress(result);
-                inSession = true;  // Đặt trạng thái inSession ở đây
+                inSessionRef.current = true; // Set session status
                 console.log("Get connection successfully", { inSession: true });
             } else {
                 console.log("Get connection failed");
+                sendNotificationToUser();
             }
         } catch (err) {
             console.error(err.toString());
@@ -92,16 +100,16 @@ export default function ChatContainer() {
                     connection.on('ReceiveMessage', (user, message) => {
                         checkConnection();
                         setChats(prevChats => [...prevChats, { user, message }]);
-                        console.log("session value: ", inSession);
+                        console.log("session value: ", inSessionRef.current);
                         return "Sent";
                     });
                     connection.on("ApproveConnect", (connectionId) => {
                         checkConnection();
-                        
-                        if (connectionId && inSession==false) {
+
+                        if (connectionId && !inSessionRef.current) {
                             setToAddress(connectionId);
-                            inSession = true;
-                            console.log("Approve connect", connectionId, { inSession: inSession });
+                            inSessionRef.current = true;
+                            console.log("Approve connect", connectionId, { inSession: true });
                             return "Yesed";
                         } else {
                             return "No";
@@ -117,24 +125,7 @@ export default function ChatContainer() {
                     throw new Error('Connection failed, stopping further execution.');
                 });
         }
-
-        const fetchProduct = async () => {
-            try {
-                const response = await axiosInstance.get(`/api/Product/Student/ViewProductDetailWithId/${productID}`);
-                setProduct(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.error('Error fetching product:', error);
-            }
-        };
-        fetchProduct();
-
-        // return () => {
-        //     if (connection) {
-        //         connection.stop();
-        //     }
-        // };
-    }, [connection, signUpConnection, connectWithUser, checkConnection, productID, inSession]);
+    }, [signUpConnection, connectWithUser, checkConnection]);
 
     const sendChatToServer = (chat) => {
         if (connection) {
@@ -146,6 +137,24 @@ export default function ChatContainer() {
     const addMessage = (chat) => {
         const newChat = { ...chat, user, avatar };
         sendChatToServer(newChat);
+        sendNotificationToUser();
+    };
+
+    const sendNotificationToUser = async () => {
+        const notificationData = {
+            userId: product?.userId,  // Use userId from fetched product data
+            productId: productID,
+            requesterId: currentUser.userId  // Use userID from queryParams
+        };
+        console.log("userId", product?.userId);
+        console.log("requesterId", currentUser.userId);
+
+        try {
+            await axiosInstance.post('/api/User/SendNotificationToUser', notificationData);
+            console.log('Notification sent successfully');
+        } catch (error) {
+            console.error('Error sending notification:', error);
+        }
     };
 
     const ChatList = () => {

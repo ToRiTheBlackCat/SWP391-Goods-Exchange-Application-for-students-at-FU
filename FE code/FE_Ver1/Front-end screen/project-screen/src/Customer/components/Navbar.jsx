@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import styles from '../styles/Navbar.module.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
-import useSignalRNotifications from './SignalRProvider';
+import axiosInstance from '../../utils/axiosInstance';
 
 const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
   const [inputValue, setInputValue] = useState(searchTerm);
@@ -14,7 +14,7 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdownNotification, setIsDropdownNotification] = useState(false);
   const [activeLink, setActiveLink] = useState();
-  const notifications = useSignalRNotifications();
+  const [notifications, setNotifications] = useState([]);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
@@ -23,9 +23,10 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
     if (user && user.token) {
       setIsLoggedIn(true);
       setUsername(user.userName);
+      fetchNotifications(user.userId); // Fetch notifications when user is logged in
     }
 
-    // Lắng nghe sự thay đổi trong localStorage
+    // Listen for changes in localStorage
     const handleStorageChange = () => {
       const updatedUser = JSON.parse(localStorage.getItem('loggedInUser'));
       if (!updatedUser || !updatedUser.token) {
@@ -39,7 +40,7 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
     return () => {
       window.removeEventListener('storage', handleStorageChange);
     };
-  }, [notifications, navigate]);
+  }, [navigate]);
 
   useEffect(() => {
     const handleClickOutsideDropdown = (event) => {
@@ -53,6 +54,21 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
       document.removeEventListener('mousedown', handleClickOutsideDropdown);
     };
   }, []);
+
+  const fetchNotifications = async (userId) => {
+    console.log('Fetching notifications for userId:', userId);
+    try {
+      const response = await axiosInstance.get(`/api/User/GetAllNotification/${userId}`);
+      console.log('API response:', response.data);
+      if (response.data.notifications) {
+        setNotifications(response.data.notifications);
+      } else {
+        console.error('Error fetching notifications:', response.data.result);
+      }
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.clear();
@@ -102,6 +118,34 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
     }
   };
 
+  const replyNotification = async (notification) => {
+    const notificationData = {
+      userId: notification.userId,
+      productId: notification.productId,
+      productName: notification.productName,
+      requesterId: notification.requesterId,
+      requesterUserName: notification.requesterUserName
+    };
+    
+    try {
+      const response = await axiosInstance.post('/api/User/ReplyNotification', notificationData);
+      console.log('Reply notification response:', response.data);
+      toast.success('Notification replied successfully');
+      return true; // Indicate success
+    } catch (error) {
+      console.error('Error replying to notification:', error);
+      toast.error('Error replying to notification');
+      return false; // Indicate failure
+    }
+  };
+
+  const handleNotificationClick = async (notification) => {
+    const replySuccess = await replyNotification(notification);
+    if (replySuccess) {
+      navigate(`/chat?user=${encodeURIComponent(notification.requesterUserName)}&productID=${encodeURIComponent(notification.productId)}&productName=${encodeURIComponent(notification.productName)}`);
+    }
+  };
+
   return (
     <>
       <nav className={`navbar navbar-expand-lg navbar-dark bg-dark ${styles.navbar}`}>
@@ -136,30 +180,24 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
                   Create Product
                 </button>
               </li>
-              {/* <li className="nav-item">
-                <button
-                  className={`btn btn-link nav-link ${styles.navLink} ${activeLink === 'chat' ? styles.active : ''}`}
-                  onClick={() => handleProtectedClick('/chat', 'chat')}
-                >
-                  Chat
-                </button>
-              </li> */}
               <div ref={dropdownRef}>
                 <button
                   className={`btn btn-dark dropdown-toggle ${styles.navLink}`}
                   onClick={handleDropdownNotification}
                 >
-                  {isLoggedIn ? 'Notification' : null}
+                  Notification
                 </button>
                 <ul className={`dropdown-menu ${styles.dropdownNotification}`} style={{ display: isDropdownNotification ? 'block' : 'none' }}>
                   {isLoggedIn ? (
                     notifications.length > 0 ? (
                       notifications.map((notification, index) => (
                         <li key={index}>
-                          <NavLink className={`dropdown-item ${styles.dropdownItem}`} to={`/chat?user=${encodeURI(notification.user)}&productID=${encodeURI(notification.productID)}&productName=${encodeURI(notification.productName)}`}>
-                            <div>{notification.user}</div>
-                            <div>{notification.productID}</div>
-                            <div>{notification.productName}</div>
+                          <NavLink
+                            className={`dropdown-item ${styles.dropdownItem}`}
+                            onClick={() => handleNotificationClick(notification)}
+                            to="#"
+                          >
+                            <div>{notification.requesterUserName} - {notification.productName}</div>
                           </NavLink>
                         </li>
                       ))

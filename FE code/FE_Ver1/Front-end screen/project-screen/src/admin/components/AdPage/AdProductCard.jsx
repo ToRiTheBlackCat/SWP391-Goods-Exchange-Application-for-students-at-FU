@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
       />
       <div className={`card-body ${styles.cardBody}`}>
         <h5 className={`card-title ${styles.cardTitle}`}>
-          <Link to={product.link}>{product.title}</Link>
+          <p to={product.link}>{product.title}</p>
         </h5>
         <p className={`card-text ${styles.cardText}`}>{product.condition}</p>
         {product.size && (

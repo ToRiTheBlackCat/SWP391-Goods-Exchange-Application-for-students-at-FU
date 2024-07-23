@@ -30,7 +30,7 @@ const useAuthCheck = () => {
           }
         }
       }
-    },30 * 10 * 60000); 
+    },60 * 10 * 60000); 
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, [navigate, isLoggedIn]);
