@@ -87,7 +87,8 @@ namespace Repositories.Repositories
         public async Task RemoveUser(int userId)
         {
             var user = await GetUserInfo(userId, 1);
-            _context.Remove(user);
+            user.IsBanned = true;
+            _context.Update(user);
             await _context.SaveChangesAsync();
         }
 

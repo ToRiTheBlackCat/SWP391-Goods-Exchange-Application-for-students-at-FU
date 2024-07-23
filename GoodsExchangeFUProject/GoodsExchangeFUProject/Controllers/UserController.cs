@@ -98,7 +98,7 @@ namespace GoodsExchangeFUProject.Controllers
             return Ok(new { Token = response, userId = id, userName = name, Role = role.Trim() });
         }
         //TRI
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         [HttpPost("Admin/DeleteAccount/{userId}")]
         public async Task<IActionResult> AdminDeleteAccount(int userId)
         {

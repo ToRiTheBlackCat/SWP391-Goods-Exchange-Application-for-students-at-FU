@@ -115,13 +115,17 @@ namespace Services.Service
         //TRI
         public async Task<(bool, string)> ModRejectProduct(int productId)
         {
-
-            var success = await _repo.UpdateProductStatusAsync(productId, 0);
-            if (success)
+            try
             {
+                await _repo.RemoveProduct(productId);
                 return (true, "Product rejected");
             }
-            return (false, "Product not found in the waiting list.");
+            catch (Exception ex)
+            {
+                return (false, "Product not found in the waiting list. "+ ex.Message);
+            }
+            
+            
         }
         //TRI
         public async Task<(bool, string)> StudentDeleteProduct(int productId)

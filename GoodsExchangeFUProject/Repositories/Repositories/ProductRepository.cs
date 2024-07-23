@@ -75,6 +75,21 @@ namespace Repositories.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
+        public async Task RemoveProduct(int prodID)
+        {
+            _context = new();
+            var product = await _context.Products.Include(p => p.Exchanges).FirstOrDefaultAsync(p => p.ProductId ==  prodID);
+            if(product != null)
+            {
+                foreach (var ex in product.Exchanges)
+                {
+                    ex.Status = 0;
+                   
+                }
+                product.Status = 0;
+                await _context.SaveChangesAsync();
+            }
+        }
 
         //TRI
         public async Task<bool> UpdateProductByIdAsync(OwnProductModel update)
