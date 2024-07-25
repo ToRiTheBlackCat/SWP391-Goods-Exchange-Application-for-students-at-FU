@@ -1,0 +1,68 @@
+.loginContainer {
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  padding: 20px; 
+  background-color: #fff; 
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.inputIcon {
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.inputField {
+  height: 45px;
+}
+
+.btnSmall {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  width: 100%; /* Make the button full width */
+}
+
+.btn-primary {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+  height: 50px; /* Adjust the height to match the Google login button */
+}
+
+.btn-primary:hover {
+  background-color: #4cae4c;
+  border-color: #4cae4c;
+}
+
+.btn-info {
+  background-color: aqua;
+  border-color: aqua;
+  color: black;
+  width: 100%; /* Make the button full width */
+  height: 50px; /* Adjust the height to match the Login button */
+}
+
+.btn-info:hover {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  color: white;
+}
+
+.textDecorationNone {
+  color: #5cb85c;
+}
+
+.textDecorationNone:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,100 @@
+/* SignUpForm.module.css */
+.signUpController {
+  width: 400px;
+  height: auto;
+  margin: 100px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.inputGroup {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.inputGroup input,
+.inputGroup select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  font-size: 0.875em;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+
+.registerBtn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #289fa7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.registerBtn:hover {
+  background-color: #1f8a8e;
+}
+
+h2 {
+  text-align: center;
+}
+
+.checkbox {
+  margin-top: 10px;
+}
+
+.checkbox input {
+  margin-right: 5px;
+}
+
+.loginLink {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.loginLink a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.loginLink a:hover {
+  text-decoration: underline;
+}
+
+body {
+   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+@media (max-width: 500px) {
+  .signUpController {
+    margin: 50px 10px;
+    padding: 15px;
+  }
+
+  .registerBtn {
+    font-size: 14px;
+    padding: 8px;
+  }
+}

@@ -1,0 +1,13 @@
+.profileCard {
+    width: 400px;
+  }
+  
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .username {
+    margin-top: 10px;
+  }
+  

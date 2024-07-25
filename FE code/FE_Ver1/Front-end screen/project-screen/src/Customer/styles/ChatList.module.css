@@ -1,0 +1,79 @@
+.container {
+    display: flex;
+    height: 100vh;
+    background-color: #f0f2f5;
+  }
+  
+  .chatList {
+    width: 20%;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+    padding: 20px 10px;
+    background-color: #fff;
+  }
+  
+  .chatItem {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .chatItem:hover, .selectedChat {
+    background-color: #ebebeb;
+  }
+  
+  .chatName {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  .chatDetails {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 10px;
+  }
+  
+  .onlineIcon {
+    color: green;
+    font-size: 12px;
+  }
+  
+  .chatSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #e5ddd5;
+  }
+  
+  .profileButton {
+    margin-left: 10px;
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+  }
+  
+  .noChats {
+    text-align: center;
+    color: #999;
+    margin-top: 20px;
+  }
+  
+  .userImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .detailsPanel {
+    width: 25%;
+    border-left: 1px solid #ddd;
+    background-color: #fff;
+    padding: 20px;
+  }

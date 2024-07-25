@@ -1,0 +1,74 @@
+body {
+  background-color: f#ffffff; /* Đặt màu nền nhất quán */
+}
+
+.profilePage {
+  background-image: url('../assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Đảm bảo container bao phủ toàn bộ chiều cao viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  padding: 0; /* Remove padding */
+  border-radius: 10px; /* Thêm bo góc cho container */
+}
+
+.profileCard {
+  width: 100%;
+  height: auto;
+  /* max-width: 300px; Giới hạn chiều rộng tối đa */
+  background-color: #ffffff; /* Keep the white background color */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 15px; /* Giảm padding để giảm chiều cao */
+  margin-top: 20px; /* Dịch chuyển lên trên một chút */
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+}
+
+.username {
+  margin-top: 5px; /* Adjusted margin top */
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 0; /* Remove padding */
+}
+
+.card-text {
+  margin-bottom: 5px;
+}
+
+.text-muted {
+  font-size: 0.9em;
+}
+
+.rating-comments {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.rating {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.comments {
+  flex: 2;
+  max-height: 400px; /* Điều chỉnh chiều cao theo yêu cầu */
+  overflow-y: auto; /* Thêm cuộn nếu bình luận tràn */
+}
