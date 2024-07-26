@@ -1,14 +1,14 @@
 .filterContainer {
-  position: absolute;
-  top: 560px; /* Adjust this value based on the height of your navbar */
-  right: 114px;
+  /* position: absolute; */
+   top: 560px; 
+  /* right: 114px; */
   z-index: 1000;
   background-color: white;
   border: 1px solid #ddd;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: center;
+
 }
 
 .label {

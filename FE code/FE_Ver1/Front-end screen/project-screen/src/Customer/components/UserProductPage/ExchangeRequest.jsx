@@ -9,6 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ExchangeRequests = ({ productId, productName }) => {
   const [exchangeRequests, setExchangeRequests] = useState([]);
+  const [productDetail, setProductDetail] = useState(null);
+  const [productImg, setProductImg] = useState('');
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -17,20 +19,71 @@ const ExchangeRequests = ({ productId, productName }) => {
       setError(''); // Reset error message before fetching data
       try {
         const response = await axiosInstance.get(`/api/Exchange/ProductExchanges/${productId}`);
+        console.log("data", response.data);
         if (response.data.length === 0) {
           setExchangeRequests([]); // Clear previous requests
           setError('This product does not have any exchange requests.');
         } else {
           setExchangeRequests(response.data);
+          response.data.forEach(async (request) => {
+            await fetchProduct(request.exProductId);
+          });
         }
       } catch (error) {
         console.error('Error fetching exchange requests:', error);
         setError('This product does not have any exchange requests.');
       }
     };
-
+  
+    const fetchProduct = async (exProductId) => {
+      console.log(exProductId);
+      try {
+        const response = await axiosInstance.get(`/api/Product/Student/ViewProductDetailWithId/${exProductId}`);
+        console.log(response.data);
+        setProductDetail(response.data);
+        await fetchImage(response.data.productImage);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    const fetchImage = async (imageName) => {
+      try {
+        if (imageName) {
+          const ProductImgResponse = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${imageName}`);
+  
+          const ProductDetailFileExtension = imageName.split('.').pop().toLowerCase();
+          let ProductDetailMimeType;
+          switch (ProductDetailFileExtension) {
+            case 'jpeg':
+            case 'jpg':
+              ProductDetailMimeType = 'image/jpeg';
+              break;
+            case 'png':
+              ProductDetailMimeType = 'image/png';
+              break;
+            case 'webp':
+              ProductDetailMimeType = 'image/webp';
+              break;
+            default:
+              ProductDetailMimeType = 'image/jpeg';
+              break;
+          }
+  
+          const ProductDetailImgSrc = `data:${ProductDetailMimeType};base64,${ProductImgResponse.data}`;
+          console.log(ProductDetailImgSrc);
+          setProductImg(ProductDetailImgSrc);
+        } else {
+          console.log('Selected product image is undefined');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
     fetchExchangeRequests();
   }, [productId]);
+  
 
   const handleAcceptExchange = async (exchangeId) => {
     const isConfirmed = window.confirm('Are you sure you want to accept this exchange request?');
@@ -94,6 +147,7 @@ const ExchangeRequests = ({ productId, productName }) => {
               <tr>
                 <th>Buyer Name</th>
                 <th>Exchange Product Name</th>
+                <th>Image</th>
                 <th>Balance</th>
                 <th>Create Date</th>
                 <th>Actions</th>
@@ -104,6 +158,9 @@ const ExchangeRequests = ({ productId, productName }) => {
                 <tr key={request.exchangeId}>
                   <td>{request.buyerName}</td>
                   <td>{request.exProductName}</td>
+                  <td>
+                    <img src={productImg} alt={request.exProductName} style={{ width: '100px', height: '100px' }} />
+                  </td>
                   <td>{request.balance.toLocaleString()} VND</td>
                   <td>{new Date(request.createDate).toLocaleDateString()}</td>
                   <td>
