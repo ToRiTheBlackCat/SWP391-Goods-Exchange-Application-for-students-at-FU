@@ -178,18 +178,33 @@ namespace Services.Service
 
         //=========================
         //TUAN
-        public async Task<(bool, List<ViewAllProductModel>, int)> GetSortedProductsUI(ProductSortView sortView, string sortOrder, int pageIndex)
+        public async Task<(bool, List<ViewAllProductModel>?, int)> GetSortedProductsUI(ProductSortView sortView, string sortOrder, int pageIndex)
         {
             //get products that sastify the fields
             var foundProducts = _repo
                 .GetProductsByField(sortView.SearchString, sortView.SearchString, sortView.CategoryId);
             if (foundProducts != null)
             {
+                var fromPrice = sortView.FromPrice;
+                var toPrice = sortView.ToPrice;
+
+                if (!(fromPrice >= 0) || !(toPrice >= 0) || fromPrice > toPrice)
+                {
+                    fromPrice = 0;
+                    toPrice = 0;
+                }
+
+                if (fromPrice <= toPrice && toPrice > 0)
+                {
+                    foundProducts = foundProducts.Where(x => x.ProductPrice >= sortView.FromPrice
+                        && x.ProductPrice <= sortView.ToPrice);
+                }
+
                 //sort the products
                 foundProducts = SortProduct(foundProducts, sortOrder);
 
                 //paging the products
-                int pageSize = 6;
+                int pageSize = 12;
                 var totalPage = (int)Math.Ceiling(foundProducts.Count() / (double)pageSize);
                 PaginatedList<Product> list = await PaginatedList<Product>.CreateAsync(foundProducts, pageIndex, pageSize);
 
@@ -198,7 +213,7 @@ namespace Services.Service
 
             }
             //no product found
-            return (false, null!, 0);
+            return (false, null, 0);
         }
         public string? NameSort { get; set; }
         public string? PriceSort { get; set; }

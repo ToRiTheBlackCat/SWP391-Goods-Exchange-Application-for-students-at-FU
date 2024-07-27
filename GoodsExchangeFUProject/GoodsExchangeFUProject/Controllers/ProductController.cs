@@ -229,12 +229,14 @@ namespace GoodsExchangeFUProject.Controllers
         // GET: api/Products
         [HttpGet("GetSorted")]
         [AllowAnonymous]
-        public async Task<ActionResult<List<ViewAllProductModel>>> GetProductsSorted(int pageIndex, string? sortString, int? cateId, string sortOder = null!)
+        public async Task<ActionResult<List<ViewAllProductModel>>> GetProductsSorted(int pageIndex, string? searchString, int? cateId, int? fromPrice, int? toPrice, string sortOder = null!)
         {
             ProductSortView sortView = new ProductSortView()
             {
-                SearchString = sortString,
+                SearchString = searchString,
                 CategoryId = cateId,
+                FromPrice = fromPrice,
+                ToPrice = toPrice,  
             };
             if (!(pageIndex > 0)) pageIndex = 1;
             var (result, list, pageSize) = await _productService.GetSortedProductsUI(sortView, sortOder, pageIndex);

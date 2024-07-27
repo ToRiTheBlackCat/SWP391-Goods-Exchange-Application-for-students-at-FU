@@ -57,9 +57,10 @@ namespace Repositories.ModelsView
 
     public class ProductSortView
     {
-        [StringLength(50)]
         public string? SearchString { get; set; }
         public int? CategoryId { get; set; }
+        public int? FromPrice { get; set; }
+        public int? ToPrice { get; set; }
     }
 
 
