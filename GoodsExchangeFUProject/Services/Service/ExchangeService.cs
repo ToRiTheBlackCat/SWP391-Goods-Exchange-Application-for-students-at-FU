@@ -67,7 +67,25 @@ namespace Services.Service
            
            
         }
+        //TRI trả về allEx, waitingEx, acceptedEx, declinedEx
+        public async Task<(int,int,int,int)> AdminDashBoardExchanges(DateOnly? fromDate,DateOnly? toDate)
+        {
+            try
+            {
+                int allEx = _repo.GetAllExchangeByStatus(4, fromDate, toDate); // 4 is all
+                int waitingEx = _repo.GetAllExchangeByStatus(2, fromDate, toDate);
+                int acceptedEx = _repo.GetAllExchangeByStatus(1, fromDate, toDate);
+                int declinedEx = _repo.GetAllExchangeByStatus(0, fromDate, toDate);
 
+                return (allEx, waitingEx, acceptedEx, declinedEx);
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return (0, 0, 0, 0);
+            }
+        }
         //=================
 
         //TUAN

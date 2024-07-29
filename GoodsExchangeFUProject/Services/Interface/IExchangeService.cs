@@ -19,5 +19,6 @@ namespace Services.Interface
         Task<(bool, string)> CancelExchangeUI(int exchangeId);
         Task<(bool, string)> DeclineExchangeUI(int exchangeId);
         Task<string> CancelExchangesOfProduct(int productID);
+        Task<(int, int, int, int)> AdminDashBoardExchanges(DateOnly? fromDate, DateOnly? toDate);
     }
 }

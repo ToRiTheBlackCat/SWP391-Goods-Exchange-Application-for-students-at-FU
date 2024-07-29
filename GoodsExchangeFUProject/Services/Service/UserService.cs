@@ -226,6 +226,30 @@ namespace Services.Service
         {
             await _repo.RemoveUser(userId);
         }
+        
+        //TRI trả về tổng user, ?stu, ?mod 
+        public async Task<(int, int, int)> AdminDashBoardAccounts()
+        {
+            try
+            {
+                List<User> allAccounts = await _repo.GetAllUserList();
+                if (allAccounts == null) throw new Exception("All Accounts List is empty or cannot loaded correctly");
+                int modAccounts = 0;
+
+                foreach (var x in allAccounts)
+                {
+                    if (x.RoleId == 2)
+                        modAccounts++;
+                }
+                if (modAccounts == null) throw new Exception("Mod account list is empty or cannot loaded correctly");
+                return (allAccounts.Count(), modAccounts, 1);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return (0, 0, 0);
+        }
 
         //TUAN
         public async Task<string> UserForgotPasswordUI(string emailAddress)

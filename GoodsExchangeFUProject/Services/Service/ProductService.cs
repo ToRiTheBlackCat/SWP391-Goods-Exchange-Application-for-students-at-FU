@@ -26,7 +26,7 @@ namespace Services.Service
         //TRI
         public async Task<(bool, object?)> GetProductDetail(int productId)
         {
-            var product = await _repo.FindProductByIdAsync(productId, 1);
+            var product = await _repo.FindProductByIdAsync(productId);
             if (product != null)
             {
                 var productModel = _mapper.Map<ProductModel>(product);

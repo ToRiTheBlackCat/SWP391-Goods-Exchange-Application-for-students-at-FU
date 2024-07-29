@@ -18,6 +18,7 @@ namespace Services.Interface
         Task<List<UserModel2>> GetAllAccountList();
         Task AdminDeleteAccount(int userId );
         Task<List<AllRatingAndCommentModel>> GetAllRatingAndComment(int userId);
+        Task<(int, int, int)> AdminDashBoardAccounts();
 
         //==============
         Task<string> UserForgotPasswordUI(string emailAddress);
