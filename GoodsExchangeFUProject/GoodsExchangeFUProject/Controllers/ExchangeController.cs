@@ -5,6 +5,7 @@ using Services.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Repositories.Entities;
 using Repositories.Repositories;
+using Services.Service;
 
 
 namespace GoodsExchangeFUProject.Controllers
@@ -38,6 +39,33 @@ namespace GoodsExchangeFUProject.Controllers
             return Ok(result);
         }
 
+        //TRI
+        [Authorize(Roles = "admin")]
+        [HttpGet("Admin/DashboardExchange")]
+        public async Task<IActionResult> AdminDashboardExchange(string? fromDate, string? toDate)
+        {
+            DateOnly? fromDateParsed = null;
+            DateOnly? toDateParsed = null;
+
+            if (fromDate != null)
+            {
+                fromDateParsed = DateOnly.ParseExact(fromDate, "yyyy-MM-dd");
+            }
+
+            if (toDate != null)
+            {
+                toDateParsed = DateOnly.ParseExact(toDate, "yyyy-MM-dd");
+            }
+            var (allEx, waitingEx, acceptedEx, declinedEx) = await _exchangeService.AdminDashBoardExchanges(fromDateParsed, toDateParsed);
+            return Ok(new
+            {
+                AllExchanges = allEx,
+                WaitingExchanges = waitingEx,
+                AcceptedExchanges = acceptedEx,
+                DeclinedExchanges = declinedEx
+            });
+
+        }
         //TUAN
         // GET: api/Exchanges/EchangeRequests
         [HttpGet("EchangeRequests")]

@@ -5,6 +5,7 @@ using Repositories.Entities;
 using Repositories.ModelsView;
 using Services.Interface;
 using Services.Service;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace GoodsExchangeFUProject.Controllers
 {
@@ -250,6 +251,23 @@ namespace GoodsExchangeFUProject.Controllers
             }
 
             return BadRequest("Internal error");
+        }
+
+        [HttpGet("Admin/DashboardProducts")]
+        public async Task<IActionResult> DashboardProducts()
+        {
+            var (total, electronics, books, accessories, housewares, supplies, clothes) = await _productService.DashboardProductNumbers();
+
+            return Ok(new
+            {
+                TotalProducts = total,
+                Electronics = electronics,
+                Books = books,
+                Accessories = accessories, 
+                Housewares = housewares, 
+                Supplies = supplies, 
+                Clothes = clothes
+            });
         }
     }
 }

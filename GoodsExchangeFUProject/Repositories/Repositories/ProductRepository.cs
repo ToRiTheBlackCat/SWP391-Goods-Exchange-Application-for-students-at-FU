@@ -28,6 +28,15 @@ namespace Repositories.Repositories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(p => p.ProductId == productId && p.Status == statusNum && p.User.IsBanned == false);
         }
+        public async Task<Product?> FindProductByIdAsync(int productId)
+        {
+            // Include related entities (ProductType and User) using Include method
+            return await _context.Products
+                .Include(p => p.Type)
+                .Include(p => p.User)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.ProductId == productId && p.Status != 0 );
+        }
 
         //TRI
         public IQueryable<Product> ViewProductsByStatus(int statusNum)
@@ -109,6 +118,13 @@ namespace Repositories.Repositories
         }
 
         //=======================
+        //TUAN
+        public Task<Product?> GetProduct(int id)
+        {
+            _context = new();
+            return _context.Products.FirstOrDefaultAsync(p => id == p.ProductId);
+        }
+
         //Tuan
         public IQueryable<Product> GetProductsByField(string? getName, string? getDesc, int? getCategoryId)
         {

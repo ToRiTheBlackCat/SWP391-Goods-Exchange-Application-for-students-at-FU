@@ -142,6 +142,16 @@ namespace GoodsExchangeFUProject.Controllers
             var list = await _userService.GetAllRatingAndComment(userId);
             return Ok(list);
         }
+        //TRI
+        [Authorize(Roles = "admin")]
+        [HttpGet("Admin/DashboardAccount")]
+        public async Task<IActionResult> AdminDashboardAccount()
+        {
+
+            var (all, mod, ad) = await _userService.AdminDashBoardAccounts();
+            return Ok(new { AllAccounts = all, ModAccounts = mod, AdminAccount = ad });
+
+        }
 
         //TUAN
         [HttpPost("UserForgotPassword")]

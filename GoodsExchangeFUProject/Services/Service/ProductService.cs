@@ -14,19 +14,21 @@ namespace Services.Service
     {
         private readonly ProductRepository _repo;
         private readonly UserRepository _user_repo;
+        private readonly ExchangeRepository _exch_repo;
 
         private readonly IMapper _mapper;
 
-        public ProductServices(ProductRepository productRepository, IMapper mapper, UserRepository userRepository)
+        public ProductServices(ProductRepository productRepository, IMapper mapper, UserRepository userRepository, ExchangeRepository exch_repo)
         {
             _repo = productRepository;
             _mapper = mapper;
             _user_repo = userRepository;
+            _exch_repo = exch_repo;
         }
         //TRI
         public async Task<(bool, object?)> GetProductDetail(int productId)
         {
-            var product = await _repo.FindProductByIdAsync(productId, 1);
+            var product = await _repo.FindProductByIdAsync(productId);
             if (product != null)
             {
                 var productModel = _mapper.Map<ProductModel>(product);
@@ -243,6 +245,33 @@ namespace Services.Service
             return productsIQ;
         }
 
+        //TUAN
+        public async Task<(int, int, int, int, int, int, int)> DashboardProductNumbers()
+        {
+            var successExchange = _exch_repo.GetExchanges().Where(ex => ex.Status == 1);
+
+            List<Product> products = new List<Product>();
+            foreach (var exchange in successExchange)
+            {
+                Product? product = await _repo.GetProduct(exchange.ProductId);
+                if (product != null)
+                    products.Add(product);
+
+                product = await _repo.GetProduct(exchange.ProductId);
+                if (product != null)
+                    products.Add(product);
+            }
+
+            int total = products.Count;
+            int electronics = products.Where(p => p.TypeId == 1).Count();
+            int books = products.Where(p => p.TypeId == 2).Count();
+            int accessories = products.Where(p => p.TypeId == 3).Count();
+            int housewares = products.Where(p => p.TypeId == 4).Count();
+            int supplies = products.Where(p => p.TypeId == 5).Count();
+            int clothes = products.Where(p => p.TypeId == 6).Count();
+
+            return (total, electronics, books, accessories, housewares, supplies, clothes);
+        }
     }
 }
 

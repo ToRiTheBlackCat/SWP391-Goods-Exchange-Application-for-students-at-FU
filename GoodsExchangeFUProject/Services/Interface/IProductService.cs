@@ -16,6 +16,6 @@ namespace Services.Interface
         Task<(bool, string)> ModAcceptProduct(int productId);
         Task<(bool, string)> ModRejectProduct(int productId);
         Task<(bool, List<ViewAllProductModel>, int)> GetSortedProductsUI(ProductSortView sortView, string sortOrder, int pageIndex);
-
+        Task<(int, int, int, int, int, int, int)> DashboardProductNumbers();
     }
 }

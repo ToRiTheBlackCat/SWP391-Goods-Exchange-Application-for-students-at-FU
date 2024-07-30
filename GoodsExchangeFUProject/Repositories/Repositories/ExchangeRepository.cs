@@ -96,7 +96,44 @@ namespace Repositories.Repositories
                
             }
         }
+        public int GetAllExchangeByStatus(int status, DateOnly? fromDate, DateOnly? toDate)
+        {
+            IQueryable<Exchange> query = _context.Exchanges;
+            //Both null 
+            if (fromDate == null && toDate == null)
+            {
+                query = status == 4 ? query : query.Where(e => e.Status == status);
+            }
+            //FromDate null 
+            else if (fromDate != null && toDate == null)
+            {
+                query = status == 4 ? query.Where(e => e.CreateDate >= fromDate) : query.Where(e => e.Status == status && e.CreateDate >= fromDate);
+            }
+            //ToDate null 
+            else if (fromDate == null && toDate != null)
+            {
+                query = status == 4 ? query.Where(e => e.CreateDate <= toDate) : query.Where(e => e.Status == status && e.CreateDate <= toDate);
+            }
+            //Both not null 
+            else if (fromDate != null && toDate != null)
+            {
+                query = status == 4 ? query.Where(e => e.CreateDate >= fromDate && e.CreateDate <= toDate) : query.Where(e => e.Status == status && e.CreateDate >= fromDate && e.CreateDate <= toDate);
+            }
+
+
+            return query.Count();
+        }
         //======================
+        //TUAN
+        public List<Exchange> GetExchanges()
+        {
+            _context = new();
+            return _context.Exchanges
+                .Include(ex => ex.ExchangeDetails)
+                .AsNoTracking()
+                .ToList();
+        }
+
         //TUAN
         public List<ExchangeModelView> GetExchangesByUser(int userId)
         {

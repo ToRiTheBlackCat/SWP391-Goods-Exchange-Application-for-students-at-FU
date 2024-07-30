@@ -11,32 +11,40 @@
       "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{89878E60-262B-4636-889E-282F6922E7C4}|Services\\Services.csproj|c:\\users\\senti\\downloads\\portablegit-2.45.0-64-bit.7z\\fugoodsexchange\\goodsexchangefuproject\\services\\interface\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89878E60-262B-4636-889E-282F6922E7C4}|Services\\Services.csproj|solutionrelative:services\\interface\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\goodsexchangefuproject\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\repositories\\modelsview\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|solutionrelative:repositories\\modelsview\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\repositories\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\goodsexchangefuproject\\controllers\\exchangecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\controllers\\exchangecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\goodsexchangefuproject\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EFEB8F44-48C7-4737-897F-CDE65FA3D15E}|GoodsExchangeFUProject\\GoodsExchangeFUProject.csproj|solutionrelative:goodsexchangefuproject\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\repositories\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|c:\\users\\senti\\downloads\\portablegit-2.45.0-64-bit.7z\\fugoodsexchange\\goodsexchangefuproject\\repositories\\repositories\\exchangerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositories\\exchangerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89878E60-262B-4636-889E-282F6922E7C4}|Services\\Services.csproj|c:\\users\\senti\\downloads\\portablegit-2.45.0-64-bit.7z\\fugoodsexchange\\goodsexchangefuproject\\services\\service\\exchangeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89878E60-262B-4636-889E-282F6922E7C4}|Services\\Services.csproj|solutionrelative:services\\service\\exchangeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\repositories\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{89878E60-262B-4636-889E-282F6922E7C4}|Services\\Services.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\services\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89878E60-262B-4636-889E-282F6922E7C4}|Services\\Services.csproj|solutionrelative:services\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\repositories\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\repositories\\modelsview\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23EFA34C-84B2-4FF2-B382-A33F43919440}|Repositories\\Repositories.csproj|solutionrelative:repositories\\modelsview\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -118,6 +126,97 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IProductService.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Services\\Interface\\IProductService.cs",
+              "RelativeDocumentMoniker": "Services\\Interface\\IProductService.cs",
+              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Services\\Interface\\IProductService.cs",
+              "RelativeToolTip": "Services\\Interface\\IProductService.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAQwBIAAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T23:28:28.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ExchangeService.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Services\\Service\\ExchangeService.cs",
+              "RelativeDocumentMoniker": "Services\\Service\\ExchangeService.cs",
+              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Services\\Service\\ExchangeService.cs",
+              "RelativeToolTip": "Services\\Service\\ExchangeService.cs",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T23:18:55.994Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ExchangeRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Repositories\\Repositories\\ExchangeRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Repositories\\ExchangeRepository.cs",
+              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Repositories\\Repositories\\ExchangeRepository.cs",
+              "RelativeToolTip": "Repositories\\Repositories\\ExchangeRepository.cs",
+              "ViewState": "AQIAAFsAAAAAAAAAAAAAAIQAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T23:01:45.74Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\ProductController.cs",
+              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\ProductController.cs",
+              "ViewState": "AQIAAPMAAAAAAAAAAAAgwAIBAACHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-23T05:25:02.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Services\\Service\\ProductService.cs",
+              "RelativeDocumentMoniker": "Services\\Service\\ProductService.cs",
+              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Services\\Service\\ProductService.cs",
+              "RelativeToolTip": "Services\\Service\\ProductService.cs",
+              "ViewState": "AQIAAPwAAAAAAAAAAIAwwAcBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-23T05:24:19.883Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Repositories\\Repositories\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Repositories\\ProductRepository.cs",
+              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Repositories\\Repositories\\ProductRepository.cs",
+              "RelativeToolTip": "Repositories\\Repositories\\ProductRepository.cs",
+              "ViewState": "AQIAAHIAAAAAAAAAAAAAAHwAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-23T03:05:36.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\UserController.cs",
+              "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAM8AAAAAAAAAAAAiwGQAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-23T02:59:08.047Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\appsettings.json",
@@ -126,11 +225,25 @@
               "RelativeToolTip": "GoodsExchangeFUProject\\appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-07-27T11:58:19.581Z"
+              "WhenOpened": "2024-07-27T11:58:19.581Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
+              "RelativeDocumentMoniker": "Services\\Service\\UserService.cs",
+              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
+              "RelativeToolTip": "Services\\Service\\UserService.cs",
+              "ViewState": "AQIAANoAAAAAAAAAAAAAAOoAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-23T03:04:45.499Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "ProductModel.cs",
               "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Repositories\\ModelsView\\ProductModel.cs",
               "RelativeDocumentMoniker": "Repositories\\ModelsView\\ProductModel.cs",
@@ -142,88 +255,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ExchangeController.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ExchangeController.cs",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\ExchangeController.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ExchangeController.cs",
-              "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\ExchangeController.cs",
-              "ViewState": "AQIAAFoAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-25T13:57:19.24Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\ProductController.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\ProductController.cs",
-              "ViewState": "AQIAAN0AAAAAAAAAAAAAwO4AAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-23T05:25:02.339Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProductService.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Services\\Service\\ProductService.cs",
-              "RelativeDocumentMoniker": "Services\\Service\\ProductService.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Services\\Service\\ProductService.cs",
-              "RelativeToolTip": "Services\\Service\\ProductService.cs",
-              "ViewState": "AQIAAK8AAAAAAAAAAAAAwLUAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-23T05:24:19.883Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProductRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Repositories\\Repositories\\ProductRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\Repositories\\ProductRepository.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Repositories\\Repositories\\ProductRepository.cs",
-              "RelativeToolTip": "Repositories\\Repositories\\ProductRepository.cs",
-              "ViewState": "AQIAAGIAAAAAAAAAAAAAwHAAAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-23T03:05:36.558Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\Service\\UserService.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Services\\Service\\UserService.cs",
-              "RelativeToolTip": "Services\\Service\\UserService.cs",
-              "ViewState": "AQIAAM4AAAAAAAAAAAAswOIAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-23T03:04:45.499Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "GoodsExchangeFUProject\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\GoodsExchangeFUProject\\Controllers\\UserController.cs",
-              "RelativeToolTip": "GoodsExchangeFUProject\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAMwAAAAAAAAAAAAiwGQAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-23T02:59:08.047Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Repositories\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\Repositories\\UserRepository.cs",
               "ToolTip": "C:\\Users\\Senti\\Downloads\\PortableGit-2.45.0-64-bit.7z\\FUGoodsExchange\\GoodsExchangeFUProject\\Repositories\\Repositories\\UserRepository.cs",
               "RelativeToolTip": "Repositories\\Repositories\\UserRepository.cs",
-              "ViewState": "AQIAAFYAAAAAAAAAAAA5wGYAAAAfAAAA",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAQwFEAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-23T02:53:39.91Z"
+              "WhenOpened": "2024-07-23T02:53:39.91Z",
+              "EditorCaption": ""
             }
           ]
         }
