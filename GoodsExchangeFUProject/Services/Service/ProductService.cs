@@ -257,7 +257,7 @@ namespace Services.Service
                 if (product != null)
                     products.Add(product);
 
-                product = await _repo.GetProduct(exchange.ProductId);
+                product = await _repo.GetProduct((int)exchange.ExchangeDetails.First().ProductId);
                 if (product != null)
                     products.Add(product);
             }

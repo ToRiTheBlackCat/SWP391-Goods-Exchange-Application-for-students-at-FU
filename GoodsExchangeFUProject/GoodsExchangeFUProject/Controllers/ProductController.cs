@@ -252,7 +252,7 @@ namespace GoodsExchangeFUProject.Controllers
 
             return BadRequest("Internal error");
         }
-
+        [Authorize(Roles = "admin")]
         [HttpGet("Admin/DashboardProducts")]
         public async Task<IActionResult> DashboardProducts()
         {
