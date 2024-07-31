@@ -29,9 +29,9 @@ function ChooseProduct() {
             price: product.productPrice ,
             status: product.status
           }));
-          setProducts(fetchedProducts);
+          setProducts(fetchedProducts);    //cập nhật state products với danh sách sản phẩm lấy được từ api
           if (fetchedProducts.length > 0) {
-            setSelectedProductLocal(fetchedProducts[0]);
+            setSelectedProductLocal(fetchedProducts[0]);   //nếu danh sách sản phẩm ko rỗng thì đặt sản phẩm đầu tiên làm sản phẩm được chọn
           }
         })
         .catch(error => {

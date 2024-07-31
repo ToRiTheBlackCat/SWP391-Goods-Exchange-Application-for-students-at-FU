@@ -1,24 +1,98 @@
-.App {
-    font-family: Arial, sans-serif;
-  }
-  
-  .container {
-    margin-top: 4rem;
-  }
-  
-  .search-bar input[type="search"] {
-    width: 350px;
-  }
-  
-  .price {
-    color: red;
-  }
-  
-  .rating {
-    color: gold;
-  }
-  .heading {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #000;
-    display: inline-block;
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.productListWrapper {
+  flex: 1;
+}
+
+.heading {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.pagingWrapper {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Additional styling to ensure Footer looks nice */
+.footer {
+  background-color: #f0f0f0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.paginationContainer {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pagination {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.paginationItem {
+  display: inline;
+}
+
+.paginationButton {
+  background: none;
+  border: none;
+  color: #007bff;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.paginationButton:hover:not(.paginationButtonDisabled) {
+  text-decoration: underline;
+}
+
+.paginationButtonDisabled {
+  color: #c0c0c0;
+  cursor: not-allowed;
+}
+
+.paginationButtonActive {
+  font-weight: bold;
+  color: #000;
+}
+
+.footerInfo {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.footerSection {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.footerSection h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  margin-left: 65px;
+  border-bottom: 1px solid #000;
+  display: inline-block;
+}
+/* HomePage.module.css */
+.selectedCategory {
+  background-color: #1377ea; /* Màu nền để làm nổi bật category được chọn */
+  color: #f0e8e6; /* Màu chữ */
+  font-weight: bold; /* Chữ đậm */
+}
+.categoryIcon {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 60%;
+}
+
+

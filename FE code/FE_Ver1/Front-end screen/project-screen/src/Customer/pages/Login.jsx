@@ -50,7 +50,7 @@ const Login = () => {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userName', response.data.userName);
         // localStorage.setItem('userId', response.data.userId);
-        const expirationTime = new Date().getTime() + 60 * 60 * 1000; 
+        const expirationTime = new Date().getTime() + 1440 * 60 * 1000; 
         localStorage.setItem('expirationTime', expirationTime);
   
         if (response.data.role === 'mod') {
@@ -110,7 +110,7 @@ const Login = () => {
         localStorage.setItem('token', googleResponse.data.token);
         localStorage.setItem('userName', googleResponse.data.userName);
         // localStorage.setItem('userId', googleResponse.data.userId);
-        const expirationTime = new Date().getTime() + 60 * 60 * 1000; 
+        const expirationTime = new Date().getTime() + 1440 * 60 * 1000; 
         localStorage.setItem('expirationTime', expirationTime);
   
         if (googleResponse.data.role === 'mod') {

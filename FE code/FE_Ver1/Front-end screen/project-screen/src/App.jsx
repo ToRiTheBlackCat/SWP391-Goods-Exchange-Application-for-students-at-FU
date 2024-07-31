@@ -5,6 +5,8 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import PropTypes from 'prop-types';
 import store from './Customer/store/store.jsx';
 import useAuthCheck from './Customer/components/useAuthCheck.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 // Customer pages
 import Login from '../src/Customer/pages/Login.jsx';
@@ -18,7 +20,7 @@ import ChooseProduct from '../src/Customer/pages/ChooseProduct.jsx';
 import UserInformation from '../src/Customer/pages/UserInformation.jsx';
 import Exchange from '../src/Customer/pages/Exchange.jsx';
 import ExchangeList from '../src/Customer/pages/ExchangeList.jsx';
-import UserProductsPage from '../src/Customer/pages/UserProductPage.jsx';
+import UserProductsPage from '../src/Customer/pages/IncomingExchange.jsx';
 import ViewProduct from './Customer/pages/ViewProduct.jsx';
 import UpdateProduct from './Customer/pages/UpdateProduct.jsx';
 import ReportProduct from './Customer/pages/Report.jsx';
@@ -36,6 +38,7 @@ import ReportList from './Mod/components/ReportList.jsx';
 import AdPage from './admin/pages/AdPage.jsx';
 import ManageExchanges from './admin/pages/ManageExchanges.jsx';
 import ManageAccounts from './admin/pages/ManageAccounts.jsx';
+import Dashboard from './admin/pages/DashBoard.jsx';
 
 const App = () => {
   return (
@@ -69,6 +72,7 @@ const App = () => {
                 <Route path='/manage-account' element={<ManageAccounts />} />
                 <Route path='/ad' element={<AdPage />} />
                 <Route path='/manage-exchange' element={<ManageExchanges />} />
+                <Route path='/dashboard' element={<Dashboard/>}/>
                 <Route path='/chat' element={<Chat />} />
                 <Route path='/other-profile' element={<OtherProfile />} />
               </Routes>

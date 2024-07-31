@@ -6,7 +6,7 @@ import styles from '../../styles/OwnedProductList.module.css'; // Import CSS mod
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const OwnedProductsList = ({ onSelectProduct }) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]); //state lưu trữ danh sách sản phẩm của người dùng 
   const [error, setError] = useState('');
 
   useEffect(() => {

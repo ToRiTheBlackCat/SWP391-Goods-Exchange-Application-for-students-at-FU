@@ -6,14 +6,14 @@ const useAuthCheck = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const user = localStorage.getItem('loggedInUser');
+    // const user = localStorage.getItem('loggedInUser');
     const token = localStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true);
     }
 
     const interval = setInterval(() => {
-      const user = localStorage.getItem('loggedInUser');
+      // const user = localStorage.getItem('loggedInUser');
       const token = localStorage.getItem('token');
       const expirationTime = localStorage.getItem('expirationTime');
 
@@ -30,7 +30,7 @@ const useAuthCheck = () => {
           }
         }
       }
-    },60 * 10 * 60000); 
+    },1440 * 10 * 60000); 
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, [navigate, isLoggedIn]);

@@ -5,6 +5,7 @@ import styles from '../styles/OtherProfile.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import user from '../assets/user.jpg';
 import axiosInstance from '../../utils/axiosInstance';
+import StarRatings from 'react-star-ratings';
 
 function OtherProfile() {
   const [formData, setFormData] = useState({
@@ -60,69 +61,43 @@ function OtherProfile() {
       <div className={styles.profilePage}>
         <div className={styles.container}>
           <div className={`card ${styles.profileCard}`}>
-            <div className="text-center mb-3"> {/* Adjusted margin bottom */}
+            <div className="text-center mb-3">
               <img src={user} alt="User Avatar" className={`rounded-circle ${styles.avatar}`} />
               <p className={styles.username}>{formData.userName}</p>
             </div>
-            <div className="mb-2"> {/* Adjusted margin bottom */}
-              <label htmlFor="userName" className="form-label">Username</label>
-              <input
-                type="text"
-                className="form-control"
-                id="userName"
-                name="userName"
-                value={formData.userName}
-                readOnly
-              />
+            <div className="mb-2">
+              <strong htmlFor="userName" className="form-label">Username</strong>
+              <div id="userName" className="form-control-plaintext">{formData.userName}</div>
             </div>
-            <div className="mb-2"> {/* Adjusted margin bottom */}
-              <label htmlFor="email" className="form-label">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-                value={formData.email}
-                readOnly
-              />
+            <div className="mb-2">
+              <strong htmlFor="email" className="form-label">Email</strong>
+              <div id="email" className="form-control-plaintext">{formData.email}</div>
             </div>
-            <div className="mb-2"> {/* Adjusted margin bottom */}
-              <label htmlFor="phone" className="form-label">Phone</label>
-              <input
-                type="tel"
-                className="form-control"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                readOnly
-              />
+            <div className="mb-2">
+              <strong htmlFor="phone" className="form-label">Phone</strong>
+              <div id="phone" className="form-control-plaintext">{formData.phone}</div>
             </div>
-            <div className="mb-2"> {/* Adjusted margin bottom */}
-              <label htmlFor="birthday" className="form-label">Birthday</label>
-              <input
-                type="date"
-                className="form-control"
-                id="birthday"
-                name="birthday"
-                value={formData.birthday}
-                readOnly
-              />
+            <div className="mb-2">
+              <strong htmlFor="birthday" className="form-label">Birthday</strong>
+              <div id="birthday" className="form-control-plaintext">{formData.birthday}</div>
             </div>
-            <div className="mb-2"> {/* Adjusted margin bottom */}
-              <label htmlFor="address" className="form-label">Address</label>
-              <input
-                type="text"
-                className="form-control"
-                id="address"
-                name="address"
-                value={formData.address}
-                readOnly
-              />
+            <div className="mb-2">
+              <strong htmlFor="address" className="form-label">Address</strong>
+              <div id="address" className="form-control-plaintext">{formData.address}</div>
             </div>
             <div className={`mb-3 ${styles.ratingComments}`}>
               <div className={styles.rating}>
-                <label htmlFor="rating" className={`form-label ${styles.formLabel}`}><strong>Rating</strong></label>
-                <div id="rating">{formData.averageScore}/5</div>
+                <strong htmlFor="rating" className={`form-label ${styles.formLabel}`}><strong>Rating</strong></strong>
+                <div id="rating">
+                  <StarRatings
+                    rating={formData.averageScore}
+                    starRatedColor="gold"
+                    numberOfStars={5}
+                    starDimension="20px"
+                    starSpacing="2px"
+                    name='rating'
+                  />
+                </div>
               </div>
               <div className={styles.comments}>
                 <label htmlFor="comments" className={`form-label ${styles.formLabel}`}><strong>Comments</strong></label>
@@ -131,7 +106,14 @@ function OtherProfile() {
                     <div key={index} className="card mb-2">
                       <div className="card-body">
                         <div className="d-flex justify-content-between">
-                          <div>{comment.score}/5</div>
+                          <StarRatings
+                            rating={comment.score}
+                            starRatedColor="gold"
+                            numberOfStars={5}
+                            starDimension="15px"
+                            starSpacing="1px"
+                            name='commentRating'
+                          />
                           <div>{new Date(comment.ratingDate).toLocaleDateString()}</div>
                         </div>
                         <p className="card-text">{comment.comment}</p>

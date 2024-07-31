@@ -7,8 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 import axiosInstance from '../../utils/axiosInstance';
 
-const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
-  const [inputValue, setInputValue] = useState(searchTerm);
+const Navbar = ({ onHomeClick }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -83,22 +82,6 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
 
   const handleDropdownNotification = () => {
     setIsDropdownNotification(!isDropdownNotification);
-  };
-
-  const handleSearchChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-    setSearchTerm(inputValue);
-    if (inputValue.trim() !== '') {
-      onSearchSubmit(); // Trigger search submit action
-      navigate(`/?search=${inputValue}`);
-    } else {
-      navigate('/');
-      onHomeClick();
-    }
   };
 
   const handleHomeClick = () => {
@@ -209,7 +192,7 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
               </div>
             </ul>
 
-            <form className="d-flex me-2" onSubmit={handleSearchSubmit}>
+            {/* <form className="d-flex me-2" onSubmit={handleSearchSubmit}>
               <input
                 className={`form-control me-2 ${styles.formControl}`}
                 type="search"
@@ -219,7 +202,7 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
                 onChange={handleSearchChange}
               />
               <button className={`btn btn-primary ${styles.btnPrimary}`} type="submit">Search</button>
-            </form>
+            </form> */}
             <div className="navbar-nav">
               <div ref={dropdownRef}>
                 <button

@@ -19,7 +19,7 @@ body {
 }
 
 .profileCard {
-  width: 100%;
+  width: 400px;
   height: auto;
   /* max-width: 300px; Giới hạn chiều rộng tối đa */
   background-color: #ffffff; /* Keep the white background color */

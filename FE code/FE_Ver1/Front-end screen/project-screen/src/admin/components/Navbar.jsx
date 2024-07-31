@@ -57,21 +57,6 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const handleSearchChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-    setSearchTerm(inputValue);
-    if (inputValue.trim() !== '') {
-      onSearchSubmit(); // Trigger search submit action
-      navigate(`/ad/?search=${inputValue}`);
-    } else {
-      navigate('/ad');
-      onHomeClick();
-    }
-  };
   const handleHomeClick = () => {
     setInputValue(''); // Clear the search term
     onHomeClick(); // Call the reset function passed from ADPage
@@ -118,18 +103,15 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
                 View Exchange
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.active : ''}`}
+                to="/dashboard"
+              >
+                Dashboard
+              </NavLink>
+            </li>
           </ul>
-          <form className="d-flex me-2" onSubmit={handleSearchSubmit}>
-            <input
-              className={`form-control me-2 ${styles.formControl}`}
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              value={inputValue}
-              onChange={handleSearchChange}
-            />
-            <button className={`btn btn-primary ${styles.btnPrimary}`} type="submit">Search</button>
-          </form>
           <div className="navbar-nav">
             <div ref={dropdownRef}>
               <button

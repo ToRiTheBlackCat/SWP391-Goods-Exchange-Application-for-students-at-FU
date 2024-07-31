@@ -59,21 +59,6 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const handleSearchChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-    setSearchTerm(inputValue);
-    if (inputValue.trim() !== '') {
-      onSearchSubmit(); // Trigger search submit action
-      navigate(`/mod/?search=${inputValue}`);
-    } else {
-      navigate('/mod');
-      onHomeClick();
-    }
-  };
 
   const handleHomeClick = () => {
     setInputValue(''); // Clear the search term
@@ -130,17 +115,6 @@ const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
               </NavLink>  
             </li>
           </ul>
-          <form className="d-flex me-2" onSubmit={handleSearchSubmit}>
-            <input 
-              className={`form-control me-2 ${styles.formControl}`} 
-              type="search" 
-              placeholder="Search" 
-              aria-label="Search" 
-              value={inputValue}
-              onChange={handleSearchChange}
-            />
-            <button className={`btn btn-primary ${styles.btnPrimary}`} type="submit">Search</button>
-          </form>
           <div className="navbar-nav">
             <div ref={dropdownRef}>
               <button

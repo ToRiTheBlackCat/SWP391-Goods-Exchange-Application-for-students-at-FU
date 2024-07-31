@@ -4,7 +4,7 @@ import styles from '../../styles/ProductList.module.css';
 import { useLocation } from 'react-router-dom';
 import axiosInstance from '../../../utils/axiosInstance';
 
-const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalPages, searchSubmitted }) => {
+const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalPages, searchSubmitted, minPrice, maxPrice }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -23,9 +23,11 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalP
           params: {
             sortOder: sortOrder,
             pageIndex: currentPage,
-            sortString: term,
+            searchString: term,
             cateId: category,
             pageSize: setTotalPages, // Define page size here
+            fromPrice: minPrice,
+            toPrice: maxPrice,
           },
         });
         const productData = response.data.foundList;
@@ -89,7 +91,7 @@ const ProductList = ({ currentPage, sortOrder, searchTerm, categoryId, setTotalP
     };
 
     fetchProducts();
-  }, [currentPage, sortOrder, term, category, setTotalPages, searchSubmitted]);
+  }, [currentPage, sortOrder, term, category, setTotalPages, searchSubmitted, minPrice, maxPrice]);
 
   if (loading) {
     return <div>Loading...</div>;

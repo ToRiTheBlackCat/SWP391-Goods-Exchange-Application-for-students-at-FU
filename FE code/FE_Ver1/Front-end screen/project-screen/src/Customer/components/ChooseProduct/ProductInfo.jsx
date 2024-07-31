@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../../utils/axiosInstance';
 
 function ProductInfo({ product, onSelect }) {
-  const [imageBase64, setImageBase64] = useState('');
+  const [imageBase64, setImageBase64] = useState('');  //state lưu trữ hình ảnh sản phẩm dưới dạng base64
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,8 +13,8 @@ function ProductInfo({ product, onSelect }) {
       if (product.image) {
         try {
           const response = await axiosInstance.get(`/api/Product/GetUserImage?imageName=${product.image}`);
-          console.log(response.data); // Log the response to verify the data
-          setImageBase64(response.data);
+          console.log(response.data); 
+          setImageBase64(response.data);   //set state data từ api 
         } catch (error) {
           console.error('Error fetching image:', error);
         }
@@ -24,7 +24,7 @@ function ProductInfo({ product, onSelect }) {
     fetchImage();
   }, [product.image]);
 
-  const getImageMimeType = (fileName) => {
+  const getImageMimeType = (fileName) => {     //trả về MIME của ảnh dựa vào phần mở rộng của file
     const extension = fileName.split('.').pop().toLowerCase();
     switch (extension) {
       case 'jpg':

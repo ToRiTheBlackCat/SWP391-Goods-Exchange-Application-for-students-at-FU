@@ -165,7 +165,7 @@ function ProductDetail() {
 
         <div className="col-lg-5">
           <div className="d-flex flex-column h-100">
-            <h2 style={{textAlign:'left'}}><strong className="mb-1">{product.productName}</strong></h2>
+            <h2><strong className="mb-1">{product.productName}</strong></h2>
             <h4 className="text-muted mb-4">{product.productPrice.toLocaleString()} VND</h4>
     
             {currentUser !== sellerInfo.userName && (

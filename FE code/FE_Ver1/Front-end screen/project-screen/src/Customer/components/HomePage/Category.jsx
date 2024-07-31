@@ -22,7 +22,7 @@ const categories = [
 const Category = ({ onCategorySelect, selectedCategoryId, onSortChange }) => {
   return (
     <div className={styles.App}>
-      <Filter onSortChange={onSortChange} />
+      
       <main className={`container mt-4 ${styles.main}`}>
         <h2 className={styles.heading}>Categories</h2>
         <Container>

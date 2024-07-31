@@ -71,3 +71,44 @@ body {
   max-height: 400px; /* Điều chỉnh chiều cao theo yêu cầu */
   overflow-y: auto; /* Thêm cuộn nếu bình luận tràn */
 }
+.profilePage {
+  padding-top: 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+.profileCard {
+  padding: 20px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.username {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.ratingComments {
+  margin-top: 20px;
+}
+
+.rating {
+  margin-bottom: 20px;
+}
+
+.formLabel {
+  font-weight: bold;
+}

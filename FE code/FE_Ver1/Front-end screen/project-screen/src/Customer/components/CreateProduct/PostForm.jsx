@@ -1,30 +1,30 @@
 import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../../styles/PostForm.module.css';
-import axiosInstance from '../../../utils/axiosInstance'; // Import axiosInstance
+import axiosInstance from '../../../utils/axiosInstance'; 
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function PostProductForm() {
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);  //url của ảnh đã chọn để hiển thị trong form
     const [imageFile, setImageFile] = useState(null); // Lưu file ảnh thực tế
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState({    //đối tượng lưu trữ dữ liệu của form
         productName: '',
         productDescription: '',
         productPrice: '',
         typeId: '',
-        userId: '' // Thay thế bằng userId thực sự từ localStorage hoặc context
+        userId: '' 
     });
     const navigate = useNavigate();
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('loggedInUser'));
+        const user = JSON.parse(localStorage.getItem('loggedInUser')); //chuyển đổi chuỗi JSON thành đối tượng javascript
         const userId = user.userId;
         if (userId) {
             setFormData(prevState => ({
-                ...prevState,
+                ...prevState,   //sao chép tất cả các thuộc tính từ prevState
                 userId: parseInt(userId)
-            }));
+            })); //hàm callback nhận prevState là trạng thái trước đó của formdata và trả về đối tượng mới với các giá trị của preState và thêm userId
         } else {
             console.error('User ID was not found in localStorage');
         }
@@ -57,7 +57,7 @@ function PostProductForm() {
             .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     };
 
-    const handlePriceChange = (event) => {
+    const handlePriceChange = (event) => { //xử lý giá sản phẩm theo format tiền tệ sau đó cập nhật state formData
         const formattedValue = formatCurrency(event.target.value);
         setFormData(prevState => ({
             ...prevState,
@@ -81,14 +81,14 @@ function PostProductForm() {
             }
 
             // Hiển thị dữ liệu gửi đi trên console
-            console.log('Data sent:');
-            for (let pair of data.entries()) {
-                if (pair[1] instanceof File) {
-                    console.log(`${pair[0]}: [File]`);
-                } else {
-                    console.log(`${pair[0]}: ${pair[1]}`);
-                }
-            }
+            // console.log('Data sent:');
+            // for (let pair of data.entries()) {
+            //     if (pair[1] instanceof File) {
+            //         console.log(`${pair[0]}: [File]`);
+            //     } else {
+            //         console.log(`${pair[0]}: ${pair[1]}`);
+            //     }
+            // }
 
             const response = await axiosInstance.post('/api/Product/Student/AddNewProduct', data, {
                 headers: {

@@ -18,10 +18,10 @@ const Footer = ({ currentPage, totalPages, onPageChange }) => {
     }
 
     // Ensure that exactly 5 pages are shown when possible
-    while (range.length < 5 && range[0] > 1) {
+    while (range.length < totalPages && range[0] > 1) {
       range.unshift(range[0] - 1);
     }
-    while (range.length < 5 && range[range.length - 1] < totalPages) {
+    while (range.length < totalPages && range[range.length - 1] < totalPages) {
       range.push(range[range.length - 1] + 1);
     }
 
