@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Table, Button, Container, Row, Col } from 'react-bootstrap';
 import axiosInstance from '../../../utils/axiosInstance'; // Sử dụng axiosInstance
-import styles from '../../styles/OwnedProductList.module.css'; // Import CSS module
+import styles from '../../styles/OwnedProductList.module.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const OwnedProductsList = ({ onSelectProduct }) => {

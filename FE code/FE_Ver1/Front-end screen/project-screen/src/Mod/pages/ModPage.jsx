@@ -1,5 +1,6 @@
 import { useState, useEffect,useRef } from 'react';
 import { useLocation, useNavigate,Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Navbar from '../components/Navbar';
 import Footer from '../components/ModPage/Footer';
 import ModProductList from '../components/ModPage/ModProductList';
@@ -18,10 +19,10 @@ import clothes from '../assets/clothes.jpg';
 const ModPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState();
-  const [sortOrder, setSortOrder] = useState(''); // Default sort order
+  const [sortOrder, setSortOrder] = useState('');
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchSubmitted, setSearchSubmitted] = useState(false); // Track search submission
+  const [searchSubmitted, setSearchSubmitted] = useState(true); // Set to true initially to trigger the API call on load
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const minPriceRef = useRef(null);
@@ -29,12 +30,13 @@ const ModPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
-  const term = searchTerm || searchParams.get('search') || '';
-  // const categoryId = selectedCategoryId || '';
+  const term = searchParams.get('search') || '';
 
   useEffect(() => {
+    if (!searchSubmitted) return;
+
     const fetchProducts = async () => {
-      let sortOrderParam;
+      let sortOrderParam = '';
       switch (sortOrder) {
         case 'name_asc':
           sortOrderParam = 'Name';
@@ -49,43 +51,51 @@ const ModPage = () => {
           sortOrderParam = 'price_desc';
           break;
         default:
-          sortOrderParam = ''; // Default sort order
+          sortOrderParam = '';
       }
       try {
         const response = await axiosInstance.get(`/api/Product/GetSorted`, {
           params: {
-            sortOder: sortOrderParam,
+            sortOrder: sortOrderParam,
             pageIndex: currentPage,
             searchString: term,
-            cateId: selectedCategoryId,
+            cateId: selectedCategoryId, // Use selectedCategoryId instead of categoryId from URL
             fromPrice: minPrice,
             toPrice: maxPrice,
           },
         });
+        // console.log("search input:", term);
+        // console.log("min price: ", minPrice);
+        // console.log("max price: ", maxPrice);
+        // console.log("categoryId", selectedCategoryId);
+        console.log(response.data);
 
-        setTotalPages(response.data.pageSize); 
+        // setProducts(response.data.foundList); // Use foundList from the response
+        setTotalPages(response.data.pageSize);
       } catch (error) {
         console.error('Error fetching products:', error);
+        toast.error('Error fetching products. Please try again.');
+      } finally {
+        setSearchSubmitted(false); // Reset searchSubmitted after fetching products
       }
-
     };
 
     fetchProducts();
-  }, [currentPage, sortOrder, term, searchSubmitted, selectedCategoryId, minPrice, maxPrice]);
+  }, [searchSubmitted, currentPage, sortOrder, selectedCategoryId, minPrice, maxPrice]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    setSearchSubmitted(true);
+    setSearchSubmitted(true); // Trigger useEffect to fetch products
   };
 
   const handleSortChange = (newSortOrder) => {
     setSortOrder(newSortOrder);
-    setSearchSubmitted(true);
+    // setSearchSubmitted(true); // Trigger useEffect to fetch products
   };
 
   const handleDeleteSort = () => {
-    setSortOrder(''); // Reset sort order to default
-    setSearchSubmitted(true);
+    setSortOrder('');
+    setSearchSubmitted(true); // Trigger useEffect to fetch products
   };
 
   const handleCategorySelect = (categoryId) => {
@@ -101,6 +111,7 @@ const ModPage = () => {
     }
     setSearchSubmitted(true); // Trigger useEffect to fetch products
   };
+
   const handleReset = () => {
     setSearchTerm('');
     setSortOrder('');
@@ -111,19 +122,28 @@ const ModPage = () => {
     setMinPrice(0);
     navigate('/mod');
   };
+
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     setSearchSubmitted(true);
     navigate(`/mod/?search=${searchTerm}`);
   };
+
   const handlePriceApply = (event) => {
     event.preventDefault(); // Prevent default form submission behavior
     if (minPriceRef.current && maxPriceRef.current) {
-      setMinPrice(minPriceRef.current.value);
-      setMaxPrice(maxPriceRef.current.value);
+      const min = parseFloat(minPriceRef.current.value);
+      const max = parseFloat(maxPriceRef.current.value);
+      if (max < min) {
+        toast.error("Invalid price. Max price must bigger than min price");
+      } else {
+        setMinPrice(min);
+        setMaxPrice(max);
+        setSearchSubmitted(true); // Trigger useEffect to fetch products
+      }
     }
-    setSearchSubmitted(true); // Trigger useEffect to fetch products
   };
+
   const categories = [
     { name: "All Products" },
     { name: "Electronics", imgSrc: electronic },
@@ -188,16 +208,24 @@ const ModPage = () => {
   }
 
   return (
-    <div>
-      <Navbar onHomeClick={handleReset} searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearchSubmit={handleSearchSubmit} />
-      {/* <Category onCategorySelect={handleCategorySelect} selectedCategoryId={selectedCategoryId} /> */}
+    <div className={styles.container}>
+      <Navbar
+        onHomeClick={handleReset}
+      />
+      {/* <Banner/> */}
+      {/* <Category
+        onCategorySelect={handleCategorySelect}
+        selectedCategoryId={selectedCategoryId}
+        onSortChange={handleSortChange}
+      /> */}
+
       <div className='row mb-4 mt-lg-3' style={{margin: '0px 30px'}}>
         <div className='d-none d-lg-block col-lg-3'>
           <FilterMenuLeft />
         </div>
         <div className='d-none d-lg-block col-lg-9' style={{ padding: '0px 0px' }}>
           <div className={`container mt-4 ${styles.productListWrapper}`} style={{ paddingLeft: '-14px' }}>
-          <div className="col-lg-9 col-xl-5 offset-xl-4 d-flex justify-content-between" style={{ marginLeft: '0px', width: '100%' }}>
+            <div className="col-lg-9 col-xl-5 offset-xl-4 d-flex justify-content-between" style={{ marginLeft: '0px', width: '100%' }}>
               <Filter
                 onSortChange={handleSortChange}
                 onDeleteSort={handleDeleteSort}
@@ -218,23 +246,24 @@ const ModPage = () => {
                 </button>
               </div>
             </div>
-      <div className="container mt-4">
-        <h2 className={styles.heading}>Products</h2>
-        <ModProductList
-          currentPage={currentPage}
-          sortOrder={sortOrder}
-          searchTerm={term}
-          categoryId={selectedCategoryId}
-          setTotalPages={setTotalPages}
-          searchSubmitted={searchSubmitted} // Pass search submission state to ProductList
-          minPrice={minPrice}
-          maxPrice={maxPrice}
-        />
-        </div>
+            <h2 className={styles.heading}>Products</h2>
+            <ModProductList
+              currentPage={currentPage}
+              sortOrder={sortOrder}
+              searchTerm={term} // Use `term` instead of `searchTerm` to get from URL
+              categoryId={selectedCategoryId} // Use selectedCategoryId instead of categoryId from URL
+              setTotalPages={totalPages}
+              searchSubmitted={searchSubmitted}
+              minPrice={minPrice}
+              maxPrice={maxPrice} // Pass products state to ProductList component
+            />
+          </div>
         </div>
       </div>
+      <div className={styles.pagingWrapper}>
         <Footer currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
+      {/* <Paging /> */}
     </div>
   );
 };

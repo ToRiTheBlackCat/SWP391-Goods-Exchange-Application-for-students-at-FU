@@ -85,7 +85,6 @@ const Navbar = ({ onHomeClick }) => {
   };
 
   const handleHomeClick = () => {
-    setInputValue(''); // Clear the search term
     onHomeClick(); // Call the reset function passed from HomePage
   };
 

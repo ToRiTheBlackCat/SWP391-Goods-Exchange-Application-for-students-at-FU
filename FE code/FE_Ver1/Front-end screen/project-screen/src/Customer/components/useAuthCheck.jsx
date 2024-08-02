@@ -6,14 +6,12 @@ const useAuthCheck = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // const user = localStorage.getItem('loggedInUser');
     const token = localStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true);
     }
 
-    const interval = setInterval(() => {
-      // const user = localStorage.getItem('loggedInUser');
+    const interval = setInterval(() => {   //hàm thông báo hết hạn token mỗi 24 tiếng
       const token = localStorage.getItem('token');
       const expirationTime = localStorage.getItem('expirationTime');
 
@@ -22,7 +20,6 @@ const useAuthCheck = () => {
         if (new Date().getTime() > expirationTime) {
           localStorage.clear(); 
           setIsLoggedIn(false);
-          setIsLoggedIn(false);
           if (window.confirm('Your session has expired. Click OK to log in again.')) {
             navigate('/login');
           } else {
@@ -30,7 +27,7 @@ const useAuthCheck = () => {
           }
         }
       }
-    },1440 * 10 * 60000); 
+    },1440 * 60000); 
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, [navigate, isLoggedIn]);

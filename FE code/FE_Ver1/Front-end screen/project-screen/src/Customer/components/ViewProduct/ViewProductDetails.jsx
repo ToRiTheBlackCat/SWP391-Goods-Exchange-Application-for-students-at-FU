@@ -26,14 +26,6 @@ function ViewProductDetails({ product, onDelete }) {
     }
   }, [product]);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditableProduct(prevProduct => ({
-      ...prevProduct,
-      [name]: value
-    }));
-  };
-
   const getImageMimeType = (fileName) => {
     const extension = fileName.split('.').pop().toLowerCase();
     switch (extension) {

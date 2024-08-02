@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import PropTypes from 'prop-types';
 import styles from '../styles/Navbar.module.css';
 
-const Navbar = ({ onHomeClick, searchTerm, setSearchTerm, onSearchSubmit }) => {
+const Navbar = ({ onHomeClick, searchTerm }) => {
   const [inputValue, setInputValue] = useState(searchTerm);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');

@@ -135,10 +135,16 @@ const HomePage = () => {
   const handlePriceApply = (event) => {
     event.preventDefault(); // Prevent default form submission behavior
     if (minPriceRef.current && maxPriceRef.current) {
-      setMinPrice(minPriceRef.current.value);
-      setMaxPrice(maxPriceRef.current.value);
+      const min = parseFloat(minPriceRef.current.value);
+      const max = parseFloat(maxPriceRef.current.value);
+      if (max < min) {
+        toast.error("Invalid price. Max price must bigger than min price");
+      } else {
+        setMinPrice(min);
+        setMaxPrice(max);
+        setSearchSubmitted(true); // Trigger useEffect to fetch products
+      }
     }
-    setSearchSubmitted(true); // Trigger useEffect to fetch products
   };
 
   const categories = [

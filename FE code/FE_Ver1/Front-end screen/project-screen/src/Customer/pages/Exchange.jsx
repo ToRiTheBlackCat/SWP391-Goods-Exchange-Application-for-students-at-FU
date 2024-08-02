@@ -137,7 +137,7 @@ const ExchangePage = () => {
               const response = await axiosInstance.post('/api/Exchange/CreateExchange', exchangeRequest);
               console.log('Response Status:', response.status); // Log response status
               console.log('Response Data:', response.data); // Log response data
-              if (response.status === 200 || response.status === 201) {
+              if (response.status === 200) {
                 setSuccessMessage('Exchange request created successfully! Back to home page now');
                 setTimeout(() => {
                   navigate('/');
@@ -159,8 +159,8 @@ const ExchangePage = () => {
   };
 
   const formatCurrency = (value) => {
-    return value.replace(/\D/g, '')
-      .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return value.replace(/\D/g, '') //loại bỏ tất cả ký tự ko phải số
+      .replace(/\B(?=(\d{3})+(?!\d))/g, '.'); //thêm dấu . vào mỗi nhóm 3 chữ số
   };
 
   const handleBalanceChange = (e) => {

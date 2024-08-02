@@ -13,20 +13,19 @@ export default function ChatContainer() {
     const productID = queryParams.get('productID');
     const productName = queryParams.get('productName');
 
-    const [product, setProduct] = useState(null);
-    const [chats, setChats] = useState([]);
-    const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('loggedInUser')));
+    const [product, setProduct] = useState(null);   //quản lý trạng thái sản phẩm
+    const [chats, setChats] = useState([]);   //quản lý tin nhắn
+    const [currentUser,setCurrentUser] = useState(JSON.parse(localStorage.getItem('loggedInUser')));
     const user = currentUser.userName;
-    const [avatar] = useState(userIcon);
-    const [connection, setConnection] = useState(null);
-    const [toAddress, setToAddress] = useState("");
+    const [avatar] = useState(userIcon);  //avatar mặc định của người dùng
+    const [connection, setConnection] = useState(null); //quản lý kết nối SignalR
+    const [toAddress, setToAddress] = useState("");   //quản lý địa chỉ của người dùng khác
     const navigate = useNavigate();
-    const inSessionRef = useRef(false);
-    const connectionInitialized = useRef(false);
+    const inSessionRef = useRef(false);   //quản lý trạng thái phiên chat 
+    const connectionInitialized = useRef(false);  //quản lý trạng thái khởi tạo kết nối 
 
     useEffect(() => {
         const fetchProduct = async () => {
-            // initializeConnection();
             try {
                 const response = await axiosInstance.get(`/api/Product/Student/ViewProductDetailWithId/${productID}`);
                 setProduct(response.data);
@@ -42,7 +41,7 @@ export default function ChatContainer() {
         fetchProduct();
     }, [productID]);
 
-    const initializeConnection = useCallback(() => {
+    const initializeConnection = useCallback(() => {    //hàm tạo kết nối SignalR
         const newConnection = new signalR.HubConnectionBuilder()
             .withUrl("https://goodsexchangefu-api.azurewebsites.net/chat")
             .configureLogging(signalR.LogLevel.Information)
@@ -51,7 +50,7 @@ export default function ChatContainer() {
         setConnection(newConnection);
     }, []);
 
-    const signUpConnection = useCallback(async () => {
+    const signUpConnection = useCallback(async () => {    //hàm đăng kí kết nối với SignalR
         if (connection) {
             try {
                 await connection.invoke("OnConnected", user);
@@ -61,7 +60,7 @@ export default function ChatContainer() {
         }
     }, [connection, user]);
 
-    const connectWithUser = useCallback(async () => {
+    const connectWithUser = useCallback(async () => {      //hàm kiểm tra và kết nối với người dùng khác
         if (inSessionRef.current) return; // Check if already in session to avoid duplicate calls
 
         try {
@@ -77,9 +76,9 @@ export default function ChatContainer() {
         } catch (err) {
             console.error(err.toString());
         }
-    }, [userID, connection, productID, productName]);
+    }, [connection, userID, productID, productName]);
 
-    const checkConnection = useCallback(() => {
+    const checkConnection = useCallback(() => {    //hàm kiểm tra kết nối hiện tại
         if (connection) {
             connection.invoke("GetCurrentConnect")
                 .then((result) => {
@@ -93,17 +92,17 @@ export default function ChatContainer() {
 
     useEffect(() => {
         if (connection && !connectionInitialized.current) {
-            connection.start()
+            connection.start() //bắt đâu kết nối SignalR
                 .then(() => {
                     console.log('Connected!');
                     connectionInitialized.current = true;
-                    connection.on('ReceiveMessage', (user, message) => {
+                    connection.on('ReceiveMessage', (user, message) => { //nhận tin nhắn từ server
                         checkConnection();
                         setChats(prevChats => [...prevChats, { user, message }]);
                         console.log("session value: ", inSessionRef.current);
                         return "Sent";
                     });
-                    connection.on("ApproveConnect", (connectionId) => {
+                    connection.on("ApproveConnect", (connectionId) => {  //xác nhận kết nối từ server
                         checkConnection();
 
                         if (connectionId && !inSessionRef.current) {
@@ -125,9 +124,9 @@ export default function ChatContainer() {
                     throw new Error('Connection failed, stopping further execution.');
                 });
         }
-    }, [signUpConnection, connectWithUser, checkConnection]);
+    }, [signUpConnection, connectWithUser, checkConnection, connection]);
 
-    const sendChatToServer = (chat) => {
+    const sendChatToServer = (chat) => {   //hàm gửi tin nhắn đến server qua SignalR
         if (connection) {
             connection.invoke('SendMessagePrivate', chat.user, chat.message, toAddress)
                 .catch(err => console.error('Error while sending message: ', err));
@@ -140,7 +139,7 @@ export default function ChatContainer() {
         sendNotificationToUser();
     };
 
-    const sendNotificationToUser = async () => {
+    const sendNotificationToUser = useCallback(async () => {
         const notificationData = {
             userId: product?.userId,  // Use userId from fetched product data
             productId: productID,
@@ -155,7 +154,7 @@ export default function ChatContainer() {
         } catch (error) {
             console.error('Error sending notification:', error);
         }
-    };
+    });
 
     const ChatList = () => {
         return chats.map((chat, index) => {
