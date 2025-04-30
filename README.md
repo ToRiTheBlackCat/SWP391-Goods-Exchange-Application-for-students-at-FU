@@ -28,4 +28,6 @@ A platform that helps students at FU exchange goods, products, and tools with ot
 - **ManageAccount Admin-Page**
 ![image alt](https://github.com/ToRiTheBlackCat/SWP391-Goods-Exchange-Application-for-students-at-FU/blob/94fd1cf26fe9d46d569c7d1ea2f6038788cebb60/Images/ManageAccount(Admin).png)
 - **Dashboard Admin-Page**
-![image alt](https://github.com/ToRiTheBlackCat/SWP391-Goods-Exchange-Application-for-students-at-FU/blob/94fd1cf26fe9d46d569c7d1ea2f6038788cebb60/Images/Dashboard(Admin).png)
+![image alt](https://github.com/ToRiTheBlackCat/SWP391-Goods-Exchange-Application-for-students-at-FU/blob/b8b8f88764e193ea25779e058b8958d201f444b0/Images/Dashboard(Admin).png)
+
+---
