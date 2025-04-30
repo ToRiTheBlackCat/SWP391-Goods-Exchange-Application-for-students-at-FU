@@ -1,4 +1,4 @@
-# ======= SWP391 - GROUP 4 - TOPIC 10 =======
+# ============ SWP391 - GROUP 4 - TOPIC 10 ============
 
 ## Members
 
