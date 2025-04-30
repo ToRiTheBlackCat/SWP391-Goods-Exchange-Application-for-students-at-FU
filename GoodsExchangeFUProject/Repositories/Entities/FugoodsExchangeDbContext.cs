@@ -35,8 +35,11 @@ public partial class GoodsExchangeFudbContext : DbContext
     public virtual DbSet<Role> Roles { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+	public virtual DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
-    private string GetConnectionString()
+	public virtual DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+
+	private string GetConnectionString()
     {
         IConfiguration config = new ConfigurationBuilder()
              .SetBasePath(Directory.GetCurrentDirectory())
@@ -287,8 +290,44 @@ public partial class GoodsExchangeFudbContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_User_User_RoleID");
         });
+		modelBuilder.Entity<ShoppingCart>(entity =>
+		{
+			entity.ToTable("ShoppingCart");
 
-        OnModelCreatingPartial(modelBuilder);
+			entity.Property(e => e.ShoppingCartId)
+				.ValueGeneratedNever()
+				.HasColumnName("shoppingCartID");
+			entity.Property(e => e.CreatedDate)
+				.HasColumnType("datetime")
+				.HasColumnName("createdDate");
+			entity.Property(e => e.IsActive).HasColumnName("isActive");
+			entity.Property(e => e.TotalPrice)
+				.HasColumnType("decimal(18, 0)")
+				.HasColumnName("totalPrice");
+			entity.Property(e => e.UserId).HasColumnName("userID");
+		});
+
+		modelBuilder.Entity<ShoppingCartItem>(entity =>
+		{
+			entity.ToTable("ShoppingCartItem");
+
+			entity.Property(e => e.ShoppingCartItemId)
+				.ValueGeneratedNever()
+				.HasColumnName("shoppingCartItemID");
+			entity.Property(e => e.ProductId).HasColumnName("productID");
+			entity.Property(e => e.Quantity).HasColumnName("quantity");
+			entity.Property(e => e.ShoppingCartId).HasColumnName("shoppingCartID");
+			entity.Property(e => e.UnitPrice)
+				.HasColumnType("decimal(18, 0)")
+				.HasColumnName("unitPrice");
+
+			entity.HasOne(d => d.ShoppingCart).WithMany(p => p.ShoppingCartItems)
+				.HasForeignKey(d => d.ShoppingCartId)
+				.OnDelete(DeleteBehavior.ClientSetNull)
+				.HasConstraintName("FK_ShoppingCartItem_ShoppingCart");
+		});
+
+		OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

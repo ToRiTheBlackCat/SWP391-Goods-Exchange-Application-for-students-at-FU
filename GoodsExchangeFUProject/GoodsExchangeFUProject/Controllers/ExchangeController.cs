@@ -31,7 +31,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
         //TRI
         //[Authorize(Roles = "student")]
-        [HttpPost("CancelExchangeList/{productID}")]
+        [HttpPost("Help/CancelExchangeList/{productID}")]
         public async Task<IActionResult> CancelExchangeListOfProduct(int productID)
         {
             var result = await _exchangeService.CancelExchangesOfProduct(productID);
@@ -68,7 +68,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
         //TUAN
         // GET: api/Exchanges/EchangeRequests
-        [HttpGet("EchangeRequests")]
+        [HttpGet("Student/EchangeRequests")]
         public IActionResult GetExchangeRequests(int userID)
         {
             var list = _exchangeService.GetExchangeOfUserUI(userID);
@@ -77,7 +77,7 @@ namespace GoodsExchangeFUProject.Controllers
 
         //TUAN
         // GET: api/Exchanges/ProductExchanges/5
-        [HttpGet("ProductExchanges/{productId}")]
+        [HttpGet("Student/ProductExchanges/{productId}")]
         public async Task<IActionResult> GetProductExchanges(int productId)
         {
             var list = await _exchangeService.GetProductExchangesUI(productId);
@@ -88,7 +88,7 @@ namespace GoodsExchangeFUProject.Controllers
 
         //TUAN
         // POST: api/CreateExchange
-        [HttpPost("CreateExchange")]
+        [HttpPost("Student/CreateExchange")]
         public async Task<IActionResult> CreateExchange(ExchangeCreateView exchangeCreate)
         {
             //Create Exchange request
@@ -98,7 +98,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TUAN
-        [HttpPut("AcceptExchange")]
+        [HttpPut("Student/AcceptExchange")]
         public async Task<IActionResult> AcceptExchange(int exchangeId)
         {
             var (result, message) = await _exchangeService.AcceptExchangeUI(exchangeId);

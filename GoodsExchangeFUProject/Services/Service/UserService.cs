@@ -227,7 +227,7 @@ namespace Services.Service
             await _repo.RemoveUser(userId);
         }
         
-        //TRI trả về tổng user, ?stu, ?mod 
+        //TRI trả về tổng user,mod, ad 
         public async Task<(int, int, int)> AdminDashBoardAccounts()
         {
             try

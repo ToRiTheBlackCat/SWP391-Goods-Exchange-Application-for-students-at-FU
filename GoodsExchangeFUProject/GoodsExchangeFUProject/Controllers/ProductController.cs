@@ -137,7 +137,7 @@ namespace GoodsExchangeFUProject.Controllers
         //}
 
 
-        [HttpGet("GetUserImage")]
+        [HttpGet("Help/GetUserImage")]
         public IActionResult GetUserImage(string imageName)
         {
             //get path to the image requested
@@ -228,7 +228,7 @@ namespace GoodsExchangeFUProject.Controllers
         //=====================
         //TUAN
         // GET: api/Products
-        [HttpGet("GetSorted")]
+        [HttpGet("Help/GetSorted")]
         [AllowAnonymous]
         public async Task<ActionResult<List<ViewAllProductModel>>> GetProductsSorted(int pageIndex, string? searchString, int? cateId, int? fromPrice, int? toPrice, string sortOder = null!)
         {

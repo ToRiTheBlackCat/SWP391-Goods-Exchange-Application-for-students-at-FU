@@ -34,7 +34,7 @@ namespace GoodsExchangeFUProject.Controllers
             return Ok(list);
         }
         //TRI
-        [HttpGet("user/GetUserInfo/{userId}")]
+        [HttpGet("Student/GetUserInfo/{userId}")]
         public async Task<IActionResult> GetUserInfoById(int userId)
         {
             var userFound = await _userService.GetUserInfo(userId);
@@ -55,7 +55,7 @@ namespace GoodsExchangeFUProject.Controllers
             return Ok(accounts);
         }
         //TRI
-        [HttpPut("user/UpdateUserInfo/{userId}")]
+        [HttpPut("Studen/UpdateUserInfo/{userId}")]
         public async Task<IActionResult> UpdateUserInfoById(int userId, [FromBody] UpdateInfoUserModel updateModel)
         {
             var userFound = await _userService.GetUserInfo(userId);
@@ -71,7 +71,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TRI
-        [HttpPost("/user/login")]
+        [HttpPost("Help/Login")]
         public async Task<IActionResult> LoginWithEmailAndPassword([FromBody] LoginUserModel loginModel)
         {
             var (success, response, id, name, role) = await _userService.LoginByEmailAndPassword(loginModel);
@@ -85,7 +85,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TUAN
-        [HttpPost("/api/user/google-login")]
+        [HttpPost("Help/google-login")]
         public async Task<ActionResult> GoogleLogin([FromBody] string credential)
         {
             var (success, response, id, name, role) = await _userService.GoogleAuthorizeUser(credential);
@@ -136,7 +136,7 @@ namespace GoodsExchangeFUProject.Controllers
             return BadRequest(message);
         }
         //TRI
-        [HttpGet("GetAllRatingAndComment/{userId}")]
+        [HttpGet("Student/GetAllRatingAndComment/{userId}")]
         public async Task<IActionResult> GetAllRatingAndCommentOfUser(int userId)
         {
             var list = await _userService.GetAllRatingAndComment(userId);
@@ -154,7 +154,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TUAN
-        [HttpPost("UserForgotPassword")]
+        [HttpPost("Student/UserForgotPassword")]
         public async Task<IActionResult> ForgotPassword(string emailAddress)
         {
             var result = await _userService.UserForgotPasswordUI(emailAddress);
@@ -163,7 +163,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TUAN
-        [HttpPost("UserResetPassword")]
+        [HttpPost("Student/UserResetPassword")]
         public async Task<IActionResult> ResetPassword(UserPassResetModel resetModel)
         {
             var (result, message) = await _userService.UserResetPasswordUI(resetModel);
@@ -176,7 +176,7 @@ namespace GoodsExchangeFUProject.Controllers
 
         //TUAN
         //[Authorize(Roles = "student")]
-        [HttpPost("Create-Customer-Account")]
+        [HttpPost("Student/CreateCustomerAccount")]
         public async Task<ActionResult<string>> PostUser(UserRegisterModel registerModel)
         {
 
@@ -189,7 +189,7 @@ namespace GoodsExchangeFUProject.Controllers
 
         //TUAN
         //[Authorize(Roles = "admin")]
-        [HttpPost("Create-Modderator-Account")]
+        [HttpPost("Mod/CreateModderatorAccount")]
         public async Task<ActionResult<string>> PostModderator(UserRegisterModel registerView)
         {
 
@@ -201,7 +201,7 @@ namespace GoodsExchangeFUProject.Controllers
         }
 
         //TUAN
-        [HttpGet("GetAllNotification/{userId}")]
+        [HttpGet("Student/GetAllNotification/{userId}")]
         public async Task<IActionResult> GetAllNotificationOfUser(int userId)
         {
             var (result, list) = await _userService.GetReceivedNotifications(userId);
@@ -212,7 +212,7 @@ namespace GoodsExchangeFUProject.Controllers
             });
         }
 
-        [HttpPost("SendNotificationToUser")]
+        [HttpPost("Student/SendNotificationToUser")]
         public async Task<IActionResult> SendNotificationToUser(NotificationSendView sendView)
         {
             var (message, result) = await _userService.SendNotification(sendView);
@@ -223,7 +223,7 @@ namespace GoodsExchangeFUProject.Controllers
             });
         }
 
-        [HttpPost("ReplyNotification")]
+        [HttpPost("Student/ReplyNotification")]
         public async Task<IActionResult> ReplyNotification(NotificationReceivedView sendView)
         {
             var (message, result) = await _userService.UserReplyToNotification(sendView);
